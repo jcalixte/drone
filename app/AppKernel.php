@@ -17,7 +17,11 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
+            // Bundle installé
             new FOS\UserBundle\FOSUserBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
+            new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
+            // Bundle spécifique
             new Drone\UserBundle\DroneUserBundle(),
             new Drone\HomeBundle\DroneHomeBundle(),
             new Drone\MapBundle\DroneMapBundle(),

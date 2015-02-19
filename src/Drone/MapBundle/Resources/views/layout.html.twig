@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+    {% block stylesheets_map %}{% endblock %}
+{% endblock %}
+
+{% block javascripts_before %}
+	{{ parent() }}
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzcQWW2NJSYDIJ9euL56ZlmuH_xpOoxUE">
+    </script>
+    {% block javascripts_before_map %}{% endblock %}
+{% endblock %}
+
+{% block body %}
+    {% block body_map %}{% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+    {% block javascripts_map %}{% endblock %}
+{% endblock %}

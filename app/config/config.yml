@@ -76,3 +76,27 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Drone\UserBundle\Entity\User
+
+knp_gaufrette:
+    stream_wrapper: ~
+
+    adapters:
+        map_adapter:
+            local:
+                directory: %kernel.root_dir%/../web/image/map
+
+    filesystems:
+        map_image_fs:
+            adapter:    map_adapter
+
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        map_image:
+            uri_prefix: /image/map
+            upload_destination: map_image_fs
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
