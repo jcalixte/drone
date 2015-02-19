@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Drone\UserBundle\DroneUserBundle(),
             new Drone\HomeBundle\DroneHomeBundle(),
+            new Drone\MapBundle\DroneMapBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

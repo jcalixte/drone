@@ -2,6 +2,10 @@ drone_home:
     resource: "@DroneHomeBundle/Resources/config/routing.yml"
     prefix:   /
 
+drone_map:
+    resource: "@DroneMapBundle/Resources/config/routing.yml"
+    prefix:   /map
+
 drone_user:
     resource: "@DroneUserBundle/Resources/config/routing.yml"
     prefix:   /user
