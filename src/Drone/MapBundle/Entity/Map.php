@@ -38,7 +38,7 @@ class Map
     private $user;
 
     /**
-     * @Vich\UploadableField(mapping="product_image", fileNameProperty="imageName")
+     * @Vich\UploadableField(mapping="map_image", fileNameProperty="imageName")
      *
      * @var File $imageFile
      */
