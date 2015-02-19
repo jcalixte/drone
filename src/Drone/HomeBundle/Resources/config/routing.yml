@@ -1,0 +1,3 @@
+drone_home_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: DroneHomeBundle:Default:index }
