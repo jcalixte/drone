@@ -2,9 +2,9 @@
 
 {% block body_map %}
 	<h1>Carte du monde</h1>
-    <div id="textBox"></div>
     <input id="search_query" name="search_query" type="text" value="11 avenue des iles d'or, 83400, Hyères">
     <input id="search" name="search" type="button" value="Rechercher">
+    <a href="#" id="rectangleChoice" class="btn btn-default btn-lg" role="button">Détourer votre terrain</a>
     <div id='map'></div>
 {% endblock %}
 
@@ -22,29 +22,43 @@
 		var map = new Microsoft.Maps.Map(document.getElementById("map"), mapOptions);
 
 		//Ajout de modules utilisés
-        Microsoft.Maps.Events.addHandler(map, 'click', displayLatLong);
+		var handleClick = false;
         search_engine_loaded = false;
         Microsoft.Maps.loadModule('Microsoft.Maps.Search', { callback: function(){
         		search_engine_loaded = true;
 	        }
 	    });
 
-        function displayLatLong(e) {
-			if (e.targetType == "map") {
-				var point = new Microsoft.Maps.Point(e.getX(), e.getY());
-				var loc = e.target.tryPixelToLocation(point);
-				$("#textBox").text(loc.latitude + ", " + loc.longitude);
-			}
-		}
-
         $("#search").click(function(){
         	var query = $("#search_query").val();
         	if(query != ""){
         		searchModule(query);
-        	}else{
-				alert("Le module de recherche n'est pas chargé");
         	}
         });
+
+        $("#rectangleChoice").click(function(e){
+        	e.preventDefault();
+        	$(this).toggleClass('active').trigger('classChange');
+        	return false;
+        });
+
+		$(document).on('classChange', function(){
+			if($("#rectangleChoice").hasClass('active')){
+				handleClick = Microsoft.Maps.Events.addHandler(map, 'click', function(e){
+					if (e.targetType == "map") {
+						var point = new Microsoft.Maps.Point(e.getX(), e.getY());
+						var loc = e.target.tryPixelToLocation(point);
+						alert(loc.latitude + ", " + loc.longitude);
+					}
+				});
+	        }else{
+	        	if(handleClick !== false){
+	        		Microsoft.Maps.Events.removeHandler(handleClick);
+	        		handleClick = false;
+	        	}
+	        }
+        });
+        /*==========  Fonctions  ==========*/
 
 		function searchModule(q)
 		{

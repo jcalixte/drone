@@ -37,8 +37,10 @@ h1 {
 
 #map {
    position: absolute;
+   min-width: 600px;
+   min-height: 400px;
    width: 80%;
-   height: 400px;
+   height: 80%;
 }
 
 /*-----  Fin de MapBundle  ------*/

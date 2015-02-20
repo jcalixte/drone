@@ -101,8 +101,10 @@ h1 {
 /* line 38, ../sass/screen.scss */
 #map {
   position: absolute;
+  min-width: 600px;
+  min-height: 400px;
   width: 80%;
-  height: 400px;
+  height: 80%;
 }
 
 /*-----  Fin de MapBundle  ------*/

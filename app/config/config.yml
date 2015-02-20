@@ -29,6 +29,9 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form:
+        resources:
+            - 'VichUploaderBundle:Form:fields.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -76,6 +79,9 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Drone\UserBundle\Entity\User
+    registration:
+        form:
+            type: drone_user_registration
 
 knp_gaufrette:
     stream_wrapper: ~
@@ -84,14 +90,18 @@ knp_gaufrette:
         map_adapter:
             local:
                 directory: %kernel.root_dir%/../web/image/map
+        user_adapter:
+            local:
+                directory: %kernel.root_dir%/../web/image/user
 
     filesystems:
         map_image_fs:
-            adapter:    map_adapter
+            adapter: map_adapter
+        user_image_fs:
+            adapter: user_adapter
 
 vich_uploader:
     db_driver: orm
-
     mappings:
         map_image:
             uri_prefix: /image/map
@@ -100,3 +110,10 @@ vich_uploader:
             inject_on_load:     false
             delete_on_update:   true
             delete_on_remove:   true
+        user_image:
+            uri_prefix: /image/user
+            upload_destination: user_image_fs
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   false
