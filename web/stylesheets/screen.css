@@ -74,3 +74,22 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 body {
   background-color: #336e7b;
 }
+
+/* line 19, ../sass/screen.scss */
+#content {
+  width: 80%;
+  margin: 15px auto 10px;
+  padding: 10px;
+}
+
+/*=================================
+=            MapBundle            =
+=================================*/
+/* line 29, ../sass/screen.scss */
+#map {
+  position: absolute;
+  width: 80%;
+  height: 400px;
+}
+
+/*-----  Fin de MapBundle  ------*/

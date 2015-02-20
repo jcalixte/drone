@@ -7,12 +7,14 @@
 
 {% block javascripts_before %}
 	{{ parent() }}
-    <script type="text/javascript"
+    <script charset="UTF-8" type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&mkt=fr-fr">
+    </script>
+    {# <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzcQWW2NJSYDIJ9euL56ZlmuH_xpOoxUE">
     </script>
+    #}
     {% block javascripts_before_map %}{% endblock %}
 {% endblock %}
-
 {% block body %}
     {% block body_map %}{% endblock %}
 {% endblock %}

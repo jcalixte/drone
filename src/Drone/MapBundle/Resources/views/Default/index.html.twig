@@ -1,5 +1,34 @@
 {% extends 'DroneMapBundle::layout.html.twig' %}
 
 {% block body_map %}
-    Salut !
+	<h1>Carte du monde</h1>
+    <div id="textBox"></div>
+    <div id='map'></div>
+{% endblock %}
+
+{% block javascripts_map %}
+<script>
+	$(function(){
+		var credentialsKey = "AkTr7IeJt5O4ZpWh9reo8wMmlcWN8purxjzGkLalDqeMICooYnrBJepl9dD7cmMt";
+		var mapOptions = {
+			credentials: credentialsKey,
+			center: new Microsoft.Maps.Location(48.85720336058152, 2.3527531137302393),
+			mapTypeId: Microsoft.Maps.MapTypeId.automatic,
+			zoom: 10
+		};
+
+		var map = new Microsoft.Maps.Map(document.getElementById("map"), mapOptions);
+
+		//Add handler for the map click event.
+        Microsoft.Maps.Events.addHandler(map, 'click', displayLatLong);
+
+        function displayLatLong(e) {
+			if (e.targetType == "map") {
+				var point = new Microsoft.Maps.Point(e.getX(), e.getY());
+				var loc = e.target.tryPixelToLocation(point);
+				$("#textBox").text(loc.latitude + ", " + loc.longitude);
+			}
+		}
+	});
+</script>
 {% endblock %}

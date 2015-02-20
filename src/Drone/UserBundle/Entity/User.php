@@ -26,6 +26,27 @@ class User extends BaseUser
      **/
     private $maps;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     */
+    private $address;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=10, nullable=false)
+     */
+    private $zipcode;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=10, nullable=false)
+     */
+    private $country;
+
     public function __construct()
     {
         parent::__construct();
