@@ -3,6 +3,8 @@
 {% block body_map %}
 	<h1>Carte du monde</h1>
     <div id="textBox"></div>
+    <input id="search_query" name="search_query" type="text" value="11 avenue des iles d'or, 83400, Hyères">
+    <input id="search" name="search" type="button" value="Rechercher">
     <div id='map'></div>
 {% endblock %}
 
@@ -19,8 +21,13 @@
 
 		var map = new Microsoft.Maps.Map(document.getElementById("map"), mapOptions);
 
-		//Add handler for the map click event.
+		//Ajout de modules utilisés
         Microsoft.Maps.Events.addHandler(map, 'click', displayLatLong);
+        search_engine_loaded = false;
+        Microsoft.Maps.loadModule('Microsoft.Maps.Search', { callback: function(){
+        		search_engine_loaded = true;
+	        }
+	    });
 
         function displayLatLong(e) {
 			if (e.targetType == "map") {
@@ -28,6 +35,42 @@
 				var loc = e.target.tryPixelToLocation(point);
 				$("#textBox").text(loc.latitude + ", " + loc.longitude);
 			}
+		}
+
+        $("#search").click(function(){
+        	var query = $("#search_query").val();
+        	if(query != ""){
+        		searchModule(query);
+        	}else{
+				alert("Le module de recherche n'est pas chargé");
+        	}
+        });
+
+		function searchModule(q)
+		{
+			if(search_engine_loaded){
+				var searchManager = new Microsoft.Maps.Search.SearchManager(map);
+
+				var searchRequest = {
+					where: q, 
+					count: 5, 
+					callback: searchGeoCallback, 
+					errorCallback: searchError
+				};
+
+				searchManager.geocode(searchRequest);
+			}
+		}
+
+		function searchGeoCallback(geocodeResult, userData){
+			map.setView({
+				bounds: geocodeResult.results[0].bestView
+			});
+		}
+
+		function searchError(searchRequest)
+		{
+			alert("An error occurred.");
 		}
 	});
 </script>
