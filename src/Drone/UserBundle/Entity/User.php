@@ -36,14 +36,14 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=10, nullable=false)
+     * @ORM\Column(name="zipcode", type="string", length=10, nullable=false)
      */
     private $zipcode;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=10, nullable=false)
+     * @ORM\Column(name="country", type="string", length=50, nullable=false)
      */
     private $country;
 
