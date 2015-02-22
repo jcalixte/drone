@@ -4,7 +4,8 @@
 	<h1>Carte du monde</h1>
     <input id="search_query" name="search_query" type="text" value="11 avenue des iles d'or, 83400, Hyères">
     <input id="search" name="search" type="button" value="Rechercher">
-    <a href="#" id="rectangleChoice" class="btn btn-default btn-lg" role="button">Détourer votre terrain</a>
+    <a href="#" id="rectangleChoice" class="btn btn-default" role="button">Détourer votre terrain</a>
+    <a href="#" id="rectangleEnd" class="btn btn-success">Finir votre contour</a>
     <div id='map'></div>
 {% endblock %}
 
@@ -23,11 +24,18 @@
 
 		//Ajout de modules utilisés
 		var handleClick = false;
-        search_engine_loaded = false;
+        var search_engine_loaded = false;
         Microsoft.Maps.loadModule('Microsoft.Maps.Search', { callback: function(){
         		search_engine_loaded = true;
 	        }
 	    });
+        var advanced_shapes_loaded = false;
+	    Microsoft.Maps.loadModule('Microsoft.Maps.AdvancedShapes', { callback: function(){
+	    		advanced_shapes_loaded = true;
+			}
+		});
+
+	    var shape = [];
 
         $("#search").click(function(){
         	var query = $("#search_query").val();
@@ -42,13 +50,19 @@
         	return false;
         });
 
+        $("#rectangleEnd").click(function(e){
+        	e.preventDefault();
+        	addShape();
+        	return false;
+        });
+
 		$(document).on('classChange', function(){
 			if($("#rectangleChoice").hasClass('active')){
 				handleClick = Microsoft.Maps.Events.addHandler(map, 'click', function(e){
 					if (e.targetType == "map") {
 						var point = new Microsoft.Maps.Point(e.getX(), e.getY());
 						var loc = e.target.tryPixelToLocation(point);
-						alert(loc.latitude + ", " + loc.longitude);
+						addPointToShape(loc.latitude, loc.longitude);
 					}
 				});
 	        }else{
@@ -85,6 +99,64 @@
 		function searchError(searchRequest)
 		{
 			alert("An error occurred.");
+		}
+
+		function addPointToShape(lat, lon){
+			shape[shape.length] = new Microsoft.Maps.Location(lat, lon);
+		}
+
+		function addShape(){
+			if(shape.length != 0){
+				// On ferme la forme avec le premier point.
+				shape[shape.length] = shape[0];
+				var polyShape = shape.slice();
+				var polygon = new Microsoft.Maps.Polygon(polyShape);
+				polygon.setOptions({
+					fillColor: {
+						a: 150,
+						r: 0,
+						g: 0,
+						b: 0
+					},
+					strokeColor: {
+						a: 150,
+						r: 0,
+						g: 0,
+						b: 200
+					},
+					infobox: "Je suis un terrain !",
+					visible: true,
+				});
+				map.entities.push(polygon);
+				// Remise à zéro du tableau de point.
+				shape.length = 0;
+				console.log(polyShape);
+			}
+		}
+
+		function addCircle(radius, latitude, longitude){
+			var backgroundColor = new Microsoft.Maps.Color(10, 100, 0, 0);
+			var borderColor = new Microsoft.Maps.Color(150, 200, 0, 0);
+
+			var lat = (latitude * Math.PI) / 180;     
+			var lon = (longitude * Math.PI) / 180;
+			var d = parseFloat(radius) / R;
+			var circlePoints = new Array();
+
+			for (x = 0; x <= 360; x += 5) {
+			    var position = new Microsoft.Maps.Location(0, 0);
+			    xRadian = x * Math.PI / 180;
+			    position.latitude = Math.asin(Math.sin(lat) * Math.cos(d) + Math.cos(lat) * Math.sin(d) * Math.cos(xRadian));
+
+			    position.longitude = ((lon + Math.atan2(Math.sin(xRadian) * Math.sin(d) * Math.cos(lat), 
+			                     Math.cos(d) - Math.sin(lat) * Math.sin(position.latitude))) * 180) / Math.PI;
+			    position.latitude = (position.latitude * 180) / Math.PI;
+			    circlePoints.push(position);
+			}
+
+			var polygon = new Microsoft.Maps.Polygon(circlePoints.slice(), { fillColor: backgroundColor, strokeColor: borderColor, strokeThickness: 1 });
+
+			map.entities.push(polygon);
 		}
 	});
 </script>
