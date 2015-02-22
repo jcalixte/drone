@@ -70,7 +70,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 @font-face {
   font-family: "Quicksand";
-  src: url('/stylesheets/fonts/police/Quicksand.otf') format('opentype');
+  src: url('/stylesheets/fonts/Quicksand.otf') format('opentype');
 }
 
 /* Définition des constantes */
