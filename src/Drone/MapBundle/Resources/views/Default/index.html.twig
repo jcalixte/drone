@@ -28,6 +28,7 @@
         		search_engine_loaded = true;
 	        }
 	    });
+	    Microsoft.Maps.loadModule('Microsoft.Maps.AdvancedShapes', { callback: shapesModuleLoaded });
 
         $("#search").click(function(){
         	var query = $("#search_query").val();
@@ -85,6 +86,31 @@
 		function searchError(searchRequest)
 		{
 			alert("An error occurred.");
+		}
+
+		function shapesModuleLoaded()
+		{
+			var polygonWithHoles = new Microsoft.Maps.Polygon(
+			[
+				[new Microsoft.Maps.Location(47.604, -121.940),
+				new Microsoft.Maps.Location(47.604, -121.540),
+				new Microsoft.Maps.Location(47.834, -121.540),
+				new Microsoft.Maps.Location(47.834, -121.940),
+				new Microsoft.Maps.Location(47.604, -121.940)],
+				[new Microsoft.Maps.Location(47.704, -121.740),
+				new Microsoft.Maps.Location(47.704, -121.640),
+				new Microsoft.Maps.Location(47.804, -121.640),
+				new Microsoft.Maps.Location(47.804, -121.740),
+				new Microsoft.Maps.Location(47.704, -121.740)],
+				[new Microsoft.Maps.Location(47.744, -121.700),
+				new Microsoft.Maps.Location(47.744, -121.680),
+				new Microsoft.Maps.Location(47.764, -121.680),
+				new Microsoft.Maps.Location(47.764, -121.700),
+				new Microsoft.Maps.Location(47.744, -121.700)]
+			]);
+
+			map.entities.push(polygonWithHoles);
+
 		}
 	});
 </script>
