@@ -5,7 +5,8 @@
     <input id="search_query" name="search_query" type="text" value="11 avenue des iles d'or, 83400, Hyères">
     <input id="search" name="search" type="button" value="Rechercher">
     <a href="#" id="rectangleChoice" class="btn btn-default" role="button">Détourer votre terrain</a>
-    <a href="#" id="rectangleEnd" class="btn btn-success">Finir votre contour</a>
+    <a href="#" id="interestPoint" title="Point de passage" class="btn btn-info">Point de passage</a>
+    {# <a href="#" id="rectangleEnd" class="btn btn-success">Finir votre contour</a> #}
     <div id='map'></div>
 {% endblock %}
 
@@ -46,32 +47,76 @@
 
         $("#rectangleChoice").click(function(e){
         	e.preventDefault();
-        	$(this).toggleClass('active').trigger('classChange');
+        	$(this).toggleClass('active').trigger('fieldChoice');
+        	var text = $(this).text();
+        	if(text == "Détourer votre terrain"){
+        		$(this).text("Finir votre contour");
+        	}else{
+        		$(this).text("Détourer votre terrain");
+        	}
         	return false;
         });
 
-        $("#rectangleEnd").click(function(e){
+        $("#interestPoint").click(function(e){
         	e.preventDefault();
-        	addShape();
-        	return false;
+        	$(this).toggleClass('active').trigger('pointChoice');
+        	var text = $(this).text();
+        	if(text == "Point de passage"){
+        		$(this).text("Finir");
+        	}else{
+        		$(this).text("Point de passage");
+        	}
         });
 
-		$(document).on('classChange', function(){
+        /*==========  Évènements  ==========*/
+
+		$(document).on('fieldChoice', function(){
 			if($("#rectangleChoice").hasClass('active')){
 				handleClick = Microsoft.Maps.Events.addHandler(map, 'click', function(e){
-					if (e.targetType == "map") {
+					if(e.targetType == "map"){
 						var point = new Microsoft.Maps.Point(e.getX(), e.getY());
 						var loc = e.target.tryPixelToLocation(point);
 						addPointToShape(loc.latitude, loc.longitude);
 					}
+				});
+				$('#map').mouseover(function(){
+					$('.MicrosoftMap').css('cursor', 'crosshair');
 				});
 	        }else{
 	        	if(handleClick !== false){
 	        		Microsoft.Maps.Events.removeHandler(handleClick);
 	        		handleClick = false;
 	        	}
+				$('#map').mouseover(function(){
+					$('.MicrosoftMap').css('cursor', 'move');
+				});
+        		addShape();
 	        }
         });
+
+		$(document).on('pointChoice', function(){
+			if($("#interestPoint").hasClass('active')){
+				handleClick = Microsoft.Maps.Events.addHandler(map, 'click', function(e){
+					if(e.targetType == "map"){
+						var point = new Microsoft.Maps.Point(e.getX(), e.getY());
+						var loc = e.target.tryPixelToLocation(point);
+						addCircle(0.000001, loc); //loc.latitude, loc.longitude);
+					}
+				});
+				$('#map').mouseover(function(){
+					$('.MicrosoftMap').css('cursor', 'crosshair');
+					console.log("mouseOver");
+				});
+			}else{
+				if(handleClick !== false){
+					Microsoft.Maps.Events.removeHandler(handleClick);
+					handleClick = false;
+				}
+				$('#map').mouseover(function(){
+					$('.MicrosoftMap').css('cursor', 'move');
+				});
+			}
+		});
         /*==========  Fonctions  ==========*/
 
 		function searchModule(q)
@@ -134,14 +179,14 @@
 			}
 		}
 
-		function addCircle(radius, latitude, longitude){
+		function addCircle(radius, location){ //latitude, longitude){
 			var backgroundColor = new Microsoft.Maps.Color(10, 100, 0, 0);
-			var borderColor = new Microsoft.Maps.Color(150, 200, 0, 0);
-
-			var lat = (latitude * Math.PI) / 180;     
-			var lon = (longitude * Math.PI) / 180;
-			var d = parseFloat(radius) / R;
-			var circlePoints = new Array();
+			var borderColor     = new Microsoft.Maps.Color(150, 200, 0, 0);
+			//var R               = 6371; // Rayon de la terre en kilomètres
+			var lat             = (location.latitude * Math.PI) / 180;     
+			var lon             = (location.longitude * Math.PI) / 180;
+			var d               = parseFloat(radius);// / R;
+			var circlePoints    = [];
 
 			for (x = 0; x <= 360; x += 5) {
 			    var position = new Microsoft.Maps.Location(0, 0);
@@ -153,9 +198,27 @@
 			    circlePoints.push(position);
 			}
 
-			var polygon = new Microsoft.Maps.Polygon(circlePoints.slice(), { fillColor: backgroundColor, strokeColor: borderColor, strokeThickness: 1 });
+			var polygon = new Microsoft.Maps.Polygon(circlePoints.slice());
+
+			polygon.setOptions({
+					fillColor: {
+						a: 150,
+						r: 0,
+						g: 0,
+						b: 0
+					},
+					strokeColor: {
+						a: 150,
+						r: 0,
+						g: 0,
+						b: 200
+					},
+					infobox: "Je suis un point d'intérêt !",
+					visible: true,
+				});
 
 			map.entities.push(polygon);
+			console.log('addCircle d : ' + d);
 		}
 	});
 </script>
