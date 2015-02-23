@@ -148,8 +148,7 @@
 			    xRadian = x * Math.PI / 180;
 			    position.latitude = Math.asin(Math.sin(lat) * Math.cos(d) + Math.cos(lat) * Math.sin(d) * Math.cos(xRadian));
 
-			    position.longitude = ((lon + Math.atan2(Math.sin(xRadian) * Math.sin(d) * Math.cos(lat), 
-			                     Math.cos(d) - Math.sin(lat) * Math.sin(position.latitude))) * 180) / Math.PI;
+			    position.longitude = ((lon + Math.atan2(Math.sin(xRadian) * Math.sin(d) * Math.cos(lat),Math.cos(d) - Math.sin(lat) * Math.sin(position.latitude))) * 180) / Math.PI;
 			    position.latitude = (position.latitude * 180) / Math.PI;
 			    circlePoints.push(position);
 			}

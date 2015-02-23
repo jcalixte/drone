@@ -24,9 +24,9 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Drone\MapBundle\Entity\Map", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Drone\MapBundle\Entity\Field", mappedBy="user")
      **/
-    private $maps;
+    private $fields;
 
     /**
      * @var string

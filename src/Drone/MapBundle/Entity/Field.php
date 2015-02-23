@@ -7,13 +7,13 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Drone\UserBundle\Entity\User as User;
 
 /**
- * Map
+ * Field
  *
  * @ORM\Table()
  * @ORM\Entity
  * @Vich\Uploadable
  */
-class Map
+class Field
 {
     /**
      * @var integer
@@ -32,7 +32,7 @@ class Map
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Drone\UserBundle\Entity\User", inversedBy="maps")
+     * @ORM\ManyToOne(targetEntity="Drone\UserBundle\Entity\User", inversedBy="fields")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      **/
     private $user;
