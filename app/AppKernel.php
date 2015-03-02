@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             // Bundle spécifique
             new Drone\UserBundle\DroneUserBundle(),
             new Drone\HomeBundle\DroneHomeBundle(),

@@ -31,17 +31,21 @@ h1 {
 	font-size: 18pt;
 }
 
+.btn {
+	border-radius: 1px;
+}
+
 /*=================================
 =            MapBundle            =
 =================================*/
 
 #map {
-   position: absolute;
+   position: relative;
    min-width: 600px;
    min-height: 400px;
-   width: 80%;
-   height: 80%;
+   max-height: 800px;
+   width: 100%;
+   margin: 15px 0;
 }
 
 /*-----  Fin de MapBundle  ------*/
-

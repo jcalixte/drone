@@ -21,7 +21,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "vich/uploader-bundle": "0.14.*",
-        "knplabs/knp-gaufrette-bundle": "*@dev"
+        "knplabs/knp-gaufrette-bundle": "*@dev",
+        "friendsofsymfony/jsrouting-bundle": "~1.5"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

@@ -49,21 +49,21 @@ class User extends BaseUser
     private $country;
 
     /**
-     * @Vich\UploadableField(mapping="user_image", fileNameProperty="userImage", nullable=true)
+     * @Vich\UploadableField(mapping="user_image", fileNameProperty="userImage")
      *
      * @var File $imageFile
      */
     protected $imageFile;
 
     /**
-     * @ORM\Column(type="string", length=255, name="user_image", nullable=true)
+     * @ORM\Column(type="string", length=255, name="user_image")
      *
      * @var string $userImage
      */
     protected $userImage;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      *
      * @var \DateTime $updatedAt
      */
@@ -152,130 +152,5 @@ class User extends BaseUser
     public function getUserImage()
     {
         return $this->userImage;
-    }
-
-    /**
-     * Set address
-     *
-     * @param string $address
-     * @return User
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    /**
-     * Get address
-     *
-     * @return string 
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * Set zipcode
-     *
-     * @param string $zipcode
-     * @return User
-     */
-    public function setZipcode($zipcode)
-    {
-        $this->zipcode = $zipcode;
-
-        return $this;
-    }
-
-    /**
-     * Get zipcode
-     *
-     * @return string 
-     */
-    public function getZipcode()
-    {
-        return $this->zipcode;
-    }
-
-    /**
-     * Set country
-     *
-     * @param string $country
-     * @return User
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Get country
-     *
-     * @return string 
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     * @return User
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime 
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * Add fields
-     *
-     * @param \Drone\MapBundle\Entity\Field $fields
-     * @return User
-     */
-    public function addField(\Drone\MapBundle\Entity\Field $fields)
-    {
-        $this->fields[] = $fields;
-
-        return $this;
-    }
-
-    /**
-     * Remove fields
-     *
-     * @param \Drone\MapBundle\Entity\Field $fields
-     */
-    public function removeField(\Drone\MapBundle\Entity\Field $fields)
-    {
-        $this->fields->removeElement($fields);
-    }
-
-    /**
-     * Get fields
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getFields()
-    {
-        return $this->fields;
     }
 }
