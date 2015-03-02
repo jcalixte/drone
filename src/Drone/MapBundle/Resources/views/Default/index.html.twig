@@ -48,11 +48,12 @@
         $("#rectangleChoice").click(function(e){
         	e.preventDefault();
         	$(this).toggleClass('active').trigger('fieldChoice');
-        	var text = $(this).text();
-        	if(text == "Détourer votre terrain"){
+        	if($(this).hasClass('active')){
         		$(this).text("Finir votre contour");
+				$('.MicrosoftMap').css('cursor', 'crosshair');
         	}else{
         		$(this).text("Détourer votre terrain");
+				$('.MicrosoftMap').css('cursor', 'grab');
         	}
         	return false;
         });
@@ -60,13 +61,32 @@
         $("#interestPoint").click(function(e){
         	e.preventDefault();
         	$(this).toggleClass('active').trigger('pointChoice');
-        	var text = $(this).text();
-        	if(text == "Point de passage"){
+        	if($(this).hasClass('active')){
         		$(this).text("Finir");
+				$('.MicrosoftMap').css('cursor', 'crosshair');
         	}else{
         		$(this).text("Point de passage");
+				$('.MicrosoftMap').css('cursor', 'grab');
         	}
         });
+
+		$('.MicrosoftMap').mouseover(function(){
+			var crosshair = $("#rectangleChoice").hasClass('active') || $("#interestPoint").hasClass('active');
+			if(crosshair){
+				$('.MicrosoftMap').css('cursor', 'crosshair');
+			}else{
+				$('.MicrosoftMap').css('cursor', 'grab');
+			}
+		});
+
+		$('.MicrosoftMap').click(function(){
+			var crosshair = $("#rectangleChoice").hasClass('active') || $("#interestPoint").hasClass('active');
+			if(crosshair){
+				$('.MicrosoftMap').css('cursor', 'crosshair');
+			}else{
+				$('.MicrosoftMap').css('cursor', 'grabbing');
+			}
+		});
 
         /*==========  Évènements  ==========*/
 
@@ -79,44 +99,15 @@
 						addPointToShape(loc.latitude, loc.longitude);
 					}
 				});
-				$('#map').mouseover(function(){
-					$('.MicrosoftMap').css('cursor', 'crosshair');
-				});
 	        }else{
 	        	if(handleClick !== false){
 	        		Microsoft.Maps.Events.removeHandler(handleClick);
 	        		handleClick = false;
 	        	}
-				$('#map').mouseover(function(){
-					$('.MicrosoftMap').css('cursor', 'move');
-				});
         		addShape();
 	        }
         });
 
-		$(document).on('pointChoice', function(){
-			if($("#interestPoint").hasClass('active')){
-				handleClick = Microsoft.Maps.Events.addHandler(map, 'click', function(e){
-					if(e.targetType == "map"){
-						var point = new Microsoft.Maps.Point(e.getX(), e.getY());
-						var loc = e.target.tryPixelToLocation(point);
-						addCircle(0.000001, loc); //loc.latitude, loc.longitude);
-					}
-				});
-				$('#map').mouseover(function(){
-					$('.MicrosoftMap').css('cursor', 'crosshair');
-					console.log("mouseOver");
-				});
-			}else{
-				if(handleClick !== false){
-					Microsoft.Maps.Events.removeHandler(handleClick);
-					handleClick = false;
-				}
-				$('#map').mouseover(function(){
-					$('.MicrosoftMap').css('cursor', 'move');
-				});
-			}
-		});
         /*==========  Fonctions  ==========*/
 
 		function searchModule(q)
@@ -169,13 +160,13 @@
 						g: 0,
 						b: 200
 					},
-					infobox: "Je suis un terrain !",
+					infobox: "field",
 					visible: true,
 				});
 				map.entities.push(polygon);
 				// Remise à zéro du tableau de point.
 				shape.length = 0;
-				console.log(polyShape);
+				Microsoft.Maps.Events.addHandler(polygon, 'click', addCircleEvent);
 			}
 		}
 
@@ -183,7 +174,7 @@
 			var backgroundColor = new Microsoft.Maps.Color(10, 100, 0, 0);
 			var borderColor     = new Microsoft.Maps.Color(150, 200, 0, 0);
 			//var R               = 6371; // Rayon de la terre en kilomètres
-			var lat             = (location.latitude * Math.PI) / 180;     
+			var lat             = (location.latitude  * Math.PI) / 180;     
 			var lon             = (location.longitude * Math.PI) / 180;
 			var d               = parseFloat(radius);// / R;
 			var circlePoints    = [];
@@ -213,12 +204,17 @@
 						g: 0,
 						b: 200
 					},
-					infobox: "Je suis un point d'intérêt !",
+					infobox: "point",
 					visible: true,
 				});
 
 			map.entities.push(polygon);
-			console.log('addCircle d : ' + d);
+		}
+
+		function addCircleEvent(e){
+			var point = new Microsoft.Maps.Point(e.getX(), e.getY());
+			var loc = map.tryPixelToLocation(point);
+			addCircle(0.000001, loc);
 		}
 	});
 </script>
