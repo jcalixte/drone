@@ -5,4 +5,5 @@ drone_map_homepage:
 drone_map_add_field:
     path:     /add_field
     defaults: { _controller: DroneMapBundle:Default:addField }
-    expose: true
+    options:
+        expose: true
