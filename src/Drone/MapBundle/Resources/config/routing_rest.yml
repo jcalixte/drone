@@ -1,0 +1,4 @@
+drone_rest: 
+    type:         rest
+    resource:     "DroneMapBundle:Beeye"
+    name_prefix:  api_
