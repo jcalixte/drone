@@ -8,7 +8,7 @@
 		<input id="search" name="search" type="button" value="Rechercher">
 		<a href="#" id="rectangleChoice" class="btn btn-default" role="button">Détourer votre terrain</a>
 		<a href="#" id="interestPoint" title="Point de passage" class="btn btn-info">Point de passage</a>
-		<input id="pinPath" type="button" value="Move Pin Along Geodesic Path" /><br />
+		<input id="pinPath" type="button" class="btn btn-large btn-info" value="BOUGE !" /><br />
 		<hr>
 		<div id='map'></div>
 	</div>
@@ -104,7 +104,7 @@
 		});
 
 		$("#pinPath").click(function() {
-			DrawPath(true);
+			movePushpin();
 		});
 
 		/*==========  Évènements  ==========*/
@@ -299,6 +299,19 @@
 			}, isGeodesic, 40000);
 
 			currentAnimation.play();
+		}
+
+		// Move pushpin to new location
+		// using a speed of 2000 milliseconds
+		// or 2 seconds
+
+		var pushpin = new Microsoft.Maps.Pushpin(path[0]);
+		map.entities.push(pushpin);
+		function movePushpin(){
+			pushpin.moveLocation(
+			    new Microsoft.Maps.Location(47, -87),
+			    2000
+			);
 		}
 	});
 </script>
