@@ -9,8 +9,13 @@ class DefaultController extends Controller
 {
 	public function indexAction()
 	{
+		$user = $this->getUser();
+		if(!$user){
+			throw $this->createNotFoundException('Utilisateur non connecté');
+		}
+
 		return $this->render('DroneMapBundle:Default:index.html.twig', array(
-			'user' => $this->getUser(),
+			'user' => $user,
 			));
 	}
 

@@ -5,7 +5,7 @@
 
 @import "compass/reset";
 @import "compass/css3/font-face";
-@include font-face("Quicksand", font-files("Quicksand.otf"));
+//@include font-face("Quicksand", font-files("Quicksand.otf"));
 
 /* Définition des constantes */
 
@@ -23,7 +23,8 @@ $beeBlack: #141414;
 
 body {
 	background-color: $beeYellow;
-	font-family: Quicksand, "Segoe UI", Arial, sans-serif;
+	// font-family: Quicksand, "Segoe UI", Arial, sans-serif;
+	font-family: "Segoe UI", Arial, sans-serif;
 	font-size: 16pt;
 }
 
