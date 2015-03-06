@@ -37,10 +37,17 @@ class Drone
     private $product;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="serial_number", type="string", length=255)
+     * @Expose
+     */
+    private $serialNumber;
+
+    /**
      * @var float
      *
      * @ORM\Column(name="latitude", type="float")
-     * @Expose
      */
     private $latitude;
 
@@ -48,7 +55,6 @@ class Drone
      * @var float
      *
      * @ORM\Column(name="longitude", type="float")
-     * @Expose
      */
     private $longitude;
 
@@ -83,6 +89,29 @@ class Drone
     public function getProduct()
     {
         return $this->product;
+    }
+
+    /**
+     * Set serialNumber
+     *
+     * @param string $serialNumber
+     * @return Drone
+     */
+    public function setSerialNumber($serialNumber)
+    {
+        $this->serialNumber = $serialNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get serialNumber
+     *
+     * @return string 
+     */
+    public function getSerialNumber()
+    {
+        return $this->serialNumber;
     }
 
     /**
@@ -138,6 +167,6 @@ class Drone
      * @VirtualProperty 
      */
     public function getLocation(){
-        return $this->getLongitude() . ' - ' . $this->getLatitude();
+        return array("lon" => $this->getLongitude(), "lat" => $this->getLatitude());
     }
 }

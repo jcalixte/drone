@@ -12,10 +12,17 @@
 $purple: #663399;
 $honeyFlower: #674172;
 $ming: #336E7B;
+
+/* Couleurs de la charte graphique */
+
+$yellow: #F9BF3B;
+$beeYellow: #F5AB35;
+$beeBlack: #141414;
+
 /*----- Fin des constantes  ------*/
 
 body {
-	background-color: $ming;
+	background-color: $beeYellow;
 	font-family: Quicksand, "Segoe UI", Arial, sans-serif;
 	font-size: 16pt;
 }
