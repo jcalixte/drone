@@ -85,24 +85,6 @@
 			}
 		});
 
-		$('.MicrosoftMap').mouseover(function(){
-			var crosshair = $("#rectangleChoice").hasClass('active') || $("#interestPoint").hasClass('active');
-			if(crosshair){
-				$('.MicrosoftMap').css('cursor', 'crosshair');
-			}else{
-				$('.MicrosoftMap').css('cursor', 'grab');
-			}
-		});
-
-		$('.MicrosoftMap').click(function(){
-			var crosshair = $("#rectangleChoice").hasClass('active') || $("#interestPoint").hasClass('active');
-			if(crosshair){
-				$('.MicrosoftMap').css('cursor', 'crosshair');
-			}else{
-				$('.MicrosoftMap').css('cursor', 'grabbing');
-			}
-		});
-
 		$("#pinPath").click(function() {
 			DrawPath(true);
 		});
@@ -126,6 +108,9 @@
 				addShape();
 			}
 		});
+
+		Microsoft.Maps.Events.addHandler(map, 'mouseover', changeCursor);
+		Microsoft.Maps.Events.addHandler(map, 'click', changeCursor);
 
 		/*==========  Fonctions  ==========*/
 
@@ -246,6 +231,15 @@
 				var point = new Microsoft.Maps.Point(e.getX(), e.getY());
 				var loc = map.tryPixelToLocation(point);
 				addCircle(0.000001, loc);
+			}
+		}
+
+		function changeCursor(e){
+			var crosshair = $("#rectangleChoice").hasClass('active') || $("#interestPoint").hasClass('active');
+			if(crosshair){
+				map.getRootElement().style.cursor = 'crosshair';
+			}else{
+				map.getRootElement().style.cursor = 'grab';
 			}
 		}
 
