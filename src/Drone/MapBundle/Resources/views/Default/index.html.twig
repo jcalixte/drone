@@ -46,6 +46,15 @@
 			}
 		});
 
+		var dronePinOptions = {
+			icon: '{{ asset("image/map/quadcopter.png") }}', 
+			width: 50, 
+			height: 50, 
+			anchor: new Microsoft.Maps.Point(25,25)
+		}; 
+		var dronePin= new Microsoft.Maps.Pushpin(map.getCenter(), dronePinOptions);
+		map.entities.push(dronePin);
+
 		var shape = [];
 
 		$("#search").click(function(){
