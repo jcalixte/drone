@@ -44,6 +44,13 @@ class User extends BaseUser
     /**
      * @var string
      *
+     * @ORM\Column(name="city", type="string", length=10, nullable=false)
+     */
+    private $city;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="country", type="string", length=50, nullable=false)
      */
     private $country;
@@ -198,6 +205,29 @@ class User extends BaseUser
     public function getZipcode()
     {
         return $this->zipcode;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     * @return User
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string 
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 
     /**

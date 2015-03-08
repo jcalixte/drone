@@ -1,26 +1,35 @@
 (function ($m) {
     (function(proto) {
         if (!proto.moveLocation){
-            proto.moveLocation = function(loc, speed) {
-                // loc = Location to move the pushpin to
-                // speed = time (in milliseconds) to perform animation
-                var that = this, startLoc = this.getLocation(),
-                    endLoc = loc, startTime = new Date();
-                if (speed === undefined){
-                    speed = 1000; // Default to 1 second
+            proto.moveLocation = function(locs, finalTime, that, startLoc) {
+                // locs = Locations to move the pushpin to
+                // finalTime = time (in milliseconds) to perform animation
+                if(that === undefined){
+                    that = this;
                 }
+                if(startLoc === undefined){
+                    startLoc = this.getLocation();
+                }
+                if (finalTime === undefined){
+                    finalTime = 1000; // Default to 1 second
+                }
+                var endLoc = locs[0], startTime = new Date();
                 var interval = window.setInterval(function() {
                     var timeElapsed = (new Date()) - startTime;
-                    if (timeElapsed >= speed){
-                        // Full animation time (speed) has elapsed
+                    if (timeElapsed >= finalTime){
+                        // Full animation time (finalTime) has elapsed
                         // Just set final location and end animation
                         that.setLocation(endLoc);
                         window.clearInterval(interval);
+                        if(locs.length > 1){
+                            locs.shift();
+                            proto.moveLocation(locs, finalTime, that, endLoc);
+                        }
                     }
                     // Set the Latitude/Longitude values to a percentage
                     // of the total distance to move based on the amount
                     // of time that has elapsed since animation started.
-                    var timeElapsedPercent = (timeElapsed / speed);
+                    var timeElapsedPercent = (timeElapsed / finalTime);
                     var latitudeDistToMove = (
                         endLoc.latitude - startLoc.latitude
                     );
@@ -28,7 +37,7 @@
                         endLoc.longitude - startLoc.longitude
                     );
                     that.setLocation(new $m.Location(
-                        startLoc.latitude + (timeElapsedPercent * latitudeDistToMove),
+                        startLoc.latitude +  (timeElapsedPercent * latitudeDistToMove),
                         startLoc.longitude + (timeElapsedPercent * longitudeDistToMove)
                         ));
                 }, 10);

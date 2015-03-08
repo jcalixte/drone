@@ -8,11 +8,13 @@
 		<input id="search" name="search" type="button" value="Rechercher">
 		<a href="#" id="rectangleChoice" class="btn btn-default" role="button">Détourer votre terrain</a>
 		<a href="#" id="interestPoint" title="Point de passage" class="btn btn-info">Point de passage</a>
-		<input id="pinPath" type="button" class="btn btn-large btn-info" value="BOUGE !" /><br />
+		<a href="#" id="putDrone" title="Placer votre drone" class="btn btn-info">Placer votre drone</a>
 		<hr>
 		<div id='map'></div>
 	</div>
 	<div class="submit-field">
+		<a href="#" id="start" title="Démarrer l'observation" class="btn btn-block btn-info">Démarrer l'observation</a>
+		<br>
 		<input id='submitField' class='btn btn-info btn-large' type="submit" name="Valider vos terres" value="Valider vos terres">
 	</div>
 {% endblock %}
@@ -30,8 +32,11 @@
 		// Enregistrement des coins pour les terrains.
 		var pinTable = [];
 
+		const numberOfDrones = 1;
+		var iDrone = 0;
+
 		var map = new Microsoft.Maps.Map(document.getElementById("map"), mapOptions);
-		var currentAnimation;
+		var dronePin = false;
 
 		//Ajout de modules utilisés
 		var handleClick = false;
@@ -46,16 +51,8 @@
 			}
 		});
 
-		var dronePinOptions = {
-			icon: '{{ asset("image/map/quadcopter.png") }}', 
-			width: 50, 
-			height: 50, 
-			anchor: new Microsoft.Maps.Point(25,25)
-		}; 
-		var dronePin= new Microsoft.Maps.Pushpin(map.getCenter(), dronePinOptions);
-		map.entities.push(dronePin);
-
 		var shape = [];
+		var path  = [];
 
 		$("#search").click(function(){
 			var query = $("#search_query").val();
@@ -69,29 +66,34 @@
 			$(this).toggleClass('active').trigger('fieldChoice');
 			if($(this).hasClass('active')){
 				$(this).text("Finir votre contour");
-				$('.MicrosoftMap').css('cursor', 'crosshair');
 			}else{
 				$(this).text("Détourer votre terrain");
-				$("#map").trigger("click");
-				$('.MicrosoftMap').css('cursor', 'grab');
 			}
 			return false;
 		});
 
 		$("#interestPoint").click(function(e){
 			e.preventDefault();
-			$(this).toggleClass('active').trigger('pointChoice');
+			$(this).toggleClass('active');
 			if($(this).hasClass('active')){
 				$(this).text("Finir");
-				$('.MicrosoftMap').css('cursor', 'crosshair');
 			}else{
 				$(this).text("Point de passage");
-				$('.MicrosoftMap').css('cursor', 'grab');
 			}
 		});
 
-		$("#pinPath").click(function() {
-			movePushpin();
+		$("#putDrone").click(function (e) {
+			e.preventDefault();
+			$(this).toggleClass('active');
+			if($(this).hasClass('active')){
+				$(this).text("Finir");
+			}else{
+				$(this).text("Placer votre drone");
+			}
+		});
+
+		$("#start").click(function() {
+			moveDrone(0);
 		});
 
 		/*==========  Évènements  ==========*/
@@ -115,12 +117,11 @@
 		});
 
 		Microsoft.Maps.Events.addHandler(map, 'mouseover', changeCursor);
-		Microsoft.Maps.Events.addHandler(map, 'click', changeCursor);
+		Microsoft.Maps.Events.addHandler(map, 'click', changeCursorClick);
 
 		/*==========  Fonctions  ==========*/
 
-		function searchModule(q)
-		{
+		function searchModule(q){
 			if(search_engine_loaded){
 				var searchManager = new Microsoft.Maps.Search.SearchManager(map);
 
@@ -190,6 +191,15 @@
 			}
 		}
 
+		function addCircleEvent(e){
+			if($("#interestPoint").hasClass('active')){
+				var point = new Microsoft.Maps.Point(e.getX(), e.getY());
+				var loc = map.tryPixelToLocation(point);
+				addCircle(0.000001, loc);
+				path[path.length] = loc;
+			}
+		}
+
 		function addCircle(radius, location){ //latitude, longitude){
 			var backgroundColor = new Microsoft.Maps.Color(10, 100, 0, 0);
 			var borderColor     = new Microsoft.Maps.Color(150, 200, 0, 0);
@@ -214,15 +224,15 @@
 			polygon.setOptions({
 				fillColor: {
 					a: 150,
-					r: 0,
-					g: 150,
-					b: 0
+					r: 245,
+					g: 171,
+					b: 53
 				},
 				strokeColor: {
-					a: 0,
-					r: 0,
-					g: 0,
-					b: 0
+					a: 200,
+					r: 20,
+					g: 20,
+					b: 20
 				},
 				infobox: "point",
 				visible: true,
@@ -231,16 +241,31 @@
 			map.entities.push(polygon);
 		}
 
-		function addCircleEvent(e){
-			if($("#interestPoint").hasClass('active')){
+		function addDronePin(e){
+			if($("#putDrone").hasClass('active')){
+				var dronePinOptions = {
+					icon: '{{ asset("image/map/quadcopter.png") }}', 
+					width: 50, 
+					height: 50, 
+					anchor: new Microsoft.Maps.Point(25,25)
+				}; 
+
 				var point = new Microsoft.Maps.Point(e.getX(), e.getY());
 				var loc = map.tryPixelToLocation(point);
-				addCircle(0.000001, loc);
+				dronePin = new Microsoft.Maps.Pushpin(loc, dronePinOptions);
+				map.entities.push(dronePin);
+				iDrone++;
+				$("#putDrone").toggleClass('active');
+				if(iDrone >= numberOfDrones){
+					$("#putDrone").remove();
+				}
 			}
 		}
 
 		function changeCursor(e){
-			var crosshair = $("#rectangleChoice").hasClass('active') || $("#interestPoint").hasClass('active');
+			var crosshair = $("#rectangleChoice").hasClass('active') ||
+							$("#interestPoint").hasClass('active') ||
+							$("#putDrone").hasClass('active');
 			if(crosshair){
 				map.getRootElement().style.cursor = 'crosshair';
 			}else{
@@ -248,27 +273,34 @@
 			}
 		}
 
+		function changeCursorClick(e){
+			var crosshair = $("#rectangleChoice").hasClass('active') ||
+							$("#interestPoint").hasClass('active') ||
+							$("#putDrone").hasClass('active');
+			if(crosshair){
+				map.getRootElement().style.cursor = 'crosshair';
+			}else{
+				map.getRootElement().style.cursor = 'grab';
+			}
+			addDronePin(e);
+		}
+
 		/*==========  Fonctions pour animer le drone  ==========*/
 
-		var path = [
+		/*var path = [
 			new Microsoft.Maps.Location(42.8, 12.49),   //Italy
 			new Microsoft.Maps.Location(51.5, 0),       //London
 			new Microsoft.Maps.Location(40.8, -73.8),   //New York
 			new Microsoft.Maps.Location(47.6, -122.3)   //Seattle
-		];
+		];*/
 
-		// Move pushpin to new location
-		// using a speed of 2000 milliseconds
-		// or 2 seconds
-		var pushpin = new Microsoft.Maps.Pushpin(path[0]);
-		var ii = 0;
-		map.entities.push(pushpin);
-		function movePushpin(){
-			ii++;
-			pushpin.moveLocation(
-			    path[ii],
-			    2000
-			);
+		function moveDrone(i){
+			if(dronePin != false){
+				if (path[path.length-1] != dronePin.getLocation) {
+					path[path.length] = dronePin.getLocation();
+				};
+				dronePin.moveLocation(path.slice(), 2000);
+			}
 		}
 	});
 </script>
