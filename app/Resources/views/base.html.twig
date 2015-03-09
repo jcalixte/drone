@@ -13,7 +13,7 @@
 		<div>
 			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 				{{ 'layout.logged_in_as'|trans({ '%username%': app.user.username|capitalize }, 'FOSUserBundle') }} |
-				<a href="{{ path('') }}">Profil</a>
+				<a href="{{ path('fos_user_profile_show') }}">Profil</a>
 				<a href="{{ path('fos_user_security_logout') }}">
 					{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
 				</a>

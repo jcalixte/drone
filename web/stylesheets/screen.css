@@ -118,10 +118,38 @@ h1.bee {
   border-radius: 1px;
 }
 
+/* line 58, ../sass/screen.scss */
+.clear {
+  clear: both;
+}
+
+/* line 62, ../sass/screen.scss */
+.progress {
+  border-radius: 1px;
+}
+
+/* line 66, ../sass/screen.scss */
+.progress-bar {
+  background-color: #4183d7;
+}
+
+/* line 70, ../sass/screen.scss */
+.btn-info {
+  background-color: #4183d7;
+  border-color: #4183d7;
+}
+
+/* line 75, ../sass/screen.scss */
+.btn:hover {
+  background-color: #663399;
+  border-color: #663399;
+  color: white;
+}
+
 /*==================================
 =            Home index            =
 ==================================*/
-/* line 62, ../sass/screen.scss */
+/* line 85, ../sass/screen.scss */
 section.home-container {
   padding: 15px;
   background-color: #f9bd3b;
@@ -132,14 +160,39 @@ section.home-container {
 /*=================================
 =            MapBundle            =
 =================================*/
-/* line 74, ../sass/screen.scss */
+/* line 97, ../sass/screen.scss */
 #map {
   position: relative;
   min-width: 600px;
   min-height: 400px;
-  max-height: 800px;
   width: 100%;
-  margin: 15px 0;
+  height: 100%;
+}
+
+/* line 105, ../sass/screen.scss */
+.map {
+  width: 100%;
+  margin: auto;
+  background-color: #f9bd3b;
+  padding: 15px;
+}
+/* line 111, ../sass/screen.scss */
+.map h1 {
+  text-align: center;
+}
+/* line 115, ../sass/screen.scss */
+.map .map-container {
+  float: left;
+  display: inline-block;
+  width: 50%;
+  background-color: #f9bd3b;
+}
+/* line 122, ../sass/screen.scss */
+.map .map-command {
+  float: right;
+  padding: 15px;
+  display: inline-block;
+  width: 50%;
 }
 
 /*-----  Fin de MapBundle  ------*/

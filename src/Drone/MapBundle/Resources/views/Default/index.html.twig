@@ -1,21 +1,47 @@
 {% extends 'DroneMapBundle::layout.html.twig' %}
 
 {% block body_map %}
-	<div class="map-container">
-		<h1>Carte du monde pour {{ user.username|capitalize }}</h1>
-		<hr>
-		<input id="search_query" name="search_query" type="text" value="{{ user.address }} {{ user.zipcode }} {{ user.country }}">
-		<input id="search" name="search" type="button" value="Rechercher">
-		<a href="#" id="rectangleChoice" class="btn btn-default" role="button">Détourer votre terrain</a>
-		<a href="#" id="interestPoint" title="Point de passage" class="btn btn-info">Point de passage</a>
-		<a href="#" id="putDrone" title="Placer votre drone" class="btn btn-info">Placer votre drone</a>
-		<hr>
-		<div id='map'></div>
-	</div>
-	<div class="submit-field">
-		<a href="#" id="start" title="Démarrer l'observation" class="btn btn-block btn-info">Démarrer l'observation</a>
-		<br>
-		<input id='submitField' class='btn btn-info btn-large' type="submit" name="Valider vos terres" value="Valider vos terres">
+	<div class="map">
+		<div>
+			<h1>Carte du monde pour {{ user.username|capitalize }}</h1>
+			<br>
+		</div>
+		<div class="map-container">
+			<div id='map'></div>
+		</div>
+		<div class="map-command">
+			<input id="search_query" name="search_query" type="text" value="{{ user.address }} {{ user.city }} {{ user.zipcode }} {{ user.country }}">
+			<input id="search" name="search" type="button" value="Rechercher">
+			<hr>
+			<a href="#" id="rectangleChoice" class="btn btn-default" role="button">Détourer votre terrain</a>
+			<a href="#" id="interestPoint" title="Point de passage" class="btn btn-info">Point de passage</a>
+			<a href="#" id="putDrone" title="Placer votre drone" class="btn btn-info">Placer votre drone</a>
+			<div>
+				Drones : 
+				<ul>
+					{% for drone in user.drones %}
+					    <li>Numéro de série : {{ drone.serialNumber }}</li>
+					    <li>Latitude : {{ drone.latitude }}</li>
+					    <li>Longitude : {{ drone.longitude }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+		<div class="submit-field clear">
+			<br>
+			<hr>
+			<a href="#" id="start" title="Démarrer l'observation" class="btn btn-block btn-info">Démarrer l'observation</a>
+			<br>
+			<input id='submitField' class='btn btn-info btn-large' type="submit" name="Enregistrer vos champs" value="Enregistrer vos champs">
+			<input id='submitInterestPoint' class='btn btn-info btn-large' type="submit" name="Enregistrer vos points d'intérêt" value="Enregistrer vos points d'intérêt">
+			<input id='submitDroneLocation' class='btn btn-info btn-large' type="submit" name="Enregistrer la localisation de votre drone" value="Enregistrer la localisation de votre drone">
+			<hr>
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+					<span class="sr-only"></span>
+				</div>
+			</div>
+		</div>
 	</div>
 {% endblock %}
 
@@ -36,13 +62,34 @@
 		var iDrone = 0;
 
 		var map = new Microsoft.Maps.Map(document.getElementById("map"), mapOptions);
-		var dronePin = false;
+		var dronePin        = false;
+		var loc             = false;
+		var dronePinOptions = {
+			icon: '{{ asset("image/map/quadcopter.png") }}', 
+			width: 50, 
+			height: 50, 
+			anchor: new Microsoft.Maps.Point(25,25)
+		};
+
+		{% for drone in user.drones %}
+			console.log("{{ drone.longitude }}");
+		    loc =  new Microsoft.Maps.Location(
+		    	{{ drone.latitude }}, 
+		    	{{ drone.longitude }}
+		    );
+			dronePin = new Microsoft.Maps.Pushpin(loc, dronePinOptions);
+			map.entities.push(dronePin);
+		{% endfor %}
 
 		//Ajout de modules utilisés
 		var handleClick = false;
 		var search_engine_loaded = false;
 		Microsoft.Maps.loadModule('Microsoft.Maps.Search', { callback: function(){
 				search_engine_loaded = true;
+				var query = $("#search_query").val();
+				if(query != ""){
+					searchModule(query);
+				}
 			}
 		});
 		var advanced_shapes_loaded = false;
@@ -288,10 +335,7 @@
 		/*==========  Fonctions pour animer le drone  ==========*/
 
 		/*var path = [
-			new Microsoft.Maps.Location(42.8, 12.49),   //Italy
-			new Microsoft.Maps.Location(51.5, 0),       //London
 			new Microsoft.Maps.Location(40.8, -73.8),   //New York
-			new Microsoft.Maps.Location(47.6, -122.3)   //Seattle
 		];*/
 
 		function moveDrone(i){
@@ -300,6 +344,64 @@
 					path[path.length] = dronePin.getLocation();
 				};
 				dronePin.moveLocation(path.slice(), 2000);
+			}
+		}
+
+		/*==========  Fonctions AJAX  ==========*/
+		$('#submitDroneLocation').click(function(){
+			if(dronePin != false){
+				ajaxCall('droneLocation');
+			}
+		});
+
+		function ajaxCall(call){
+			var route = false;
+			if (call == 'droneLocation') {
+				route = Routing.generate('drone_ajax_save_drone_location');
+			}
+			if(route != false){
+				var progress = 0;
+				var ratio = 1/2;
+				$('.progress-bar').width('0%');
+				$.ajax({
+					xhr: function() {
+						var xhr = new window.XMLHttpRequest();
+						xhr.addEventListener("progress", function(evt) {
+							if (evt.lengthComputable) {
+								var percentComplete = evt.loaded / evt.total;
+								if(!$('.progress').is(":visible")){
+									$('.progress').show();
+								}
+								progress += Math.round(percentComplete)*100 * ratio;
+								$('.progress-bar').width(progress + '%');
+							}
+						}, false);
+
+						xhr.addEventListener("progress", function(evt){
+							if (evt.lengthComputable) {  
+								var percentComplete = evt.loaded / evt.total;
+								if(!$('.progress').is(":visible")){
+									$('.progress').show();
+								}
+								progress += Math.round(percentComplete)*100 * (1-ratio);
+								$('.progress-bar').width(progress + '%');
+							}
+					    }, false);
+
+						return xhr;
+					},
+					type: 'POST',
+					url: route,
+					data: {
+						lat: dronePin.getLocation().latitude,
+						lon: dronePin.getLocation().longitude
+					},
+					success: function(data){
+						//$('.progress').hide();
+						progress = 0;
+						console.log(data.serialNumber, data.latitude, data.longitude);
+					}
+				});
 			}
 		}
 	});

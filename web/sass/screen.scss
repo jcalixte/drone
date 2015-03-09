@@ -55,6 +55,29 @@ h1.bee {
 	border-radius: 1px;
 }
 
+.clear {
+	clear: both;
+}
+
+.progress {
+	border-radius: 1px;
+}
+
+.progress-bar {
+	background-color: $royalBlue;
+}
+
+.btn-info {
+	background-color: $royalBlue;
+	border-color:     $royalBlue;
+}
+
+.btn:hover {
+	background-color: $purple;
+	border-color:     $purple;
+	color:            white;
+}
+
 /*==================================
 =            Home index            =
 ==================================*/
@@ -75,9 +98,33 @@ section.home-container {
    position: relative;
    min-width: 600px;
    min-height: 400px;
-   max-height: 800px;
    width: 100%;
-   margin: 15px 0;
+   height: 100%;
+}
+
+.map {
+	width: 100%;
+	margin: auto;
+	background-color: $yellow;
+	padding: 15px;
+
+	h1 {
+		text-align: center;
+	}
+
+	.map-container {
+		float: left;
+		display: inline-block;
+		width: 50%;
+		background-color: $yellow;
+	}
+
+	.map-command {
+		float: right;
+		padding: 15px;
+		display: inline-block;
+		width: 50%;
+	}
 }
 
 /*-----  Fin de MapBundle  ------*/

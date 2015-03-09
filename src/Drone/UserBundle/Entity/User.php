@@ -4,9 +4,10 @@ namespace Drone\UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Drone\MapBundle\Entity\Map as Map;
+use Drone\MapBundle\Entity\Drone as Drone;
 
 /**
  * @ORM\Entity
@@ -23,9 +24,14 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Drone\MapBundle\Entity\Field", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Drone\MapBundle\Entity\Field", mappedBy="user", cascade="remove")
      **/
     private $fields;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Drone\MapBundle\Entity\Drone", mappedBy="user", cascade="remove")
+     **/
+    private $drones;
 
     /**
      * @var string
@@ -79,7 +85,8 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->maps = new ArrayCollection();
+        $this->maps   = new ArrayCollection();
+        $this->drones = new ArrayCollection();
     }
 
     /**
@@ -285,6 +292,7 @@ class User extends BaseUser
     public function addField(\Drone\MapBundle\Entity\Field $fields)
     {
         $this->fields[] = $fields;
+        $fields->setUser($this);
 
         return $this;
     }
@@ -297,6 +305,7 @@ class User extends BaseUser
     public function removeField(\Drone\MapBundle\Entity\Field $fields)
     {
         $this->fields->removeElement($fields);
+        $fields->setUser(null);
     }
 
     /**
@@ -307,5 +316,40 @@ class User extends BaseUser
     public function getFields()
     {
         return $this->fields;
+    }
+
+    /**
+     * Add drones
+     *
+     * @param \Drone\MapBundle\Entity\Drone $drones
+     * @return User
+     */
+    public function addDrone(\Drone\MapBundle\Entity\Drone $drones)
+    {
+        $this->drones[] = $drones;
+        $drones->setUser($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove drones
+     *
+     * @param \Drone\MapBundle\Entity\Drone $drones
+     */
+    public function removeDrone(\Drone\MapBundle\Entity\Drone $drones)
+    {
+        $this->drones->removeElement($drones);
+        $drones->setUser(null);
+    }
+
+    /**
+     * Get drones
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDrones()
+    {
+        return $this->drones;
     }
 }

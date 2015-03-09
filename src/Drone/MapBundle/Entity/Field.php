@@ -26,7 +26,7 @@ class Field
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="Drone\UserBundle\Entity\User", inversedBy="fields")
-	 * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+	 * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
 	 **/
 	private $user;
 
@@ -98,10 +98,10 @@ class Field
 	/**
 	 * Set user
 	 *
-	 * @param \Drone\MapBundle\Entity\User $user
+	 * @param \Drone\UserBundle\Entity\User $user
 	 * @return Map
 	 */
-	public function setUser(\Drone\MapBundle\Entity\User $user = null)
+	public function setUser(\Drone\UserBundle\Entity\User $user = null)
 	{
 		$this->user = $user;
 
@@ -111,7 +111,7 @@ class Field
 	/**
 	 * Get user
 	 *
-	 * @return \Drone\MapBundle\Entity\User 
+	 * @return \Drone\UserBundle\Entity\User 
 	 */
 	public function getUser()
 	{

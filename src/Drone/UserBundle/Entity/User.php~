@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Drone\MapBundle\Entity\Map as Map;
+use Drone\MapBundle\Entity\Drone as Drone;
 
 /**
  * @ORM\Entity
@@ -28,6 +29,11 @@ class User extends BaseUser
     private $fields;
 
     /**
+     * @ORM\OneToMany(targetEntity="Drone\MapBundle\Entity\Drone", mappedBy="user")
+     **/
+    private $drones;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=255, nullable=false)
@@ -44,26 +50,33 @@ class User extends BaseUser
     /**
      * @var string
      *
+     * @ORM\Column(name="city", type="string", length=10, nullable=false)
+     */
+    private $city;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="country", type="string", length=50, nullable=false)
      */
     private $country;
 
     /**
-     * @Vich\UploadableField(mapping="user_image", fileNameProperty="userImage")
+     * @Vich\UploadableField(mapping="user_image", fileNameProperty="userImage", nullable=true)
      *
      * @var File $imageFile
      */
     protected $imageFile;
 
     /**
-     * @ORM\Column(type="string", length=255, name="user_image")
+     * @ORM\Column(type="string", length=255, name="user_image", nullable=true)
      *
      * @var string $userImage
      */
     protected $userImage;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      *
      * @var \DateTime $updatedAt
      */
@@ -72,7 +85,8 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->maps = new ArrayCollection();
+        $this->maps   = new ArrayCollection();
+        $this->drones = new ArrayCollection();
     }
 
     /**
@@ -152,5 +166,120 @@ class User extends BaseUser
     public function getUserImage()
     {
         return $this->userImage;
+    }
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     * @return User
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string 
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set zipcode
+     *
+     * @param string $zipcode
+     * @return User
+     */
+    public function setZipcode($zipcode)
+    {
+        $this->zipcode = $zipcode;
+
+        return $this;
+    }
+
+    /**
+     * Get zipcode
+     *
+     * @return string 
+     */
+    public function getZipcode()
+    {
+        return $this->zipcode;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     * @return User
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string 
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     * @return User
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string 
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return User
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }
