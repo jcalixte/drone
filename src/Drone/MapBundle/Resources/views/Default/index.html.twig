@@ -11,18 +11,25 @@
 		</div>
 		<div class="map-command">
 			<input id="search_query" name="search_query" type="text" value="{{ user.address }} {{ user.city }} {{ user.zipcode }} {{ user.country }}">
-			<input id="search" name="search" type="button" value="Rechercher">
+			<input id="search" name="search" type="button" class="btn" value="Rechercher">
 			<hr>
 			<a href="#" id="rectangleChoice" class="btn btn-default" role="button">Détourer votre terrain</a>
 			<a href="#" id="interestPoint" title="Point de passage" class="btn btn-info">Point de passage</a>
-			<a href="#" id="putDrone" title="Placer votre drone" class="btn btn-info">Placer votre drone</a>
+			{% if user.drones|length == 0 %}
+				<a href="#" id="putDrone" title="Placer votre drone" class="btn btn-info">Placer votre drone</a>
+			{% endif %}
 			<div>
 				Drones : 
 				<ul>
 					{% for drone in user.drones %}
-					    <li>Numéro de série : {{ drone.serialNumber }}</li>
-					    <li>Latitude : {{ drone.latitude }}</li>
-					    <li>Longitude : {{ drone.longitude }}</li>
+					<li>
+						{{ drone.product }} :
+						<ul>
+							<li>Numéro de série : {{ drone.serialNumber }}</li>
+							<li>Latitude : {{ drone.latitude }}</li>
+							<li>Longitude : {{ drone.longitude }}</li>
+						</ul>
+					</li>
 					{% endfor %}
 				</ul>
 			</div>
@@ -34,7 +41,9 @@
 			<br>
 			<input id='submitField' class='btn btn-info btn-large' type="submit" name="Enregistrer vos champs" value="Enregistrer vos champs">
 			<input id='submitInterestPoint' class='btn btn-info btn-large' type="submit" name="Enregistrer vos points d'intérêt" value="Enregistrer vos points d'intérêt">
-			<input id='submitDroneLocation' class='btn btn-info btn-large' type="submit" name="Enregistrer la localisation de votre drone" value="Enregistrer la localisation de votre drone">
+			{% if user.drones|length == 0 %}
+				<input id='submitDroneLocation' class='btn btn-info btn-large' type="submit" name="Enregistrer la localisation de votre drone" value="Enregistrer la localisation de votre drone">
+			{% endif %}
 			<hr>
 			<div class="progress">
 				<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
@@ -59,7 +68,7 @@
 		var pinTable = [];
 
 		const numberOfDrones = 1;
-		var iDrone = 0;
+		var iDrone = {{ user.drones|length }};
 
 		var map = new Microsoft.Maps.Map(document.getElementById("map"), mapOptions);
 		var dronePin        = false;
@@ -73,10 +82,10 @@
 
 		{% for drone in user.drones %}
 			console.log("{{ drone.longitude }}");
-		    loc =  new Microsoft.Maps.Location(
-		    	{{ drone.latitude }}, 
-		    	{{ drone.longitude }}
-		    );
+			loc =  new Microsoft.Maps.Location(
+				{{ drone.latitude }}, 
+				{{ drone.longitude }}
+			);
 			dronePin = new Microsoft.Maps.Pushpin(loc, dronePinOptions);
 			map.entities.push(dronePin);
 		{% endfor %}
@@ -334,10 +343,6 @@
 
 		/*==========  Fonctions pour animer le drone  ==========*/
 
-		/*var path = [
-			new Microsoft.Maps.Location(40.8, -73.8),   //New York
-		];*/
-
 		function moveDrone(i){
 			if(dronePin != false){
 				if (path[path.length-1] != dronePin.getLocation) {
@@ -386,7 +391,7 @@
 								progress += Math.round(percentComplete)*100 * (1-ratio);
 								$('.progress-bar').width(progress + '%');
 							}
-					    }, false);
+						}, false);
 
 						return xhr;
 					},
