@@ -12,10 +12,13 @@ class RegistrationFormType extends AbstractType
         // add your custom field
         $builder->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
             ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
+            ->add('address')
+            ->add('zipcode')
+            ->add('country', 'country')
           	->add('imageFile', 'vich_image', array(
-						'required'      => false,
-						'allow_delete'  => true,
-						'download_link' => true,
+					'required'      => false,
+					'allow_delete'  => true,
+					'download_link' => true,
           		))
             ->add('plainPassword', 'repeated', array(
                 'type' => 'password',

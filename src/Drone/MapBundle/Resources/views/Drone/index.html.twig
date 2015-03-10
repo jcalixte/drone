@@ -1,0 +1,45 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Drone list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Product</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('drone_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.product }}</td>
+                <td>{{ entity.latitude }}</td>
+                <td>{{ entity.longitude }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('drone_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('drone_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('drone_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

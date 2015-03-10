@@ -1,3 +1,33 @@
+drone_map_drone:
+    resource: "@DroneMapBundle/Resources/config/routing/drone.yml"
+    prefix:   /drone
+
 drone_map_homepage:
     path:     /
     defaults: { _controller: DroneMapBundle:Default:index }
+
+drone_map_add_field:
+    path:     /add_field
+    defaults: { _controller: DroneMapBundle:Default:addField }
+    options:
+        expose: true
+
+# AJAX routing
+
+drone_ajax_save_drone_location:
+    path:     /save_drone_location
+    defaults: { _controller: DroneMapBundle:Ajax:saveDroneLocation }
+    options:
+        expose: true
+
+drone_ajax_save_field_location:
+    path:     /save_field_location
+    defaults: { _controller: DroneMapBundle:Ajax:saveFieldLocation }
+    options:
+        expose: true
+
+drone_ajax_save_point_location:
+    path:     /save_point_location
+    defaults: { _controller: DroneMapBundle:Ajax:savePointLocation }
+    options:
+        expose: true

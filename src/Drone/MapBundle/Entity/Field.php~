@@ -7,13 +7,13 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Drone\UserBundle\Entity\User as User;
 
 /**
- * Map
+ * Field
  *
  * @ORM\Table()
  * @ORM\Entity
  * @Vich\Uploadable
  */
-class Map
+class Field
 {
     /**
      * @var integer
@@ -25,34 +25,34 @@ class Map
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255)
-     */
-    private $name;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Drone\UserBundle\Entity\User", inversedBy="maps")
+     * @ORM\ManyToOne(targetEntity="Drone\UserBundle\Entity\User", inversedBy="fields")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      **/
     private $user;
 
     /**
-     * @Vich\UploadableField(mapping="map_image", fileNameProperty="imageName")
+     * @ORM\Column(type="json_array", name="locations")
+     *
+     * @var json_array $locations
+     */
+    protected $locations;
+
+    /**
+     * @Vich\UploadableField(mapping="map_image", fileNameProperty="imageName", nullable=true)
      *
      * @var File $imageFile
      */
     protected $imageFile;
 
     /**
-     * @ORM\Column(type="string", length=255, name="image_name")
+     * @ORM\Column(type="string", length=255, name="image_name", nullable=true)
      *
      * @var string $imageName
      */
     protected $imageName;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      *
      * @var \DateTime $updatedAt
      */

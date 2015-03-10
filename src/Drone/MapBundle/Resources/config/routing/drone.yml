@@ -1,0 +1,30 @@
+drone:
+    path:     /
+    defaults: { _controller: "DroneMapBundle:Drone:index" }
+
+drone_show:
+    path:     /{id}/show
+    defaults: { _controller: "DroneMapBundle:Drone:show" }
+
+drone_new:
+    path:     /new
+    defaults: { _controller: "DroneMapBundle:Drone:new" }
+
+drone_create:
+    path:     /create
+    defaults: { _controller: "DroneMapBundle:Drone:create" }
+    methods:  POST
+
+drone_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "DroneMapBundle:Drone:edit" }
+
+drone_update:
+    path:     /{id}/update
+    defaults: { _controller: "DroneMapBundle:Drone:update" }
+    methods:  [POST, PUT]
+
+drone_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "DroneMapBundle:Drone:delete" }
+    methods:  [POST, DELETE]

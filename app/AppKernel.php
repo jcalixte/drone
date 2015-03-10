@@ -24,8 +24,12 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             // Bundle installé
             new FOS\UserBundle\FOSUserBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
             // Bundle spécifique
             new Drone\UserBundle\DroneUserBundle(),
             new Drone\HomeBundle\DroneHomeBundle(),

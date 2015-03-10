@@ -1,7 +1,6 @@
 {% extends 'DroneUserBundle::layout.html.twig' %}
 
-{% block fos_user_content %}
-	<h2>Coucou</h2>
+{% block body_user %}
 	<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
 	    {{ form_widget(form) }}
 	    <div>

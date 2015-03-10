@@ -5,19 +5,33 @@
 
 @import "compass/reset";
 @import "compass/css3/font-face";
-@include font-face("Quicksand", font-files("Quicksand.otf"));
+@include font-face("Quicksand", font-files("../../drone/web/stylesheets/fonts/Quicksand.otf"));
+@include font-face("Brush", font-files("../../drone/web/stylesheets/fonts/Brush.ttf"));
 
 /* Définition des constantes */
 
 $purple: #663399;
 $honeyFlower: #674172;
-$ming: #336E7B;
+$ming: #336e7b;
+
+/* Couleurs de la charte graphique */
+
+$yellow: #f9bd3b;
+$beeYellow: #f5ab35;
+$beeBlack: #141414;
+$royalBlue: #4183d7;
+
 /*----- Fin des constantes  ------*/
 
 body {
-	background-color: $ming;
-	font-family: Quicksand, "Segoe UI", Arial, sans-serif;
+	background-color: $beeYellow;
+	font-family: 'Quicksand', "Segoe UI", Arial, sans-serif;
+	//font-family: "Segoe UI", Arial, sans-serif;
 	font-size: 16pt;
+}
+
+span.bee{
+	font-family: 'Brush', Arial, sans-serif;
 }
 
 #content {
@@ -31,17 +45,86 @@ h1 {
 	font-size: 18pt;
 }
 
+h1.bee {
+	font-size: 72pt;
+	text-align: center;
+	color: $royalBlue;
+}
+
+.btn {
+	border-radius: 1px;
+}
+
+.clear {
+	clear: both;
+}
+
+.progress {
+	border-radius: 1px;
+}
+
+.progress-bar {
+	background-color: $royalBlue;
+}
+
+.btn-info {
+	background-color: $royalBlue;
+	border-color:     $royalBlue;
+}
+
+.btn:hover {
+	background-color: $purple;
+	border-color:     $purple;
+	color:            white;
+}
+
+/*==================================
+=            Home index            =
+==================================*/
+
+section.home-container {
+	padding: 15px;
+	background-color: $yellow;
+	border-radius: 1px;
+}
+
+/*-----  Fin de Home index  ------*/
+
 /*=================================
 =            MapBundle            =
 =================================*/
 
 #map {
-   position: absolute;
+   position: relative;
    min-width: 600px;
    min-height: 400px;
-   width: 80%;
-   height: 80%;
+   width: 100%;
+   height: 100%;
+}
+
+.map {
+	width: 100%;
+	margin: auto;
+	background-color: $yellow;
+	padding: 15px;
+
+	h1 {
+		text-align: center;
+	}
+
+	.map-container {
+		float: left;
+		display: inline-block;
+		width: 50%;
+		background-color: $yellow;
+	}
+
+	.map-command {
+		float: right;
+		padding: 15px;
+		display: inline-block;
+		width: 50%;
+	}
 }
 
 /*-----  Fin de MapBundle  ------*/
-
