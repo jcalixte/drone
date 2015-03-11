@@ -14,6 +14,7 @@ class RegistrationFormType extends AbstractType
             ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
             ->add('address')
             ->add('zipcode')
+            ->add('city')
             ->add('country', 'country')
           	->add('imageFile', 'vich_image', array(
 					'required'      => false,

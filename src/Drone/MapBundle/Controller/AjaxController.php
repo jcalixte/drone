@@ -10,8 +10,7 @@ use Drone\MapBundle\Entity\Drone;
 
 class AjaxController extends Controller
 {
-	public function saveDroneLocationAction()
-	{
+	public function saveDroneLocationAction() {
 		$user = $this->getUser();
 		if(!$user){
 			throw $this->createNotFoundException('Utilisateur non connecté');
@@ -47,7 +46,27 @@ class AjaxController extends Controller
 		return $response;
 	}
 
-	private function generateSerialNumber($length = 10) {
+	public function saveFieldLocationAction() {
+		$user = $this->getUser();
+		if(!$user){
+			throw $this->createNotFoundException('Utilisateur non connecté');
+		}
+
+		$request = $this->container->get('request');
+
+	}
+
+	public function savePointLocationAction() {
+		$user = $this->getUser();
+		if(!$user){
+			throw $this->createNotFoundException('Utilisateur non connecté');
+		}
+
+		$request = $this->container->get('request');
+
+	}
+
+	protected function generateSerialNumber($length = 10) {
 		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		$charactersLength = strlen($characters);
 		$randomString = '';

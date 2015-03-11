@@ -81,7 +81,6 @@
 		};
 
 		{% for drone in user.drones %}
-			console.log("{{ drone.longitude }}");
 			loc =  new Microsoft.Maps.Location(
 				{{ drone.latitude }}, 
 				{{ drone.longitude }}
@@ -107,8 +106,9 @@
 			}
 		});
 
-		var shape = [];
-		var path  = [];
+		var shape  = [];
+		var path   = [];
+		var fields = [];
 
 		$("#search").click(function(){
 			var query = $("#search_query").val();
@@ -244,6 +244,8 @@
 				pinTable.length = 0;
 				shape.length    = 0;
 				Microsoft.Maps.Events.addHandler(polygon, 'click', addCircleEvent);
+				fields[fields.length] = polygon;
+				//console.log('POLYGON toString : ' + JSON.stringify(polygon));
 			}
 		}
 
@@ -359,10 +361,34 @@
 			}
 		});
 
+		$('#submitInterestPoint').click(function(){
+			if(dronePin != false){
+				ajaxCall('interestPointLocation');
+			}
+		});
+
+		$('#submitField').click(function(){
+			if(dronePin != false){
+				ajaxCall('fieldLocation');
+			}
+		});
+
 		function ajaxCall(call){
-			var route = false;
+			var route = false, data  = {};
 			if (call == 'droneLocation') {
 				route = Routing.generate('drone_ajax_save_drone_location');
+				data = {
+					lat: dronePin.getLocation().latitude,
+					lon: dronePin.getLocation().longitude
+				} 
+			}else if(call == 'interestPointLocation') {
+				route = Routing.generate('drone_ajax_save_point_location');
+				data = {
+					path: JSON.stringify(path)
+				};
+			}else if(call == "fieldLocation") {
+				route = Routing.generate('drone_ajax_save_field_location');
+				data = {};
 			}
 			if(route != false){
 				var progress = 0;
@@ -397,10 +423,7 @@
 					},
 					type: 'POST',
 					url: route,
-					data: {
-						lat: dronePin.getLocation().latitude,
-						lon: dronePin.getLocation().longitude
-					},
+					data: data,
 					success: function(data){
 						//$('.progress').hide();
 						progress = 0;
