@@ -4,7 +4,9 @@ namespace Drone\MapBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 use Drone\UserBundle\Entity\User as User;
+use Drone\MapBundle\Entity\Point as Point;
 
 /**
  * Field
@@ -30,12 +32,10 @@ class Field
 	 **/
 	private $user;
 
-	/**
-	 * @ORM\Column(type="json_array", name="locations")
-	 *
-	 * @var json_array $locations
-	 */
-	protected $locations;
+    /**
+     * @ORM\OneToMany(targetEntity="Drone\MapBundle\Entity\Point", mappedBy="field", cascade="remove")
+     **/
+    private $points;
 
 	/**
 	 * @Vich\UploadableField(mapping="map_image", fileNameProperty="imageName", nullable=true)
@@ -59,7 +59,7 @@ class Field
 	protected $updatedAt;
 
 	public function __construct(){
-
+        $this->points = new ArrayCollection();
 	}
 
 	/**
@@ -117,6 +117,41 @@ class Field
 	{
 		return $this->user;
 	}
+
+    /**
+     * Add points
+     *
+     * @param \Drone\MapBundle\Entity\Point $points
+     * @return Field
+     */
+    public function addPoint(\Drone\MapBundle\Entity\Point $points)
+    {
+        $this->points[] = $points;
+        $points->setField($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove points
+     *
+     * @param \Drone\MapBundle\Entity\Point $points
+     */
+    public function removePoint(\Drone\MapBundle\Entity\Point $points)
+    {
+        $this->points->removeElement($points);
+        $points->setField(null);
+    }
+
+    /**
+     * Get points
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPoints()
+    {
+        return $this->points;
+    }
 
 	/**
 	 *
