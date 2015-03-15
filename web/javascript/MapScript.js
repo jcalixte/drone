@@ -3,7 +3,8 @@ $(function(){
 	var mapOptions = {
 		credentials: credentialsKey,
 		center: new Microsoft.Maps.Location(48.85720336058152, 2.3527531137302393),
-		mapTypeId: Microsoft.Maps.MapTypeId.automatic,
+		//mapTypeId: Microsoft.Maps.MapTypeId.automatic,
+		mapTypeId: Microsoft.Maps.MapTypeId.aerial,
 		zoom: 10
 	};
 	// Enregistrement des coins pour les terrains.
@@ -16,8 +17,15 @@ $(function(){
 	var path   = [];
 	var fields = [];
 
-	var dronePin = false;
+	var dronePin           = false;
 	var currentDroneAction = false;
+	var droneSpeedKmH      = 40;
+	//var droneSpeedKmH    = 40*4;
+	var droneSpeed         = Math.round(droneSpeedKmH*1000/3600);
+	var iDrone             = 0;
+	const numberOfDrones   = 1;
+
+	var vfilePath = false;
 
 	$("#search").click(function(){
 		var query = $("#search_query").val();
@@ -61,6 +69,138 @@ $(function(){
 		moveDrone();
 	});
 
+	$("#droneCentered").click(function() {
+		if (dronePin != false) {
+			var options = map.getOptions();
+			options.center = dronePin.getLocation();
+			map.setView(options);
+		}
+	});
+
+	/*==========  Suppressions  ==========*/
+	$('#deleteFields').click(function() {
+		var progress = 0;
+		var ratio = 1;
+		$('.progress-bar').width('0%');
+		$.ajax({
+			xhr: function() {
+				var xhr = new window.XMLHttpRequest();
+				xhr.addEventListener("progress", function(evt) {
+					if (evt.lengthComputable) {
+						var percentComplete = evt.loaded / evt.total;
+						if(!$('.progress').is(":visible")){
+							$('.progress').show();
+						}
+						progress += Math.round(percentComplete)*100 * ratio;
+						$('.progress-bar').width(progress + '%');
+					}
+				}, false);
+
+				xhr.addEventListener("progress", function(evt){
+					if (evt.lengthComputable) {  
+						var percentComplete = evt.loaded / evt.total;
+						if(!$('.progress').is(":visible")){
+							$('.progress').show();
+						}
+						progress += Math.round(percentComplete)*100 * (1-ratio);
+						$('.progress-bar').width(progress + '%');
+					}
+				}, false);
+
+				return xhr;
+			},
+			type: 'POST',
+			url: Routing.generate('drone_ajax_delete_fields'),
+			//data: datas,
+			success: function(data){
+				progress = 0;
+				console.log(data.success);
+			}
+		});
+	});
+
+	$('#deleteInterestPoints').click(function() {
+		var progress = 0;
+		var ratio = 1;
+		$('.progress-bar').width('0%');
+		$.ajax({
+			xhr: function() {
+				var xhr = new window.XMLHttpRequest();
+				xhr.addEventListener("progress", function(evt) {
+					if (evt.lengthComputable) {
+						var percentComplete = evt.loaded / evt.total;
+						if(!$('.progress').is(":visible")){
+							$('.progress').show();
+						}
+						progress += Math.round(percentComplete)*100 * ratio;
+						$('.progress-bar').width(progress + '%');
+					}
+				}, false);
+
+				xhr.addEventListener("progress", function(evt){
+					if (evt.lengthComputable) {  
+						var percentComplete = evt.loaded / evt.total;
+						if(!$('.progress').is(":visible")){
+							$('.progress').show();
+						}
+						progress += Math.round(percentComplete)*100 * (1-ratio);
+						$('.progress-bar').width(progress + '%');
+					}
+				}, false);
+
+				return xhr;
+			},
+			type: 'POST',
+			url: Routing.generate('drone_ajax_delete_interest_points'),
+			//data: datas,
+			success: function(data){
+				progress = 0;
+				console.log(data.success);
+			}
+		});
+	});
+
+	$('#deleteDrones').click(function() {
+		var progress = 0;
+		var ratio = 1;
+		$('.progress-bar').width('0%');
+		$.ajax({
+			xhr: function() {
+				var xhr = new window.XMLHttpRequest();
+				xhr.addEventListener("progress", function(evt) {
+					if (evt.lengthComputable) {
+						var percentComplete = evt.loaded / evt.total;
+						if(!$('.progress').is(":visible")){
+							$('.progress').show();
+						}
+						progress += Math.round(percentComplete)*100 * ratio;
+						$('.progress-bar').width(progress + '%');
+					}
+				}, false);
+
+				xhr.addEventListener("progress", function(evt){
+					if (evt.lengthComputable) {  
+						var percentComplete = evt.loaded / evt.total;
+						if(!$('.progress').is(":visible")){
+							$('.progress').show();
+						}
+						progress += Math.round(percentComplete)*100 * (1-ratio);
+						$('.progress-bar').width(progress + '%');
+					}
+				}, false);
+
+				return xhr;
+			},
+			type: 'POST',
+			url: Routing.generate('drone_ajax_delete_drones'),
+			//data: datas,
+			success: function(data){
+				progress = 0;
+				console.log(data.success);
+			}
+		});
+	});
+
 	/*==========  Évènements  ==========*/
 
 	$(document).on('fieldChoice', function(){
@@ -86,12 +226,14 @@ $(function(){
 
 	mapAction = function(filePath, droneEntities, fieldEntities, interestPointEntities, queryAddress) {
 
-		const numberOfDrones = 1;
-		var iDrone = droneEntities.length;
+		iDrone = droneEntities.length;
+		if(!vfilePath) {
+			vfilePath = filePath;
+		}
 
 		var loc             = false;
 		var dronePinOptions = {
-			icon: filePath['quadcopter'], 
+			icon: vfilePath['quadcopter'], 
 			width: 50, 
 			height: 50, 
 			anchor: new Microsoft.Maps.Point(25,25)
@@ -115,7 +257,7 @@ $(function(){
 		});
 
 		interestPointEntities.forEach(function(e) {
-			addCircle(0.000001, e);
+			addCircle(0.000001, e.location);
 			path[path.length] = e;
 		});
 
@@ -181,7 +323,7 @@ $(function(){
 	function addShape(){
 		if(shape.length > 0){
 			// On ferme la forme avec le premier point si ce n'est pas déjà fait.
-			if(shape[0] != shape[shape.length]){
+			if(shape[0] != shape[shape.length-1]){
 				shape[shape.length] = shape[0];
 			}
 			var polyShape = shape.slice();
@@ -220,7 +362,10 @@ $(function(){
 			var point = new Microsoft.Maps.Point(e.getX(), e.getY());
 			var loc = map.tryPixelToLocation(point);
 			addCircle(0.000001, loc);
-			path[path.length] = loc;
+			path[path.length] = {
+				location: loc,
+				action: $("#selectAction").val(),
+			};
 		}
 	}
 
@@ -248,9 +393,9 @@ $(function(){
 		polygon.setOptions({
 			fillColor: {
 				a: 150,
-				r: 245,
-				g: 171,
-				b: 53
+				r: 255,
+				g: 255,
+				b: 255
 			},
 			strokeColor: {
 				a: 200,
@@ -268,7 +413,7 @@ $(function(){
 	function addDronePin(e){
 		if($("#putDrone").hasClass('active')){
 			var dronePinOptions = {
-				icon: filePath['quadcopter'], 
+				icon: vfilePath['quadcopter'], 
 				width: 50, 
 				height: 50, 
 				anchor: new Microsoft.Maps.Point(25,25)
@@ -313,10 +458,13 @@ $(function(){
 
 	function moveDrone(){
 		if(dronePin != false){
-			if (path[path.length-1] != dronePin.getLocation) {
-				path[path.length] = dronePin.getLocation();
+			if (path[path.length-1] != dronePin.getLocation()) {
+				path[path.length] = {
+					location: dronePin.getLocation(),
+					action: 'nothing',
+				};
 			};
-			dronePin.moveLocation(path.slice(), 2000);
+			dronePin.moveLocation(dronePin.getLocation(), path, droneSpeed);
 		}
 	}
 
@@ -358,7 +506,6 @@ $(function(){
 			datas = {
 				fieldCorners: fields,
 			};
-			console.log(fields);
 		}
 		if(route != false){
 			var progress = 0;

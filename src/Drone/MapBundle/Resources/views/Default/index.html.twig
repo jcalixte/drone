@@ -18,9 +18,10 @@
 			{% if user.drones|length == 0 %}
 				<a href="#" id="putDrone" title="Placer votre drone" class="btn btn-info">Placer votre drone</a>
 			{% endif %}
+			<a href="#" id="droneCentered" title="Centrer sur votre drone" class="btn btn-info">Centrer sur votre drone</a>
 			<hr>
 			<label for="selectAction">Sélectionnez votre action : </label>
-			<select name="selectAction">
+			<select id="selectAction" name="selectAction">
 				<option value="photo">Prise de photo</option> 
 				<option value="video" selected>Prise d'une vidéo</option>
 				<option value="sound" selected>Prise de son</option>
@@ -50,6 +51,9 @@
 			<br>
 			<input id='submitField' class='btn btn-info btn-large' type="submit" name="Enregistrer vos champs" value="Enregistrer vos champs">
 			<input id='submitInterestPoint' class='btn btn-info btn-large' type="submit" name="Enregistrer vos points d'intérêt" value="Enregistrer vos points d'intérêt">
+			<input id='deleteFields' type="submit" class='btn btn-danger btn-large' name="deleteFields" value="Supprimer vos champs">
+			<input id='deleteInterestPoints' type="submit" class='btn btn-danger btn-large' name="deleteInterestPoints" value="Supprimer vos points d'intérêt">
+			<input id='deleteDrones' type="submit" class='btn btn-danger btn-large' name="deleteDrones" value="Supprimer vos drones">
 			{% if user.drones|length == 0 %}
 				<input id='submitDroneLocation' class='btn btn-info btn-large' type="submit" name="Enregistrer la localisation de votre drone" value="Enregistrer la localisation de votre drone">
 			{% endif %}
@@ -100,9 +104,13 @@
 
 		{% for point in user.points %}
 			interestPointEntities.push(
-				{
-					latitude: {{ point.latitude }},
-					longitude: {{ point.longitude }},
+				{	
+					location:
+					{
+						latitude: {{ point.latitude }},
+						longitude: {{ point.longitude }},
+					},
+					action: '{{ point.action }}',
 				}
 			);
 		{% endfor %}

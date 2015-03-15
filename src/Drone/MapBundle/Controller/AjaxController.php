@@ -100,8 +100,9 @@ class AjaxController extends Controller
 
 		foreach ($interestPoints as $point) {
 			$pointEntity = new Point();
-			$pointEntity->setLatitude($point['latitude']);
-			$pointEntity->setLongitude($point['longitude']);
+			$pointEntity->setLatitude($point['location']['latitude']);
+			$pointEntity->setLongitude($point['location']['longitude']);
+			$pointEntity->setAction($point['action']);
 
 			$em->persist($pointEntity);
 			$em->flush();
@@ -114,6 +115,73 @@ class AjaxController extends Controller
 		$response->setData(array(
 			'success'        => 'true',
 			'interestPoints' => $interestPoints,
+		));
+		return $response;
+	}
+
+	public function deleteDronesAction() {
+		$user = $this->getUser();
+		if(!$user){
+			throw $this->createNotFoundException('Utilisateur non connecté');
+		}
+
+		$userManager = $this->container->get('fos_user.user_manager');
+		$em = $this->getDoctrine()->getManager();
+
+		foreach($user->getDrones() as $drone) {
+			$user->removeDrone($drone);
+			$em->remove($drone);
+		}
+		$em->flush();
+
+		$response = new JsonResponse();
+		$response->setData(array(
+			'success' => 'true',
+		));
+		return $response;
+	}
+
+	public function deleteFieldsAction() {
+		$user = $this->getUser();
+		if(!$user){
+			throw $this->createNotFoundException('Utilisateur non connecté');
+		}
+
+		$userManager = $this->container->get('fos_user.user_manager');
+		$em = $this->getDoctrine()->getManager();
+
+		foreach($user->getFields() as $field) {
+			$user->removeField($field);
+			$em->remove($field);
+		}
+		$em->flush();
+
+		$response = new JsonResponse();
+		$response->setData(array(
+			'success' => 'true',
+		));
+		return $response;
+	}
+
+	public function deleteInterestPointsAction() {
+		$user = $this->getUser();
+		if(!$user){
+			throw $this->createNotFoundException('Utilisateur non connecté');
+		}
+
+		$userManager = $this->container->get('fos_user.user_manager');
+		$em = $this->getDoctrine()->getManager();
+
+		foreach($user->getPoints() as $point) {
+			$user->removePoint($point);
+			$em->remove($point);
+		}
+		$userManager->updateUser($user);
+		$em->flush();
+
+		$response = new JsonResponse();
+		$response->setData(array(
+			'success'        => 'true',
 		));
 		return $response;
 	}

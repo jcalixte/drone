@@ -31,3 +31,22 @@ drone_ajax_save_point_location:
     defaults: { _controller: DroneMapBundle:Ajax:savePointLocation }
     options:
         expose: true
+
+drone_ajax_delete_fields:
+    path:     /delete_fields
+    defaults: { _controller: DroneMapBundle:Ajax:deleteFields }
+    options:
+        expose: true
+
+drone_ajax_delete_interest_points:
+    path:     /delete_interest_point
+    defaults: { _controller: DroneMapBundle:Ajax:deleteInterestPoints }
+    options:
+        expose: true
+
+
+drone_ajax_delete_drones:
+    path:     /delete_drones
+    defaults: { _controller: DroneMapBundle:Ajax:deleteDrones }
+    options:
+        expose: true

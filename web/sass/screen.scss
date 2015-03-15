@@ -24,7 +24,6 @@ $royalBlue: #4183d7;
 body {
 	background-color: $beeYellow;
 	font-family: 'Quicksand', "Segoe UI", Arial, sans-serif;
-	//font-family: "Segoe UI", Arial, sans-serif;
 	font-size: 16pt;
 }
 
@@ -32,10 +31,23 @@ span.bee{
 	font-family: 'Brush', Arial, sans-serif;
 }
 
+.navbar {
+	background-color: $royalBlue;
+	margin: 0px;
+	border: 0px;
+	height: 50px;
+	line-height: 50px;
+	border-radius: 0px;
+	color: white;
+	a {
+		color: white;
+	}
+}
+
 #content {
-	width: 80%;
-	margin: 15px auto 10px;
-	padding: 10px;
+	width: 90%;
+	margin: 0px auto 10px;
+	padding: 0px 10px;
 }
 
 h1 {
@@ -51,6 +63,10 @@ h1.bee {
 
 .btn {
 	border-radius: 1px;
+}
+
+.btn-default {
+	background-color: #fff;
 }
 
 .clear {
