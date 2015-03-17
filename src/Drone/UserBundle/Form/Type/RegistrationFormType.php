@@ -13,6 +13,7 @@ class RegistrationFormType extends AbstractType
         $builder->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
             ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
             ->add('address')
+            ->add('city')
             ->add('zipcode')
             ->add('city')
             ->add('country', 'country')
