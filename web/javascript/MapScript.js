@@ -13,9 +13,10 @@ $(function(){
 	var search_engine_loaded   = false;
 	var advanced_shapes_loaded = false;
 
-	var shape  = [];
-	var path   = [];
-	var fields = [];
+	var shape      = [];
+	var path       = [];
+	var fields     = [];
+	var polyFields = [];
 
 	var dronePin           = false;
 	var currentDroneAction = false;
@@ -115,6 +116,10 @@ $(function(){
 			success: function(data){
 				progress = 0;
 				console.log(data.success);
+				polyFields.forEach(function(e) {
+					map.entities.remove(e);
+				});
+				polyFields.length = 0;
 			}
 		});
 	});
@@ -156,6 +161,12 @@ $(function(){
 			success: function(data){
 				progress = 0;
 				console.log(data.success);
+				path.forEach(function(e) {
+					if(dronePin == false || (e.latitude != dronePin.latitude && e.longitude != dronePin.longitude)) {
+						map.entities.remove(e);
+					}
+				});
+				path.length = 0;
 			}
 		});
 	});
@@ -197,6 +208,8 @@ $(function(){
 			success: function(data){
 				progress = 0;
 				console.log(data.success);
+				map.entities.remove(dronePin);
+				dronePin = false;
 			}
 		});
 	});
@@ -274,6 +287,12 @@ $(function(){
 		Microsoft.Maps.loadModule('Microsoft.Maps.AdvancedShapes', { callback: function(){
 				advanced_shapes_loaded = true;
 			}
+		});
+
+		polyFields.forEach(function(p) {
+			path.forEach(function(e) {
+				console.log(isInPolygon(p, e['location']));
+			})
 		});
 	}
 
@@ -353,7 +372,8 @@ $(function(){
 			pinTable.length = 0;
 			shape.length    = 0;
 			Microsoft.Maps.Events.addHandler(polygon, 'click', addCircleEvent);
-			fields[fields.length] = polyShape;
+			polyFields[polyFields.length] = polygon;
+			fields[fields.length]         = polyShape;
 		}
 	}
 
@@ -454,6 +474,25 @@ $(function(){
 		addDronePin(e);
 	}
 
+	function isInPolygon(polygon, pin){
+		var isInside = false;
+		var j = 0;
+		var x = pin.longitude;
+		var y = pin.latitude;
+		var paths = polygon.getLocations();
+
+		for (var i = 0; i < paths.length ; i++) {
+		    j++;
+		    if (j == paths.length) { j = 0; }
+		    if ((paths[i].latitude < y && paths[j].latitude >= y) || (paths[j].latitude < y && paths[i].latitude >= y)) {
+		        if (paths[i].longitude + (y - paths[i].latitude) / (paths[j].latitude - paths[i].latitude) * (paths[j].longitude - paths[i].longitude) < x) {
+		            isInside = !isInside;
+		        }
+		    }
+		}
+		return isInside;
+	}
+
 	/*==========  Fonctions pour animer le drone  ==========*/
 
 	function moveDrone(){
@@ -483,7 +522,6 @@ $(function(){
 
 	$('#submitField').click(function(){
 		if(fields.length > 0){
-			console.log("Champs!");
 			ajaxCall('fieldLocation');
 		}
 	});
