@@ -15,6 +15,7 @@ class RegistrationFormType extends AbstractType
             ->add('address')
             ->add('city')
             ->add('zipcode')
+            ->add('city')
             ->add('country', 'country')
           	->add('imageFile', 'vich_image', array(
 					'required'      => false,

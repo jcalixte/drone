@@ -4,8 +4,8 @@ namespace Drone\UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 use Drone\MapBundle\Entity\Map as Map;
 use Drone\MapBundle\Entity\Drone as Drone;
 
@@ -32,6 +32,11 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Drone\MapBundle\Entity\Drone", mappedBy="user", cascade="remove")
      **/
     private $drones;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Drone\MapBundle\Entity\Point", mappedBy="user", cascade="remove")
+     **/
+    private $points;
 
     /**
      * @var string
@@ -87,6 +92,7 @@ class User extends BaseUser
         parent::__construct();
         $this->maps   = new ArrayCollection();
         $this->drones = new ArrayCollection();
+        $this->points = new ArrayCollection();
     }
 
     /**
@@ -351,5 +357,40 @@ class User extends BaseUser
     public function getDrones()
     {
         return $this->drones;
+    }
+
+    /**
+     * Add points
+     *
+     * @param \Drone\MapBundle\Entity\Point $points
+     * @return User
+     */
+    public function addPoint(\Drone\MapBundle\Entity\Point $points)
+    {
+        $this->points[] = $points;
+        $points->setUser($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove points
+     *
+     * @param \Drone\MapBundle\Entity\Point $points
+     */
+    public function removePoint(\Drone\MapBundle\Entity\Point $points)
+    {
+        $this->points->removeElement($points);
+        $points->setUser(null);
+    }
+
+    /**
+     * Get points
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPoints()
+    {
+        return $this->points;
     }
 }

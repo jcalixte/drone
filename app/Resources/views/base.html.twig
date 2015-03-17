@@ -10,9 +10,10 @@
 		{% block javascripts_before %}{% endblock %}
 	</head>
 	<body>
-		<div>
+		<nav class="navbar navbar-default navbar-collapse">
 			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 				{{ 'layout.logged_in_as'|trans({ '%username%': app.user.username|capitalize }, 'FOSUserBundle') }} |
+				<a href="{{ path('drone_home_homepage') }}" title="Accueil">Accueil</a>
 				<a href="{{ path('fos_user_profile_show') }}">Profil</a>
 				<a href="{{ path('fos_user_security_logout') }}">
 					{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
@@ -20,7 +21,7 @@
 			{% else %}
 				<a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
 			{% endif %}
-		</div>
+		</nav>
 
 		{% for type, messages in app.session.flashbag.all() %}
 			{% for message in messages %}
@@ -29,7 +30,7 @@
 				</div>
 			{% endfor %}
 		{% endfor %}
-
+		
 		<div id="content">
 			{% block body %}{% endblock %}
 		</div>

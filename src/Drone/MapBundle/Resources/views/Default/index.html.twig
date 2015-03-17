@@ -11,18 +11,35 @@
 		</div>
 		<div class="map-command">
 			<input id="search_query" name="search_query" type="text" value="{{ user.address }} {{ user.city }} {{ user.zipcode }} {{ user.country }}">
-			<input id="search" name="search" type="button" value="Rechercher">
+			<input id="search" name="search" type="button" class="btn" value="Rechercher">
 			<hr>
 			<a href="#" id="rectangleChoice" class="btn btn-default" role="button">Détourer votre terrain</a>
 			<a href="#" id="interestPoint" title="Point de passage" class="btn btn-info">Point de passage</a>
-			<a href="#" id="putDrone" title="Placer votre drone" class="btn btn-info">Placer votre drone</a>
+			{% if user.drones|length == 0 %}
+				<a href="#" id="putDrone" title="Placer votre drone" class="btn btn-info">Placer votre drone</a>
+			{% endif %}
+			<a href="#" id="droneCentered" title="Centrer sur votre drone" class="btn btn-info">Centrer sur votre drone</a>
+			<hr>
+			<label for="selectAction">Sélectionnez votre action : </label>
+			<select id="selectAction" name="selectAction">
+				<option value="photo">Prise de photo</option> 
+				<option value="video" selected>Prise d'une vidéo</option>
+				<option value="sound" selected>Prise de son</option>
+				<option value="nothing">Simple passage</option>
+			</select>
+			<hr>
 			<div>
-				Drones : 
+				Vos différents drones : 
 				<ul>
 					{% for drone in user.drones %}
-					    <li>Numéro de série : {{ drone.serialNumber }}</li>
-					    <li>Latitude : {{ drone.latitude }}</li>
-					    <li>Longitude : {{ drone.longitude }}</li>
+					<li>
+						{{ drone.product }} :
+						<ul>
+							<li>Numéro de série : {{ drone.serialNumber }}</li>
+							<li>Latitude : {{ drone.latitude }}</li>
+							<li>Longitude : {{ drone.longitude }}</li>
+						</ul>
+					</li>
 					{% endfor %}
 				</ul>
 			</div>
@@ -34,7 +51,12 @@
 			<br>
 			<input id='submitField' class='btn btn-info btn-large' type="submit" name="Enregistrer vos champs" value="Enregistrer vos champs">
 			<input id='submitInterestPoint' class='btn btn-info btn-large' type="submit" name="Enregistrer vos points d'intérêt" value="Enregistrer vos points d'intérêt">
-			<input id='submitDroneLocation' class='btn btn-info btn-large' type="submit" name="Enregistrer la localisation de votre drone" value="Enregistrer la localisation de votre drone">
+			<input id='deleteFields' type="submit" class='btn btn-danger btn-large' name="deleteFields" value="Supprimer vos champs">
+			<input id='deleteInterestPoints' type="submit" class='btn btn-danger btn-large' name="deleteInterestPoints" value="Supprimer vos points d'intérêt">
+			<input id='deleteDrones' type="submit" class='btn btn-danger btn-large' name="deleteDrones" value="Supprimer vos drones">
+			{% if user.drones|length == 0 %}
+				<input id='submitDroneLocation' class='btn btn-info btn-large' type="submit" name="Enregistrer la localisation de votre drone" value="Enregistrer la localisation de votre drone">
+			{% endif %}
 			<hr>
 			<div class="progress">
 				<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
@@ -46,364 +68,55 @@
 {% endblock %}
 
 {% block javascripts_map %}
+<script src="{{ asset('javascript/MapScript.js') }}" type="text/javascript" charset="utf-8"></script>
 <script>
 	$(function(){
-		var credentialsKey = "AkTr7IeJt5O4ZpWh9reo8wMmlcWN8purxjzGkLalDqeMICooYnrBJepl9dD7cmMt";
-		var mapOptions = {
-			credentials: credentialsKey,
-			center: new Microsoft.Maps.Location(48.85720336058152, 2.3527531137302393),
-			mapTypeId: Microsoft.Maps.MapTypeId.automatic,
-			zoom: 10
-		};
-		// Enregistrement des coins pour les terrains.
-		var pinTable = [];
-
-		const numberOfDrones = 1;
-		var iDrone = 0;
-
-		var map = new Microsoft.Maps.Map(document.getElementById("map"), mapOptions);
-		var dronePin        = false;
-		var loc             = false;
-		var dronePinOptions = {
-			icon: '{{ asset("image/map/quadcopter.png") }}', 
-			width: 50, 
-			height: 50, 
-			anchor: new Microsoft.Maps.Point(25,25)
-		};
+		var filePath = [];
+		var droneEntities = [];
+		var fieldEntities = [];
+		var interestPointEntities = [];
+		filePath['quadcopter'] = "{{ asset('image/map/quadcopter.png') }}";
+		{% autoescape false %}
+			var queryAddress = "{{ user.address }} {{ user.city }} {{ user.zipcode }} {{ user.country }}";
+		{% endautoescape %}
 
 		{% for drone in user.drones %}
-			console.log("{{ drone.longitude }}");
-		    loc =  new Microsoft.Maps.Location(
-		    	{{ drone.latitude }}, 
-		    	{{ drone.longitude }}
-		    );
-			dronePin = new Microsoft.Maps.Pushpin(loc, dronePinOptions);
-			map.entities.push(dronePin);
+			droneEntities.push(
+				{
+					latitude: {{ drone.latitude }},
+					longitude: {{ drone.longitude }},
+				}
+			);
 		{% endfor %}
 
-		//Ajout de modules utilisés
-		var handleClick = false;
-		var search_engine_loaded = false;
-		Microsoft.Maps.loadModule('Microsoft.Maps.Search', { callback: function(){
-				search_engine_loaded = true;
-				var query = $("#search_query").val();
-				if(query != ""){
-					searchModule(query);
+		{% for field in user.fields %}
+		    fieldEntities.push(
+				[
+					{% for point in field.points %}
+						{
+							latitude: {{ point.latitude }},
+							longitude: {{ point.longitude }},
+						},
+					{% endfor %}
+				]
+			);
+		{% endfor %}
+
+		{% for point in user.points %}
+			interestPointEntities.push(
+				{	
+					location:
+					{
+						latitude: {{ point.latitude }},
+						longitude: {{ point.longitude }},
+					},
+					action: '{{ point.action }}',
 				}
-			}
-		});
-		var advanced_shapes_loaded = false;
-		Microsoft.Maps.loadModule('Microsoft.Maps.AdvancedShapes', { callback: function(){
-				advanced_shapes_loaded = true;
-			}
-		});
+			);
+		{% endfor %}
 
-		var shape = [];
-		var path  = [];
+		mapAction(filePath, droneEntities, fieldEntities, interestPointEntities, queryAddress);
 
-		$("#search").click(function(){
-			var query = $("#search_query").val();
-			if(query != ""){
-				searchModule(query);
-			}
-		});
-
-		$("#rectangleChoice").click(function(e){
-			e.preventDefault();
-			$(this).toggleClass('active').trigger('fieldChoice');
-			if($(this).hasClass('active')){
-				$(this).text("Finir votre contour");
-			}else{
-				$(this).text("Détourer votre terrain");
-			}
-			return false;
-		});
-
-		$("#interestPoint").click(function(e){
-			e.preventDefault();
-			$(this).toggleClass('active');
-			if($(this).hasClass('active')){
-				$(this).text("Finir");
-			}else{
-				$(this).text("Point de passage");
-			}
-		});
-
-		$("#putDrone").click(function (e) {
-			e.preventDefault();
-			$(this).toggleClass('active');
-			if($(this).hasClass('active')){
-				$(this).text("Finir");
-			}else{
-				$(this).text("Placer votre drone");
-			}
-		});
-
-		$("#start").click(function() {
-			moveDrone(0);
-		});
-
-		/*==========  Évènements  ==========*/
-
-		$(document).on('fieldChoice', function(){
-			if($("#rectangleChoice").hasClass('active')){
-				handleClick = Microsoft.Maps.Events.addHandler(map, 'click', function(e){
-					if(e.targetType == "map"){
-						var point = new Microsoft.Maps.Point(e.getX(), e.getY());
-						var loc = e.target.tryPixelToLocation(point);
-						addPointToShape(loc.latitude, loc.longitude);
-					}
-				});
-			}else{
-				if(handleClick !== false){
-					Microsoft.Maps.Events.removeHandler(handleClick);
-					handleClick = false;
-				}
-				addShape();
-			}
-		});
-
-		Microsoft.Maps.Events.addHandler(map, 'mouseover', changeCursor);
-		Microsoft.Maps.Events.addHandler(map, 'click', changeCursorClick);
-
-		/*==========  Fonctions  ==========*/
-
-		function searchModule(q){
-			if(search_engine_loaded){
-				var searchManager = new Microsoft.Maps.Search.SearchManager(map);
-
-				var searchRequest = {
-					where: q, 
-					count: 5, 
-					callback: searchGeoCallback, 
-					errorCallback: searchError
-				};
-
-				searchManager.geocode(searchRequest);
-			}
-		}
-
-		function searchGeoCallback(geocodeResult, userData){
-			map.setView({
-				bounds: geocodeResult.results[0].bestView
-			});
-		}
-
-		function searchError(searchRequest)
-		{
-			alert("An error occurred.");
-		}
-
-		function addPointToShape(lat, lon){
-			shape[shape.length] = new Microsoft.Maps.Location(lat, lon);
-			// Define the pushpin location
-			var loc = new Microsoft.Maps.Location(lat, lon);
-
-			// Add a pin to the map
-			pinTable[pinTable.length] = new Microsoft.Maps.Pushpin(loc); 
-			map.entities.push(pinTable[pinTable.length-1]);
-		}
-
-		function addShape(){
-			if(shape.length > 0){
-				// On ferme la forme avec le premier point.
-				shape[shape.length] = shape[0];
-				var polyShape = shape.slice();
-				var polygon = new Microsoft.Maps.Polygon(polyShape);
-				polygon.setOptions({
-					fillColor: {
-						a: 50,
-						r: 0,
-						g: 0,
-						b: 0
-					},
-					strokeColor: {
-						a: 200,
-						r: 255,
-						g: 255,
-						b: 255
-					},
-					infobox: "field",
-					visible: true,
-				});
-				// Suppression des points
-				for (var i = 0; i < pinTable.length; i++) {
-					map.entities.remove(pinTable[i]);
-				};
-				map.entities.push(polygon);
-				// Remise à zéro du tableau de point.
-				pinTable.length = 0;
-				shape.length    = 0;
-				Microsoft.Maps.Events.addHandler(polygon, 'click', addCircleEvent);
-			}
-		}
-
-		function addCircleEvent(e){
-			if($("#interestPoint").hasClass('active')){
-				var point = new Microsoft.Maps.Point(e.getX(), e.getY());
-				var loc = map.tryPixelToLocation(point);
-				addCircle(0.000001, loc);
-				path[path.length] = loc;
-			}
-		}
-
-		function addCircle(radius, location){ //latitude, longitude){
-			var backgroundColor = new Microsoft.Maps.Color(10, 100, 0, 0);
-			var borderColor     = new Microsoft.Maps.Color(150, 200, 0, 0);
-			//var R               = 6371; // Rayon de la terre en kilomètres
-			var lat             = (location.latitude  * Math.PI) / 180;     
-			var lon             = (location.longitude * Math.PI) / 180;
-			var d               = parseFloat(radius);// / R;
-			var circlePoints    = [];
-
-			for (x = 0; x <= 360; x += 5) {
-				var position = new Microsoft.Maps.Location(0, 0);
-				xRadian = x * Math.PI / 180;
-				position.latitude = Math.asin(Math.sin(lat) * Math.cos(d) + Math.cos(lat) * Math.sin(d) * Math.cos(xRadian));
-
-				position.longitude = ((lon + Math.atan2(Math.sin(xRadian) * Math.sin(d) * Math.cos(lat),Math.cos(d) - Math.sin(lat) * Math.sin(position.latitude))) * 180) / Math.PI;
-				position.latitude = (position.latitude * 180) / Math.PI;
-				circlePoints.push(position);
-			}
-
-			var polygon = new Microsoft.Maps.Polygon(circlePoints.slice());
-
-			polygon.setOptions({
-				fillColor: {
-					a: 150,
-					r: 245,
-					g: 171,
-					b: 53
-				},
-				strokeColor: {
-					a: 200,
-					r: 20,
-					g: 20,
-					b: 20
-				},
-				infobox: "point",
-				visible: true,
-			});
-
-			map.entities.push(polygon);
-		}
-
-		function addDronePin(e){
-			if($("#putDrone").hasClass('active')){
-				var dronePinOptions = {
-					icon: '{{ asset("image/map/quadcopter.png") }}', 
-					width: 50, 
-					height: 50, 
-					anchor: new Microsoft.Maps.Point(25,25)
-				}; 
-
-				var point = new Microsoft.Maps.Point(e.getX(), e.getY());
-				var loc = map.tryPixelToLocation(point);
-				dronePin = new Microsoft.Maps.Pushpin(loc, dronePinOptions);
-				map.entities.push(dronePin);
-				iDrone++;
-				$("#putDrone").toggleClass('active');
-				if(iDrone >= numberOfDrones){
-					$("#putDrone").remove();
-				}
-			}
-		}
-
-		function changeCursor(e){
-			var crosshair = $("#rectangleChoice").hasClass('active') ||
-							$("#interestPoint").hasClass('active') ||
-							$("#putDrone").hasClass('active');
-			if(crosshair){
-				map.getRootElement().style.cursor = 'crosshair';
-			}else{
-				map.getRootElement().style.cursor = 'grab';
-			}
-		}
-
-		function changeCursorClick(e){
-			var crosshair = $("#rectangleChoice").hasClass('active') ||
-							$("#interestPoint").hasClass('active') ||
-							$("#putDrone").hasClass('active');
-			if(crosshair){
-				map.getRootElement().style.cursor = 'crosshair';
-			}else{
-				map.getRootElement().style.cursor = 'grab';
-			}
-			addDronePin(e);
-		}
-
-		/*==========  Fonctions pour animer le drone  ==========*/
-
-		/*var path = [
-			new Microsoft.Maps.Location(40.8, -73.8),   //New York
-		];*/
-
-		function moveDrone(i){
-			if(dronePin != false){
-				if (path[path.length-1] != dronePin.getLocation) {
-					path[path.length] = dronePin.getLocation();
-				};
-				dronePin.moveLocation(path.slice(), 2000);
-			}
-		}
-
-		/*==========  Fonctions AJAX  ==========*/
-		$('#submitDroneLocation').click(function(){
-			if(dronePin != false){
-				ajaxCall('droneLocation');
-			}
-		});
-
-		function ajaxCall(call){
-			var route = false;
-			if (call == 'droneLocation') {
-				route = Routing.generate('drone_ajax_save_drone_location');
-			}
-			if(route != false){
-				var progress = 0;
-				var ratio = 1/2;
-				$('.progress-bar').width('0%');
-				$.ajax({
-					xhr: function() {
-						var xhr = new window.XMLHttpRequest();
-						xhr.addEventListener("progress", function(evt) {
-							if (evt.lengthComputable) {
-								var percentComplete = evt.loaded / evt.total;
-								if(!$('.progress').is(":visible")){
-									$('.progress').show();
-								}
-								progress += Math.round(percentComplete)*100 * ratio;
-								$('.progress-bar').width(progress + '%');
-							}
-						}, false);
-
-						xhr.addEventListener("progress", function(evt){
-							if (evt.lengthComputable) {  
-								var percentComplete = evt.loaded / evt.total;
-								if(!$('.progress').is(":visible")){
-									$('.progress').show();
-								}
-								progress += Math.round(percentComplete)*100 * (1-ratio);
-								$('.progress-bar').width(progress + '%');
-							}
-					    }, false);
-
-						return xhr;
-					},
-					type: 'POST',
-					url: route,
-					data: {
-						lat: dronePin.getLocation().latitude,
-						lon: dronePin.getLocation().longitude
-					},
-					success: function(data){
-						//$('.progress').hide();
-						progress = 0;
-						console.log(data.serialNumber, data.latitude, data.longitude);
-					}
-				});
-			}
-		}
 	});
 </script>
 {% endblock %}

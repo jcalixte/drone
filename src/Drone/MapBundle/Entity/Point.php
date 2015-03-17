@@ -9,14 +9,14 @@ use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
- * Drone
+ * Point
  *
  * @ORM\Table()
  * @ORM\Entity
  *
  * @ExclusionPolicy("all")
  */
-class Drone
+class Point
 {
     /**
      * @var integer
@@ -27,22 +27,6 @@ class Drone
      * @Expose
      */
     private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="product", type="string", length=255)
-     * @Expose
-     */
-    private $product;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="serial_number", type="string", length=255)
-     * @Expose
-     */
-    private $serialNumber;
 
     /**
      * @var float
@@ -61,15 +45,26 @@ class Drone
     /**
      * @var string
      *
-     * @ORM\Column(name="current_action", type="string", length=20, nullable=true)
+     * @ORM\Column(name="action", type="string", length=20, nullable=true)
      */
-    private $currentAction;
+    private $action;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Drone\UserBundle\Entity\User", inversedBy="drones")
+     * @ORM\ManyToOne(targetEntity="Drone\UserBundle\Entity\User", inversedBy="points")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
      **/
     private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Drone\MapBundle\Entity\Field", inversedBy="points")
+     * @ORM\JoinColumn(name="field_id", referencedColumnName="id", nullable=true)
+     **/
+    private $field;
+
+    public function __construct(){
+        $this->user  = null;
+        $this->field = null;
+    }
 
     /**
      * Get id
@@ -79,52 +74,6 @@ class Drone
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set product
-     *
-     * @param string $product
-     * @return Drone
-     */
-    public function setProduct($product)
-    {
-        $this->product = $product;
-
-        return $this;
-    }
-
-    /**
-     * Get product
-     *
-     * @return string 
-     */
-    public function getProduct()
-    {
-        return $this->product;
-    }
-
-    /**
-     * Set serialNumber
-     *
-     * @param string $serialNumber
-     * @return Drone
-     */
-    public function setSerialNumber($serialNumber)
-    {
-        $this->serialNumber = $serialNumber;
-
-        return $this;
-    }
-
-    /**
-     * Get serialNumber
-     *
-     * @return string 
-     */
-    public function getSerialNumber()
-    {
-        return $this->serialNumber;
     }
 
     /**
@@ -184,26 +133,26 @@ class Drone
     }
 
     /**
-     * Set currentAction
+     * Set action
      *
-     * @param string $currentAction
+     * @param string $action
      * @return Point
      */
-    public function setCurrentAction($currentAction)
+    public function setAction($action)
     {
-        $this->currentAction = $currentAction;
+        $this->action = $action;
 
         return $this;
     }
 
     /**
-     * Get currentAction
+     * Get action
      *
      * @return string 
      */
-    public function getCurrentAction()
+    public function getAction()
     {
-        return $this->currentAction;
+        return $this->action;
     }
 
     /**
@@ -227,5 +176,44 @@ class Drone
     public function getUser()
     {
         return $this->user;
+    }
+
+    public function hasUser(){
+        if(isset($this->user)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * Set field
+     *
+     * @param \Drone\MapBundle\Entity\Field $field
+     * @return Drone
+     */
+    public function setField(\Drone\MapBundle\Entity\Field $field = null)
+    {
+        $this->field = $field;
+        
+        return $this;
+    }
+
+    /**
+     * Get field
+     *
+     * @return \Drone\MapBundle\Entity\Field 
+     */
+    public function getField()
+    {
+        return $this->field;
+    }
+
+    public function hasField(){
+        if(isset($this->field)){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
