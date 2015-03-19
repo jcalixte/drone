@@ -74,14 +74,26 @@ $(function(){
 		if (dronePin != false) {
 			var options = map.getOptions();
 			options.center = dronePin.getLocation();
+			options.zoom   = 18;
 			map.setView(options);
 		}
 	});
 
 	/*==========  Suppressions  ==========*/
 	$('#deleteFields').click(function() {
-		var progress = 0;
-		var ratio = 1;
+		var pointsInFields = [];
+		var shapePointLocation  = [];
+		var progress       = 0;
+		var ratio          = 1;
+
+		polyFields.forEach(function(p) {
+			path.forEach(function(e) {
+				if(isInPolygon(p, e['location'])){
+					pointsInFields.push(e['location']);
+					shapePointLocation.push(e);
+				}
+			})
+		});
 		$('.progress-bar').width('0%');
 		$.ajax({
 			xhr: function() {
@@ -107,17 +119,28 @@ $(function(){
 						$('.progress-bar').width(progress + '%');
 					}
 				}, false);
-
 				return xhr;
 			},
 			type: 'POST',
 			url: Routing.generate('drone_ajax_delete_fields'),
-			//data: datas,
+			data: {
+				points: pointsInFields,
+			},
 			success: function(data){
 				progress = 0;
 				console.log(data.success);
 				polyFields.forEach(function(e) {
 					map.entities.remove(e);
+				});
+				shapePointLocation.forEach(function(e) {
+					var index = -1;
+					if(dronePin == false || (e.location.latitude != dronePin.latitude && e.location.longitude != dronePin.longitude)) {
+						index = path.indexOf(e);
+						map.entities.remove(path[index].shape);
+					}
+					if(index > -1){
+						path.splice(index, 1);
+					}
 				});
 				polyFields.length = 0;
 			}
@@ -141,7 +164,6 @@ $(function(){
 						$('.progress-bar').width(progress + '%');
 					}
 				}, false);
-
 				xhr.addEventListener("progress", function(evt){
 					if (evt.lengthComputable) {  
 						var percentComplete = evt.loaded / evt.total;
@@ -152,7 +174,6 @@ $(function(){
 						$('.progress-bar').width(progress + '%');
 					}
 				}, false);
-
 				return xhr;
 			},
 			type: 'POST',
@@ -162,8 +183,8 @@ $(function(){
 				progress = 0;
 				console.log(data.success);
 				path.forEach(function(e) {
-					if(dronePin == false || (e.latitude != dronePin.latitude && e.longitude != dronePin.longitude)) {
-						map.entities.remove(e);
+					if(dronePin == false || (e.location.latitude != dronePin.latitude && e.location.longitude != dronePin.longitude)) {
+						map.entities.remove(e.shape);
 					}
 				});
 				path.length = 0;
@@ -288,12 +309,6 @@ $(function(){
 				advanced_shapes_loaded = true;
 			}
 		});
-
-		polyFields.forEach(function(p) {
-			path.forEach(function(e) {
-				console.log(isInPolygon(p, e['location']));
-			})
-		});
 	}
 
 	/*==========  Fonctions  ==========*/
@@ -381,10 +396,10 @@ $(function(){
 		if($("#interestPoint").hasClass('active')){
 			var point = new Microsoft.Maps.Point(e.getX(), e.getY());
 			var loc = map.tryPixelToLocation(point);
-			addCircle(0.000001, loc);
 			path[path.length] = {
 				location: loc,
 				action: $("#selectAction").val(),
+				shape: addCircle(0.000001, loc),
 			};
 		}
 	}
@@ -428,6 +443,7 @@ $(function(){
 		});
 
 		map.entities.push(polygon);
+		return polygon;
 	}
 
 	function addDronePin(e){
@@ -453,7 +469,7 @@ $(function(){
 
 	function changeCursor(e){
 		var crosshair = $("#rectangleChoice").hasClass('active') ||
-						$("#interestPoint").hasClass('active') ||
+						$("#interestPoint").hasClass('active')   ||
 						$("#putDrone").hasClass('active');
 		if(crosshair){
 			map.getRootElement().style.cursor = 'crosshair';
@@ -464,7 +480,7 @@ $(function(){
 
 	function changeCursorClick(e){
 		var crosshair = $("#rectangleChoice").hasClass('active') ||
-						$("#interestPoint").hasClass('active') ||
+						$("#interestPoint").hasClass('active')   ||
 						$("#putDrone").hasClass('active');
 		if(crosshair){
 			map.getRootElement().style.cursor = 'crosshair';
@@ -537,7 +553,7 @@ $(function(){
 		}else if(call == 'interestPointLocation') {
 			route = Routing.generate('drone_ajax_save_point_location');
 			datas = {
-				points: path
+				points: path,
 			};
 		}else if(call == "fieldLocation") {
 			route = Routing.generate('drone_ajax_save_field_location');

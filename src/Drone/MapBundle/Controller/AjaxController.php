@@ -146,6 +146,8 @@ class AjaxController extends Controller
 		if(!$user){
 			throw $this->createNotFoundException('Utilisateur non connecté');
 		}
+		$request        = $this->container->get('request');
+		$interestPoints = $request->get('points');
 
 		$userManager = $this->container->get('fos_user.user_manager');
 		$em = $this->getDoctrine()->getManager();
@@ -154,6 +156,17 @@ class AjaxController extends Controller
 			$user->removeField($field);
 			$em->remove($field);
 		}
+		foreach ($user->getPoints() as $point) {
+			foreach($interestPoints as $iPoint){
+				var_dump($iPoint, $point);
+				if($point->getLatitude() == $iPoint['latitude'] &&
+				   $points->getLongitude() == $iPoint['longitude']){
+					$user->removePoint($point);
+					$em->remove($point);
+				}
+			}
+		}
+		$userManager->updateUser($user);
 		$em->flush();
 
 		$response = new JsonResponse();

@@ -42,9 +42,7 @@
 				for(var i = 0; i < locations.length; i++){
 					if(locations[i]['location'].latitude  != initLoc.latitude &&
 					   locations[i]['location'].longitude != initLoc.longitude) {
-					   	console.log('avant');
-						var currentDistance = proto.getNextDistance(that, locations[i]['location'])
-					   	console.log('après');
+						var currentDistance = proto.getNextDistance(that, locations[i]['location']);
 						if(currentDistance < distance){
 							nearestKey = i;
 							nearest    = locations[i];
