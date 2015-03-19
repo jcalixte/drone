@@ -79,6 +79,10 @@ $(function(){
 		}
 	});
 
+	$(".selectAction").click(function(){
+		$("#actionTaken").text($(this).attr('id'));
+	});
+
 	/*==========  Suppressions  ==========*/
 	$('#deleteFields').click(function() {
 		var pointsInFields = [];
@@ -128,13 +132,13 @@ $(function(){
 			},
 			success: function(data){
 				progress = 0;
-				console.log(data.success);
 				polyFields.forEach(function(e) {
 					map.entities.remove(e);
 				});
 				shapePointLocation.forEach(function(e) {
 					var index = -1;
-					if(dronePin == false || (e.location.latitude != dronePin.latitude && e.location.longitude != dronePin.longitude)) {
+					if(dronePin == false ||
+						(e.location.latitude != dronePin.latitude && e.location.longitude != dronePin.longitude)) {
 						index = path.indexOf(e);
 						map.entities.remove(path[index].shape);
 					}
@@ -181,9 +185,9 @@ $(function(){
 			//data: datas,
 			success: function(data){
 				progress = 0;
-				console.log(data.success);
 				path.forEach(function(e) {
-					if(dronePin == false || (e.location.latitude != dronePin.latitude && e.location.longitude != dronePin.longitude)) {
+					if(dronePin == false ||
+						(e.location.latitude != dronePin.latitude && e.location.longitude != dronePin.longitude)) {
 						map.entities.remove(e.shape);
 					}
 				});
@@ -228,7 +232,6 @@ $(function(){
 			//data: datas,
 			success: function(data){
 				progress = 0;
-				console.log(data.success);
 				map.entities.remove(dronePin);
 				dronePin = false;
 			}
@@ -344,7 +347,6 @@ $(function(){
 			loading = false;
 		}
 		shape[shape.length] = new Microsoft.Maps.Location(lat, lon);
-		// Define the pushpin location
 		var loc = new Microsoft.Maps.Location(lat, lon);
 
 		if(!loading){
@@ -398,7 +400,7 @@ $(function(){
 			var loc = map.tryPixelToLocation(point);
 			path[path.length] = {
 				location: loc,
-				action: $("#selectAction").val(),
+				action: $("#actionTaken").text(),
 				shape: addCircle(0.000001, loc),
 			};
 		}
@@ -416,14 +418,23 @@ $(function(){
 		for (x = 0; x <= 360; x += 5) {
 			var position = new Microsoft.Maps.Location(0, 0);
 			xRadian = x * Math.PI / 180;
-			position.latitude = Math.asin(Math.sin(lat) * Math.cos(d) + Math.cos(lat) * Math.sin(d) * Math.cos(xRadian));
+			position.latitude = Math.asin(Math.sin(lat)
+							  * Math.cos(d)
+							  + Math.cos(lat)
+							  * Math.sin(d)
+							  * Math.cos(xRadian));
 
-			position.longitude = ((lon + Math.atan2(Math.sin(xRadian) * Math.sin(d) * Math.cos(lat),Math.cos(d) - Math.sin(lat) * Math.sin(position.latitude))) * 180) / Math.PI;
-			position.latitude = (position.latitude * 180) / Math.PI;
+			position.longitude = ((lon + Math.atan2(Math.sin(xRadian)
+								 * Math.sin(d)
+								 * Math.cos(lat),Math.cos(d)
+								 - Math.sin(lat)
+								 * Math.sin(position.latitude))) * 180) / Math.PI;
+			position.latitude  = (position.latitude * 180) / Math.PI;
 			circlePoints.push(position);
 		}
 
 		var polygon = new Microsoft.Maps.Polygon(circlePoints.slice());
+		circlePoints.length = 0;
 
 		polygon.setOptions({
 			fillColor: {
@@ -500,13 +511,34 @@ $(function(){
 		for (var i = 0; i < paths.length ; i++) {
 		    j++;
 		    if (j == paths.length) { j = 0; }
-		    if ((paths[i].latitude < y && paths[j].latitude >= y) || (paths[j].latitude < y && paths[i].latitude >= y)) {
-		        if (paths[i].longitude + (y - paths[i].latitude) / (paths[j].latitude - paths[i].latitude) * (paths[j].longitude - paths[i].longitude) < x) {
+		    if ((paths[i].latitude < y && paths[j].latitude >= y) ||
+		    	(paths[j].latitude < y && paths[i].latitude >= y)) {
+		        if (paths[i].longitude
+		        	+ (y - paths[i].latitude) / (paths[j].latitude - paths[i].latitude)
+		        	* (paths[j].longitude - paths[i].longitude) < x) {
 		            isInside = !isInside;
 		        }
 		    }
 		}
 		return isInside;
+	}
+
+	function getCentroid(polygon){
+		if(typeof polygon == undefined){
+			return false;
+		}else{
+			var points            = polygon.getLocations();
+			var latitudeCentroid  = 0;
+			var longitudeCentroid = 0;
+			points.forEach(function(e){
+				latitudeCentroid  += e.latitude;
+				longitudeCentroid += e.longitude;
+			});
+			latitudeCentroid  /= points.length;
+			longitudeCentroid /= points.length;
+
+			return new Microsoft.Maps.Location(latitudeCentroid, longitudeCentroid);
+		}
 	}
 
 	/*==========  Fonctions pour animer le drone  ==========*/
@@ -519,6 +551,7 @@ $(function(){
 					action: 'nothing',
 				};
 			};
+			$("#inAction").text('Flying');
 			dronePin.moveLocation(dronePin.getLocation(), path, droneSpeed);
 		}
 	}
@@ -531,8 +564,19 @@ $(function(){
 	});
 
 	$('#submitInterestPoint').click(function(){
+		console.log(path);
 		if(path.length > 0){
-			ajaxCall('interestPointLocation');
+			var onlyPathLocation = [];
+			path.forEach(function(e){
+				onlyPathLocation[onlyPathLocation.length] = {
+					location: e.location,
+					action: e.action
+				}
+			});
+			datas = {
+				points: onlyPathLocation,
+			}
+			ajaxCall('interestPointLocation', datas);
 		}
 	});
 
@@ -542,8 +586,11 @@ $(function(){
 		}
 	});
 
-	function ajaxCall(call){
-		var route = false, datas  = {};
+	function ajaxCall(call, datas){
+		var route = false;
+		if(datas === undefined){
+			datas = {};
+		}
 		if (call == 'droneLocation') {
 			route = Routing.generate('drone_ajax_save_drone_location');
 			datas = {
@@ -552,9 +599,9 @@ $(function(){
 			} 
 		}else if(call == 'interestPointLocation') {
 			route = Routing.generate('drone_ajax_save_point_location');
-			datas = {
+			/*datas = {
 				points: path,
-			};
+			};*/
 		}else if(call == "fieldLocation") {
 			route = Routing.generate('drone_ajax_save_field_location');
 			datas = {
@@ -597,7 +644,6 @@ $(function(){
 				data: datas,
 				success: function(data){
 					progress = 0;
-					console.log(data.success);
 				}
 			});
 		}

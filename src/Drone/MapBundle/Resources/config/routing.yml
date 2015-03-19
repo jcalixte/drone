@@ -12,7 +12,7 @@ drone_map_add_field:
     options:
         expose: true
 
-# AJAX routing
+#*-----  AJAX  ------*#
 
 drone_ajax_save_drone_location:
     path:     /save_drone_location

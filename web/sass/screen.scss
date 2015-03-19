@@ -62,7 +62,7 @@ h1.bee {
 }
 
 .btn {
-	border-radius: 1px;
+	border-radius: 0px;
 }
 
 .btn-default {
@@ -74,7 +74,7 @@ h1.bee {
 }
 
 .progress {
-	border-radius: 1px;
+	border-radius: 0px;
 }
 
 .progress-bar {
@@ -92,6 +92,33 @@ h1.bee {
 	color:            white;
 }
 
+.list-group {
+	border-radius: 0px;
+}
+
+.list-group-item {
+	background-color: inherit;
+	border: 0px;
+}
+
+.table {
+	background-color: inherit;
+	border: solid $beeYellow 0px;
+	
+	tbody {
+		tr, td {
+			background-color: $beeYellow;
+			border-top: $beeYellow;
+		}
+	}
+}
+
+.dropdown-menu {
+	border-radius: 0px;
+	background-color: lighten($royalBlue, 20%);
+	color: white;
+}
+
 /*==================================
 =            Home index            =
 ==================================*/
@@ -99,7 +126,7 @@ h1.bee {
 section.home-container {
 	padding: 15px;
 	background-color: $yellow;
-	border-radius: 1px;
+	border-radius: 0px;
 }
 
 /*-----  Fin de Home index  ------*/
@@ -136,6 +163,32 @@ section.home-container {
 		padding: 15px;
 		display: inline-block;
 		width: 50%;
+
+		div {
+			margin-bottom: 15px;
+		}
+
+		.inAction {
+			text-align: center;
+			max-width: 300px;
+			margin: 15px auto;
+			background-color: $beeBlack;
+			padding: 15px;
+			color: $yellow;
+
+			h2 {
+				font-size: 18pt;
+				margin-bottom: 10px;
+			}
+
+			#inAction {
+				font-style: italic;
+			}
+		}
+
+		#actionTaken {
+			display: none;
+		}
 	}
 }
 

@@ -10,53 +10,100 @@
 			<div id='map'></div>
 		</div>
 		<div class="map-command">
-			<input id="search_query" name="search_query" type="text" value="{{ user.address }} {{ user.city }} {{ user.zipcode }} {{ user.country }}">
-			<input id="search" name="search" type="button" class="btn" value="Rechercher">
-			<hr>
-			<a href="#" id="rectangleChoice" class="btn btn-default" role="button">Détourer votre terrain</a>
-			<a href="#" id="interestPoint" title="Point de passage" class="btn btn-info">Point de passage</a>
-			{% if user.drones|length == 0 %}
-				<a href="#" id="putDrone" title="Placer votre drone" class="btn btn-info">Placer votre drone</a>
-			{% endif %}
-			<a href="#" id="droneCentered" title="Centrer sur votre drone" class="btn btn-info">Centrer sur votre drone</a>
-			<hr>
-			<label for="selectAction">Sélectionnez votre action : </label>
-			<select id="selectAction" name="selectAction">
-				<option value="photo">Prise de photo</option> 
-				<option value="video" selected>Prise d'une vidéo</option>
-				<option value="sound" selected>Prise de son</option>
-				<option value="nothing">Simple passage</option>
-			</select>
+			<div class="inAction">
+				<h2>Action en cours</h2>
+				<span id="inAction">In the recharging base.</span>
+			</div>
+			{#
+			<div>
+				<input id="search_query" name="search_query" type="text" value="{{ user.address }} {{ user.city }} {{ user.zipcode }} {{ user.country }}">
+				<input id="search" name="search" type="button" class="btn" value="Rechercher">
+			</div>
+			#}
+			<div class="btn-group btn-group-justified" role="group">
+  				<div class="btn-group" role="group">
+					<button id="rectangleChoice" title="Détourer votre terrain" class="btn btn-info">Détourer votre terrain</button>
+				</div>
+				{#
+	  				<div class="btn-group" role="group">
+						<button id="interestPoint" title="Point de passage" class="btn btn-info">Point de passage</button>
+					</div>
+				#}
+				{% if user.drones|length == 0 %}
+  				<div class="btn-group" role="group">
+					<button id="putDrone" title="Placer votre drone" class="btn btn-info">Placer votre drone</button>
+				</div>
+				{% endif %}
+  				<div class="btn-group" role="group">
+					<button id="droneCentered" title="Centrer sur votre drone" class="btn btn-info">Centrer sur votre drone</button>
+				</div>
+			</div>
+			<div class="btn-group dropdown">
+				<button id="interestPoint" title="Point de passage" class="btn btn-info">Point de passage</button>
+				<button type="button" class="btn btn-info dropdown-toggle" id="drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<span class="caret"></span>
+					<span class="sr-only">Toggle Dropdown</span>
+					<span id="actionTaken">nothing</span>
+				</button>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="drop">
+					<li><a href="#" class="selectAction" id="photo">Prise de photo</a></li>
+					<li><a href="#" class="selectAction" id="video">Prise d'une vidéo</a></li>
+					<li><a href="#" class="selectAction" id="sound">Prise de son</a></li>
+					<li class="divider"></li>
+					<li><a href="#" class="selectAction" id="nothing">Simple passage</a></li>
+				</ul>
+			</div>
 			<hr>
 			<div>
 				Vos différents drones : 
-				<ul>
-					{% for drone in user.drones %}
-					<li>
-						{{ drone.product }} :
-						<ul>
-							<li>Numéro de série : {{ drone.serialNumber }}</li>
-							<li>Latitude : {{ drone.latitude }}</li>
-							<li>Longitude : {{ drone.longitude }}</li>
-						</ul>
-					</li>
-					{% endfor %}
-				</ul>
+				<div class="table-responsive">
+					<table class="table-responsi table-striped table-hover table-condensed">
+						<thead>
+							<tr>
+								<th>Numéro de série</th>
+								<th>Latitude</th>
+								<th>Longitude</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for drone in user.drones %}
+							<tr class="warning">
+								<td>{{ drone.serialNumber }}</td>
+								<td>{{ drone.latitude }}</td>
+								<td>{{ drone.longitude }}</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 		<div class="submit-field clear">
 			<br>
-			<hr>
-			<a href="#" id="start" title="Démarrer l'observation" class="btn btn-block btn-info">Démarrer l'observation</a>
+			<button id="start" title="Démarrer l'observation" class="btn btn-block btn-info">Démarrer l'observation</button>
 			<br>
-			<input id='submitField' class='btn btn-info btn-large' type="submit" name="Enregistrer vos champs" value="Enregistrer vos champs">
-			<input id='submitInterestPoint' class='btn btn-info btn-large' type="submit" name="Enregistrer vos points d'intérêt" value="Enregistrer vos points d'intérêt">
-			<input id='deleteFields' type="submit" class='btn btn-danger btn-large' name="deleteFields" value="Supprimer vos champs">
-			<input id='deleteInterestPoints' type="submit" class='btn btn-danger btn-large' name="deleteInterestPoints" value="Supprimer vos points d'intérêt">
-			<input id='deleteDrones' type="submit" class='btn btn-danger btn-large' name="deleteDrones" value="Supprimer vos drones">
-			{% if user.drones|length == 0 %}
-				<input id='submitDroneLocation' class='btn btn-info btn-large' type="submit" name="Enregistrer la localisation de votre drone" value="Enregistrer la localisation de votre drone">
-			{% endif %}
+			<div class="btn-group btn-group-justified" role="group">
+  				<div class="btn-group" role="group">
+					<button href="#" id='submitField' class='btn btn-info' type="submit" title="Enregistrer vos champs">Enregistrer vos champs</button>
+				</div>
+  				<div class="btn-group" role="group">
+					<button id='submitInterestPoint' class='btn btn-info' type="submit" title="Enregistrer vos points d'intérêt">Enregistrer vos points d'intérêt</button>
+				</div>
+  				<div class="btn-group" role="group">
+					<button id='deleteFields' type="submit" class='btn btn-danger' title="Supprimer vos champs">Supprimer vos champs</button>
+				</div>
+  				<div class="btn-group" role="group">
+					<button id='deleteInterestPoints' type="submit" class='btn btn-danger' title="Supprimer vos points d'intérêt">Supprimer vos points d'intérêt</button>
+				</div>
+  				<div class="btn-group" role="group">
+					<button id='deleteDrones' type="submit" class='btn btn-danger' title="Supprimer vos drones">Supprimer vos drones</button>
+				</div>
+				{% if user.drones|length == 0 %}
+  				<div class="btn-group" role="group">
+					<button id='submitDroneLocation' class='btn btn-info' type="submit" title="Enregistrer la localisation de votre drone">Enregistrer la localisation de votre drone</button>
+				</div>
+				{% endif %}
+			</div>
 			<hr>
 			<div class="progress">
 				<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
@@ -69,6 +116,11 @@
 
 {% block javascripts_map %}
 <script src="{{ asset('javascript/MapScript.js') }}" type="text/javascript" charset="utf-8"></script>
+<script>
+	$(function(){
+		$('.dropdown-toggle').dropdown();
+	});
+</script>
 <script>
 	$(function(){
 		var filePath = [];

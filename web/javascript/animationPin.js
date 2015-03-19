@@ -2,6 +2,7 @@
 	(function(proto) {
 		if(!proto.moveLocation){
 			proto.moveLocation = function(initLoc, locs, speed, that, startLoc) {
+				$("#inAction").text('Flying.');
 				// speed = vitesse du drone en m/s
 				if(that === undefined){
 					that = this;
@@ -21,6 +22,8 @@
 						window.clearInterval(interval, locations[0]);
 						if(locations.length > 1){
 							proto.doActionAndGo(initLoc, locations, speed, that, endLoc);
+						}else{
+							$("#inAction").text('In the recharging base.');
 						}
 					}
 					var timeElapsedPercent  = timeElapsed / finalTime;
@@ -69,7 +72,12 @@
 				var deltaPhi    = (nextLocation.latitude-originLocation.latitude) * Math.PI / 180;
 				var deltaLambda = (nextLocation.longitude-originLocation.longitude) * Math.PI / 180;
 
-				var a = Math.sin(deltaPhi/2) * Math.sin(deltaPhi/2) + Math.cos(phi1) * Math.cos(phi2) *	Math.sin(deltaLambda/2) * Math.sin(deltaLambda/2);
+				var a = Math.sin(deltaPhi/2)
+						* Math.sin(deltaPhi/2)
+						+ Math.cos(phi1)
+						* Math.cos(phi2)
+						* Math.sin(deltaLambda/2)
+						* Math.sin(deltaLambda/2);
 				var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
 				return Math.round(R * c);
@@ -79,37 +87,35 @@
 			proto.doActionAndGo = function(initLoc, locations, speed, that, endLoc) {
 				switch (locations[0]['action']) {
 					case 'photo':
-						console.log('Taking a photo');
+						$("#inAction").text('Taking a photo.');
 						setTimeout(function(){
 							proto.goNext(initLoc, locations, speed, that, endLoc)
 						}, 1000);
 						break;
 					case 'sound':
-						console.log('Taking a sound');
+						$("#inAction").text('Taking a sound.');
 						setTimeout(function(){
 							proto.goNext(initLoc, locations, speed, that, endLoc)
 						}, 2000);
 						break;
 					case 'video':
-						console.log('Taking a video');
+						$("#inAction").text('Taking a video.');
 						setTimeout(function(){
 							proto.goNext(initLoc, locations, speed, that, endLoc)
 						}, 5000);
 						break;
 					case 'nothing':
-						console.log('Nothing');
+						$("#inAction").text('Nothing');
 						proto.goNext(initLoc, locations, speed, that, endLoc);
 						break;
 					default:
-						console.log('Par défaut');
+						$("#inAction").text('Par défaut');
 				}
-
 				return true;
 			}
 		}
 		if(!proto.goNext){
 			proto.goNext = function(initLoc, locations, speed, that, endLoc){
-				console.log('action done');
 				locations.shift();
 				proto.moveLocation(initLoc, locations, speed, that, endLoc);
 			}
