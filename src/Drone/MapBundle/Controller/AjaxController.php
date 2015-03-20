@@ -59,24 +59,30 @@ class AjaxController extends Controller
 
 		$userManager = $this->container->get('fos_user.user_manager');
 		$em = $this->getDoctrine()->getManager();
-
+		$userFields = $user->getFields();
 
 		foreach ($fields as $corners) {
 			$fieldEntity = new Field();
-			$em->persist($fieldEntity);
 			foreach ($corners as $corner) {
-				//var_dump('corner latitude : ' . $corner['latitude']);
 				$pointEntity = new Point();
 				$pointEntity->setLatitude($corner['latitude']);
 				$pointEntity->setLongitude($corner['longitude']);
 
 				$em->persist($pointEntity);
 				$fieldEntity->addPoint($pointEntity);
+			}
+			if(!$userFields->contains($fieldEntity)){
+				$em->persist($fieldEntity);
+				$em->flush();
+				$user->addField($fieldEntity);
+				$userManager->updateUser($user);
+			}else{
+				foreach ($fieldEntity->getPoints() as $point) {
+					$fieldEntity->removePoint($point);
+					$em->remove($point);
+				}
 				$em->flush();
 			}
-
-			$user->addField($fieldEntity);
-			$userManager->updateUser($user);
 		}
 
 		$response = new JsonResponse();
@@ -97,18 +103,20 @@ class AjaxController extends Controller
 
 		$userManager = $this->container->get('fos_user.user_manager');
 		$em = $this->getDoctrine()->getManager();
+		$userInterestPoints = $user->getPoints();
 
 		foreach ($interestPoints as $point) {
 			$pointEntity = new Point();
 			$pointEntity->setLatitude($point['location']['latitude']);
 			$pointEntity->setLongitude($point['location']['longitude']);
 			$pointEntity->setAction($point['action']);
+			if(!$userInterestPoints->contains($pointEntity)){
+				$em->persist($pointEntity);
+				$em->flush();
 
-			$em->persist($pointEntity);
-			$em->flush();
-
-			$user->addPoint($pointEntity);
-			$userManager->updateUser($user);
+				$user->addPoint($pointEntity);
+				$userManager->updateUser($user);
+			}
 		}
 
 		$response = new JsonResponse();

@@ -26,7 +26,7 @@ $(function(){
 	var iDrone             = 0;
 	const numberOfDrones   = 1;
 
-	var vfilePath = false;
+	var twigElements = false;
 
 	$("#search").click(function(){
 		var query = $("#search_query").val();
@@ -261,16 +261,16 @@ $(function(){
 	Microsoft.Maps.Events.addHandler(map, 'mouseover', changeCursor);
 	Microsoft.Maps.Events.addHandler(map, 'click', changeCursorClick);
 
-	mapAction = function(filePath, droneEntities, fieldEntities, interestPointEntities, queryAddress) {
+	mapAction = function(pTwigElements, droneEntities, fieldEntities, interestPointEntities, queryAddress) {
 
 		iDrone = droneEntities.length;
-		if(!vfilePath) {
-			vfilePath = filePath;
+		if(!twigElements) {
+			twigElements = pTwigElements;
 		}
 
 		var loc             = false;
 		var dronePinOptions = {
-			icon: vfilePath['quadcopter'], 
+			icon: twigElements['quadcopter'], 
 			width: 50, 
 			height: 50, 
 			anchor: new Microsoft.Maps.Point(25,25)
@@ -319,14 +319,12 @@ $(function(){
 	function searchModule(q){
 		if(search_engine_loaded){
 			var searchManager = new Microsoft.Maps.Search.SearchManager(map);
-
 			var searchRequest = {
 				where: q, 
 				count: 5, 
 				callback: searchGeoCallback, 
 				errorCallback: searchError
 			};
-
 			searchManager.geocode(searchRequest);
 		}
 	}
@@ -460,7 +458,7 @@ $(function(){
 	function addDronePin(e){
 		if($("#putDrone").hasClass('active')){
 			var dronePinOptions = {
-				icon: vfilePath['quadcopter'], 
+				icon: twigElements['quadcopter'], 
 				width: 50, 
 				height: 50, 
 				anchor: new Microsoft.Maps.Point(25,25)
@@ -545,14 +543,15 @@ $(function(){
 
 	function moveDrone(){
 		if(dronePin != false){
-			if (path[path.length-1] != dronePin.getLocation()) {
-				path[path.length] = {
+			var pathSliced = path.slice();
+			if (pathSliced[pathSliced.length-1] != dronePin.getLocation()) {
+				pathSliced[pathSliced.length] = {
 					location: dronePin.getLocation(),
 					action: 'nothing',
 				};
 			};
 			$("#inAction").text('Flying');
-			dronePin.moveLocation(dronePin.getLocation(), path, droneSpeed);
+			dronePin.moveLocation(dronePin.getLocation(), pathSliced, droneSpeed);
 		}
 	}
 
@@ -599,9 +598,6 @@ $(function(){
 			} 
 		}else if(call == 'interestPointLocation') {
 			route = Routing.generate('drone_ajax_save_point_location');
-			/*datas = {
-				points: path,
-			};*/
 		}else if(call == "fieldLocation") {
 			route = Routing.generate('drone_ajax_save_field_location');
 			datas = {
