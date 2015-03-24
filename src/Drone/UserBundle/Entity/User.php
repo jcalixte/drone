@@ -5,6 +5,8 @@ namespace Drone\UserBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Intl\Intl as Intl;
 use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 use Drone\MapBundle\Entity\Map as Map;
 use Drone\MapBundle\Entity\Drone as Drone;
@@ -90,7 +92,7 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->maps   = new ArrayCollection();
+        $this->fields = new ArrayCollection();
         $this->drones = new ArrayCollection();
         $this->points = new ArrayCollection();
     }
@@ -103,39 +105,6 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Add maps
-     *
-     * @param \Drone\UserBundle\Entity\Map $maps
-     * @return User
-     */
-    public function addMap(\Drone\UserBundle\Entity\Map $maps)
-    {
-        $this->maps[] = $maps;
-
-        return $this;
-    }
-
-    /**
-     * Remove maps
-     *
-     * @param \Drone\UserBundle\Entity\Map $maps
-     */
-    public function removeMap(\Drone\UserBundle\Entity\Map $maps)
-    {
-        $this->maps->removeElement($maps);
-    }
-
-    /**
-     * Get maps
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getMaps()
-    {
-        return $this->maps;
     }
 
     /**
@@ -392,5 +361,11 @@ class User extends BaseUser
     public function getPoints()
     {
         return $this->points;
+    }
+
+    /*==========  Fonction personnalisée  ==========*/
+    
+    public function getCountryName() {
+        return Intl::getRegionBundle()->getCountryName($this->getCountry());
     }
 }

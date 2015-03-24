@@ -13,10 +13,11 @@ $(function(){
 	var search_engine_loaded   = false;
 	var advanced_shapes_loaded = false;
 
-	var shape      = [];
-	var path       = [];
-	var fields     = [];
-	var polyFields = [];
+	var shape         = [];
+	var path          = [];
+	var alreadyPoints = [];
+	var fields        = [];
+	var polyFields    = [];
 
 	var dronePin           = false;
 	var currentDroneAction = false;
@@ -295,7 +296,8 @@ $(function(){
 
 		interestPointEntities.forEach(function(e) {
 			addCircle(0.000001, e.location);
-			path[path.length] = e;
+			path[path.length]            = e;
+			alreadyPoints[alreadyPoints] = e;
 		});
 
 		//Ajout de modules utilisés
@@ -404,7 +406,7 @@ $(function(){
 		}
 	}
 
-	function addCircle(radius, location){ //latitude, longitude){
+	function addCircle(radius, location){
 		var backgroundColor = new Microsoft.Maps.Color(10, 100, 0, 0);
 		var borderColor     = new Microsoft.Maps.Color(150, 200, 0, 0);
 		//var R               = 6371; // Rayon de la terre en kilomètres
@@ -563,15 +565,24 @@ $(function(){
 	});
 
 	$('#submitInterestPoint').click(function(){
-		console.log(path);
+		// On filtre les nouveaux points rajoutés
 		if(path.length > 0){
-			var onlyPathLocation = [];
-			path.forEach(function(e){
-				onlyPathLocation[onlyPathLocation.length] = {
-					location: e.location,
-					action: e.action
+			var pathSliced = path.slice();
+			var i = 0, pathLen = pathSliced.length;
+			for (; i < pathLen; i++) {
+				if($.inArray(pathSliced[i], alreadyPoints) != -1){
+					pathSliced.splice(index, 1);
 				}
-			});
+			};
+			var onlyPathLocation = [];
+
+			i = 0;
+			for (; i < pathLen; i++) {
+				onlyPathLocation[onlyPathLocation.length] = {
+					location: pathSliced[i].location,
+					action: pathSliced[i].action
+				}
+			};
 			datas = {
 				points: onlyPathLocation,
 			}

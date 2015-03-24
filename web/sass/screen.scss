@@ -130,6 +130,10 @@ h1.bee {
 	color: white;
 }
 
+.form-control, .input-group-addon {
+	border-radius: 0px;
+}
+
 /*==================================
 =            Home index            =
 ==================================*/
@@ -208,3 +212,34 @@ section.home-container {
 }
 
 /*-----  Fin de MapBundle  ------*/
+
+/*==============================
+=            Profil            =
+==============================*/
+
+.user_show {
+	padding: 15px;
+	background-color: $yellow;
+
+	h1 {
+		text-align: center;
+		font-size: 42pt;
+	}
+
+	.profile-picture {
+		float: left;
+		width: 80px;
+		height: 80px;
+		border: solid black 1px;
+		margin: 0 15px 15px;
+	}
+}
+
+.form-login {
+	padding: 15px;
+	margin: 15px auto;
+	background-color: $yellow;
+}
+
+/*-----  Fin du Profil  ------*/
+

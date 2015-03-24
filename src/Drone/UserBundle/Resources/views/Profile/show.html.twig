@@ -1,5 +1,15 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends 'DroneUserBundle::layout.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
 
 {% block body_user %}
-{% include "FOSUserBundle:Profile:show_content.html.twig" %}
+	<div class="user_show">
+		<h1>Profil</h1>
+		<div class="profile-picture">
+			<img src="{{ vich_uploader_asset(user, 'imageFile') }}" alt="{{ user.username }}" />
+		</div>
+	    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+	    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+	    <p>Adresse : {{ user.address }} {{ user.city }} {{ user.zipcode }} {{ user.getCountryName }}</p>
+	    <div class="clear"></div>
+	</div>
 {% endblock body_user %}
