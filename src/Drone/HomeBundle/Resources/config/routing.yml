@@ -1,3 +1,7 @@
 drone_home_homepage:
     path:     /
     defaults: { _controller: DroneHomeBundle:Default:index }
+
+drone_home_envoi_mail:
+    path:     /envoi_mail
+    defaults: { _controller: DroneHomeBundle:Default:envoiMail }

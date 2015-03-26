@@ -20,12 +20,6 @@
 					{% endif %}
 				</span>
 			</div>
-			{#
-			<div>
-				<input id="search_query" name="search_query" type="text" value="{{ user.address }} {{ user.city }} {{ user.zipcode }} {{ user.country }}">
-				<input id="search" name="search" type="button" class="btn" value="Rechercher">
-			</div>
-			#}
 			<div class="btn-group btn-group-justified" role="group">
   				<div class="btn-group" role="group">
 					<button id="rectangleChoice" title="Détourer vos terrains" class="btn btn-info">Détourer vos terrains</button>
@@ -168,4 +162,14 @@
 
 	});
 </script>
+
+{#
+
+/*==========  Recherche sur la carte  ==========*/
+
+<div>
+	<input id="search_query" name="search_query" type="text" value="{{ user.address }} {{ user.city }} {{ user.zipcode }} {{ user.country }}">
+	<input id="search" name="search" type="button" class="btn" value="Rechercher">
+</div>
+#}
 {% endblock %}

@@ -82,13 +82,15 @@ fos_user:
     registration:
         form:
             type: drone_user_registration
+        confirmation:
+            enabled: false
+            template: FOSUserBundle:Registration:email.txt.twig
     profile:
         form:
             type: drone_user_profile
 
 knp_gaufrette:
     stream_wrapper: ~
-
     adapters:
         map_adapter:
             local:
@@ -108,14 +110,14 @@ vich_uploader:
     mappings:
         map_image:
             uri_prefix: /image/map
-            upload_destination: /image/map
+            upload_destination: map_image_fs
             namer:              vich_uploader.namer_uniqid
             inject_on_load:     false
             delete_on_update:   true
             delete_on_remove:   true
         user_image:
-            uri_prefix: /image/user
-            upload_destination: /image/user
+            uri_prefix: /drone/web/user_image_fs
+            upload_destination: user_image_fs
             namer:              vich_uploader.namer_uniqid
             inject_on_load:     false
             delete_on_update:   true

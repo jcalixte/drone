@@ -2,7 +2,8 @@
  * In this file you should write your main styles. (or centralize your imports) */
 
 @import "compass/reset";
-@import "compass/css3/font-face";
+@import "compass/css3";
+//@import "compass/css3/font-face";
 @include font-face("Quicksand", font-files("../../drone/web/stylesheets/fonts/Quicksand.otf"));
 @include font-face("Brush", font-files("../../drone/web/stylesheets/fonts/Brush.ttf"));
 
@@ -25,9 +26,10 @@ $royalBlue: #4183d7;
 /*----- Fin des constantes  ------*/
 
 body {
-	background-color: $beeYellow;
 	font-family: 'Quicksand', "Segoe UI", Arial, sans-serif;
 	font-size: 16pt;
+	background-color: $beeYellow;
+	color: $beeBlack;
 }
 
 span.bee{
@@ -42,8 +44,17 @@ span.bee{
 	line-height: 50px;
 	border-radius: 0px;
 	color: white;
+
 	a {
 		color: white;
+	}
+
+	div.message-flash {
+		float: right;
+	}
+
+	span.weather {
+		float: right;
 	}
 }
 
@@ -62,20 +73,6 @@ h1.bee {
 	font-size: 72pt;
 	text-align: center;
 	color: $royalBlue;
-}
-
-.btn {
-	border-radius: 0px;
-	border: 0px;
-}
-
-.btn.active, .btn-info.active {
-	background-color: $wistful;
-	color:            black;
-}
-
-.btn-default {
-	background-color: #fff;
 }
 
 .clear {
@@ -124,15 +121,50 @@ h1.bee {
 	}
 }
 
+.form-control, .input-group-addon {
+	border-radius: 0px;
+}
+
+footer {
+	font-size: 10pt;
+	color: white;
+	// position: absolute;
+	// left: 0;
+	// bottom: 0;
+	margin: 0;
+	padding: 5px;
+}
+
+/*===============================
+=            Bouton            =
+===============================*/
+
+.btn {
+	border-radius: 0px;
+	border: 0px;
+}
+
+.btn.active, .btn-info.active {
+	background-color: $wistful;
+	color:            black;
+}
+
+.btn-default {
+	background-color: #fff;
+}
+
+.btn-warning {
+	color: black;
+	background-color: $beeYellow;
+}
+
 .dropdown-menu {
 	border-radius: 0px;
 	background-color: lighten($royalBlue, 20%);
 	color: white;
 }
 
-.form-control, .input-group-addon {
-	border-radius: 0px;
-}
+/*-----  Fin de Bouton  ------*/
 
 /*==================================
 =            Home index            =
@@ -218,20 +250,63 @@ section.home-container {
 ==============================*/
 
 .user_show {
-	padding: 15px;
 	background-color: $yellow;
+	font-size: 20pt;
 
 	h1 {
+		position: relative;
+		display: inline;
+		top: -47px;
+		width: 100%; 
+
 		text-align: center;
-		font-size: 42pt;
+		height: 100px;
+		line-height: 70px;
+		font-size: 70px;
+		font-weight: bold;
+		padding: 0px 15px;
+		color: white;
+		// background-color: lighten($beeYellow, 5%);
+		// border-radius: 0 15px 15px 0;
 	}
 
 	.profile-picture {
-		float: left;
-		width: 80px;
-		height: 80px;
-		border: solid black 1px;
-		margin: 0 15px 15px;
+		width: 100%;
+		height: auto;
+		max-height: 350px;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: auto;
+			vertical-align: middle;
+		}
+	}
+
+	div.profile-access {
+		float: right;
+	}
+
+	div.profile-about {
+		margin: auto;
+		width: 400px;
+		background-color: $beeYellow;
+		padding: 15px;
+
+		h3 {
+			text-align: center;
+			font-size: 28pt;
+			margin-bottom: 15px;
+		}
+	}
+	
+	p.profile-drone {
+		text-align: center;
+		span.profile-drone {
+			font-style: italic;
+			color: $beeBlack;
+			font-size: 28pt;
+		}
 	}
 }
 
@@ -242,4 +317,3 @@ section.home-container {
 }
 
 /*-----  Fin du Profil  ------*/
-

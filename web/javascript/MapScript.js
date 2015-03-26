@@ -1,4 +1,4 @@
-$(function(){
+$(function() {
 	var credentialsKey = "AkTr7IeJt5O4ZpWh9reo8wMmlcWN8purxjzGkLalDqeMICooYnrBJepl9dD7cmMt";
 	var mapOptions = {
 		credentials: credentialsKey,
@@ -23,23 +23,23 @@ $(function(){
 	var currentDroneAction = false;
 	var droneSpeedKmH      = 40;
 	//var droneSpeedKmH    = 40*4;
-	var droneSpeed         = Math.round(droneSpeedKmH*1000/3600);
+	var droneSpeed         = msToKmh(droneSpeedKmH);
 	var iDrone             = 0;
 	const numberOfDrones   = 1;
 
 	var twigElements = false;
 
-	$("#search").click(function(){
+	$("#search").click(function() {
 		var query = $("#search_query").val();
-		if(query != ""){
+		if(query != "") {
 			searchModule(query);
 		}
 	});
 
-	$("#rectangleChoice").click(function(e){
+	$("#rectangleChoice").click(function(e) {
 		e.preventDefault();
 		$(this).toggleClass('active').trigger('fieldChoice');
-		if($(this).hasClass('active')){
+		if($(this).hasClass('active')) {
 			$(this).text("Finir votre contour");
 		}else{
 			$(this).text("Détourer votre terrain");
@@ -47,10 +47,10 @@ $(function(){
 		return false;
 	});
 
-	$("#interestPoint").click(function(e){
+	$("#interestPoint").click(function(e) {
 		e.preventDefault();
 		$(this).toggleClass('active');
-		if($(this).hasClass('active')){
+		if($(this).hasClass('active')) {
 			$(this).text("Finir");
 		}else{
 			$(this).text("Point de passage");
@@ -60,7 +60,7 @@ $(function(){
 	$("#putDrone").click(function (e) {
 		e.preventDefault();
 		$(this).toggleClass('active');
-		if($(this).hasClass('active')){
+		if($(this).hasClass('active')) {
 			$(this).text("Finir");
 		}else{
 			$(this).text("Placer votre drone");
@@ -80,7 +80,7 @@ $(function(){
 		}
 	});
 
-	$(".selectAction").click(function(){
+	$(".selectAction").click(function() {
 		$("#actionTaken").text($(this).attr('id'));
 	});
 
@@ -93,7 +93,7 @@ $(function(){
 
 		polyFields.forEach(function(p) {
 			path.forEach(function(e) {
-				if(isInPolygon(p, e['location'])){
+				if(isInPolygon(p, e['location'])) {
 					pointsInFields.push(e['location']);
 					shapePointLocation.push(e);
 				}
@@ -106,7 +106,7 @@ $(function(){
 				xhr.addEventListener("progress", function(evt) {
 					if (evt.lengthComputable) {
 						var percentComplete = evt.loaded / evt.total;
-						if(!$('.progress').is(":visible")){
+						if(!$('.progress').is(":visible")) {
 							$('.progress').show();
 						}
 						progress += Math.round(percentComplete)*100 * ratio;
@@ -114,10 +114,10 @@ $(function(){
 					}
 				}, false);
 
-				xhr.addEventListener("progress", function(evt){
+				xhr.addEventListener("progress", function(evt) {
 					if (evt.lengthComputable) {  
 						var percentComplete = evt.loaded / evt.total;
-						if(!$('.progress').is(":visible")){
+						if(!$('.progress').is(":visible")) {
 							$('.progress').show();
 						}
 						progress += Math.round(percentComplete)*100 * (1-ratio);
@@ -131,7 +131,7 @@ $(function(){
 			data: {
 				points: pointsInFields,
 			},
-			success: function(data){
+			success: function(data) {
 				progress = 0;
 				polyFields.forEach(function(e) {
 					map.entities.remove(e);
@@ -143,7 +143,7 @@ $(function(){
 						index = path.indexOf(e);
 						map.entities.remove(path[index].shape);
 					}
-					if(index > -1){
+					if(index > -1) {
 						path.splice(index, 1);
 					}
 				});
@@ -162,17 +162,17 @@ $(function(){
 				xhr.addEventListener("progress", function(evt) {
 					if (evt.lengthComputable) {
 						var percentComplete = evt.loaded / evt.total;
-						if(!$('.progress').is(":visible")){
+						if(!$('.progress').is(":visible")) {
 							$('.progress').show();
 						}
 						progress += Math.round(percentComplete)*100 * ratio;
 						$('.progress-bar').width(progress + '%');
 					}
 				}, false);
-				xhr.addEventListener("progress", function(evt){
+				xhr.addEventListener("progress", function(evt) {
 					if (evt.lengthComputable) {  
 						var percentComplete = evt.loaded / evt.total;
-						if(!$('.progress').is(":visible")){
+						if(!$('.progress').is(":visible")) {
 							$('.progress').show();
 						}
 						progress += Math.round(percentComplete)*100 * (1-ratio);
@@ -184,7 +184,7 @@ $(function(){
 			type: 'POST',
 			url: Routing.generate('drone_ajax_delete_interest_points'),
 			//data: datas,
-			success: function(data){
+			success: function(data) {
 				progress = 0;
 				path.forEach(function(e) {
 					if(dronePin == false ||
@@ -207,7 +207,7 @@ $(function(){
 				xhr.addEventListener("progress", function(evt) {
 					if (evt.lengthComputable) {
 						var percentComplete = evt.loaded / evt.total;
-						if(!$('.progress').is(":visible")){
+						if(!$('.progress').is(":visible")) {
 							$('.progress').show();
 						}
 						progress += Math.round(percentComplete)*100 * ratio;
@@ -215,10 +215,10 @@ $(function(){
 					}
 				}, false);
 
-				xhr.addEventListener("progress", function(evt){
+				xhr.addEventListener("progress", function(evt) {
 					if (evt.lengthComputable) {  
 						var percentComplete = evt.loaded / evt.total;
-						if(!$('.progress').is(":visible")){
+						if(!$('.progress').is(":visible")) {
 							$('.progress').show();
 						}
 						progress += Math.round(percentComplete)*100 * (1-ratio);
@@ -231,7 +231,7 @@ $(function(){
 			type: 'POST',
 			url: Routing.generate('drone_ajax_delete_drones'),
 			//data: datas,
-			success: function(data){
+			success: function(data) {
 				progress = 0;
 				map.entities.remove(dronePin);
 				dronePin = false;
@@ -241,17 +241,17 @@ $(function(){
 
 	/*==========  Évènements  ==========*/
 
-	$(document).on('fieldChoice', function(){
-		if($("#rectangleChoice").hasClass('active')){
-			handleClick = Microsoft.Maps.Events.addHandler(map, 'click', function(e){
-				if(e.targetType == "map"){
+	$(document).on('fieldChoice', function() {
+		if($("#rectangleChoice").hasClass('active')) {
+			handleClick = Microsoft.Maps.Events.addHandler(map, 'click', function(e) {
+				if(e.targetType == "map") {
 					var point = new Microsoft.Maps.Point(e.getX(), e.getY());
 					var loc = e.target.tryPixelToLocation(point);
 					addPointToShape(loc.latitude, loc.longitude);
 				}
 			});
 		}else{
-			if(handleClick !== false){
+			if(handleClick !== false) {
 				Microsoft.Maps.Events.removeHandler(handleClick);
 				handleClick = false;
 			}
@@ -302,24 +302,26 @@ $(function(){
 
 		//Ajout de modules utilisés
 		var handleClick = false;
-		Microsoft.Maps.loadModule('Microsoft.Maps.Search', { callback: function(){
+		Microsoft.Maps.loadModule('Microsoft.Maps.Search', { callback: function() {
 				search_engine_loaded = true;
 				var query = queryAddress;
-				if(query != ""){
+				if(query != "") {
 					searchModule(query);
 				}
 			}
 		});
-		Microsoft.Maps.loadModule('Microsoft.Maps.AdvancedShapes', { callback: function(){
+		Microsoft.Maps.loadModule('Microsoft.Maps.AdvancedShapes', { callback: function() {
 				advanced_shapes_loaded = true;
 			}
 		});
+
+		getWeatherDrone(dronePin.getLocation().latitude, dronePin.getLocation().longitude);
 	}
 
 	/*==========  Fonctions  ==========*/
 
-	function searchModule(q){
-		if(search_engine_loaded){
+	function searchModule(q) {
+		if(search_engine_loaded) {
 			var searchManager = new Microsoft.Maps.Search.SearchManager(map);
 			var searchRequest = {
 				where: q, 
@@ -331,7 +333,7 @@ $(function(){
 		}
 	}
 
-	function searchGeoCallback(geocodeResult, userData){
+	function searchGeoCallback(geocodeResult, userData) {
 		map.setView({
 			bounds: geocodeResult.results[0].bestView
 		});
@@ -342,24 +344,24 @@ $(function(){
 		alert("An error occurred.");
 	}
 
-	function addPointToShape(lat, lon, loading){
-		if(typeof loading == undefined){
+	function addPointToShape(lat, lon, loading) {
+		if(typeof loading == undefined) {
 			loading = false;
 		}
 		shape[shape.length] = new Microsoft.Maps.Location(lat, lon);
 		var loc = new Microsoft.Maps.Location(lat, lon);
 
-		if(!loading){
+		if(!loading) {
 			// Add a pin to the map
 			pinTable[pinTable.length] = new Microsoft.Maps.Pushpin(loc); 
 			map.entities.push(pinTable[pinTable.length-1]);
 		}
 	}
 
-	function addShape(){
-		if(shape.length > 0){
+	function addShape() {
+		if(shape.length > 0) {
 			// On ferme la forme avec le premier point si ce n'est pas déjà fait.
-			if(shape[0] != shape[shape.length-1]){
+			if(shape[0] != shape[shape.length-1]) {
 				shape[shape.length] = shape[0];
 			}
 			var polyShape = shape.slice();
@@ -394,8 +396,8 @@ $(function(){
 		}
 	}
 
-	function addCircleEvent(e){
-		if($("#interestPoint").hasClass('active')){
+	function addCircleEvent(e) {
+		if($("#interestPoint").hasClass('active')) {
 			var point = new Microsoft.Maps.Point(e.getX(), e.getY());
 			var loc = map.tryPixelToLocation(point);
 			path[path.length] = {
@@ -406,7 +408,7 @@ $(function(){
 		}
 	}
 
-	function addCircle(radius, location){
+	function addCircle(radius, location) {
 		var backgroundColor = new Microsoft.Maps.Color(10, 100, 0, 0);
 		var borderColor     = new Microsoft.Maps.Color(150, 200, 0, 0);
 		//var R               = 6371; // Rayon de la terre en kilomètres
@@ -457,8 +459,8 @@ $(function(){
 		return polygon;
 	}
 
-	function addDronePin(e){
-		if($("#putDrone").hasClass('active')){
+	function addDronePin(e) {
+		if($("#putDrone").hasClass('active')) {
 			var dronePinOptions = {
 				icon: twigElements['quadcopter'], 
 				width: 50, 
@@ -472,28 +474,28 @@ $(function(){
 			map.entities.push(dronePin);
 			iDrone++;
 			$("#putDrone").toggleClass('active');
-			if(iDrone >= numberOfDrones){
+			if(iDrone >= numberOfDrones) {
 				$("#putDrone").remove();
 			}
 		}
 	}
 
-	function changeCursor(e){
+	function changeCursor(e) {
 		var crosshair = $("#rectangleChoice").hasClass('active') ||
 						$("#interestPoint").hasClass('active')   ||
 						$("#putDrone").hasClass('active');
-		if(crosshair){
+		if(crosshair) {
 			map.getRootElement().style.cursor = 'crosshair';
 		}else{
 			map.getRootElement().style.cursor = 'grab';
 		}
 	}
 
-	function changeCursorClick(e){
+	function changeCursorClick(e) {
 		var crosshair = $("#rectangleChoice").hasClass('active') ||
 						$("#interestPoint").hasClass('active')   ||
 						$("#putDrone").hasClass('active');
-		if(crosshair){
+		if(crosshair) {
 			map.getRootElement().style.cursor = 'crosshair';
 		}else{
 			map.getRootElement().style.cursor = 'grab';
@@ -501,7 +503,7 @@ $(function(){
 		addDronePin(e);
 	}
 
-	function isInPolygon(polygon, pin){
+	function isInPolygon(polygon, pin) {
 		var isInside = false;
 		var j = 0;
 		var x = pin.longitude;
@@ -523,14 +525,14 @@ $(function(){
 		return isInside;
 	}
 
-	function getCentroid(polygon){
-		if(typeof polygon == undefined){
+	function getCentroid(polygon) {
+		if(typeof polygon == undefined) {
 			return false;
 		}else{
 			var points            = polygon.getLocations();
 			var latitudeCentroid  = 0;
 			var longitudeCentroid = 0;
-			points.forEach(function(e){
+			points.forEach(function(e) {
 				latitudeCentroid  += e.latitude;
 				longitudeCentroid += e.longitude;
 			});
@@ -543,8 +545,8 @@ $(function(){
 
 	/*==========  Fonctions pour animer le drone  ==========*/
 
-	function moveDrone(){
-		if(dronePin != false){
+	function moveDrone() {
+		if(dronePin != false) {
 			var pathSliced = path.slice();
 			if (pathSliced[pathSliced.length-1] != dronePin.getLocation()) {
 				pathSliced[pathSliced.length] = {
@@ -558,19 +560,19 @@ $(function(){
 	}
 
 	/*==========  Fonctions AJAX  ==========*/
-	$('#submitDroneLocation').click(function(){
-		if(dronePin != false){
+	$('#submitDroneLocation').click(function() {
+		if(dronePin != false) {
 			ajaxCall('droneLocation');
 		}
 	});
 
-	$('#submitInterestPoint').click(function(){
+	$('#submitInterestPoint').click(function() {
 		// On filtre les nouveaux points rajoutés
-		if(path.length > 0){
+		if(path.length > 0) {
 			var pathSliced = path.slice();
 			var i = 0, pathLen = pathSliced.length;
 			for (; i < pathLen; i++) {
-				if($.inArray(pathSliced[i], alreadyPoints) != -1){
+				if($.inArray(pathSliced[i], alreadyPoints) != -1) {
 					pathSliced.splice(index, 1);
 				}
 			};
@@ -590,15 +592,15 @@ $(function(){
 		}
 	});
 
-	$('#submitField').click(function(){
-		if(fields.length > 0){
+	$('#submitField').click(function() {
+		if(fields.length > 0) {
 			ajaxCall('fieldLocation');
 		}
 	});
 
-	function ajaxCall(call, datas){
+	function ajaxCall(call, datas) {
 		var route = false;
-		if(datas === undefined){
+		if(datas === undefined) {
 			datas = {};
 		}
 		if (call == 'droneLocation') {
@@ -615,7 +617,7 @@ $(function(){
 				fieldCorners: fields,
 			};
 		}
-		if(route != false){
+		if(route != false) {
 			var progress = 0;
 			var ratio = 1/2;
 			$('.progress-bar').width('0%');
@@ -625,7 +627,7 @@ $(function(){
 					xhr.addEventListener("progress", function(evt) {
 						if (evt.lengthComputable) {
 							var percentComplete = evt.loaded / evt.total;
-							if(!$('.progress').is(":visible")){
+							if(!$('.progress').is(":visible")) {
 								$('.progress').show();
 							}
 							progress += Math.round(percentComplete)*100 * ratio;
@@ -633,10 +635,10 @@ $(function(){
 						}
 					}, false);
 
-					xhr.addEventListener("progress", function(evt){
+					xhr.addEventListener("progress", function(evt) {
 						if (evt.lengthComputable) {  
 							var percentComplete = evt.loaded / evt.total;
-							if(!$('.progress').is(":visible")){
+							if(!$('.progress').is(":visible")) {
 								$('.progress').show();
 							}
 							progress += Math.round(percentComplete)*100 * (1-ratio);
@@ -649,10 +651,90 @@ $(function(){
 				type: 'POST',
 				url: route,
 				data: datas,
-				success: function(data){
+				success: function(data) {
 					progress = 0;
 				}
 			});
+		}
+	}
+
+	/*==========  Requête pour la météo  ==========*/
+
+	function getWeatherDrone(la, lo) {
+		if(typeof la === undefined || typeof lo == undefined) {
+			return false;
+		}else{
+			$.ajax({
+				type: 'get',
+				url: "http://api.openweathermap.org/data/2.5/weather",
+				data: {
+					lat: la.toFixed(2),
+					lon: lo.toFixed(2),
+					lang: "fr",
+					APPID: "c52c41cda0ea81049a945cbc5e878200",
+				},
+				success: function(data) {
+					console.log(data);
+					$(".weather").text(data.weather[0].description +
+						' | Température : ' +
+						kelvinToCelsius(data.main.temp) +
+						'°C  | Humidité : ' + 
+						data.main.humidity +
+						'%n | Vent : ' + 
+						data.wind.speed +
+						' km/h, direction : ' +
+						degToDir(data.wind.deg)
+						);
+					return true;
+				}
+			});
+		}
+	}
+
+	function kelvinToCelsius(t) {
+		var cel = t - 273.15;
+		return Math.round(cel);
+	}
+
+	function msToKmh(v) {
+		return Math.round(v*1000/3600);
+	}
+
+	function degToDir(d) {
+		// On s'assure du fait que le paramètre est bien en degrée.
+		d %= 360;
+		if(		 d >= 348.75 || d < 11.25){
+			return 'Nord';
+		}else if(d >= 11.25  || d < 33.75){
+			return 'Nord-Nord-Est';
+		}else if(d >= 33.75  || d < 56.25){
+			return 'Nord-Est';
+		}else if(d >= 56.25  || d < 78.75){
+			return 'Est-Nord-Est';
+		}else if(d >= 78.75  || d < 101.25){
+			return 'Est';
+		}else if(d >= 101.25 || d < 123.75){
+			return 'Est-Sud-Est';
+		}else if(d >= 123.75 || d < 146.25){
+			return 'Sud-Est';
+		}else if(d >= 146.25 || d < 168.75){
+			return 'Sud-Sud-Est';
+		}else if(d >= 168.75 || d < 191.25){
+			return 'Sud';
+		}else if(d >= 191.25 || d < 213.75){
+			return 'Sud-Sud-Ouest';
+		}else if(d >= 213.75 || d < 236.25){
+			return 'Sud-Ouest';
+		}else if(d >= 236.25 || d < 258.75){
+			return 'Ouest-Sud-Ouest';
+		}else if(d >= 258.75 || d < 281.25){
+			return 'Ouest';
+		}else if(d >= 281.25 || d < 303.75){
+			return 'Ouest-Nord-Ouest';
+		}else if(d >= 303.75 || d < 326.25){
+			return 'Nord-Ouest';
+		}else if(d >= 326.25 || d < 348.75){
+			return 'Nord-Nord-Ouest';
 		}
 	}
 });
