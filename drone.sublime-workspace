@@ -4,16 +4,28 @@
 		"selected_items":
 		[
 			[
-				"margin",
-				"margin-right"
-			],
-			[
-				"fon",
-				"font-size"
+				"text",
+				"text-decoration"
 			],
 			[
 				"comm",
 				"comm-subsection	Comment - Subsection comment"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"type",
+				"typeof〔keyword〕"
+			],
+			[
+				"fon",
+				"font-size"
 			],
 			[
 				"for",
@@ -22,10 +34,6 @@
 			[
 				"path",
 				"pathSliced"
-			],
-			[
-				"font",
-				"font-size"
 			],
 			[
 				"in",
@@ -162,10 +170,6 @@
 			[
 				"bloc",
 				"blockb	Twig : Block (block)"
-			],
-			[
-				"text",
-				"text-decoration"
 			],
 			[
 				"padding",
@@ -351,7 +355,15 @@
 			"file": "src/Drone/MapBundle/Resources/views/Default/index.html.twig",
 			"settings":
 			{
-				"buffer_size": 5972,
+				"buffer_size": 6009,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "web/javascript/MapScript.js",
+			"settings":
+			{
+				"buffer_size": 19800,
 				"line_ending": "Windows"
 			}
 		},
@@ -359,31 +371,7 @@
 			"file": "app/Resources/views/base.html.twig",
 			"settings":
 			{
-				"buffer_size": 1951,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "web/sass/screen.scss",
-			"settings":
-			{
-				"buffer_size": 3696,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/Drone/UserBundle/Resources/views/Security/login.html.twig",
-			"settings":
-			{
-				"buffer_size": 1375,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/config/config.yml",
-			"settings":
-			{
-				"buffer_size": 3994,
+				"buffer_size": 2283,
 				"line_ending": "Windows"
 			}
 		},
@@ -391,7 +379,23 @@
 			"file": "src/Drone/UserBundle/Resources/views/Profile/show.html.twig",
 			"settings":
 			{
-				"buffer_size": 710,
+				"buffer_size": 1773,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "web/sass/screen.scss",
+			"settings":
+			{
+				"buffer_size": 4790,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/Drone/UserBundle/Resources/views/Profile/edit.html.twig",
+			"settings":
+			{
+				"buffer_size": 412,
 				"line_ending": "Windows"
 			}
 		}
@@ -403,10 +407,22 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 375.0,
-		"last_filter": "",
+		"height": 74.0,
+		"last_filter": "remove pack",
 		"selected_items":
 		[
+			[
+				"remove pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
 			[
 				"inst",
 				"Package Control: Install Package"
@@ -424,19 +440,11 @@
 				"File: Rename"
 			],
 			[
-				"instal",
-				"Package Control: Install Package"
-			],
-			[
 				"Side bar",
 				"Side Bar: Refresh"
 			],
 			[
 				"install",
-				"Package Control: Install Package"
-			],
-			[
-				"insta",
 				"Package Control: Install Package"
 			],
 			[
@@ -476,7 +484,7 @@
 				"Indentation: Convert to Spaces"
 			]
 		],
-		"width": 514.0
+		"width": 536.0
 	},
 	"console":
 	{
@@ -497,21 +505,26 @@
 	},
 	"expanded_folders":
 	[
-		"/C/wamp/www/drone",
-		"/C/wamp/www/drone/src",
-		"/C/wamp/www/drone/src/Drone",
-		"/C/wamp/www/drone/src/Drone/HomeBundle/Resources/views/Default",
-		"/C/wamp/www/drone/src/Drone/UserBundle",
-		"/C/wamp/www/drone/src/Drone/UserBundle/Resources",
-		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views",
-		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Profile",
-		"/C/wamp/www/drone/web/image/user"
+		"/C/wamp/www/drone"
 	],
 	"file_history":
 	[
+		"/C/wamp/www/drone/web/javascript/animationPin.js",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Entity/User.php",
+		"/C/wamp/www/drone/app/Resources/views/base.html.twig",
+		"/C/wamp/www/drone/vendor/friendsofsymfony/user-bundle/Resources/config/routing/registration.xml",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Security/login.html.twig",
+		"/C/wamp/www/drone/app/config/config.yml",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Form/Type/RegistrationFormType.php",
+		"/C/Users/Julien/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Julien/AppData/Roaming/Sublime Text 3/Packages/User/CSS3.sublime-settings",
+		"/C/Users/Julien/AppData/Roaming/Sublime Text 3/Packages/CSS3/CSS3.sublime-settings",
+		"/C/wamp/www/drone/vendor/friendsofsymfony/user-bundle/Resources/config/routing/security.xml",
+		"/C/wamp/www/drone/app/config/routing.yml",
+		"/C/wamp/www/drone/vendor/friendsofsymfony/user-bundle/Resources/config/security.xml",
+		"/C/wamp/www/drone/vendor/friendsofsymfony/user-bundle/Resources/config/registration.xml",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Controller/BeeyeController.php",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Controller/AjaxController.php",
-		"/C/wamp/www/drone/src/Drone/UserBundle/Entity/User.php",
 		"/C/wamp/www/drone/web/javascript/MapScript.js",
 		"/C/wamp/www/drone/src/Drone/HomeBundle/Resources/views/Default/envoi_mail.html.twig",
 		"/C/wamp/www/drone/src/Drone/HomeBundle/Controller/DefaultController.php",
@@ -519,13 +532,10 @@
 		"/C/wamp/www/drone/app/config/parameters.yml",
 		"/C/wamp/www/drone/README.md",
 		"/C/wamp/www/drone/app/AppKernel.php",
-		"/C/wamp/www/drone/app/config/config.yml",
 		"/C/wamp/www/drone/vendor/symfony/symfony/src/Symfony/Component/Console/Tests/Fixtures/application_renderexception_doublewidth1.txt",
 		"/C/wamp/www/drone/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php",
 		"/C/wamp/www/drone/vendor/doctrine/doctrine-bundle/ConnectionFactory.php",
 		"/C/wamp/www/drone/vendor/jms/serializer/src/JMS/Serializer/Naming/CacheNamingStrategy.php",
-		"/C/wamp/www/drone/app/config/routing.yml",
-		"/C/wamp/www/drone/src/Drone/UserBundle/Form/Type/RegistrationFormType.php",
 		"/C/wamp/www/drone/vendor/symfony/symfony/src/Symfony/Component/Translation/Dumper/FileDumper.php",
 		"/C/wamp/www/drone/app/config/routing_rest.yml",
 		"/C/wamp/www/drone/vendor/friendsofsymfony/rest-bundle/FOS/RestBundle/Routing/RestRouteCollection.php",
@@ -542,7 +552,6 @@
 		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Profile/edit.html.twig",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Default/index.html.twig",
 		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Profile/show.html.twig",
-		"/C/Users/Julien/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/C/wamp/www/drone/vendor/swiftmailer/swiftmailer/tests/acceptance/Swift/MessageAcceptanceTest.php",
 		"/C/wamp/www/drone/vendor/phpcollection/phpcollection/doc/index.rst",
 		"/C/wamp/www/drone/vendor/jms/serializer/doc/index.rst",
@@ -600,7 +609,6 @@
 		"/C/wamp/www/drone/vendor/swiftmailer/swiftmailer/doc/overview.rst",
 		"/C/wamp/www/drone/web/bootflat/composer.json",
 		"/C/Users/Julien/AppData/Local/Temp/Temp1_bootflat.github.io-master.zip/bootflat.github.io-master/bootflat/scss/bootflat.scss",
-		"/C/wamp/www/drone/app/Resources/views/base.html.twig",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Entity/Point.php",
 		"/C/wamp/www/drone/app/console",
 		"/C/wamp/www/drone/vendor/doctrine/orm/docs/en/reference/partial-objects.rst",
@@ -614,7 +622,6 @@
 		"/C/wamp/www/drone/vendor/jms/serializer/src/JMS/Serializer/Annotation/HandlerCallback.php",
 		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/config/routing.yml",
 		"/C/wamp/www/drone/web/javascript/AnimationModule.js",
-		"/C/wamp/www/drone/web/javascript/animationPin.js",
 		"/C/wamp/www/drone/app/AppCache.php",
 		"/C/wamp/www/drone/web/sass/screen.scss",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/config/routing.yml",
@@ -629,14 +636,7 @@
 		"/C/wamp/www/drone/vendor/doctrine/doctrine-bundle/ManagerConfigurator.php",
 		"/C/wamp/www/drone/vendor/swiftmailer/swiftmailer/lib/classes/Swift/CharacterReader/UsAsciiReader.php",
 		"/C/wamp/www/drone/vendor/symfony/assetic-bundle/DependencyInjection/DirectoryResourceDefinition.php",
-		"/C/wamp/www/drone/bin/doctrine",
-		"/C/Users/Julien/AppData/Local/Temp/tmp884F.tmp.twig",
-		"/C/wamp/www/drone/src/Drone/MapBundle/Controller/DefaultController.php",
-		"/C/wamp/www/drone/vendor/friendsofsymfony/user-bundle/Resources/config/routing/profile.xml",
-		"/C/wamp/www/drone/vendor/symfony/assetic-bundle/Routing/AsseticLoader.php",
-		"/C/wamp/www/drone/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Encoder/Base64Encoder.php",
-		"/C/wamp/www/drone/app/config/config_prod.yml",
-		"/C/wamp/www/drone/vendor/friendsofsymfony/user-bundle/Resources/doc/configuration_reference.md"
+		"/C/wamp/www/drone/bin/doctrine"
 	],
 	"find":
 	{
@@ -658,6 +658,49 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"true",
+			"p",
+			"info",
+			"5",
+			"\n			<a class=\"btn btn-default btn-block\" href=\"{{ path('drone_map_homepage') }}\" title=\"Accéder à la page de cartographie\">\n				Accéder à la page de cartographie\n			</a>",
+			"user",
+			"/span>",
+			"white",
+			"black",
+			"tl",
+			"FirstName",
+			"firstName",
+			"FirstName",
+			"firstName",
+			"firstname",
+			"FirstName",
+			"firstName",
+			"FirstName",
+			"firstName",
+			"FirstName",
+			"firstName",
+			"tf",
+			"Address",
+			"address",
+			"Address",
+			"address",
+			"dm",
+			"\n\n	{{ }}",
+			"return",
+			"else if",
+			"dm >",
+			"-",
+			"div",
+			"){",
+			"initLoc",
+			"dronePin",
+			"DronePin",
+			"dronePin",
+			"DronePin",
+			"dronePin",
+			",\n",
+			"Boutons",
+			"nav",
 			"imageFile",
 			"country",
 			"pathSl",
@@ -742,50 +785,7 @@
 			"getNextDistance",
 			"location",
 			"console",
-			"nearestLocation",
-			"latitude",
-			"Point de passage",
-			"droneSpeed",
-			"destinationLocation",
-			"Δλ",
-			"Δφ",
-			"φ2",
-			"phi1",
-			"lon2",
-			"lat2",
-			"φ1",
-			"automatic",
-			"div",
-			"			{%",
-			"Path",
-			"path",
-			"tc",
-			"Action",
-			"action",
-			"Action",
-			"action",
-			"taction",
-			"Address",
-			"address",
-			"Address",
-			"address",
-			"loaded",
-			"path",
-			"Path",
-			"path",
-			"Point",
-			"point",
-			"pointEntity",
-			"dCorners[$key]",
-			"points",
-			"Map",
-			"User",
-			"UserBundle",
-			"user",
-			"User",
-			"user",
-			"console.log",
-			"fields"
+			"nearestLocation"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -814,7 +814,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -823,455 +823,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5972,
+						"buffer_size": 6009,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/Resources/views/base.html.twig",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1951,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "web/sass/screen.scss",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3696,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3256,
-								3256
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"syntax": "Packages/SCSS/SCSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 3130.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/Drone/UserBundle/Resources/views/Security/login.html.twig",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1375,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								267,
-								290
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/config/config.yml",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3994,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2570,
-								2570
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content"
-							],
-							"syntax": "Packages/YAML/YAML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1260.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "src/Drone/UserBundle/Resources/views/Profile/show.html.twig",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 710,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								173,
-								188
+								49,
+								49
 							]
 						],
 						"settings":
@@ -1280,21 +840,21 @@
 							"auto_complete": false,
 							"bh_regions":
 							[
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
@@ -1310,21 +870,70 @@
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
 								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "web/javascript/MapScript.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 19800,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								18395,
+								18395
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_complete": false,
+							"bh_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
@@ -1334,7 +943,135 @@
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
-								"bh_unmatched_content"
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 10397.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/Resources/views/base.html.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2283,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								486,
+								486
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
 							],
 							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
 							"translate_tabs_to_spaces": false
@@ -1345,13 +1082,278 @@
 					},
 					"stack_index": 2,
 					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/Drone/UserBundle/Resources/views/Profile/show.html.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1773,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								694,
+								694
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_complete": false,
+							"bh_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 420.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "web/sass/screen.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4790,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1110,
+								1110
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 535.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/Drone/UserBundle/Resources/views/Profile/edit.html.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 412,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								321,
+								321
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_complete": false,
+							"bh_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
 				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 23.0
+		"height": 39.0
 	},
 	"input":
 	{
@@ -1398,6 +1400,54 @@
 		"selected_items":
 		[
 			[
+				"base",
+				"app\\Resources\\views\\base.html.twig"
+			],
+			[
+				"user",
+				"src\\Drone\\UserBundle\\Entity\\User.php"
+			],
+			[
+				"anima",
+				"web\\javascript\\animationPin.js"
+			],
+			[
+				"profileedit.",
+				"src\\Drone\\UserBundle\\Resources\\views\\Profile\\edit.html.twig"
+			],
+			[
+				"registrationform",
+				"src\\Drone\\UserBundle\\Form\\Type\\RegistrationFormType.php"
+			],
+			[
+				"animation",
+				"web\\javascript\\animationPin.js"
+			],
+			[
+				"maps",
+				"web\\javascript\\MapScript.js"
+			],
+			[
+				"routingregit",
+				"vendor\\friendsofsymfony\\user-bundle\\Resources\\config\\routing\\registration.xml"
+			],
+			[
+				"routingsecurity.xml",
+				"vendor\\friendsofsymfony\\user-bundle\\Resources\\config\\routing\\security.xml"
+			],
+			[
+				"security.xml",
+				"vendor\\friendsofsymfony\\user-bundle\\Resources\\config\\security.xml"
+			],
+			[
+				"routing",
+				"app\\config\\routing.yml"
+			],
+			[
+				"registration.xml",
+				"vendor\\friendsofsymfony\\user-bundle\\Resources\\config\\registration.xml"
+			],
+			[
 				"config",
 				"app\\config\\config.yml"
 			],
@@ -1420,10 +1470,6 @@
 			[
 				"field",
 				"vendor\\symfony\\symfony\\src\\Symfony\\Component\\Translation\\Dumper\\FileDumper.php"
-			],
-			[
-				"user",
-				"src\\Drone\\UserBundle\\Entity\\User.php"
 			],
 			[
 				"scree",
@@ -1460,14 +1506,6 @@
 			[
 				"tampon",
 				"src\\Protimbre\\TamponBundle\\Entity\\Tampon.php"
-			],
-			[
-				"registrationform",
-				"src\\Drone\\UserBundle\\Form\\Type\\RegistrationFormType.php"
-			],
-			[
-				"base",
-				"app\\Resources\\views\\base.html.twig"
 			],
 			[
 				"regist",
@@ -1540,10 +1578,6 @@
 			[
 				"mapcontr",
 				"src\\Drone\\MapBundle\\Controller\\DefaultController.php"
-			],
-			[
-				"routing",
-				"app\\config\\routing.yml"
 			],
 			[
 				"approuting",
@@ -1826,7 +1860,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 237.0,
+	"side_bar_width": 167.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

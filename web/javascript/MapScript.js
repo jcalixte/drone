@@ -262,6 +262,9 @@ $(function() {
 	Microsoft.Maps.Events.addHandler(map, 'mouseover', changeCursor);
 	Microsoft.Maps.Events.addHandler(map, 'click', changeCursorClick);
 
+
+	/*==========  FONCTION D'INITIALISATION  ==========*/
+	
 	mapAction = function(pTwigElements, droneEntities, fieldEntities, interestPointEntities, queryAddress) {
 
 		iDrone = droneEntities.length;
@@ -315,7 +318,9 @@ $(function() {
 			}
 		});
 
-		getWeatherDrone(dronePin.getLocation().latitude, dronePin.getLocation().longitude);
+		if(dronePin != false) {
+			getWeatherDrone(dronePin.getLocation().latitude, dronePin.getLocation().longitude);
+		}
 	}
 
 	/*==========  Fonctions  ==========*/
@@ -475,7 +480,7 @@ $(function() {
 			iDrone++;
 			$("#putDrone").toggleClass('active');
 			if(iDrone >= numberOfDrones) {
-				$("#putDrone").remove();
+				$("#putDrone").parent().remove();
 			}
 		}
 	}
@@ -572,19 +577,24 @@ $(function() {
 			var pathSliced = path.slice();
 			var i = 0, pathLen = pathSliced.length;
 			for (; i < pathLen; i++) {
-				if($.inArray(pathSliced[i], alreadyPoints) != -1) {
-					pathSliced.splice(index, 1);
+				console.log($.inArray(pathSliced[i], alreadyPoints));
+				if($.inArray(pathSliced[i], alreadyPoints) == -1) {
+					pathSliced.splice(i, 1);
 				}
 			};
 			var onlyPathLocation = [];
 
-			i = 0;
+			i = 0, pathLen = pathSliced.length;
 			for (; i < pathLen; i++) {
 				onlyPathLocation[onlyPathLocation.length] = {
 					location: pathSliced[i].location,
 					action: pathSliced[i].action
 				}
 			};
+
+			//console.log(path);
+			console.log(onlyPathLocation);
+
 			datas = {
 				points: onlyPathLocation,
 			}
@@ -622,36 +632,11 @@ $(function() {
 			var ratio = 1/2;
 			$('.progress-bar').width('0%');
 			$.ajax({
-				xhr: function() {
-					var xhr = new window.XMLHttpRequest();
-					xhr.addEventListener("progress", function(evt) {
-						if (evt.lengthComputable) {
-							var percentComplete = evt.loaded / evt.total;
-							if(!$('.progress').is(":visible")) {
-								$('.progress').show();
-							}
-							progress += Math.round(percentComplete)*100 * ratio;
-							$('.progress-bar').width(progress + '%');
-						}
-					}, false);
-
-					xhr.addEventListener("progress", function(evt) {
-						if (evt.lengthComputable) {  
-							var percentComplete = evt.loaded / evt.total;
-							if(!$('.progress').is(":visible")) {
-								$('.progress').show();
-							}
-							progress += Math.round(percentComplete)*100 * (1-ratio);
-							$('.progress-bar').width(progress + '%');
-						}
-					}, false);
-
-					return xhr;
-				},
 				type: 'POST',
 				url: route,
 				data: datas,
 				success: function(data) {
+					toastr.info('Enregistrement réussit');
 					progress = 0;
 				}
 			});
@@ -674,20 +659,34 @@ $(function() {
 					APPID: "c52c41cda0ea81049a945cbc5e878200",
 				},
 				success: function(data) {
-					console.log(data);
-					$(".weather").text(data.weather[0].description +
-						' | Température : ' +
-						kelvinToCelsius(data.main.temp) +
-						'°C  | Humidité : ' + 
-						data.main.humidity +
-						'%n | Vent : ' + 
-						data.wind.speed +
-						' km/h, direction : ' +
-						degToDir(data.wind.deg)
-						);
-					return true;
+					if(data.weather === undefined) {
+						return false;
+					}else{
+						$(".weather").text(data.weather[0].description +
+							' | Température : ' +
+							kelvinToCelsius(data.main.temp) +
+							'°C  | Humidité : ' + 
+							data.main.humidity +
+							'% | Vent : ' + 
+							data.wind.speed +
+							' km/h, direction : ' +
+							degToDir(data.wind.deg)
+							);
+						setWeatherGlyph(data.weather[0].main);
+						return true;
+					}
 				}
 			});
+		}
+	}
+
+	function setWeatherGlyph(w) {
+		switch(w) {
+			case 'Clouds':
+				$("#weather-gly").removeClass();
+				$("#weather-gly").addClass("wi wi-cloudy");
+				break;
+			default:
 		}
 	}
 
@@ -703,38 +702,59 @@ $(function() {
 	function degToDir(d) {
 		// On s'assure du fait que le paramètre est bien en degrée.
 		d %= 360;
-		if(		 d >= 348.75 || d < 11.25){
-			return 'Nord';
-		}else if(d >= 11.25  || d < 33.75){
-			return 'Nord-Nord-Est';
-		}else if(d >= 33.75  || d < 56.25){
-			return 'Nord-Est';
-		}else if(d >= 56.25  || d < 78.75){
-			return 'Est-Nord-Est';
-		}else if(d >= 78.75  || d < 101.25){
-			return 'Est';
-		}else if(d >= 101.25 || d < 123.75){
-			return 'Est-Sud-Est';
-		}else if(d >= 123.75 || d < 146.25){
-			return 'Sud-Est';
-		}else if(d >= 146.25 || d < 168.75){
-			return 'Sud-Sud-Est';
-		}else if(d >= 168.75 || d < 191.25){
-			return 'Sud';
-		}else if(d >= 191.25 || d < 213.75){
-			return 'Sud-Sud-Ouest';
-		}else if(d >= 213.75 || d < 236.25){
-			return 'Sud-Ouest';
-		}else if(d >= 236.25 || d < 258.75){
-			return 'Ouest-Sud-Ouest';
-		}else if(d >= 258.75 || d < 281.25){
-			return 'Ouest';
-		}else if(d >= 281.25 || d < 303.75){
-			return 'Ouest-Nord-Ouest';
-		}else if(d >= 303.75 || d < 326.25){
-			return 'Nord-Ouest';
-		}else if(d >= 326.25 || d < 348.75){
-			return 'Nord-Nord-Ouest';
+		var direction = "";
+		var diwi = "";
+		if(		 d >= 348.75 || d < 11.25) {
+			diwi = "wi wi-wind-default _0-deg";
+			direction = 'Nord';
+		}else if(d >= 11.25  || d < 33.75) {
+			diwi = "wi wi-wind-default _30-deg";
+			direction = 'Nord-Nord-Est';
+		}else if(d >= 33.75  || d < 56.25) {
+			diwi = "wi wi-wind-default _45-deg";
+			direction = 'Nord-Est';
+		}else if(d >= 56.25  || d < 78.75) {
+			diwi = "wi wi-wind-default _60-deg";
+			direction = 'Est-Nord-Est';
+		}else if(d >= 78.75  || d < 101.25) {
+			diwi = "wi wi-wind-default _90-deg";
+			direction = 'Est';
+		}else if(d >= 101.25 || d < 123.75) {
+			diwi = "wi wi-wind-default _120-deg";
+			direction = 'Est-Sud-Est';
+		}else if(d >= 123.75 || d < 146.25) {
+			diwi = "wi wi-wind-default _135-deg";
+			direction = 'Sud-Est';
+		}else if(d >= 146.25 || d < 168.75) {
+			diwi = "wi wi-wind-default _150-deg";
+			direction = 'Sud-Sud-Est';
+		}else if(d >= 168.75 || d < 191.25) {
+			diwi = "wi wi-wind-default _180-deg";
+			direction = 'Sud';
+		}else if(d >= 191.25 || d < 213.75) {
+			diwi = "wi wi-wind-default _195-deg";
+			direction = 'Sud-Sud-Ouest';
+		}else if(d >= 213.75 || d < 236.25) {
+			diwi = "wi wi-wind-default _225-deg";
+			direction = 'Sud-Ouest';
+		}else if(d >= 236.25 || d < 258.75) {
+			diwi = "wi wi-wind-default _240-deg";
+			direction = 'Ouest-Sud-Ouest';
+		}else if(d >= 258.75 || d < 281.25) {
+			diwi = "wi wi-wind-default _270-deg";
+			direction = 'Ouest';
+		}else if(d >= 281.25 || d < 303.75) {
+			diwi = "wi wi-wind-default _300-deg";
+			direction = 'Ouest-Nord-Ouest';
+		}else if(d >= 303.75 || d < 326.25) {
+			diwi = "wi wi-wind-default _315-deg";
+			direction = 'Nord-Ouest';
+		}else if(d >= 326.25 || d < 348.75) {
+			diwi = "wi wi-wind-default _345-deg";
+			direction = 'Nord-Nord-Ouest';
 		}
+		$("#weather-wind-direction").removeClass();
+		$("#weather-wind-direction").addClass(diwi);
+		return direction;
 	}
 });
