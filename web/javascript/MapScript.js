@@ -628,9 +628,6 @@ $(function() {
 			};
 		}
 		if(route != false) {
-			var progress = 0;
-			var ratio = 1/2;
-			$('.progress-bar').width('0%');
 			$.ajax({
 				type: 'POST',
 				url: route,
