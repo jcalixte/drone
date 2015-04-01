@@ -110,13 +110,13 @@ class AjaxController extends Controller
 			$pointEntity->setLatitude($point['location']['latitude']);
 			$pointEntity->setLongitude($point['location']['longitude']);
 			$pointEntity->setAction($point['action']);
-			/*if(!$userInterestPoints->contains($pointEntity)){
+			if(!$userInterestPoints->contains($pointEntity)){
 				$em->persist($pointEntity);
 				$em->flush();
 
 				$user->addPoint($pointEntity);
 				$userManager->updateUser($user);
-			}*/
+			}
 		}
 
 		$response = new JsonResponse();
