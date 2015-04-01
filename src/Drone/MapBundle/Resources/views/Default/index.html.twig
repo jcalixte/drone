@@ -1,5 +1,9 @@
 {% extends 'DroneMapBundle::layout.html.twig' %}
 
+{% block title %}
+{{ parent() }} - Cartographie {{ user.username|capitalize }}
+{% endblock %}
+
 {% block stylesheets %}
     <link href="{{ asset('stylesheets/weather/css/weather-icons.min.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
     <link href="{{ asset('stylesheets/toastr.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -7,10 +11,6 @@
 
 {% block body_map %}
 	<div class="map">
-		<div>
-			<h1>Carte du monde pour {{ user.username|capitalize }}</h1>
-			<br>
-		</div>
 		<div class="map-container">
 			<div id='map'></div>
 		</div>
@@ -55,8 +55,13 @@
 			</div>
 			<hr>
 			<div>
-				Vos différents drones : 
-				<div class="table-responsive">
+				Vos drones :
+				<ul class="list-group">
+					{% for drone in user.drones %}
+						<li class="list-group-item">{{ drone.product }} - {{ drone.serialNumber }}</li>
+					{% endfor %}
+				</ul>
+				{# <div class="table-responsive">
 					<table class="table table-striped table-hover table-condensed">
 						<thead>
 							<tr>
@@ -75,7 +80,7 @@
 							{% endfor %}
 						</tbody>
 					</table>
-				</div>
+				</div> #}
 			</div>
 		</div>
 		<div class="submit-field clear">
@@ -130,6 +135,7 @@
 				{
 					latitude: {{ drone.latitude }},
 					longitude: {{ drone.longitude }},
+					id: {{ drone.id }}
 				}
 			);
 		{% endfor %}
@@ -141,6 +147,7 @@
 						{
 							latitude: {{ point.latitude }},
 							longitude: {{ point.longitude }},
+							id: {{ point.id }}
 						},
 					{% endfor %}
 				]
@@ -156,6 +163,7 @@
 						longitude: {{ point.longitude }},
 					},
 					action: '{{ point.action }}',
+					id: {{ point.id }}
 				}
 			);
 		{% endfor %}

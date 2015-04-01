@@ -1,13 +1,13 @@
 (function ($m) {
 	(function(proto) {
-		if(!proto.moveLocation){
+		if(!proto.moveLocation) {
 			proto.moveLocation = function(initLoc, locs, speed, that, startLoc) {
 				$("#inAction").text('Flying.');
 				// speed = vitesse du drone en m/s
-				if(that === undefined){
+				if(that === undefined) {
 					that = this;
 				}
-				if(startLoc === undefined){
+				if(startLoc === undefined) {
 					startLoc = this.getLocation();
 				}
 				var locations    = proto.nearestLocation(that, initLoc, locs);
@@ -17,15 +17,16 @@
 
 				var interval = window.setInterval(function() {
 					var timeElapsed = new Date() - startTime;
-					if (timeElapsed >= finalTime){
+					if (timeElapsed >= finalTime) {
 						that.setLocation(endLoc);
 						window.clearInterval(interval, locations[0]);
-						if(locations.length > 1){
+						if(locations.length > 1) {
 							proto.doActionAndGo(initLoc, locations, speed, that, endLoc);
 						}else{
 							$("#inAction").text('In the recharging base.');
 						}
 					}
+					
 					var timeElapsedPercent  = timeElapsed / finalTime;
 					var latitudeDistToMove  = endLoc.latitude - startLoc.latitude;
 					var longitudeDistToMove = endLoc.longitude - startLoc.longitude;
@@ -36,24 +37,24 @@
 				}, 10);
 			};
 		}
-		if(!proto.nearestLocation){
-			proto.nearestLocation = function(that, initLoc, locs){
+		if(!proto.nearestLocation) {
+			proto.nearestLocation = function(that, initLoc, locs) {
 				var locations  = locs.slice();
 				var nearestKey = false;
 				var nearest    = false;
 				var distance   = Infinity;
-				for(var i = 0; i < locations.length; i++){
+				for(var i = 0; i < locations.length; i++) {
 					if(locations[i]['location'].latitude  != initLoc.latitude &&
 					   locations[i]['location'].longitude != initLoc.longitude) {
 						var currentDistance = proto.getNextDistance(that, locations[i]['location']);
-						if(currentDistance < distance){
+						if(currentDistance < distance) {
 							nearestKey = i;
 							nearest    = locations[i];
 							distance   = currentDistance;
 						}
 					}
 				}
-				if(nearest != false){
+				if(nearest != false) {
 					var temp              = locations[0];
 					locations[0]          = nearest;
 					locations[nearestKey] = temp;
@@ -62,7 +63,7 @@
 				return locations;
 			}
 		}
-		if(!proto.getNextDistance){
+		if(!proto.getNextDistance) {
 			proto.getNextDistance = function(that, nextLocation) {
 				var originLocation = that.getLocation();
 
@@ -83,24 +84,24 @@
 				return Math.round(R * c);
 			}
 		}
-		if(!proto.doActionAndGo){
+		if(!proto.doActionAndGo) {
 			proto.doActionAndGo = function(initLoc, locations, speed, that, endLoc) {
 				switch (locations[0]['action']) {
 					case 'photo':
 						$("#inAction").text('Taking a photo.');
-						setTimeout(function(){
+						setTimeout(function() {
 							proto.goNext(initLoc, locations, speed, that, endLoc)
 						}, 1000);
 						break;
 					case 'sound':
-						$("#inAction").text('Taking a sound.');
-						setTimeout(function(){
+						$("#inAction").text('Recording a sound.');
+						setTimeout(function() {
 							proto.goNext(initLoc, locations, speed, that, endLoc)
 						}, 2000);
 						break;
 					case 'video':
-						$("#inAction").text('Taking a video.');
-						setTimeout(function(){
+						$("#inAction").text('Recording a video.');
+						setTimeout(function() {
 							proto.goNext(initLoc, locations, speed, that, endLoc)
 						}, 5000);
 						break;
@@ -114,8 +115,8 @@
 				return true;
 			}
 		}
-		if(!proto.goNext){
-			proto.goNext = function(initLoc, locations, speed, that, endLoc){
+		if(!proto.goNext) {
+			proto.goNext = function(initLoc, locations, speed, that, endLoc) {
 				locations.shift();
 				proto.moveLocation(initLoc, locations, speed, that, endLoc);
 			}

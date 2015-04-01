@@ -13,12 +13,13 @@ $(function() {
 	var search_engine_loaded   = false;
 	var advanced_shapes_loaded = false;
 
-	var shape         = [];
-	var path          = [];
-	var alreadyPoints = [];
-	var fields        = [];
-	var polyFields    = [];
+	var shape      = [];
+	var path       = [];
+	var fields     = [];
+	var polyFields = [];
 
+	/*==========  Variable du drone  ==========*/
+	
 	var dronePin           = false;
 	var currentDroneAction = false;
 	var droneSpeedKmH      = 40;
@@ -88,8 +89,6 @@ $(function() {
 	$('#deleteFields').click(function() {
 		var pointsInFields = [];
 		var shapePointLocation  = [];
-		var progress       = 0;
-		var ratio          = 1;
 
 		polyFields.forEach(function(p) {
 			path.forEach(function(e) {
@@ -99,40 +98,15 @@ $(function() {
 				}
 			})
 		});
-		$('.progress-bar').width('0%');
 		$.ajax({
-			xhr: function() {
-				var xhr = new window.XMLHttpRequest();
-				xhr.addEventListener("progress", function(evt) {
-					if (evt.lengthComputable) {
-						var percentComplete = evt.loaded / evt.total;
-						if(!$('.progress').is(":visible")) {
-							$('.progress').show();
-						}
-						progress += Math.round(percentComplete)*100 * ratio;
-						$('.progress-bar').width(progress + '%');
-					}
-				}, false);
-
-				xhr.addEventListener("progress", function(evt) {
-					if (evt.lengthComputable) {  
-						var percentComplete = evt.loaded / evt.total;
-						if(!$('.progress').is(":visible")) {
-							$('.progress').show();
-						}
-						progress += Math.round(percentComplete)*100 * (1-ratio);
-						$('.progress-bar').width(progress + '%');
-					}
-				}, false);
-				return xhr;
-			},
 			type: 'POST',
 			url: Routing.generate('drone_ajax_delete_fields'),
 			data: {
 				points: pointsInFields,
 			},
 			success: function(data) {
-				progress = 0;
+				console.log("succes !");
+				toastr.success('Enregistrement réussi');
 				polyFields.forEach(function(e) {
 					map.entities.remove(e);
 				});
@@ -153,39 +127,14 @@ $(function() {
 	});
 
 	$('#deleteInterestPoints').click(function() {
-		var progress = 0;
-		var ratio = 1;
-		$('.progress-bar').width('0%');
+		toastr.info('Enregistrement réussi');
 		$.ajax({
-			xhr: function() {
-				var xhr = new window.XMLHttpRequest();
-				xhr.addEventListener("progress", function(evt) {
-					if (evt.lengthComputable) {
-						var percentComplete = evt.loaded / evt.total;
-						if(!$('.progress').is(":visible")) {
-							$('.progress').show();
-						}
-						progress += Math.round(percentComplete)*100 * ratio;
-						$('.progress-bar').width(progress + '%');
-					}
-				}, false);
-				xhr.addEventListener("progress", function(evt) {
-					if (evt.lengthComputable) {  
-						var percentComplete = evt.loaded / evt.total;
-						if(!$('.progress').is(":visible")) {
-							$('.progress').show();
-						}
-						progress += Math.round(percentComplete)*100 * (1-ratio);
-						$('.progress-bar').width(progress + '%');
-					}
-				}, false);
-				return xhr;
-			},
 			type: 'POST',
 			url: Routing.generate('drone_ajax_delete_interest_points'),
 			//data: datas,
 			success: function(data) {
-				progress = 0;
+				console.log("succes !");
+				toastr.success('Enregistrement réussi');
 				path.forEach(function(e) {
 					if(dronePin == false ||
 						(e.location.latitude != dronePin.latitude && e.location.longitude != dronePin.longitude)) {
@@ -198,41 +147,13 @@ $(function() {
 	});
 
 	$('#deleteDrones').click(function() {
-		var progress = 0;
-		var ratio = 1;
-		$('.progress-bar').width('0%');
 		$.ajax({
-			xhr: function() {
-				var xhr = new window.XMLHttpRequest();
-				xhr.addEventListener("progress", function(evt) {
-					if (evt.lengthComputable) {
-						var percentComplete = evt.loaded / evt.total;
-						if(!$('.progress').is(":visible")) {
-							$('.progress').show();
-						}
-						progress += Math.round(percentComplete)*100 * ratio;
-						$('.progress-bar').width(progress + '%');
-					}
-				}, false);
-
-				xhr.addEventListener("progress", function(evt) {
-					if (evt.lengthComputable) {  
-						var percentComplete = evt.loaded / evt.total;
-						if(!$('.progress').is(":visible")) {
-							$('.progress').show();
-						}
-						progress += Math.round(percentComplete)*100 * (1-ratio);
-						$('.progress-bar').width(progress + '%');
-					}
-				}, false);
-
-				return xhr;
-			},
 			type: 'POST',
 			url: Routing.generate('drone_ajax_delete_drones'),
 			//data: datas,
 			success: function(data) {
-				progress = 0;
+				console.log("succes !");
+				toastr.success('Enregistrement réussi');
 				map.entities.remove(dronePin);
 				dronePin = false;
 			}
@@ -287,7 +208,7 @@ $(function() {
 			);
 			dronePin = new Microsoft.Maps.Pushpin(loc, dronePinOptions);
 			map.entities.push(dronePin);
-			//console.log(dronePin);
+			
 		});
 
 		fieldEntities.forEach(function(e) {
@@ -299,8 +220,7 @@ $(function() {
 
 		interestPointEntities.forEach(function(e) {
 			addCircle(0.000001, e.location);
-			path[path.length]            = e;
-			alreadyPoints[alreadyPoints] = e;
+			path[path.length] = e;
 		});
 
 		//Ajout de modules utilisés
@@ -409,6 +329,7 @@ $(function() {
 				location: loc,
 				action: $("#actionTaken").text(),
 				shape: addCircle(0.000001, loc),
+				id: 0,
 			};
 		}
 	}
@@ -574,26 +495,21 @@ $(function() {
 	$('#submitInterestPoint').click(function() {
 		// On filtre les nouveaux points rajoutés
 		if(path.length > 0) {
-			var pathSliced = path.slice();
 			var i = 0, pathLen = pathSliced.length;
+			var onlyPathLocation = [];
 			for (; i < pathLen; i++) {
-				console.log($.inArray(pathSliced[i], alreadyPoints));
-				if($.inArray(pathSliced[i], alreadyPoints) == -1) {
-					pathSliced.splice(i, 1);
+				if(path[i].id == 0) {
+					onlyPathLocation[onlyPathLocation.length] = pathSliced[i];
 				}
 			};
-			var onlyPathLocation = [];
 
-			i = 0, pathLen = pathSliced.length;
+			/*i = 0, pathLen = pathSliced.length;
 			for (; i < pathLen; i++) {
 				onlyPathLocation[onlyPathLocation.length] = {
 					location: pathSliced[i].location,
 					action: pathSliced[i].action
 				}
-			};
-
-			//console.log(path);
-			console.log(onlyPathLocation);
+			};*/
 
 			datas = {
 				points: onlyPathLocation,
@@ -633,8 +549,8 @@ $(function() {
 				url: route,
 				data: datas,
 				success: function(data) {
-					toastr.info('Enregistrement réussit');
-					progress = 0;
+					console.log("succes !");
+					toastr.success('Enregistrement réussi');
 				}
 			});
 		}
@@ -656,20 +572,23 @@ $(function() {
 					APPID: "c52c41cda0ea81049a945cbc5e878200",
 				},
 				success: function(data) {
+					console.log(data);
 					if(data.weather === undefined) {
 						return false;
 					}else{
-						$(".weather").text(data.weather[0].description +
-							' | Température : ' +
-							kelvinToCelsius(data.main.temp) +
-							'°C  | Humidité : ' + 
-							data.main.humidity +
-							'% | Vent : ' + 
-							data.wind.speed +
-							' km/h, direction : ' +
-							degToDir(data.wind.deg)
-							);
+						var sunrise = new Date(data.sys.sunrise * 1000);
+						sunrise = sunrise.getHours() + ':' + sunrise.getMinutes();
+						var sunset = new Date(data.sys.sunset * 1000);
+						sunset = sunset.getHours() + ':' + sunset.getMinutes();
+						$(".weather-main").text(data.weather[0].description);
+						$(".weather-temp").text(kelvinToCelsius(data.main.temp));
+						$(".weather-hum").text(data.main.humidity);
+						$(".weather-wind").text(data.wind.speed);
+						$(".weather-wind-dir").text(degToDir(data.wind.deg));
+						$(".weather-sunrise").text(sunrise);
+						$(".weather-sunset").text(sunset);
 						setWeatherGlyph(data.weather[0].main);
+						$(".weather-content").show("slow");
 						return true;
 					}
 				}
@@ -680,9 +599,12 @@ $(function() {
 	function setWeatherGlyph(w) {
 		switch(w) {
 			case 'Clouds':
-				$("#weather-gly").removeClass();
-				$("#weather-gly").addClass("wi wi-cloudy");
+				$("#weather-main").removeClass();
+				$("#weather-main").addClass("wi wi-cloudy");
 				break;
+			case 'Rain':
+				$("#weather-main").removeClass();
+				$("#weather-main").addClass("wi wi-rain");
 			default:
 		}
 	}
@@ -699,59 +621,57 @@ $(function() {
 	function degToDir(d) {
 		// On s'assure du fait que le paramètre est bien en degrée.
 		d %= 360;
+		console.log(d);
 		var direction = "";
-		var diwi = "";
-		if(		 d >= 348.75 || d < 11.25) {
-			diwi = "wi wi-wind-default _0-deg";
+		if(		 d >= 348.75 && d < 11.25) {
 			direction = 'Nord';
-		}else if(d >= 11.25  || d < 33.75) {
-			diwi = "wi wi-wind-default _30-deg";
+		}else if(d >= 11.25  && d < 33.75) {
 			direction = 'Nord-Nord-Est';
-		}else if(d >= 33.75  || d < 56.25) {
-			diwi = "wi wi-wind-default _45-deg";
+		}else if(d >= 33.75  && d < 56.25) {
 			direction = 'Nord-Est';
-		}else if(d >= 56.25  || d < 78.75) {
-			diwi = "wi wi-wind-default _60-deg";
+		}else if(d >= 56.25  && d < 78.75) {
 			direction = 'Est-Nord-Est';
-		}else if(d >= 78.75  || d < 101.25) {
-			diwi = "wi wi-wind-default _90-deg";
+		}else if(d >= 78.75  && d < 101.25) {
 			direction = 'Est';
-		}else if(d >= 101.25 || d < 123.75) {
-			diwi = "wi wi-wind-default _120-deg";
+		}else if(d >= 101.25 && d < 123.75) {
 			direction = 'Est-Sud-Est';
-		}else if(d >= 123.75 || d < 146.25) {
-			diwi = "wi wi-wind-default _135-deg";
+		}else if(d >= 123.75 && d < 146.25) {
 			direction = 'Sud-Est';
-		}else if(d >= 146.25 || d < 168.75) {
-			diwi = "wi wi-wind-default _150-deg";
+		}else if(d >= 146.25 && d < 168.75) {
 			direction = 'Sud-Sud-Est';
-		}else if(d >= 168.75 || d < 191.25) {
-			diwi = "wi wi-wind-default _180-deg";
+		}else if(d >= 168.75 && d < 191.25) {
 			direction = 'Sud';
-		}else if(d >= 191.25 || d < 213.75) {
-			diwi = "wi wi-wind-default _195-deg";
+		}else if(d >= 191.25 && d < 213.75) {
 			direction = 'Sud-Sud-Ouest';
-		}else if(d >= 213.75 || d < 236.25) {
-			diwi = "wi wi-wind-default _225-deg";
+		}else if(d >= 213.75 && d < 236.25) {
 			direction = 'Sud-Ouest';
-		}else if(d >= 236.25 || d < 258.75) {
-			diwi = "wi wi-wind-default _240-deg";
+		}else if(d >= 236.25 && d < 258.75) {
 			direction = 'Ouest-Sud-Ouest';
-		}else if(d >= 258.75 || d < 281.25) {
-			diwi = "wi wi-wind-default _270-deg";
+		}else if(d >= 258.75 && d < 281.25) {
 			direction = 'Ouest';
-		}else if(d >= 281.25 || d < 303.75) {
-			diwi = "wi wi-wind-default _300-deg";
+		}else if(d >= 281.25 && d < 303.75) {
 			direction = 'Ouest-Nord-Ouest';
-		}else if(d >= 303.75 || d < 326.25) {
-			diwi = "wi wi-wind-default _315-deg";
+		}else if(d >= 303.75 && d < 326.25) {
 			direction = 'Nord-Ouest';
-		}else if(d >= 326.25 || d < 348.75) {
-			diwi = "wi wi-wind-default _345-deg";
+		}else if(d >= 326.25 && d < 348.75) {
 			direction = 'Nord-Nord-Ouest';
 		}
 		$("#weather-wind-direction").removeClass();
-		$("#weather-wind-direction").addClass(diwi);
+		$("#weather-wind-direction").addClass("wi wi-wind-default _0-deg");
+		rotate(d);
 		return direction;
 	}
+
+	function rotate(degrees) {
+		console.log(degrees);
+		$("#weather-wind-direction").css(
+			{
+				'-webkit-transform': 'rotate('+ degrees +'deg)',
+				'-moz-transform': 'rotate('+ degrees +'deg)',
+				'-ms-transform': 'rotate('+ degrees +'deg)',
+				'transform': 'rotate('+ degrees +'deg)'
+			}
+		);
+		return $(this);
+	};
 });

@@ -55,6 +55,8 @@ span.bee{
 
 	span.weather-content {
 		float: right;
+		display: none;
+		overflow: hidden;
 	}
 }
 
@@ -103,7 +105,7 @@ h1.bee {
 
 .list-group-item {
 	background-color: inherit;
-	border: 0px;
+	border-color: $beeBlack;
 }
 
 .table {

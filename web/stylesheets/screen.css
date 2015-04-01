@@ -113,86 +113,88 @@ span.bee {
 /* line 56, ../sass/screen.scss */
 .navbar span.weather-content {
   float: right;
+  display: none;
+  overflow: hidden;
 }
 
-/* line 61, ../sass/screen.scss */
+/* line 63, ../sass/screen.scss */
 #content {
   width: 90%;
   margin: 0px auto 10px;
   padding: 0px 10px;
 }
 
-/* line 67, ../sass/screen.scss */
+/* line 69, ../sass/screen.scss */
 h1 {
   font-family: "Segoe UI Light", Arial;
   font-size: 18pt;
 }
 
-/* line 72, ../sass/screen.scss */
+/* line 74, ../sass/screen.scss */
 h1.bee {
   font-size: 72pt;
   text-align: center;
   color: #4183d7;
 }
 
-/* line 78, ../sass/screen.scss */
+/* line 80, ../sass/screen.scss */
 .clear {
   clear: both;
 }
 
-/* line 82, ../sass/screen.scss */
+/* line 84, ../sass/screen.scss */
 .progress {
   border-radius: 0px;
 }
 
-/* line 86, ../sass/screen.scss */
+/* line 88, ../sass/screen.scss */
 .progress-bar {
   background-color: #4183d7;
 }
 
-/* line 90, ../sass/screen.scss */
+/* line 92, ../sass/screen.scss */
 .btn-info {
   background-color: #4183d7;
   border-color: #4183d7;
 }
 
-/* line 95, ../sass/screen.scss */
+/* line 97, ../sass/screen.scss */
 .btn:hover {
   background-color: #aea8d3;
   color: black;
 }
 
-/* line 100, ../sass/screen.scss */
+/* line 102, ../sass/screen.scss */
 .list-group {
   border-radius: 0px;
 }
 
-/* line 104, ../sass/screen.scss */
+/* line 106, ../sass/screen.scss */
 .list-group-item {
   background-color: inherit;
-  border: 0px;
+  border-color: #141414;
 }
 
-/* line 109, ../sass/screen.scss */
+/* line 111, ../sass/screen.scss */
 .table {
   background-color: inherit;
   border: solid #f5ab35 0px;
 }
-/* line 113, ../sass/screen.scss */
+/* line 115, ../sass/screen.scss */
 .table th {
   text-align: center;
 }
-/* line 118, ../sass/screen.scss */
+/* line 120, ../sass/screen.scss */
 .table tbody tr, .table tbody td {
   background-color: #f5ab35;
 }
 
-/* line 124, ../sass/screen.scss */
+/* line 126, ../sass/screen.scss */
 .form-control, .input-group-addon {
   border-radius: 0px;
 }
 
-/* line 128, ../sass/screen.scss */
+/* line 130, ../sass/screen.scss */
 footer {
   font-size: 10pt;
   color: white;
@@ -203,30 +205,30 @@ footer {
 /*===============================
 =            Bouton            =
 ===============================*/
-/* line 142, ../sass/screen.scss */
+/* line 144, ../sass/screen.scss */
 .btn {
   border-radius: 0px;
   border: 0px;
 }
 
-/* line 147, ../sass/screen.scss */
+/* line 149, ../sass/screen.scss */
 .btn.active, .btn-info.active {
   background-color: #aea8d3;
   color: black;
 }
 
-/* line 152, ../sass/screen.scss */
+/* line 154, ../sass/screen.scss */
 .btn-default {
   background-color: #fff;
 }
 
-/* line 156, ../sass/screen.scss */
+/* line 158, ../sass/screen.scss */
 .btn-warning {
   color: black;
   background-color: #f5ab35;
 }
 
-/* line 161, ../sass/screen.scss */
+/* line 163, ../sass/screen.scss */
 .dropdown-menu {
   border-radius: 0px;
   background-color: #95bae9;
@@ -237,7 +239,7 @@ footer {
 /*==================================
 =            Home index            =
 ==================================*/
-/* line 173, ../sass/screen.scss */
+/* line 175, ../sass/screen.scss */
 section.home-container {
   padding: 15px;
   background-color: #f9bd3b;
@@ -248,7 +250,7 @@ section.home-container {
 /*=================================
 =            MapBundle            =
 =================================*/
-/* line 185, ../sass/screen.scss */
+/* line 187, ../sass/screen.scss */
 .map {
   width: 100%;
   height: 100%;
@@ -256,34 +258,34 @@ section.home-container {
   background-color: #f9bd3b;
   padding: 15px;
 }
-/* line 192, ../sass/screen.scss */
+/* line 194, ../sass/screen.scss */
 .map h1 {
   text-align: center;
 }
-/* line 196, ../sass/screen.scss */
+/* line 198, ../sass/screen.scss */
 .map .map-container {
   float: left;
   width: 50%;
   background-color: #f9bd3b;
 }
-/* line 201, ../sass/screen.scss */
+/* line 203, ../sass/screen.scss */
 .map .map-container #map {
   position: relative;
   min-height: 400px;
   width: 100%;
 }
-/* line 208, ../sass/screen.scss */
+/* line 210, ../sass/screen.scss */
 .map .map-command {
   float: right;
   padding: 15px;
   display: inline-block;
   width: 50%;
 }
-/* line 214, ../sass/screen.scss */
+/* line 216, ../sass/screen.scss */
 .map .map-command div {
   margin-bottom: 15px;
 }
-/* line 218, ../sass/screen.scss */
+/* line 220, ../sass/screen.scss */
 .map .map-command .inAction {
   text-align: center;
   max-width: 300px;
@@ -292,20 +294,20 @@ section.home-container {
   padding: 15px;
   color: #f9bd3b;
 }
-/* line 226, ../sass/screen.scss */
+/* line 228, ../sass/screen.scss */
 .map .map-command .inAction h2 {
   font-size: 18pt;
   margin-bottom: 10px;
 }
-/* line 231, ../sass/screen.scss */
+/* line 233, ../sass/screen.scss */
 .map .map-command .inAction #inAction {
   font-style: italic;
 }
-/* line 236, ../sass/screen.scss */
+/* line 238, ../sass/screen.scss */
 .map .map-command #interestPoint {
   min-width: 150px;
 }
-/* line 240, ../sass/screen.scss */
+/* line 242, ../sass/screen.scss */
 .map .map-command #actionTaken {
   display: none;
 }
@@ -314,12 +316,12 @@ section.home-container {
 /*==============================
 =            Profil            =
 ==============================*/
-/* line 252, ../sass/screen.scss */
+/* line 254, ../sass/screen.scss */
 .user_show {
   background-color: #f9bd3b;
   font-size: 20pt;
 }
-/* line 256, ../sass/screen.scss */
+/* line 258, ../sass/screen.scss */
 .user_show h1 {
   position: relative;
   display: inline;
@@ -333,48 +335,48 @@ section.home-container {
   padding: 0px 15px;
   color: white;
 }
-/* line 273, ../sass/screen.scss */
+/* line 275, ../sass/screen.scss */
 .user_show .profile-picture {
   width: 100%;
   height: auto;
   max-height: 350px;
   overflow: hidden;
 }
-/* line 279, ../sass/screen.scss */
+/* line 281, ../sass/screen.scss */
 .user_show .profile-picture img {
   width: 100%;
   height: auto;
   vertical-align: middle;
 }
-/* line 286, ../sass/screen.scss */
+/* line 288, ../sass/screen.scss */
 .user_show div.profile-access {
   float: right;
 }
-/* line 290, ../sass/screen.scss */
+/* line 292, ../sass/screen.scss */
 .user_show div.profile-about {
   margin: auto;
   width: 400px;
   background-color: #f5ab35;
   padding: 15px;
 }
-/* line 296, ../sass/screen.scss */
+/* line 298, ../sass/screen.scss */
 .user_show div.profile-about h3 {
   text-align: center;
   font-size: 28pt;
   margin-bottom: 15px;
 }
-/* line 303, ../sass/screen.scss */
+/* line 305, ../sass/screen.scss */
 .user_show p.profile-drone {
   text-align: center;
 }
-/* line 305, ../sass/screen.scss */
+/* line 307, ../sass/screen.scss */
 .user_show p.profile-drone span.profile-drone {
   font-style: italic;
   color: #141414;
   font-size: 28pt;
 }
 
-/* line 313, ../sass/screen.scss */
+/* line 315, ../sass/screen.scss */
 .form-login {
   padding: 15px;
   margin: 15px auto;
