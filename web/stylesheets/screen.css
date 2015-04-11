@@ -101,100 +101,108 @@ span.bee {
   line-height: 50px;
   border-radius: 0px;
   color: white;
+  font-size: 12pt;
 }
-/* line 48, ../sass/screen.scss */
+/* line 49, ../sass/screen.scss */
 .navbar a {
   color: white;
 }
-/* line 52, ../sass/screen.scss */
+/* line 53, ../sass/screen.scss */
 .navbar div.message-flash {
   float: right;
 }
-/* line 56, ../sass/screen.scss */
+/* line 57, ../sass/screen.scss */
 .navbar span.weather-content {
   float: right;
   display: none;
   overflow: hidden;
 }
 
-/* line 63, ../sass/screen.scss */
+/* line 64, ../sass/screen.scss */
 #content {
   width: 90%;
   margin: 0px auto 10px;
   padding: 0px 10px;
 }
 
-/* line 69, ../sass/screen.scss */
+/* line 70, ../sass/screen.scss */
 h1 {
   font-family: "Segoe UI Light", Arial;
   font-size: 18pt;
 }
 
-/* line 74, ../sass/screen.scss */
+/* line 75, ../sass/screen.scss */
 h1.bee {
   font-size: 72pt;
   text-align: center;
   color: #4183d7;
 }
 
-/* line 80, ../sass/screen.scss */
+/* line 81, ../sass/screen.scss */
+h3 {
+  text-align: center;
+  font-size: 28pt;
+  margin-bottom: 15px;
+}
+
+/* line 87, ../sass/screen.scss */
 .clear {
   clear: both;
 }
 
-/* line 84, ../sass/screen.scss */
+/* line 91, ../sass/screen.scss */
 .progress {
   border-radius: 0px;
 }
 
-/* line 88, ../sass/screen.scss */
+/* line 95, ../sass/screen.scss */
 .progress-bar {
   background-color: #4183d7;
 }
 
-/* line 92, ../sass/screen.scss */
+/* line 99, ../sass/screen.scss */
 .btn-info {
   background-color: #4183d7;
   border-color: #4183d7;
 }
 
-/* line 97, ../sass/screen.scss */
+/* line 104, ../sass/screen.scss */
 .btn:hover {
   background-color: #aea8d3;
   color: black;
 }
 
-/* line 102, ../sass/screen.scss */
+/* line 109, ../sass/screen.scss */
 .list-group {
   border-radius: 0px;
 }
 
-/* line 106, ../sass/screen.scss */
+/* line 113, ../sass/screen.scss */
 .list-group-item {
   background-color: inherit;
   border-color: #141414;
 }
 
-/* line 111, ../sass/screen.scss */
+/* line 118, ../sass/screen.scss */
 .table {
   background-color: inherit;
   border: solid #f5ab35 0px;
 }
-/* line 115, ../sass/screen.scss */
+/* line 122, ../sass/screen.scss */
 .table th {
   text-align: center;
 }
-/* line 120, ../sass/screen.scss */
+/* line 127, ../sass/screen.scss */
 .table tbody tr, .table tbody td {
   background-color: #f5ab35;
 }
 
-/* line 126, ../sass/screen.scss */
+/* line 133, ../sass/screen.scss */
 .form-control, .input-group-addon {
   border-radius: 0px;
 }
 
-/* line 130, ../sass/screen.scss */
+/* line 137, ../sass/screen.scss */
 footer {
   font-size: 10pt;
   color: white;
@@ -205,30 +213,30 @@ footer {
 /*===============================
 =            Bouton            =
 ===============================*/
-/* line 144, ../sass/screen.scss */
+/* line 151, ../sass/screen.scss */
 .btn {
   border-radius: 0px;
   border: 0px;
 }
 
-/* line 149, ../sass/screen.scss */
+/* line 156, ../sass/screen.scss */
 .btn.active, .btn-info.active {
   background-color: #aea8d3;
   color: black;
 }
 
-/* line 154, ../sass/screen.scss */
+/* line 161, ../sass/screen.scss */
 .btn-default {
   background-color: #fff;
 }
 
-/* line 158, ../sass/screen.scss */
+/* line 165, ../sass/screen.scss */
 .btn-warning {
   color: black;
   background-color: #f5ab35;
 }
 
-/* line 163, ../sass/screen.scss */
+/* line 170, ../sass/screen.scss */
 .dropdown-menu {
   border-radius: 0px;
   background-color: #95bae9;
@@ -239,18 +247,44 @@ footer {
 /*==================================
 =            Home index            =
 ==================================*/
-/* line 175, ../sass/screen.scss */
+/* line 182, ../sass/screen.scss */
 section.home-container {
   padding: 15px;
   background-color: #f9bd3b;
   border-radius: 0px;
+  text-align: justify;
+  max-width: 700px;
+  margin: auto;
+}
+/* line 190, ../sass/screen.scss */
+section.home-container p {
+  padding: 5px;
+}
+/* line 194, ../sass/screen.scss */
+section.home-container img {
+  width: 400px;
+  height: auto;
+}
+/* line 199, ../sass/screen.scss */
+section.home-container img.right {
+  float: right;
+  margin-left: 15px;
+}
+/* line 204, ../sass/screen.scss */
+section.home-container img.left {
+  float: left;
+  margin-right: 15px;
+}
+/* line 209, ../sass/screen.scss */
+section.home-container .btn {
+  width: 100%;
 }
 
 /*-----  Fin de Home index  ------*/
 /*=================================
 =            MapBundle            =
 =================================*/
-/* line 187, ../sass/screen.scss */
+/* line 220, ../sass/screen.scss */
 .map {
   width: 100%;
   height: 100%;
@@ -258,34 +292,34 @@ section.home-container {
   background-color: #f9bd3b;
   padding: 15px;
 }
-/* line 194, ../sass/screen.scss */
+/* line 227, ../sass/screen.scss */
 .map h1 {
   text-align: center;
 }
-/* line 198, ../sass/screen.scss */
+/* line 231, ../sass/screen.scss */
 .map .map-container {
   float: left;
   width: 50%;
   background-color: #f9bd3b;
 }
-/* line 203, ../sass/screen.scss */
+/* line 236, ../sass/screen.scss */
 .map .map-container #map {
   position: relative;
   min-height: 400px;
   width: 100%;
 }
-/* line 210, ../sass/screen.scss */
+/* line 243, ../sass/screen.scss */
 .map .map-command {
   float: right;
   padding: 15px;
   display: inline-block;
   width: 50%;
 }
-/* line 216, ../sass/screen.scss */
+/* line 249, ../sass/screen.scss */
 .map .map-command div {
   margin-bottom: 15px;
 }
-/* line 220, ../sass/screen.scss */
+/* line 253, ../sass/screen.scss */
 .map .map-command .inAction {
   text-align: center;
   max-width: 300px;
@@ -294,20 +328,20 @@ section.home-container {
   padding: 15px;
   color: #f9bd3b;
 }
-/* line 228, ../sass/screen.scss */
+/* line 261, ../sass/screen.scss */
 .map .map-command .inAction h2 {
   font-size: 18pt;
   margin-bottom: 10px;
 }
-/* line 233, ../sass/screen.scss */
+/* line 266, ../sass/screen.scss */
 .map .map-command .inAction #inAction {
   font-style: italic;
 }
-/* line 238, ../sass/screen.scss */
+/* line 271, ../sass/screen.scss */
 .map .map-command #interestPoint {
   min-width: 150px;
 }
-/* line 242, ../sass/screen.scss */
+/* line 275, ../sass/screen.scss */
 .map .map-command #actionTaken {
   display: none;
 }
@@ -316,12 +350,12 @@ section.home-container {
 /*==============================
 =            Profil            =
 ==============================*/
-/* line 254, ../sass/screen.scss */
+/* line 287, ../sass/screen.scss */
 .user_show {
   background-color: #f9bd3b;
   font-size: 20pt;
 }
-/* line 258, ../sass/screen.scss */
+/* line 291, ../sass/screen.scss */
 .user_show h1 {
   position: relative;
   display: inline;
@@ -335,48 +369,42 @@ section.home-container {
   padding: 0px 15px;
   color: white;
 }
-/* line 275, ../sass/screen.scss */
+/* line 308, ../sass/screen.scss */
 .user_show .profile-picture {
   width: 100%;
   height: auto;
   max-height: 350px;
   overflow: hidden;
 }
-/* line 281, ../sass/screen.scss */
+/* line 314, ../sass/screen.scss */
 .user_show .profile-picture img {
   width: 100%;
   height: auto;
   vertical-align: middle;
 }
-/* line 288, ../sass/screen.scss */
+/* line 321, ../sass/screen.scss */
 .user_show div.profile-access {
   float: right;
 }
-/* line 292, ../sass/screen.scss */
+/* line 325, ../sass/screen.scss */
 .user_show div.profile-about {
   margin: auto;
   width: 400px;
   background-color: #f5ab35;
   padding: 15px;
 }
-/* line 298, ../sass/screen.scss */
-.user_show div.profile-about h3 {
-  text-align: center;
-  font-size: 28pt;
-  margin-bottom: 15px;
-}
-/* line 305, ../sass/screen.scss */
+/* line 332, ../sass/screen.scss */
 .user_show p.profile-drone {
   text-align: center;
 }
-/* line 307, ../sass/screen.scss */
+/* line 334, ../sass/screen.scss */
 .user_show p.profile-drone span.profile-drone {
   font-style: italic;
   color: #141414;
   font-size: 28pt;
 }
 
-/* line 315, ../sass/screen.scss */
+/* line 342, ../sass/screen.scss */
 .form-login {
   padding: 15px;
   margin: 15px auto;

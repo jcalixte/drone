@@ -621,7 +621,6 @@ $(function() {
 	function degToDir(d) {
 		// On s'assure du fait que le paramètre est bien en degrée.
 		d %= 360;
-		console.log(d);
 		var direction = "";
 		if(		 d >= 348.75 && d < 11.25) {
 			direction = 'Nord';
