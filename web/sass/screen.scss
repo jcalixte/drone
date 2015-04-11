@@ -23,6 +23,13 @@ $beeYellow: #f5ab35;
 $beeBlack: #141414;
 $royalBlue: #4183d7;
 
+/* Couleur des points d'intérêt */
+
+$pointPhoto: #4647cb;
+$pointVideo: #f5ab35;
+$pointSound: #f54735;
+$pointDefault: #ffffff;
+
 /*----- Fin des constantes  ------*/
 
 body {
@@ -62,9 +69,9 @@ span.bee {
 }
 
 #content {
-	width: 90%;
+	display: absolute;
+	top: 0px; right: 0px; left: 0px;
 	margin: 0px auto 10px;
-	padding: 0px 10px;
 }
 
 h1 {
@@ -246,7 +253,7 @@ section.home-container {
 		display: inline-block;
 		width: 50%;
 
-		div {
+		div.command-content {
 			margin-bottom: 15px;
 		}
 
@@ -270,6 +277,44 @@ section.home-container {
 
 		#interestPoint {
 			min-width: 150px;
+		}
+
+		.legend-content {
+			margin-bottom: 0px;
+
+			.legend {
+				width: 100px;
+				height: 30px;
+				line-height: 30px;
+				float: left;
+				margin-bottom: 0px;
+				font-weight: bold;
+				font-style: italic;
+
+				div.legend-action {
+					float: left;
+					width: 30px;
+					height: 30px;
+					border: solid 2px black;
+					border-radius: 15px;
+				}
+			}
+
+			.point-photo {
+				background-color: $pointPhoto;
+			}
+
+			.point-video {
+				background-color: $pointVideo;
+			}
+
+			.point-sound {
+				background-color: $pointSound;
+			}
+
+			.point-default {
+				background-color: $pointDefault;
+			}
 		}
 
 		#actionTaken {

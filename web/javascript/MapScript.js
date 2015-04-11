@@ -219,7 +219,7 @@ $(function() {
 		});
 
 		interestPointEntities.forEach(function(e) {
-			addCircle(0.000001, e.location);
+			addCircle(0.000001, e.location, e.action);
 			path[path.length] = e;
 		});
 
@@ -328,13 +328,13 @@ $(function() {
 			path[path.length] = {
 				location: loc,
 				action: $("#actionTaken").text(),
-				shape: addCircle(0.000001, loc),
+				shape: addCircle(0.000001, loc, $("#actionTaken").text()),
 				id: 0,
 			};
 		}
 	}
 
-	function addCircle(radius, location) {
+	function addCircle(radius, location, action) {
 		var backgroundColor = new Microsoft.Maps.Color(10, 100, 0, 0);
 		var borderColor     = new Microsoft.Maps.Color(150, 200, 0, 0);
 		//var R               = 6371; // Rayon de la terre en kilomètres
@@ -364,22 +364,104 @@ $(function() {
 		var polygon = new Microsoft.Maps.Polygon(circlePoints.slice());
 		circlePoints.length = 0;
 
-		polygon.setOptions({
-			fillColor: {
-				a: 150,
-				r: 255,
-				g: 255,
-				b: 255
-			},
-			strokeColor: {
-				a: 200,
-				r: 20,
-				g: 20,
-				b: 20
-			},
-			infobox: "point",
-			visible: true,
-		});
+		var options;
+		switch(action) {
+			case 'photo':
+				options = {
+					// #4647cb
+					fillColor: {
+						a: 150,
+						r: 70,
+						g: 71,
+						b: 203
+					},
+					strokeColor: {
+						a: 200,
+						r: 20,
+						g: 20,
+						b: 20
+					},
+					infobox: "point",
+					visible: true,
+				}
+				break;
+			case 'sound':
+				options = {
+					// #f54735
+					fillColor: {
+						a: 150,
+						r: 245,
+						g: 71,
+						b: 53
+					},
+					strokeColor: {
+						a: 200,
+						r: 20,
+						g: 20,
+						b: 20
+					},
+					infobox: "point",
+					visible: true,
+				}
+				break;
+			case 'video':
+				options = {
+					// #f5ab35
+					fillColor: {
+						a: 150,
+						r: 245,
+						g: 171,
+						b: 53
+					},
+					strokeColor: {
+						a: 200,
+						r: 20,
+						g: 20,
+						b: 20
+					},
+					infobox: "point",
+					visible: true,
+				}
+				break;
+			case 'nothing':
+				options = {
+					// #ffffff;
+					fillColor: {
+						a: 150,
+						r: 255,
+						g: 255,
+						b: 255
+					},
+					strokeColor: {
+						a: 200,
+						r: 20,
+						g: 20,
+						b: 20
+					},
+					infobox: "point",
+					visible: true,
+				}
+				break;
+			default:
+				options = {
+					fillColor: {
+						a: 150,
+						r: 255,
+						g: 255,
+						b: 255
+					},
+					strokeColor: {
+						a: 200,
+						r: 20,
+						g: 20,
+						b: 20
+					},
+					infobox: "point",
+					visible: true,
+				}
+				break;
+		}
+		polygon.setOptions(options);
 
 		map.entities.push(polygon);
 		return polygon;
@@ -572,12 +654,12 @@ $(function() {
 					APPID: "c52c41cda0ea81049a945cbc5e878200",
 				},
 				success: function(data) {
-					console.log(data);
+					console.log(data.weather[0].main, data.weather[0].icon, data);
 					if(data.weather === undefined) {
 						return false;
 					}else{
 						var sunrise = new Date(data.sys.sunrise * 1000);
-						sunrise = sunrise.getHours() + ':' + sunrise.getMinutes();
+						sunrise = sunrise.getHours() + ':' + fillZero(sunrise.getMinutes());
 						var sunset = new Date(data.sys.sunset * 1000);
 						sunset = sunset.getHours() + ':' + sunset.getMinutes();
 						$(".weather-main").text(data.weather[0].description);
@@ -587,7 +669,7 @@ $(function() {
 						$(".weather-wind-dir").text(degToDir(data.wind.deg));
 						$(".weather-sunrise").text(sunrise);
 						$(".weather-sunset").text(sunset);
-						setWeatherGlyph(data.weather[0].main);
+						setWeatherGlyph(data.weather[0].main, data.weather[0].icon);
 						$(".weather-content").show("slow");
 						return true;
 					}
@@ -596,16 +678,57 @@ $(function() {
 		}
 	}
 
-	function setWeatherGlyph(w) {
-		switch(w) {
+	function setWeatherGlyph(weather, icon, id) {
+		$("#weather-main").removeClass();
+		/*
+		switch(weather) {
+			case 'Clear':
+				$("#weather-main").addClass("wi wi-day-sunny");
 			case 'Clouds':
-				$("#weather-main").removeClass();
 				$("#weather-main").addClass("wi wi-cloudy");
 				break;
 			case 'Rain':
-				$("#weather-main").removeClass();
 				$("#weather-main").addClass("wi wi-rain");
 			default:
+		}*/
+		if(typeof icon !== undefined) {
+			switch(icon) {
+				case '01d':
+					$("#weather-main").addClass("wi wi-day-sunny");
+					break;
+				case '02d':
+					$("#weather-main").addClass("wi wi-day-cloudy");
+					break;
+				case '03d':
+					$("#weather-main").addClass("wi wi-cloudy");
+					break;
+				case '04d':
+					$("#weather-main").addClass("wi wi-cloudy");
+					break;
+				case '09d':
+					$("#weather-main").addClass("wi wi-rain");
+					break;
+				case '10d':
+					$("#weather-main").addClass("wi wi-day-rain");
+					break;
+				case '11d':
+					$("#weather-main").addClass("wi wi-thunderstorm");
+					break;
+				case '13d':
+					$("#weather-main").addClass("wi wi-snow");
+					break;
+				case '50d':
+					$("#weather-main").addClass("wi wi-fog");
+					break;
+				default:
+			}
+		}
+
+		if(typeof id !== undefined) {
+			switch(id) {
+				default:
+				
+			}
 		}
 	}
 
@@ -616,6 +739,14 @@ $(function() {
 
 	function msToKmh(v) {
 		return Math.round(v*1000/3600);
+	}
+
+	function fillZero(number) {
+		if(number < 10){
+			return '0' + number;
+		}else {
+			return number;
+		}
 	}
 
 	function degToDir(d) {
@@ -656,13 +787,12 @@ $(function() {
 			direction = 'Nord-Nord-Ouest';
 		}
 		$("#weather-wind-direction").removeClass();
-		$("#weather-wind-direction").addClass("wi wi-wind-default _0-deg");
+		$("#weather-wind-direction").addClass("wi wi-up");
 		rotate(d);
 		return direction;
 	}
 
 	function rotate(degrees) {
-		console.log(degrees);
 		$("#weather-wind-direction").css(
 			{
 				'-webkit-transform': 'rotate('+ degrees +'deg)',
