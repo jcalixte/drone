@@ -726,8 +726,14 @@ $(function() {
 
 		if(typeof id !== undefined) {
 			switch(id) {
+				case 802:
+					break;
+				case 803:
+					break;
+				case 804:
+					break;
 				default:
-				
+
 			}
 		}
 	}
