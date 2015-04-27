@@ -2,6 +2,7 @@ var canvas, ctx;
 var WIDTH, HEIGHT;
 var points = [];
 var running;
+var iteration = 0;
 var canvasMinX, canvasMinY;
 var doPreciseMutate;
 
@@ -11,6 +12,7 @@ var CROSSOVER_PROBABILITY;
 var MUTATION_PROBABILITY;
 var OX_CROSSOVER_RATE;
 var UNCHANGED_GENS;
+var ITERATION_MAX;
 
 var mutationTimes;
 var dis;
@@ -22,13 +24,10 @@ var values;
 var fitnessValues;
 var roulette;
 
-var ITERATION = 100;
-var current_i = 0;
-
 $(function() {
 	init();
 	initData();
-	points = data200; // Modifier data200 par l'attribut path du drone.
+	points = data200;
 	$('#addRandom_btn').click(function() {
 		addRandomPoints(50);
 		$('#status').text("");
@@ -82,19 +81,19 @@ function initData() {
 	ELITE_RATE            = 0.3;
 	CROSSOVER_PROBABILITY = 0.9;
 	MUTATION_PROBABILITY  = 0.01;
-	//OX_CROSSOVER_RATE   = 0.05;
 	UNCHANGED_GENS        = 0;
+	ITERATION_MAX         = 100;
 	mutationTimes         = 0;
 	doPreciseMutate       = true;
-	
-	bestValue             = undefined;
-	best                  = [];
-	currentGeneration     = 0;
+
+	bestValue         = undefined;
+	best              = [];
+	currentGeneration = 0;
 	currentBest;
-	population            = []; //new Array(POPULATION_SIZE);
-	values                = new Array(POPULATION_SIZE);
-	fitnessValues         = new Array(POPULATION_SIZE);
-	roulette              = new Array(POPULATION_SIZE);
+	population        = []; //new Array(POPULATION_SIZE);
+	values            = new Array(POPULATION_SIZE);
+	fitnessValues     = new Array(POPULATION_SIZE);
+	roulette          = new Array(POPULATION_SIZE);
 }
 function addRandomPoints(number) {
 	running = false;
@@ -103,7 +102,7 @@ function addRandomPoints(number) {
 	}
 }
 function drawCircle(point) {
-	ctx.fillStyle   = '#000';
+	ctx.fillStyle = '#0f0';
 	ctx.beginPath();
 	ctx.arc(point.x, point.y, 3, 0, Math.PI*2, true);
 	ctx.closePath();
@@ -116,8 +115,7 @@ function drawLines(array) {
 
 	ctx.moveTo(points[array[0]].x, points[array[0]].y);
 	for(var i=1; i<array.length; i++) {
-		ctx.lineTo( points[array[i]].x, points[array[i]].y );
-		//console.log(points[array[i]]);
+		ctx.lineTo( points[array[i]].x, points[array[i]].y )
 	}
 	ctx.lineTo(points[array[0]].x, points[array[0]].y);
 
@@ -125,15 +123,19 @@ function drawLines(array) {
 	ctx.closePath();
 }
 function draw() {
-	if(running && current_i <= ITERATION) {
-		current_i++;
-		console.log(current_i);
-		GANextGeneration();
+	iteration++;
+	if(iteration >= ITERATION_MAX){
+		running = false;
 	}
-	$('#status').text("There are " + points.length + " cities in the map, "
-										+"the " + currentGeneration + "th generation with "
-										+ mutationTimes + " times of mutation. best value: "
-										+ ~~(bestValue));
+	if(running) {
+		GANextGeneration();
+		$('#status').text("There are " + points.length + " cities in the map, "
+											+"the " + currentGeneration + "th generation with "
+											+ mutationTimes + " times of mutation. best value: "
+											+ ~~(bestValue));
+	} else {
+		$('#status').text("There are " + points.length + " Cities in the map. ")
+	}
 	clearCanvas();
 	if (points.length > 0) {
 		for(var i=0; i<points.length; i++) {
@@ -147,14 +149,3 @@ function draw() {
 function clearCanvas() {
 	ctx.clearRect(0, 0, WIDTH, HEIGHT);
 }
-
-/*================================================
-=            Intégrer le TSP au drone            =
-==================================================
-
-- Ajouter un attribut path à chaque drone.
-- Répartir les points entre les différents drones disponibles.
-- Pour chaque chemin, réaliser le TSP et les
-
--------  End of Intégrer le TSP au drone  ------*/
-
