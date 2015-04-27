@@ -1,5 +1,5 @@
 var canvas, ctx;
-var WIDTH, HEIGHT;
+var WIDTH = 500, HEIGHT = 500;
 var points = [];
 var running;
 var canvasMinX, canvasMinY;
@@ -57,11 +57,11 @@ $(function() {
 	});
 });
 function init() {
-	ctx = $('#canvas')[0].getContext("2d");
-	WIDTH = $('#canvas').width();
-	HEIGHT = $('#canvas').height();
+	// ctx    = $('#canvas')[0].getContext("2d");
+	// WIDTH  = $('#canvas').width();
+	// HEIGHT = $('#canvas').height();
 	setInterval(draw, 10);
-	init_mouse();
+	// init_mouse();
 }
 function init_mouse() {
 	$("canvas").click(function(evt) {
@@ -102,7 +102,7 @@ function addRandomPoints(number) {
 		points.push(randomPoint());
 	}
 }
-function drawCircle(point) {
+/*function drawCircle(point) {
 	ctx.fillStyle   = '#000';
 	ctx.beginPath();
 	ctx.arc(point.x, point.y, 3, 0, Math.PI*2, true);
@@ -123,7 +123,7 @@ function drawLines(array) {
 
 	ctx.stroke();
 	ctx.closePath();
-}
+}*/
 function draw() {
 	if(running && current_i <= ITERATION) {
 		current_i++;
@@ -131,22 +131,22 @@ function draw() {
 		GANextGeneration();
 	}
 	$('#status').text("There are " + points.length + " cities in the map, "
-										+"the " + currentGeneration + "th generation with "
-										+ mutationTimes + " times of mutation. best value: "
-										+ ~~(bestValue));
-	clearCanvas();
-	if (points.length > 0) {
+						+ "the " + currentGeneration + "th generation with "
+						+ mutationTimes + " times of mutation. best value: "
+						+ ~~(bestValue));
+	// clearCanvas();
+	/*if (points.length > 0) {
 		for(var i=0; i<points.length; i++) {
 			drawCircle(points[i]);
 		}
 		if(best.length === points.length) {
 			drawLines(best);
 		}
-	}
+	}*/
 }
-function clearCanvas() {
+/*function clearCanvas() {
 	ctx.clearRect(0, 0, WIDTH, HEIGHT);
-}
+}*/
 
 /*================================================
 =            Intégrer le TSP au drone            =

@@ -19,7 +19,8 @@ $(function() {
 	var polyFields = [];
 
 	/*==========  Variable du drone  ==========*/
-	
+	var droneList = new Array();
+
 	var dronePin           = false;
 	var currentDroneAction = false;
 	var droneSpeedKmH      = 40;
