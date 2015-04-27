@@ -576,12 +576,13 @@ $(function() {
 
 	$('#submitInterestPoint').click(function() {
 		// On filtre les nouveaux points rajoutés
+		console.log("InterestPoint submiting");
 		if(path.length > 0) {
-			var i = 0, pathLen = pathSliced.length;
+			var i = 0, pathLen = path.length;
 			var onlyPathLocation = [];
 			for (; i < pathLen; i++) {
 				if(path[i].id == 0) {
-					onlyPathLocation[onlyPathLocation.length] = pathSliced[i];
+					onlyPathLocation[onlyPathLocation.length] = path[i];
 				}
 			};
 
@@ -597,6 +598,7 @@ $(function() {
 				points: onlyPathLocation,
 			}
 			ajaxCall('interestPointLocation', datas);
+			console.log("InterestPoint submited");
 		}
 	});
 
@@ -618,6 +620,7 @@ $(function() {
 				lon: dronePin.getLocation().longitude
 			} 
 		}else if(call == 'interestPointLocation') {
+			console.log("ajaxCall 1");
 			route = Routing.generate('drone_ajax_save_point_location');
 		}else if(call == "fieldLocation") {
 			route = Routing.generate('drone_ajax_save_field_location');
@@ -625,7 +628,10 @@ $(function() {
 				fieldCorners: fields,
 			};
 		}
+		console.log("ajaxCall 2");
 		if(route != false) {
+			console.log("ajaxCall 3");
+			console.log(route, datas);
 			$.ajax({
 				type: 'POST',
 				url: route,
@@ -635,15 +641,16 @@ $(function() {
 					toastr.success('Enregistrement réussi');
 				}
 			});
+			console.log("ajaxCall 4");
 		}
 	}
 
-	/*==========  Requête pour la météo  ==========*/
+	/*==========  Requête pour la ²téo  ==========*/
 
 	function getWeatherDrone(la, lo) {
 		if(typeof la === undefined || typeof lo == undefined) {
 			return false;
-		}else{
+		} else {
 			$.ajax({
 				type: 'get',
 				url: "http://api.openweathermap.org/data/2.5/weather",
