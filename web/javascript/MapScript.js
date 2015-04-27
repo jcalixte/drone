@@ -19,7 +19,8 @@ $(function() {
 	var polyFields = [];
 
 	/*==========  Variable du drone  ==========*/
-	
+	var droneList = new Array();
+
 	var dronePin           = false;
 	var currentDroneAction = false;
 	var droneSpeedKmH      = 40;
@@ -241,7 +242,7 @@ $(function() {
 		if(dronePin != false) {
 			getWeatherDrone(dronePin.getLocation().latitude, dronePin.getLocation().longitude);
 		}
-	}
+	};
 
 	/*==========  Fonctions  ==========*/
 
@@ -305,12 +306,12 @@ $(function() {
 					b: 255
 				},
 				infobox: "field",
-				visible: true,
+				visible: true
 			});
 			// Suppression des points
 			for (var i = 0; i < pinTable.length; i++) {
 				map.entities.remove(pinTable[i]);
-			};
+			}
 			map.entities.push(polygon);
 			// Remise à zéro du tableau de point.
 			pinTable.length = 0;
@@ -382,7 +383,7 @@ $(function() {
 						b: 20
 					},
 					infobox: "point",
-					visible: true,
+					visible: true
 				}
 				break;
 			case 'sound':
@@ -401,7 +402,7 @@ $(function() {
 						b: 20
 					},
 					infobox: "point",
-					visible: true,
+					visible: true
 				}
 				break;
 			case 'video':
@@ -420,7 +421,7 @@ $(function() {
 						b: 20
 					},
 					infobox: "point",
-					visible: true,
+					visible: true
 				}
 				break;
 			case 'nothing':
@@ -439,7 +440,7 @@ $(function() {
 						b: 20
 					},
 					infobox: "point",
-					visible: true,
+					visible: true
 				}
 				break;
 			default:
@@ -457,7 +458,7 @@ $(function() {
 						b: 20
 					},
 					infobox: "point",
-					visible: true,
+					visible: true
 				}
 				break;
 		}
@@ -625,7 +626,7 @@ $(function() {
 		}else if(call == "fieldLocation") {
 			route = Routing.generate('drone_ajax_save_field_location');
 			datas = {
-				fieldCorners: fields,
+				fieldCorners: fields
 			};
 		}
 		console.log("ajaxCall 2");
@@ -658,7 +659,7 @@ $(function() {
 					lat: la.toFixed(2),
 					lon: lo.toFixed(2),
 					lang: "fr",
-					APPID: "c52c41cda0ea81049a945cbc5e878200",
+					APPID: "c52c41cda0ea81049a945cbc5e878200"
 				},
 				success: function(data) {
 					console.log(data.weather[0].main, data.weather[0].icon, data);
@@ -716,7 +717,7 @@ $(function() {
 					$("#weather-main").addClass("wi wi-rain");
 					break;
 				case '10d':
-					$("#weather-main").addClass("wi wi-day-rain");
+					$('#weather-main').addClass("wi wi-day-rain");
 					break;
 				case '11d':
 					$("#weather-main").addClass("wi wi-thunderstorm");
