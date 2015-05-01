@@ -1,5 +1,6 @@
 /// <reference path="../../typings/jquery/jquery.d.ts"/>
 /* global Microsoft */
+/* global mapAction */
 /* global Routing */
 /* global toastr */
 $(function() {
@@ -26,9 +27,9 @@ $(function() {
 	var droneList = new Array();
 
 	var dronePin           = false;
-	var currentDroneAction = false;
+	// var currentDroneAction = false;
 	var droneSpeedKmH      = 40;
-	//var droneSpeedKmH    = 40*4;
+	// var droneSpeedKmH    = 40*4;
 	var droneSpeed         = msToKmh(droneSpeedKmH);
 	var iDrone             = 0;
 	var numberOfDrones   = 1;
@@ -169,7 +170,7 @@ $(function() {
 
 	$(document).on('fieldChoice', function() {
 		if($("#rectangleChoice").hasClass('active')) {
-			handleClick = Microsoft.Maps.Events.addHandler(map, 'click', function(e) {
+			var handleClick = Microsoft.Maps.Events.addHandler(map, 'click', function(e) {
 				if(e.targetType == "map") {
 					var point = new Microsoft.Maps.Point(e.getX(), e.getY());
 					var loc = e.target.tryPixelToLocation(point);
@@ -229,7 +230,6 @@ $(function() {
 		});
 
 		//Ajout de modules utilisés
-		var handleClick = false;
 		Microsoft.Maps.loadModule('Microsoft.Maps.Search', { callback: function() {
 				search_engine_loaded = true;
 				var query = queryAddress;
@@ -634,9 +634,8 @@ $(function() {
 				fieldCorners: fields
 			};
 		}
-		console.log("ajaxCall 2");
+		
 		if(route != false) {
-			console.log("ajaxCall 3");
 			console.log(route, datas);
 			$.ajax({
 				type: 'POST',
@@ -654,7 +653,7 @@ $(function() {
 	/*==========  Requête pour la ²téo  ==========*/
 
 	function getWeatherDrone(la, lo) {
-		if(typeof la === undefined || typeof lo == undefined) {
+		if(typeof la === undefined || typeof lo === undefined) {
 			return false;
 		} else {
 			$.ajax({
@@ -693,7 +692,6 @@ $(function() {
 
 	function setWeatherGlyph(weather, icon, id) {
 		$("#weather-main").removeClass();
-		/*
 		switch(weather) {
 			case 'Clear':
 				$("#weather-main").addClass("wi wi-day-sunny");
@@ -703,7 +701,7 @@ $(function() {
 			case 'Rain':
 				$("#weather-main").addClass("wi wi-rain");
 			default:
-		}*/
+		}
 		if(typeof icon !== undefined) {
 			switch(icon) {
 				case '01d':
