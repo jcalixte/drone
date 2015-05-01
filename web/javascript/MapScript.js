@@ -1,3 +1,7 @@
+/// <reference path="../../typings/jquery/jquery.d.ts"/>
+/* global Microsoft */
+/* global Routing */
+/* global toastr */
 $(function() {
 	var credentialsKey = "AkTr7IeJt5O4ZpWh9reo8wMmlcWN8purxjzGkLalDqeMICooYnrBJepl9dD7cmMt";
 	var mapOptions = {
@@ -27,7 +31,7 @@ $(function() {
 	//var droneSpeedKmH    = 40*4;
 	var droneSpeed         = msToKmh(droneSpeedKmH);
 	var iDrone             = 0;
-	const numberOfDrones   = 1;
+	var numberOfDrones   = 1;
 
 	var twigElements = false;
 
@@ -97,7 +101,7 @@ $(function() {
 					pointsInFields.push(e['location']);
 					shapePointLocation.push(e);
 				}
-			})
+			});
 		});
 		$.ajax({
 			type: 'POST',
@@ -336,17 +340,17 @@ $(function() {
 	}
 
 	function addCircle(radius, location, action) {
-		var backgroundColor = new Microsoft.Maps.Color(10, 100, 0, 0);
-		var borderColor     = new Microsoft.Maps.Color(150, 200, 0, 0);
+		// var backgroundColor = new Microsoft.Maps.Color(10, 100, 0, 0);
+		// var borderColor     = new Microsoft.Maps.Color(150, 200, 0, 0);
 		//var R               = 6371; // Rayon de la terre en kilomètres
 		var lat             = (location.latitude  * Math.PI) / 180;     
 		var lon             = (location.longitude * Math.PI) / 180;
 		var d               = parseFloat(radius);// / R;
 		var circlePoints    = [];
 
-		for (x = 0; x <= 360; x += 5) {
+		for (var x = 0; x <= 360; x += 5) {
 			var position = new Microsoft.Maps.Location(0, 0);
-			xRadian = x * Math.PI / 180;
+			var xRadian = x * Math.PI / 180;
 			position.latitude = Math.asin(Math.sin(lat)
 							  * Math.cos(d)
 							  + Math.cos(lat)
@@ -384,7 +388,7 @@ $(function() {
 					},
 					infobox: "point",
 					visible: true
-				}
+				};
 				break;
 			case 'sound':
 				options = {
@@ -403,7 +407,7 @@ $(function() {
 					},
 					infobox: "point",
 					visible: true
-				}
+				};
 				break;
 			case 'video':
 				options = {
@@ -422,7 +426,7 @@ $(function() {
 					},
 					infobox: "point",
 					visible: true
-				}
+				};
 				break;
 			case 'nothing':
 				options = {
@@ -441,7 +445,7 @@ $(function() {
 					},
 					infobox: "point",
 					visible: true
-				}
+				};
 				break;
 			default:
 				options = {
@@ -459,7 +463,7 @@ $(function() {
 					},
 					infobox: "point",
 					visible: true
-				}
+				};
 				break;
 		}
 		polygon.setOptions(options);
@@ -595,9 +599,10 @@ $(function() {
 				}
 			};*/
 
-			datas = {
+			var datas = {
 				points: onlyPathLocation,
-			}
+			};
+			
 			ajaxCall('interestPointLocation', datas);
 			console.log("InterestPoint submited");
 		}
