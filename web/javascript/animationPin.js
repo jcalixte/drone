@@ -61,7 +61,7 @@
 				}
 
 				return locations;
-			}
+			};
 		}
 		if(!proto.getNextDistance) {
 			proto.getNextDistance = function(that, nextLocation) {
@@ -82,7 +82,7 @@
 				var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
 				return Math.round(R * c);
-			}
+			};
 		}
 		if(!proto.doActionAndGo) {
 			proto.doActionAndGo = function(initLoc, locations, speed, that, endLoc) {
@@ -90,19 +90,19 @@
 					case 'photo':
 						$("#inAction").text('Taking a photo.');
 						setTimeout(function() {
-							proto.goNext(initLoc, locations, speed, that, endLoc)
+							proto.goNext(initLoc, locations, speed, that, endLoc);
 						}, 1000);
 						break;
 					case 'sound':
 						$("#inAction").text('Recording a sound.');
 						setTimeout(function() {
-							proto.goNext(initLoc, locations, speed, that, endLoc)
+							proto.goNext(initLoc, locations, speed, that, endLoc);
 						}, 2000);
 						break;
 					case 'video':
 						$("#inAction").text('Recording a video.');
 						setTimeout(function() {
-							proto.goNext(initLoc, locations, speed, that, endLoc)
+							proto.goNext(initLoc, locations, speed, that, endLoc);
 						}, 5000);
 						break;
 					case 'nothing':
@@ -113,13 +113,13 @@
 						$("#inAction").text('Par défaut');
 				}
 				return true;
-			}
+			};
 		}
 		if(!proto.goNext) {
 			proto.goNext = function(initLoc, locations, speed, that, endLoc) {
 				locations.shift();
 				proto.moveLocation(initLoc, locations, speed, that, endLoc);
-			}
+			};
 		}
 	})($m.Pushpin.prototype);
 })(Microsoft.Maps);
