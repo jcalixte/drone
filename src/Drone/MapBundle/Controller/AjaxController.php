@@ -107,8 +107,6 @@ class AjaxController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$userInterestPoints = $user->getPoints();
 
-		$this->deletePoints();
-
 		foreach ($interestPoints as $point) {
 			$pointEntity = new Point();
 			$pointEntity->setLatitude($point['location']['latitude']);

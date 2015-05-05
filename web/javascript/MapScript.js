@@ -2,6 +2,7 @@
 /* global Microsoft */
 /* global mapAction */
 /* global Routing */
+/* global TSP */
 /* global toastr */
 $(function() {
 	var credentialsKey = "AkTr7IeJt5O4ZpWh9reo8wMmlcWN8purxjzGkLalDqeMICooYnrBJepl9dD7cmMt";
@@ -89,81 +90,24 @@ $(function() {
 
 	$(".selectAction").click(function() {
 		$("#actionTaken").text($(this).attr('id'));
-	});
-
-	/*==========  Suppressions  ==========*/
-	$('#deleteFields').click(function() {
-		var pointsInFields = [];
-		var shapePointLocation  = [];
-
-		polyFields.forEach(function(p) {
-			path.forEach(function(e) {
-				if(isInPolygon(p, e['location'])) {
-					pointsInFields.push(e['location']);
-					shapePointLocation.push(e);
-				}
-			});
-		});
-		$.ajax({
-			type: 'POST',
-			url: Routing.generate('drone_ajax_delete_fields'),
-			data: {
-				points: pointsInFields,
-			},
-			success: function(data) {
-				console.log("succes !");
-				toastr.success('Enregistrement réussi');
-				polyFields.forEach(function(e) {
-					map.entities.remove(e);
-				});
-				shapePointLocation.forEach(function(e) {
-					var index = -1;
-					if(dronePin == false ||
-						(e.location.latitude != dronePin.latitude && e.location.longitude != dronePin.longitude)) {
-						index = path.indexOf(e);
-						map.entities.remove(path[index].shape);
-					}
-					if(index > -1) {
-						path.splice(index, 1);
-					}
-				});
-				polyFields.length = 0;
-			}
-		});
-	});
-
-	$('#deleteInterestPoints').click(function() {
-		toastr.info('Enregistrement réussi');
-		$.ajax({
-			type: 'POST',
-			url: Routing.generate('drone_ajax_delete_interest_points'),
-			//data: datas,
-			success: function(data) {
-				console.log("succes !");
-				toastr.success('Enregistrement réussi');
-				path.forEach(function(e) {
-					if(dronePin == false ||
-						(e.location.latitude != dronePin.latitude && e.location.longitude != dronePin.longitude)) {
-						map.entities.remove(e.shape);
-					}
-				});
-				path.length = 0;
-			}
-		});
-	});
-
-	$('#deleteDrones').click(function() {
-		$.ajax({
-			type: 'POST',
-			url: Routing.generate('drone_ajax_delete_drones'),
-			//data: datas,
-			success: function(data) {
-				console.log("succes !");
-				toastr.success('Enregistrement réussi');
-				map.entities.remove(dronePin);
-				dronePin = false;
-			}
-		});
+		color = "";
+		switch($(this).attr('id')) {
+			case 'photo':
+				color = "#4647cb";
+				break;
+			case 'sound':
+				color = "#f54735";
+				break;
+			case 'video':
+				color = "#f5ab35";
+				break;
+			case 'nothing':
+				color = "#ffffff";
+				break;
+		}
+		$("#interestPoint").css("border", "solid black 1pt");
+		$("#interestPoint").css("color", "black");
+		$("#interestPoint").css("background-color", color);
 	});
 
 	/*==========  Évènements  ==========*/
@@ -244,7 +188,7 @@ $(function() {
 		});
 
 		if(dronePin != false) {
-			getWeatherDrone(dronePin.getLocation().latitude, dronePin.getLocation().longitude);
+			// getWeatherDrone(dronePin.getLocation().latitude, dronePin.getLocation().longitude);
 		}
 	};
 
@@ -269,8 +213,7 @@ $(function() {
 		});
 	}
 
-	function searchError(searchRequest)
-	{
+	function searchError(searchRequest) {
 		alert("An error occurred.");
 	}
 
@@ -297,18 +240,8 @@ $(function() {
 			var polyShape = shape.slice();
 			var polygon = new Microsoft.Maps.Polygon(polyShape);
 			polygon.setOptions({
-				fillColor: {
-					a: 50,
-					r: 0,
-					g: 0,
-					b: 0
-				},
-				strokeColor: {
-					a: 200,
-					r: 255,
-					g: 255,
-					b: 255
-				},
+				fillColor: { a: 50, r: 0, g: 0, b: 0 },
+				strokeColor: { a: 200, r: 255, g: 255, b: 255 },
 				infobox: "field",
 				visible: true
 			});
@@ -369,103 +302,27 @@ $(function() {
 		var polygon = new Microsoft.Maps.Polygon(circlePoints.slice());
 		circlePoints.length = 0;
 
-		var options;
+		var fillColor = { a: 150, r: 255, g: 255, b: 255 };
 		switch(action) {
 			case 'photo':
-				options = {
-					// #4647cb
-					fillColor: {
-						a: 150,
-						r: 70,
-						g: 71,
-						b: 203
-					},
-					strokeColor: {
-						a: 200,
-						r: 20,
-						g: 20,
-						b: 20
-					},
-					infobox: "point",
-					visible: true
-				};
+				fillColor = { a: 150, r: 70, g: 71, b: 203 };
 				break;
 			case 'sound':
-				options = {
-					// #f54735
-					fillColor: {
-						a: 150,
-						r: 245,
-						g: 71,
-						b: 53
-					},
-					strokeColor: {
-						a: 200,
-						r: 20,
-						g: 20,
-						b: 20
-					},
-					infobox: "point",
-					visible: true
-				};
+				fillColor = { a: 150, r: 245, g: 71, b: 53 };
 				break;
 			case 'video':
-				options = {
-					// #f5ab35
-					fillColor: {
-						a: 150,
-						r: 245,
-						g: 171,
-						b: 53
-					},
-					strokeColor: {
-						a: 200,
-						r: 20,
-						g: 20,
-						b: 20
-					},
-					infobox: "point",
-					visible: true
-				};
+				fillColor = { a: 150, r: 245, g: 171, b: 53 };
 				break;
 			case 'nothing':
-				options = {
-					// #ffffff;
-					fillColor: {
-						a: 150,
-						r: 255,
-						g: 255,
-						b: 255
-					},
-					strokeColor: {
-						a: 200,
-						r: 20,
-						g: 20,
-						b: 20
-					},
-					infobox: "point",
-					visible: true
-				};
-				break;
-			default:
-				options = {
-					fillColor: {
-						a: 150,
-						r: 255,
-						g: 255,
-						b: 255
-					},
-					strokeColor: {
-						a: 200,
-						r: 20,
-						g: 20,
-						b: 20
-					},
-					infobox: "point",
-					visible: true
-				};
+				fillColor = { a: 150, r: 255, g: 255, b: 255 };
 				break;
 		}
+		var options = {
+			fillColor: fillColor,
+			strokeColor: { a: 200, r: 20,  g: 20, b: 20 },
+			infobox: "point",
+			visible: true
+		};
 		polygon.setOptions(options);
 
 		map.entities.push(polygon);
@@ -567,9 +424,53 @@ $(function() {
 					action: 'nothing',
 				};
 			};
+			pathSliced = getTSPPath(pathSliced);
+
 			$("#inAction").text('Flying');
 			dronePin.moveLocation(dronePin.getLocation(), pathSliced, droneSpeed);
 		}
+	}
+
+	function getTSPPath (path) {
+		var min_lat = 10000;
+		var min_lon = 10000;
+
+		path.forEach(function(e) {
+			if(e.location.latitude < min_lat) {
+				min_lat = e.location.latitude;
+			}
+			if(e.location.longitude < min_lon) {
+				min_lon = e.location.longitude;
+			}
+		});
+
+		// On ramène les coordonnées à des coordonnées relatives pour ne pas avoir de coordonnées négatives
+		var relativePath = [];
+		path.forEach(function(e) {
+			relativePath.push({
+				x: e.location.latitude  - min_lat,
+				y: e.location.longitude - min_lon,
+				action: e.action
+			});
+		});
+		var relativeBestPath = TSP(relativePath);
+		var bestPath = [];
+
+		relativeBestPath.forEach(function(e) {
+			bestPath.push({
+				location : {
+					latitude:  e.x + min_lat,
+					longitude: e.y + min_lon
+				},
+				action: e.action
+			});
+		});
+
+		return bestPath;
+	}
+
+	function turnPath(turn, firstToBe) {
+		
 	}
 
 	/*==========  Fonctions AJAX  ==========*/
@@ -581,13 +482,19 @@ $(function() {
 
 	$('#submitInterestPoint').click(function() {
 		// On filtre les nouveaux points rajoutés
-		console.log("InterestPoint submiting");
 		if(path.length > 0) {
 			var i = 0, pathLen = path.length;
 			var onlyPathLocation = [];
 			for (; i < pathLen; i++) {
 				if(path[i].id == 0) {
-					onlyPathLocation[onlyPathLocation.length] = path[i];
+					onlyPathLocation[onlyPathLocation.length] =
+					{
+						location: {
+							longitude: path[i].location.longitude,
+							latitude: path[i].location.latitude
+						},
+						action: path[i].action
+					};
 				}
 			};
 
@@ -602,9 +509,8 @@ $(function() {
 			var datas = {
 				points: onlyPathLocation,
 			};
-			
+
 			ajaxCall('interestPointLocation', datas);
-			console.log("InterestPoint submited");
 		}
 	});
 
@@ -612,6 +518,81 @@ $(function() {
 		if(fields.length > 0) {
 			ajaxCall('fieldLocation');
 		}
+	});
+
+	/*==========  Suppressions  ==========*/
+	$('#deleteFields').click(function() {
+		var pointsInFields = [];
+		var shapePointLocation  = [];
+
+		polyFields.forEach(function(p) {
+			path.forEach(function(e) {
+				if(isInPolygon(p, e['location'])) {
+					pointsInFields.push(e['location']);
+					shapePointLocation.push(e);
+				}
+			});
+		});
+		$.ajax({
+			type: 'POST',
+			url: Routing.generate('drone_ajax_delete_fields'),
+			data: {
+				points: pointsInFields,
+			},
+			success: function(data) {
+				console.log("succes !");
+				toastr.success('Enregistrement réussi');
+				polyFields.forEach(function(e) {
+					map.entities.remove(e);
+				});
+				shapePointLocation.forEach(function(e) {
+					var index = -1;
+					if(dronePin == false ||
+						(e.location.latitude != dronePin.latitude && e.location.longitude != dronePin.longitude)) {
+						index = path.indexOf(e);
+						map.entities.remove(path[index].shape);
+					}
+					if(index > -1) {
+						path.splice(index, 1);
+					}
+				});
+				polyFields.length = 0;
+			}
+		});
+	});
+
+	$('#deleteInterestPoints').click(function() {
+		toastr.info('Enregistrement réussi');
+		$.ajax({
+			type: 'POST',
+			url: Routing.generate('drone_ajax_delete_interest_points'),
+			//data: datas,
+			success: function(data) {
+				console.log("succes !");
+				toastr.success('Enregistrement réussi');
+				path.forEach(function(e) {
+					if(dronePin == false ||
+						(e.location.latitude != dronePin.latitude && e.location.longitude != dronePin.longitude)) {
+						map.entities.remove(e.shape);
+					}
+				});
+				path.length = 0;
+			}
+		});
+	});
+
+	$('#deleteDrones').click(function() {
+		$.ajax({
+			type: 'POST',
+			url: Routing.generate('drone_ajax_delete_drones'),
+			//data: datas,
+			success: function(data) {
+				console.log("succes !");
+				toastr.success('Enregistrement réussi');
+				map.entities.remove(dronePin);
+				dronePin = false;
+			}
+		});
 	});
 
 	function ajaxCall(call, datas) {
@@ -626,7 +607,6 @@ $(function() {
 				lon: dronePin.getLocation().longitude
 			} 
 		}else if(call == 'interestPointLocation') {
-			console.log("ajaxCall 1");
 			route = Routing.generate('drone_ajax_save_point_location');
 		}else if(call == "fieldLocation") {
 			route = Routing.generate('drone_ajax_save_field_location');
@@ -635,22 +615,20 @@ $(function() {
 			};
 		}
 		
-		if(route != false) {
-			console.log(route, datas);
+		if (route != false) {
 			$.ajax({
 				type: 'POST',
-				url: route,
+				url: route.toString(),
 				data: datas,
 				success: function(data) {
 					console.log("succes !");
 					toastr.success('Enregistrement réussi');
 				}
 			});
-			console.log("ajaxCall 4");
 		}
 	}
 
-	/*==========  Requête pour la ²téo  ==========*/
+	/*==========  Requête pour la Météo  ==========*/
 
 	function getWeatherDrone(la, lo) {
 		if(typeof la === undefined || typeof lo === undefined) {
@@ -666,7 +644,7 @@ $(function() {
 					APPID: "c52c41cda0ea81049a945cbc5e878200"
 				},
 				success: function(data) {
-					console.log(data.weather[0].main, data.weather[0].icon, data);
+					// console.log(data.weather[0].main, data.weather[0].icon);
 					if(data.weather === undefined) {
 						return false;
 					}else{
