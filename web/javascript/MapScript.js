@@ -381,16 +381,16 @@ $(function() {
 		var paths = polygon.getLocations();
 
 		for (var i = 0; i < paths.length ; i++) {
-		    j++;
-		    if (j == paths.length) { j = 0; }
-		    if ((paths[i].latitude < y && paths[j].latitude >= y) ||
-		    	(paths[j].latitude < y && paths[i].latitude >= y)) {
-		        if (paths[i].longitude
-		        	+ (y - paths[i].latitude) / (paths[j].latitude - paths[i].latitude)
-		        	* (paths[j].longitude - paths[i].longitude) < x) {
-		            isInside = !isInside;
-		        }
-		    }
+			j++;
+			if (j == paths.length) { j = 0; }
+			if ((paths[i].latitude < y && paths[j].latitude >= y) ||
+				(paths[j].latitude < y && paths[i].latitude >= y)) {
+				if (paths[i].longitude
+					+ (y - paths[i].latitude) / (paths[j].latitude - paths[i].latitude)
+					* (paths[j].longitude - paths[i].longitude) < x) {
+					isInside = !isInside;
+				}
+			}
 		}
 		return isInside;
 	}
@@ -426,16 +426,19 @@ $(function() {
 			};
 			pathSliced = getTSPPath(pathSliced);
 
+			var dronePosition1 = getDronePosition(pathSliced, dronePin.getLocation()) + 1;
+			pathSliced = shift(pathSliced, dronePosition1);
+
 			$("#inAction").text('Flying');
 			dronePin.moveLocation(dronePin.getLocation(), pathSliced, droneSpeed);
 		}
 	}
 
-	function getTSPPath (path) {
+	function getTSPPath (p) { // p pour path
 		var min_lat = 10000;
 		var min_lon = 10000;
 
-		path.forEach(function(e) {
+		p.forEach(function(e) {
 			if(e.location.latitude < min_lat) {
 				min_lat = e.location.latitude;
 			}
@@ -446,31 +449,45 @@ $(function() {
 
 		// On ramène les coordonnées à des coordonnées relatives pour ne pas avoir de coordonnées négatives
 		var relativePath = [];
-		path.forEach(function(e) {
+		// On multiplie par un coefficient pour avec une différence significative entre chaque chemin possible
+		var coeff = 10000000;
+		p.forEach(function(e) {
 			relativePath.push({
-				x: e.location.latitude  - min_lat,
-				y: e.location.longitude - min_lon,
-				action: e.action
+				x: (e.location.latitude  - min_lat) * coeff,
+				y: (e.location.longitude - min_lon) * coeff
 			});
 		});
 		var relativeBestPath = TSP(relativePath);
+		console.log("relativeBestPath");
+		console.log(relativeBestPath);
 		var bestPath = [];
-
-		relativeBestPath.forEach(function(e) {
-			bestPath.push({
-				location : {
-					latitude:  e.x + min_lat,
-					longitude: e.y + min_lon
-				},
-				action: e.action
-			});
-		});
+		for (var i = 0; i < relativeBestPath.length; i++) {
+			bestPath[bestPath.length] = p[relativeBestPath[i]];
+		};
 
 		return bestPath;
 	}
 
-	function turnPath(turn, firstToBe) {
-		
+	function shift(arr, k) {
+		k = k % arr.length;
+		while (k > 0) {
+			var tmp = arr[0];
+			for (var i = 1; i < arr.length; i++) {
+				arr[i - 1] = arr[i];
+			}
+			arr[arr.length - 1] = tmp;
+			k--;
+		}
+		return arr;
+	}
+
+	function getDronePosition(array, location) {
+		for(var i = 0; i < array.length; i++) {
+			if(array[i].location == location){
+				return i;
+			}
+		}
+		return false;
 	}
 
 	/*==========  Fonctions AJAX  ==========*/

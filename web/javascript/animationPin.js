@@ -10,7 +10,8 @@
 				if(startLoc === undefined) {
 					startLoc = this.getLocation();
 				}
-				var locations    = proto.nearestLocation(that, initLoc, locs);
+				// var locations    = proto.nearestLocation(that, initLoc, locs);
+				var locations    = locs;
 				var endLoc       = locations[0]['location'], startTime = new Date();
 				var nextDistance = proto.getNextDistance(that, endLoc);
 				var finalTime    = Math.round(nextDistance / speed) * 1000; // t = d/v en millisecondes
@@ -103,7 +104,7 @@
 						$("#inAction").text('Recording a video.');
 						setTimeout(function() {
 							proto.goNext(initLoc, locations, speed, that, endLoc);
-						}, 5000);
+						}, 3000);
 						break;
 					case 'nothing':
 						$("#inAction").text('Nothing');
@@ -120,6 +121,18 @@
 				locations.shift();
 				proto.moveLocation(initLoc, locations, speed, that, endLoc);
 			};
+		}
+		if(!proto.shiftPath) {
+			proto.shiftPath = function(arr, k) {
+			    k = k % arr.length;
+			    while (k-- > 0) {
+			        var tmp = arr[0];
+			        for (var i = 1; i < arr.length; i++) {
+			            arr[i - 1] = arr[i];
+			        }
+			        arr[arr.length - 1] = tmp;
+			    }
+			}
 		}
 	})($m.Pushpin.prototype);
 })(Microsoft.Maps);

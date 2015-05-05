@@ -52,22 +52,11 @@ $(function() {
 		//init(); Inutile sans canvas.
 		initData(path.length);
 		points = path;
-		ITERATION = points.length + 1;
+		ITERATION = Math.max(3 * points.length + 1, 100);
 		if(points.length >= 3) {
-			// initData();
 			GAInitialize();
 			running = true;
 			TSP_Path = draw();
-
-			var bestPath = [];
-
-			for(var i = 1; i < TSP_Path.length; i++) {
-				bestPath[bestPath.length] = {
-					x: points[TSP_Path[i]].x,
-					y: points[TSP_Path[i]].y,
-					action: points[TSP_Path[i]].action
-				};
-			}
 			return TSP_Path;
 		}else {
 			//alert("add some more points to the map!");
@@ -77,30 +66,36 @@ $(function() {
 
 	initData = function (size) {
 		running               = false;
-		// POPULATION_SIZE       = 30;
 		POPULATION_SIZE       = size;
 		ELITE_RATE            = 0.3;
 		CROSSOVER_PROBABILITY = 0.9;
 		MUTATION_PROBABILITY  = 0.01;
-		//OX_CROSSOVER_RATE   = 0.05;
 		UNCHANGED_GENS        = 0;
 		mutationTimes         = 0;
 		doPreciseMutate       = true;
 		
-		bestValue             = undefined;
-		best                  = [];
-		currentGeneration     = 0;
+		bestValue         = undefined;
+		best              = [];
+		currentGeneration = 0;
 		currentBest;
-		population            = []; //new Array(POPULATION_SIZE);
-		values                = new Array(POPULATION_SIZE);
-		fitnessValues         = new Array(POPULATION_SIZE);
-		roulette              = new Array(POPULATION_SIZE);
+		population        = [];
+		values            = new Array(POPULATION_SIZE);
+		fitnessValues     = new Array(POPULATION_SIZE);
+		roulette          = new Array(POPULATION_SIZE);
+
+		current_i = 0;
 	};
 
 	draw = function () {
 		while(running && current_i <= ITERATION) {
 			current_i++;
 			GANextGeneration();
+			/*
+			$('#status').text("There are " + points.length + " cities in the map, "
+				+ "the " + currentGeneration + "th generation with "
+				+ mutationTimes + " times of mutation. best value: "
+				+ bestValue);
+			*/
 		}
 		return best;
 	};

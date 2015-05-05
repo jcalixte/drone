@@ -1,11 +1,8 @@
 function GAInitialize() {
 	countDistances();
-	console.log("GAInitialize POPULATION_SIZE : " + POPULATION_SIZE);
 	for(var i=0; i<POPULATION_SIZE; i++) {
 		population.push(randomIndivial(points.length));
 	}
-	console.log("GA Initialize, population : ");
-	console.log(population);
 	setBestValue();
 }
 function GANextGeneration() {
@@ -20,8 +17,6 @@ function tribulate() {
 	for(var i=population.length>>1; i<POPULATION_SIZE; i++) {
 		population[i] = randomIndivial(points.length);
 	}
-	console.log("tribulate, population");
-	console.log(population);
 }
 function selection() {
 	var parents = new Array();
@@ -52,25 +47,15 @@ function crossover() {
 }
 
 function doCrossover(x, y) {
-	console.log("doCrossover population 1 : ");
-	console.log(population);
-	console.log("x : " + x, "y : " + y);
+	// console.log("x : " + x, "y : " + y);
 	child1 = getChild('next', x, y);
 	child2 = getChild('previous', x, y);
-	console.log("child1");
-	console.log(child1);
-	console.log("child2");
-	console.log(child2);
 	population[x] = child1;
 	population[y] = child2;
-	console.log("doCrossover population 2 : ");
-	console.log(population);
 }
 
 function getChild(fun, x, y) {
 	solution = new Array();
-	console.log("get Child, population : ");
-	console.log(population);
 	var px = population[x].clone();
 	var py = population[y].clone();
 	var dx,dy;
@@ -98,8 +83,6 @@ function mutation() {
 			i--;
 		}
 	}
-	console.log("Mutation, population : ");
-	console.log(population);
 }
 function preciseMutate(orseq) {  
 	var seq = orseq.clone();
@@ -195,7 +178,7 @@ function getCurrentBest() {
 }
 function setRoulette() {
 	//calculate all the fitness
-	for(var i=0; i<values.length; i++) { fitnessValues[i] = 1.0/values[i]; }
+	for(var i=0; i<values.length; i++) { fitnessValues[i] = values[i] != 0 ? 1.0/values[i] : 1.0; }
 	//set the roulette
 	var sum = 0;
 	for(var i=0; i<fitnessValues.length; i++) { sum += fitnessValues[i]; }
