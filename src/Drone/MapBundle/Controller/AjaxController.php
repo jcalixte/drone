@@ -13,6 +13,15 @@ use Drone\MapBundle\Entity\Point;
 class AjaxController extends Controller
 {
 	public function saveDroneLocationAction() {
+
+		$response = new JsonResponse();
+		$response->setData(array(
+			'serialNumber' => $drones[0]->getSerialNumber(),
+			'latitude'     => $lat,
+			'longitude'    => $lon,
+		));
+		return $response;
+		
 		$user = $this->getUser();
 		if(!$user){
 			throw $this->createNotFoundException('Utilisateur non connecté');

@@ -59,6 +59,13 @@ class Drone
 	private $longitude;
 
 	/**
+	 * @var float
+	 *
+	 * @ORM\Column(name="altitude", type="float")
+	 */
+	private $altitude;
+
+	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="current_action", type="string", length=20, nullable=true)
@@ -171,6 +178,29 @@ class Drone
 	public function getLongitude()
 	{
 		return $this->longitude;
+	}
+
+	/**
+	 * Set altitude
+	 *
+	 * @param float $altitude
+	 * @return Drone
+	 */
+	public function setAltitude($altitude)
+	{
+		$this->altitude = $altitude;
+
+		return $this;
+	}
+
+	/**
+	 * Get altitude
+	 *
+	 * @return float 
+	 */
+	public function getAltitude()
+	{
+		return $this->altitude;
 	}
 
 	/**
