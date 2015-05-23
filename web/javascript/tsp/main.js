@@ -85,7 +85,7 @@ $(function() {
 
 		current_i = 0;
 	};
-
+	
 	draw = function () {
 		while(running && current_i <= ITERATION) {
 			current_i++;

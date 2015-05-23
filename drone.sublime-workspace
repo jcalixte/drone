@@ -67,7 +67,7 @@
 			"file": "web/javascript/tsp/main.js",
 			"settings":
 			{
-				"buffer_size": 4176,
+				"buffer_size": 4177,
 				"line_ending": "Windows"
 			}
 		},
@@ -88,9 +88,13 @@
 	"command_palette":
 	{
 		"height": 600.0,
-		"last_filter": "",
+		"last_filter": "inst",
 		"selected_items":
 		[
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
 			[
 				"html",
 				"Set Syntax: HTML"
@@ -98,10 +102,6 @@
 			[
 				"scss",
 				"Set Syntax: SCSS"
-			],
-			[
-				"inst",
-				"Package Control: Install Package"
 			],
 			[
 				"jac",
@@ -145,6 +145,7 @@
 	},
 	"expanded_folders":
 	[
+		"/C/wamp/www/drone"
 	],
 	"file_history":
 	[
@@ -303,7 +304,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -390,7 +391,7 @@
 						"translation.y": 1969.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -399,15 +400,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4176,
+						"buffer_size": 4177,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1759,
-								1759
+								1761,
+								1761
 							]
 						],
 						"settings":
@@ -419,7 +420,7 @@
 						"translation.y": 1449.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -435,8 +436,8 @@
 						"selection":
 						[
 							[
-								137,
-								137
+								208,
+								208
 							]
 						],
 						"settings":
@@ -448,7 +449,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
