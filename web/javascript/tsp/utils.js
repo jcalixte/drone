@@ -51,6 +51,11 @@ Array.prototype.reject = function (array) {
 		return $.inArray(ele, array) < 0 ? ele : null;
 	})
 }
+Array.prototype.getFirstElement = function() {
+	this.forEach(function(e) {
+		return e;
+	});
+}
 function intersect(x, y) {
 	return $.map(x, function (xi) {
 		return $.inArray(xi, y) < 0 ? null : xi;

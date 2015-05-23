@@ -36,8 +36,8 @@
 				<div class="btn-group" role="group">
 					<button id="droneCentered" title="Centrer sur votre drone" class="btn btn-info">Centrer sur votre drone</button>
 				</div>
-				{% if user.drones|length == 0 %}
-				<div class="btn-group" role="group">
+				{% if user.drones|length > 0 %}
+  				<div class="btn-group" role="group">
 					<button id="putDrone" title="Placer votre drone" class="btn btn-info">Placer votre drone</button>
 				</div>
 				{% endif %}
@@ -97,9 +97,9 @@
 				<div class="btn-group" role="group">
 					<button id='submitInterestPoint' class='btn btn-info' type="submit" title="Enregistrer vos points d'intérêt">Enregistrer vos points de passage</button>
 				</div>
-				{% if user.drones|length == 0 %}
-				<div class="btn-group" role="group">
-					<button id='submitDroneLocation' class='btn btn-info' type="submit" title="Enregistrer la localisation de votre drone">Enregistrer la localisation de votre drone</button>
+				{% if user.drones|length > 0 %}
+  				<div class="btn-group" role="group">
+					<button id='submitDroneLocation' class='btn btn-info' type="submit" title="Enregistrer vos drones">Enregistrer vos drones</button>
 				</div>
 				{% endif %}
 				<div class="btn-group" role="group">
@@ -122,6 +122,7 @@
 <script src="{{ asset('javascript/tsp/main.js') }}"      type="text/javascript" charset="utf-8"></script>
 <script src="{{ asset('javascript/tsp/algorithm.js') }}" type="text/javascript" charset="utf-8"></script>
 <script src="{{ asset('javascript/tsp/utils.js') }}"      type="text/javascript" charset="utf-8"></script>
+<script src="{{ asset('javascript/drone.js') }}" type="text/javascript" charset="utf-8"></script>
 <script src="{{ asset('javascript/MapScript.js') }}"     type="text/javascript" charset="utf-8"></script>
 <script src="{{ asset('javascript/jBootstrap.js') }}"    type="text/javascript" charset="utf-8"></script>
 <script src="{{ asset('javascript/toastr.js') }}"        type="text/javascript" charset="utf-8"></script>
@@ -139,9 +140,10 @@
 		{% for drone in user.drones %}
 			droneEntities.push(
 				{
+					id: {{ drone.id }},
 					latitude: {{ drone.latitude }},
 					longitude: {{ drone.longitude }},
-					id: {{ drone.id }}
+					altitude: {{ drone.altitude }},
 				}
 			);
 		{% endfor %}

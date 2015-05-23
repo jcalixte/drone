@@ -123,16 +123,6 @@ class Point
 	}
 
 	/**
-	 * Get the localisation
-	 * 
-	 * @return String
-	 * @VirtualProperty 
-	 */
-	public function getLocation(){
-		return array("lon" => $this->getLongitude(), "lat" => $this->getLatitude());
-	}
-
-	/**
 	 * Set action
 	 *
 	 * @param string $action
@@ -216,4 +206,15 @@ class Point
 			return false;
 		}
 	}
+
+	/**
+	 * Get the localisation
+	 * 
+	 * @return String
+	 * @VirtualProperty 
+	 */
+	public function getLocation(){
+		return array("lon" => $this->getLongitude(), "lat" => $this->getLatitude());
+	}
+
 }
