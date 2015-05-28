@@ -13,15 +13,6 @@ use Drone\MapBundle\Entity\Point;
 class AjaxController extends Controller
 {
 	public function saveDroneLocationAction() {
-
-		$response = new JsonResponse();
-		$response->setData(array(
-			'serialNumber' => $drones[0]->getSerialNumber(),
-			'latitude'     => $lat,
-			'longitude'    => $lon,
-		));
-		return $response;
-		
 		$user = $this->getUser();
 		if(!$user){
 			throw $this->createNotFoundException('Utilisateur non connecté');
@@ -29,24 +20,37 @@ class AjaxController extends Controller
 
 		$request = $this->container->get('request');
 
-		$lat = $request->get('lat');
-		$lon = $request->get('lon');
+		$lat     = $request->get('lat');
+		$lon     = $request->get('lon');
+		$alt     = $request->get('alt');
+		$droneId = $request->get('id');
 
-		$drone = new Drone();
-		$drone->setLatitude($lat)
-			  ->setLongitude($lon)
-			  ->setProduct('Parrot')
-			  ->setSerialNumber($this->generateSerialNumber(20));
-
-		$userManager = $this->container->get('fos_user.user_manager');
-		$em = $this->getDoctrine()->getManager();
-		$em->persist($drone);
-		$em->flush();
-
-		$user->addDrone($drone);
-		$userManager->updateUser($user);
-
+		$alreadyExist = false;
 		$drones = $user->getDrones();
+		foreach ($drones as $userDrone) {
+			if($droneId == $userDrone->getId()) {
+				$alreadyExist = true;
+			}
+		}
+
+		if(!$alreadyExist) {
+			$drone = new Drone();
+			$drone->setLatitude($lat)
+				  ->setLongitude($lon)
+				  ->setAltitude($alt)
+				  ->setProduct('Parrot')
+				  ->setSerialNumber($this->generateSerialNumber(20));
+
+			$userManager = $this->container->get('fos_user.user_manager');
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($drone);
+			$em->flush();
+
+			$user->addDrone($drone);
+			$userManager->updateUser($user);
+
+			$drones = $user->getDrones();
+		}
 
 		$response = new JsonResponse();
 		$response->setData(array(

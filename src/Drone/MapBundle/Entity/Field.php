@@ -155,7 +155,7 @@ class Field
 
 	/**
 	 *
-	 * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
 	 */
 	public function setImageFile(File $image = null)
 	{

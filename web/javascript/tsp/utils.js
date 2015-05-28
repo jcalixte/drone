@@ -51,11 +51,6 @@ Array.prototype.reject = function (array) {
 		return $.inArray(ele, array) < 0 ? ele : null;
 	})
 }
-Array.prototype.getFirstElement = function() {
-	this.forEach(function(e) {
-		return e;
-	});
-}
 function intersect(x, y) {
 	return $.map(x, function (xi) {
 		return $.inArray(xi, y) < 0 ? null : xi;
@@ -80,4 +75,37 @@ function distance(p1, p2) {
 }
 function euclidean(dx, dy) {
 	return Math.sqrt(dx*dx + dy*dy);
+}
+
+Array.prototype.getFirstElement = function() {
+	this.forEach(function(e) {
+		return e;
+	});
+}
+
+Array.prototype.getFirstElementId = function() {
+	this.forEach(function(e) {
+		return e.id;
+	});
+}
+
+Array.prototype.getAverageLocation = function() {
+	var lat = 0;
+	var lon = 0;
+	var i   = 0;
+
+	this.forEach(function(e) {
+		lat += e._location.latitude;
+		lon += e._location.longitude;
+		i++;
+	});
+
+	lat /= i;
+	lon /= i;
+
+	var location = {
+		latitude: lat,
+		longitude: lon
+	}
+	return location;
 }

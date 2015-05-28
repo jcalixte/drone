@@ -30,10 +30,17 @@ class AppKernel extends Kernel
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            // SonataAdminBundle
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
             // Bundle spécifique
             new Drone\UserBundle\DroneUserBundle(),
             new Drone\HomeBundle\DroneHomeBundle(),
             new Drone\MapBundle\DroneMapBundle(),
+            new Drone\AdminBundle\DroneAdminBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
