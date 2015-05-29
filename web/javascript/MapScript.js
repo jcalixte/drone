@@ -76,13 +76,13 @@ $(function() {
 	});
 
 	$("#start").click(function() {
-		moveDrone();
+		moveDrones();
 	});
 
 	$("#droneCentered").click(function() {
 		if (dronePinList.length > 0) {
 			var options = map.getOptions();
-			options.center = dronePinList.getFirstElement().getLocation();
+			options.center = dronePinList.getAverageLocation();
 			options.zoom   = 18;
 			map.setView(options);
 		}
@@ -162,9 +162,6 @@ $(function() {
 			map.entities.push(dronePinList[dronePinList.length - 1]);
 		});
 
-		console.log("Liste de drone : ");
-		console.log(droneList);
-
 		fieldEntities.forEach(function(e) {
 			e.forEach(function(e) {
 				addPointToShape(e.latitude, e.longitude, true);
@@ -192,7 +189,7 @@ $(function() {
 		});
 
 		if(dronePinList.length > 0) {
-			getWeatherDrone(dronePinList.getFirstElement().getLocation().latitude, dronePinList.getFirstElement().getLocation().longitude);
+			getWeatherDrone(dronePinList.getAverageLocation().latitude, dronePinList.getAverageLocation().longitude);
 		}
 	};
 
@@ -244,7 +241,7 @@ $(function() {
 			var polyShape = shape.slice();
 			var polygon = new Microsoft.Maps.Polygon(polyShape);
 			polygon.setOptions({
-				fillColor: { a: 50, r: 0, g: 0, b: 0 },
+				fillColor: { a: 10, r: 0, g: 0, b: 0 },
 				strokeColor: { a: 200, r: 255, g: 255, b: 255 },
 				infobox: "field",
 				visible: true
@@ -271,7 +268,7 @@ $(function() {
 				location: loc,
 				action: $("#actionTaken").text(),
 				shape: addCircle(0.000001, loc, $("#actionTaken").text()),
-				id: 0,
+				id: 0
 			};
 		}
 	}
@@ -413,25 +410,50 @@ $(function() {
 	function moveDrone() {
 		if(dronePinList.length > 0) {
 			var pathSliced = path.slice();
-			if (pathSliced[pathSliced.length-1] != dronePinList.getFirstElement().getLocation()) {
+			if (pathSliced[pathSliced.length-1] != dronePinList.getAverageLocation()) {
 				pathSliced[pathSliced.length] = {
-					location: dronePinList.getFirstElement().getLocation(),
-					action: 'nothing',
+					location: dronePinList.getAverageLocation(),
+					action: 'nothing'
 				};
-			};
+			}
 			pathSliced = getTSPPath(pathSliced);
 
 			var dronePosition1 = getDronePosition(pathSliced, dronePin.getLocation()) + 1;
 			pathSliced = shift(pathSliced, dronePosition1);
 
 			$("#inAction").text('Flying');
-			dronePinList.getFirstElement().moveLocation(dronePinList.getFirstElement().getLocation(), pathSliced, droneSpeed);
+			dronePinList.moveLocation(dronePinList.getAverageLocation(), pathSliced, droneSpeed);
 		}
 	}
 
-	function getTSPPath (p) { // p pour path
-		var min_lat = 10000;
-		var min_lon = 10000;
+	function moveDrones() {
+		if(droneList.length > 0) {
+			distributePath(path); // On affilie à chaque drone son propre chemin.
+
+			// On ajoute la localisation du drone dans le chemin pour le TSP on optimise les chemins
+			droneList.forEach(function(drone) {
+				drone.addPointToPath({
+					location: drone.getLocation(),
+					action: 'nothing'
+				});
+				drone.path = getTSPPath(drone);
+
+			});
+
+			droneList.forEach(function(drone) {
+				dronePinList[drone.id].moveLocation(drone.id, drone.getLocation(), drone.path.slice(), droneSpeed);
+			});
+
+			droneList.forEach(function(drone) {
+				drone.path = [];
+			});
+		}
+	}
+
+	function getTSPPath (drone) { // p pour path
+		var p       = drone.path;
+		var min_lat = Infinity;
+		var min_lon = Infinity;
 
 		p.forEach(function(e) {
 			if(e.location.latitude < min_lat) {
@@ -453,12 +475,15 @@ $(function() {
 			});
 		});
 		var relativeBestPath = TSP(relativePath);
-		console.log("relativeBestPath");
-		console.log(relativeBestPath);
+/*		console.log("relativeBestPath");
+		console.log(relativeBestPath);*/
 		var bestPath = [];
 		for (var i = 0; i < relativeBestPath.length; i++) {
 			bestPath[bestPath.length] = p[relativeBestPath[i]];
 		};
+
+		var dronePosition = getDronePosition(bestPath, drone.getLocation());
+		bestPath = shift(bestPath, dronePosition);
 
 		return bestPath;
 	}
@@ -478,25 +503,48 @@ $(function() {
 
 	function getDronePosition(array, location) {
 		for(var i = 0; i < array.length; i++) {
-			if(array[i].location == location){
-				return i;
+			if(array[i].location.latitude == location.latitude && array[i].location.longitude == location.longitude){
+				return i + 1;
 			}
 		}
 		return false;
 	}
 
-	function moveDrones() {
-		if(dronePinList.length > 0) {
-			var pathSliced = path.slice();
-			if (pathSliced[pathSliced.length-1] != dronePinList.getFirstElement().getLocation()) {
-				pathSliced[pathSliced.length] = {
-					location: dronePinList.getLocation(),
-					action: 'nothing',
-				};
-			};
-			$("#inAction").text('Flying');
-			dronePinList.moveLocation(dronePinList.getFirstElement().getLocation(), pathSliced, droneSpeed);
-		}
+	function distributePath() {
+		path.forEach(function(e) {
+			var droneAttributedId = -1;
+			var minDistance = -1;
+			droneList.forEach(function(d) {
+				if(getDistance(d.getLocation(), e["location"]) < minDistance || minDistance == -1) {
+					droneAttributedId = d.id;
+					minDistance = getDistance(d.getLocation(), e["location"]);
+				}
+			});
+			
+			if(droneAttributedId != -1) {
+				droneList[droneAttributedId].addPointToPath(e);
+			}else {
+				droneList.getFirstElement().addPointToPath(e);
+			}
+		});
+	}
+
+	function getDistance(originLocation, endLocation) {
+		var R           = 6371000; // metres
+		var phi1        = originLocation.latitude * Math.PI / 180;
+		var phi2        = endLocation.latitude * Math.PI / 180;
+		var deltaPhi    = (endLocation.latitude-originLocation.latitude) * Math.PI / 180;
+		var deltaLambda = (endLocation.longitude-originLocation.longitude) * Math.PI / 180;
+
+		var a = Math.sin(deltaPhi/2)
+				* Math.sin(deltaPhi/2)
+				+ Math.cos(phi1)
+				* Math.cos(phi2)
+				* Math.sin(deltaLambda/2)
+				* Math.sin(deltaLambda/2);
+		var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+		return Math.round(R * c);
 	}
 
 	/*==========  Suppressions  ==========*/
@@ -516,7 +564,7 @@ $(function() {
 			type: 'POST',
 			url: Routing.generate('drone_ajax_delete_fields'),
 			data: {
-				points: pointsInFields,
+				points: pointsInFields
 			},
 			success: function(data) {
 				console.log("succes !");
@@ -622,7 +670,7 @@ $(function() {
 			};*/
 
 			var datas = {
-				points: onlyPathLocation,
+				points: onlyPathLocation
 			};
 
 			ajaxCall('interestPointLocation', datas);
@@ -637,20 +685,30 @@ $(function() {
 
 	function ajaxCall(call, datas) {
 		var route = false;
+		var go    = true;
 		if(datas === undefined) {
 			datas = {};
 		}
 		if (call == 'droneLocation') {
 			route = Routing.generate('drone_ajax_save_drone_location');
-			datas = [];
-			dronePinList.forEach(function() {
-				datas.push({
-					lat: dronePinList.getLocation().latitude,
-					lon: dronePinList.getLocation().longitude
+			go = false;
+			droneList.forEach(function(dronePin) {
+				var datas = {
+					lat: dronePin.getLocation().latitude,
+					lon: dronePin.getLocation().longitude,
+					alt: dronePin.getPosition().altitude,
+					id: dronePin.id
+				};
+				$.ajax({
+					type: 'POST',
+					url: route.toString(),
+					data: datas,
+					success: function(data) {
+						console.log("succes !");
+						toastr.success('Enregistrement réussi');
+					}
 				});
 			})
-			console.log("DATAS");
-			console.log(datas);
 		}else if(call == 'interestPointLocation') {
 			route = Routing.generate('drone_ajax_save_point_location');
 		}else if(call == "fieldLocation") {
@@ -660,7 +718,7 @@ $(function() {
 			};
 		}
 		
-		if (route != false) {
+		if (route != false && go) {
 			$.ajax({
 				type: 'POST',
 				url: route.toString(),
@@ -696,7 +754,7 @@ $(function() {
 						var sunrise = new Date(data.sys.sunrise * 1000);
 						sunrise = sunrise.getHours() + ':' + fillZero(sunrise.getMinutes());
 						var sunset = new Date(data.sys.sunset * 1000);
-						sunset = sunset.getHours() + ':' + sunset.getMinutes();
+						sunset = sunset.getHours() + ':' + fillZero(sunset.getMinutes());
 						$(".weather-main").text(data.weather[0].description);
 						$(".weather-temp").text(kelvinToCelsius(data.main.temp));
 						$(".weather-hum").text(data.main.humidity);
@@ -714,45 +772,46 @@ $(function() {
 	}
 
 	function setWeatherGlyph(weather, icon, id) {
-		$("#weather-main").removeClass();
+		var weather = $("#weather-main");
+		weather.removeClass();
 		switch(weather) {
 			case 'Clear':
-				$("#weather-main").addClass("wi wi-day-sunny");
+				weather.addClass("wi wi-day-sunny");
 			case 'Clouds':
-				$("#weather-main").addClass("wi wi-cloudy");
+				weather.addClass("wi wi-cloudy");
 				break;
 			case 'Rain':
-				$("#weather-main").addClass("wi wi-rain");
+				weather.addClass("wi wi-rain");
 			default:
 		}
 		if(typeof icon !== undefined) {
 			switch(icon) {
 				case '01d':
-					$("#weather-main").addClass("wi wi-day-sunny");
+					weather.addClass("wi wi-day-sunny");
 					break;
 				case '02d':
-					$("#weather-main").addClass("wi wi-day-cloudy");
+					weather.addClass("wi wi-day-cloudy");
 					break;
 				case '03d':
-					$("#weather-main").addClass("wi wi-cloudy");
+					weather.addClass("wi wi-cloudy");
 					break;
 				case '04d':
-					$("#weather-main").addClass("wi wi-cloudy");
+					weather.addClass("wi wi-cloudy");
 					break;
 				case '09d':
-					$("#weather-main").addClass("wi wi-rain");
+					weather.addClass("wi wi-rain");
 					break;
 				case '10d':
 					$('#weather-main').addClass("wi wi-day-rain");
 					break;
 				case '11d':
-					$("#weather-main").addClass("wi wi-thunderstorm");
+					weather.addClass("wi wi-thunderstorm");
 					break;
 				case '13d':
-					$("#weather-main").addClass("wi wi-snow");
+					weather.addClass("wi wi-snow");
 					break;
 				case '50d':
-					$("#weather-main").addClass("wi wi-fog");
+					weather.addClass("wi wi-fog");
 					break;
 				default:
 			}

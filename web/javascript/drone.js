@@ -5,6 +5,13 @@ var Drone = function(id, latitude, longitude, altitude) {
 	this.altitude  = typeof altitude  !== undefined ? altitude  : null;
 	this.speed     = 0;
 	this.path      = [];
+	this.getLocation = function() {
+		var retour = {
+			latitude:  this.latitude,
+			longitude: this.longitude
+		}; 
+		return retour;
+	};
 	this.getPosition = function() {
 		var retour = {
 			latitude:  this.latitude,
@@ -12,7 +19,6 @@ var Drone = function(id, latitude, longitude, altitude) {
 			altitude:  this.altitude,
 		}; 
 		return retour;
-		
 	};
 	this.setSpeed = function(speed) {
 		if(speed >= 0){
@@ -20,6 +26,6 @@ var Drone = function(id, latitude, longitude, altitude) {
 		}
 	};
 	this.addPointToPath = function(point) {
-		path.push(point);
+		this.path.push(point);
 	};
 }

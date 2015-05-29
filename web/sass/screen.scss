@@ -37,6 +37,8 @@ body {
 	font-size: 16pt;
 	background-color: $beeYellow;
 	color: $beeBlack;
+	position: absolute;
+	top: 0px; bottom: 0px; left: 0px; right: 0px;
 }
 
 span.bee {
@@ -225,44 +227,40 @@ section.home-container {
 =================================*/
 
 .map {
-	width: 100%;
+	width: 99%;
 	height: 100%;
 	margin: auto;
 	background-color: $yellow;
-	padding: 15px;
+	//padding: 15px;
+
+	div.row {
+		margin: 0px;
+	}
 
 	h1 {
 		text-align: center;
 	}
 
 	.map-container {
-		float: left;
-		width: 50%;
-		background-color: $yellow;
-
 		#map {
-			position: relative;
 			min-height: 400px;
+			height: 500px;
 			width: 100%;
 		}
 	}
 
 	.map-command {
-		float: right;
-		padding: 15px;
-		display: inline-block;
-		width: 50%;
+		padding: 0px;
 
 		div.command-content {
 			margin-bottom: 15px;
 		}
 
-		.inAction {
+		.inAction-container {
 			text-align: center;
-			max-width: 300px;
-			margin: 15px auto;
+			margin: 0px auto 15px;
 			background-color: $beeBlack;
-			padding: 15px;
+			padding: 5px;
 			color: $yellow;
 
 			h2 {
@@ -270,7 +268,7 @@ section.home-container {
 				margin-bottom: 10px;
 			}
 
-			#inAction {
+			.inAction {
 				font-style: italic;
 			}
 		}

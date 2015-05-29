@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: @DroneMapBundle/Resources/config/admin.yml }
 
 framework:
     #esi:             ~
@@ -142,3 +143,13 @@ fos_rest:
         default_format: json
 
 nelmio_api_doc: ~
+
+sonata_admin:
+    title: BeeEye
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # Enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts:   [admin]

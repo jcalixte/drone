@@ -12,36 +12,42 @@
 	</head>
 	<body>
 		<nav class="navbar navbar-default navbar-collapse">
-			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-				{# {{ 'layout.logged_in_as'|trans({ '%username%': app.user.username|capitalize }, 'FOSUserBundle') }} | #}
-				<a href="{{ path('drone_home_homepage') }}" title="Accueil">Accueil</a>
-				<a href="{{ path('fos_user_profile_show') }}">{{ app.user.username|capitalize }}</a>
-				<a href="{{ path('fos_user_security_logout') }}">
-					{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-				</a>
-			{% else %}
-				<a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a> |
-				<a href="{{ path('fos_user_registration_register') }}">S'inscrire</a>
-			{% endif %}
-			<div class="message-flash">
-				{% for type, messages in app.session.flashbag.all() %}
-					{% for message in messages %}
-						<div class="flash-{{ type }}">
-							{{ message }}
-						</div>
-					{% endfor %}
-				{% endfor %}
+			<div class="container-fluid">
+				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+					{# {{ 'layout.logged_in_as'|trans({ '%username%': app.user.username|capitalize }, 'FOSUserBundle') }} | #}
+					<a href="{{ path('drone_home_homepage') }}" title="Accueil">Accueil</a>
+					<a href="{{ path('fos_user_profile_show') }}">{{ app.user.username|capitalize }}</a>
+					<a href="{{ path('fos_user_security_logout') }}">
+						{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+					</a>
+				{% else %}
+					<a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a> |
+					<a href="{{ path('fos_user_registration_register') }}">S'inscrire</a>
+				{% endif %}
+				{% if app.session.flashbag.all()|length > 0 %}
+					<div class="message-flash">
+						{% for type, messages in app.session.flashbag.all() %}
+							{% for message in messages %}
+								<div class="flash-{{ type }}">
+									{{ message }}
+								</div>
+							{% endfor %}
+						{% endfor %}
+					</div>
+				{% endif %}
+				<ul class="nav navbar-nav navbar-right">
+					<span class="weather-content">
+						<i id="weather-main"></i> <span class="weather-main"></span> |
+						<i id="weather-temp"></i> <span class="weather-temp"></span><i class="wi wi-celsius"></i> |
+						<i id="weather-hum"></i> <span class="weather-hum"></span>% d'humidité |
+						<i class="wi wi-strong-wind"></i><i id="weather-wind"></i> <span class="weather-wind"></span>km/h,
+						<i id="weather-wind-direction"></i> <span class="weather-wind-dir"></span> |
+						<i class="wi wi-sunrise"></i> <span class="weather-sunrise"></span>
+						<i class="wi wi-sunset"></i> <span class="weather-sunset"></span>
+						{# <span class="weather"></span> #}
+					</span>
+				</ul>
 			</div>
-			<span class="weather-content">
-				<i id="weather-main"></i> <span class="weather-main"></span> |
-				<i id="weather-temp"></i> <span class="weather-temp"></span><i class="wi wi-celsius"></i> |
-				<i id="weather-hum"></i> <span class="weather-hum"></span>% d'humidité |
-				<i class="wi wi-strong-wind"></i><i id="weather-wind"></i> <span class="weather-wind"></span>km/h,
-				<i id="weather-wind-direction"></i> <span class="weather-wind-dir"></span> |
-				<i class="wi wi-sunrise"></i> <span class="weather-sunrise"></span>
-				<i class="wi wi-sunset"></i> <span class="weather-sunset"></span>
-				{# <span class="weather"></span> #}
-			</span>
 		</nav>
 		
 		<div id="content">

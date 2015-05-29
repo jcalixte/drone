@@ -1,8 +1,8 @@
 (function ($m) {
 	(function(proto) {
 		if(!proto.moveLocation) {
-			proto.moveLocation = function(initLoc, locs, speed, that, startLoc) {
-				$("#inAction").text('Flying.');
+			proto.moveLocation = function(id, initLoc, locs, speed, that, startLoc) {
+				$("#inAct-" + id).text('Flying.');
 				// speed = vitesse du drone en m/s
 				if(that === undefined) {
 					that = this;
@@ -12,8 +12,10 @@
 				}
 				// var locations    = proto.nearestLocation(that, initLoc, locs);
 				var locations    = locs;
-				var endLoc       = locations[0]['location'], startTime = new Date();
+				var endLoc       = locations[0]['location'];
 				var nextDistance = proto.getNextDistance(that, endLoc);
+
+				var startTime    = new Date();
 				var finalTime    = Math.round(nextDistance / speed) * 1000; // t = d/v en millisecondes
 
 				var interval = window.setInterval(function() {
@@ -22,9 +24,9 @@
 						that.setLocation(endLoc);
 						window.clearInterval(interval, locations[0]);
 						if(locations.length > 1) {
-							proto.doActionAndGo(initLoc, locations, speed, that, endLoc);
-						}else{
-							$("#inAction").text('In the recharging base.');
+							proto.doActionAndGo(id, initLoc, locations, speed, that, endLoc);
+						}else {
+							$("#inAct-" + id).text('In the recharging base.');
 						}
 					}
 					
@@ -86,40 +88,40 @@
 			};
 		}
 		if(!proto.doActionAndGo) {
-			proto.doActionAndGo = function(initLoc, locations, speed, that, endLoc) {
+			proto.doActionAndGo = function(id, initLoc, locations, speed, that, endLoc) {
 				switch (locations[0]['action']) {
 					case 'photo':
-						$("#inAction").text('Taking a photo.');
+						$("#inAct-" + id).text('Taking a photo.');
 						setTimeout(function() {
-							proto.goNext(initLoc, locations, speed, that, endLoc);
+							proto.goNext(id, initLoc, locations, speed, that, endLoc);
 						}, 1000);
 						break;
 					case 'sound':
-						$("#inAction").text('Recording a sound.');
+						$("#inAct-" + id).text('Recording a sound.');
 						setTimeout(function() {
-							proto.goNext(initLoc, locations, speed, that, endLoc);
+							proto.goNext(id, initLoc, locations, speed, that, endLoc);
 						}, 2000);
 						break;
 					case 'video':
-						$("#inAction").text('Recording a video.');
+						$("#inAct-" + id).text('Recording a video.');
 						setTimeout(function() {
-							proto.goNext(initLoc, locations, speed, that, endLoc);
+							proto.goNext(id, initLoc, locations, speed, that, endLoc);
 						}, 3000);
 						break;
 					case 'nothing':
-						$("#inAction").text('Nothing');
-						proto.goNext(initLoc, locations, speed, that, endLoc);
+						$("#inAct-" + id).text('Nothing');
+						proto.goNext(id, initLoc, locations, speed, that, endLoc);
 						break;
 					default:
-						$("#inAction").text('Par défaut');
+						$("#inAct-" + id).text('Par défaut');
 				}
 				return true;
 			};
 		}
 		if(!proto.goNext) {
-			proto.goNext = function(initLoc, locations, speed, that, endLoc) {
+			proto.goNext = function(id, initLoc, locations, speed, that, endLoc) {
 				locations.shift();
-				proto.moveLocation(initLoc, locations, speed, that, endLoc);
+				proto.moveLocation(id, initLoc, locations, speed, that, endLoc);
 			};
 		}
 		if(!proto.shiftPath) {
