@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: @DroneMapBundle/Resources/config/admin.yml }
+    - { resource: @DroneUserBundle/Resources/config/admin.yml }
 
 framework:
     #esi:             ~
@@ -146,6 +147,8 @@ nelmio_api_doc: ~
 
 sonata_admin:
     title: BeeEye
+    templates:
+        show: DroneAdminBundle:Admin:display.html.twig
 
 sonata_block:
     default_contexts: [cms]

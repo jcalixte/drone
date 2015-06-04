@@ -1,0 +1,11 @@
+services:
+    sonata.admin.user:
+        class: Drone\UserBundle\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Social", label: "Utilisateur" }
+        arguments:
+            - ~
+            - Drone\UserBundle\Entity\User
+            - ~
+        calls:
+            - [setTranslationDomain, [DroneAdminBundle]]

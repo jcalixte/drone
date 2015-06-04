@@ -9,25 +9,25 @@
 
 /* Définition des constantes */
 
-$purple: #663399;
+$purple:        #663399;
 $lightWisteria: #be90d4;
-$wistful: #aea8d3;
-$tahitiGold: #e87e04;
-$ming: #336e7b;
-$dodgerBlue: #19b5fe;
+$wistful:       #aea8d3;
+$tahitiGold:    #e87e04;
+$ming:          #336e7b;
+$dodgerBlue:    #19b5fe;
 
 /* Couleurs de la charte graphique */
 
-$yellow: #f9bd3b;
+$yellow:    #f9bd3b;
 $beeYellow: #f5ab35;
-$beeBlack: #141414;
+$beeBlack:  #141414;
 $royalBlue: #4183d7;
 
 /* Couleur des points d'intérêt */
 
-$pointPhoto: #4647cb;
-$pointVideo: #f5ab35;
-$pointSound: #f54735;
+$pointPhoto:   #4647cb;
+$pointVideo:   #f5ab35;
+$pointSound:   #f54735;
 $pointDefault: #ffffff;
 
 /*----- Fin des constantes  ------*/
@@ -319,6 +319,16 @@ section.home-container {
 			display: none;
 		}
 	}
+
+	.submit-field-row {
+		div {
+			padding: 0px;
+
+			.btn {
+				border: solid $beeYellow 1px;
+			}
+		}
+	}
 }
 
 /*-----  Fin de MapBundle  ------*/
@@ -389,3 +399,10 @@ section.home-container {
 }
 
 /*-----  Fin du Profil  ------*/
+
+/*=============================
+=            Admin            =
+=============================*/
+
+
+/*-----  Fin de l'admin  ------*/

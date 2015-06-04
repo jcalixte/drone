@@ -67,8 +67,7 @@ class Field
 	 *
 	 * @return integer 
 	 */
-	public function getId()
-	{
+	public function getId() {
 		return $this->id;
 	}
 
@@ -78,8 +77,7 @@ class Field
 	 * @param string $name
 	 * @return Map
 	 */
-	public function setName($name)
-	{
+	public function setName($name) {
 		$this->name = $name;
 
 		return $this;
@@ -90,8 +88,7 @@ class Field
 	 *
 	 * @return string 
 	 */
-	public function getName()
-	{
+	public function getName() {
 		return $this->name;
 	}
 
@@ -101,8 +98,7 @@ class Field
 	 * @param \Drone\UserBundle\Entity\User $user
 	 * @return Map
 	 */
-	public function setUser(\Drone\UserBundle\Entity\User $user = null)
-	{
+	public function setUser(\Drone\UserBundle\Entity\User $user = null) {
 		$this->user = $user;
 
 		return $this;
@@ -113,8 +109,7 @@ class Field
 	 *
 	 * @return \Drone\UserBundle\Entity\User 
 	 */
-	public function getUser()
-	{
+	public function getUser() {
 		return $this->user;
 	}
 
@@ -157,8 +152,7 @@ class Field
 	 *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
 	 */
-	public function setImageFile(File $image = null)
-	{
+	public function setImageFile(File $image = null) {
 		$this->imageFile = $image;
 
 		if ($image) {
@@ -169,24 +163,21 @@ class Field
 	/**
 	 * @return File
 	 */
-	public function getImageFile()
-	{
+	public function getImageFile() {
 		return $this->imageFile;
 	}
 
 	/**
 	 * @param string $imageName
 	 */
-	public function setImageName($imageName)
-	{
+	public function setImageName($imageName) {
 		$this->imageName = $imageName;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getImageName()
-	{
+	public function getImageName() {
 		return $this->imageName;
 	}
 
@@ -196,8 +187,7 @@ class Field
 	 * @param array $locations
 	 * @return Field
 	 */
-	public function setLocations($locations)
-	{
+	public function setLocations($locations) {
 		$this->locations = $locations;
 
 		return $this;
@@ -208,8 +198,7 @@ class Field
 	 *
 	 * @return array 
 	 */
-	public function getLocations()
-	{
+	public function getLocations() {
 		return $this->locations;
 	}
 
@@ -219,8 +208,7 @@ class Field
 	 * @param \DateTime $updatedAt
 	 * @return Field
 	 */
-	public function setUpdatedAt($updatedAt)
-	{
+	public function setUpdatedAt($updatedAt) {
 		$this->updatedAt = $updatedAt;
 
 		return $this;
@@ -231,8 +219,7 @@ class Field
 	 *
 	 * @return \DateTime 
 	 */
-	public function getUpdatedAt()
-	{
+	public function getUpdatedAt() {
 		return $this->updatedAt;
 	}
 }

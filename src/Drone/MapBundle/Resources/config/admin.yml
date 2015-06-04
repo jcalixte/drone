@@ -1,11 +1,11 @@
 services:
-    sonata.admin.map:
+    sonata.admin.drone:
         class: Drone\MapBundle\Admin\DroneAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Drone" }
+            - { name: sonata.admin, manager_type: orm, group: "Matériel", label: "Drone" }
         arguments:
             - ~
             - Drone\MapBundle\Entity\Drone
             - ~
         calls:
-            - [ setTranslationDomain, [DroneAdminBundle]]
+            - [setTranslationDomain, [DroneAdminBundle]]
