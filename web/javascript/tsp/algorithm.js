@@ -27,7 +27,7 @@ function selection() {
 	parents.push(best.clone());
 
 	setRoulette();
-	for(var i=initnum; i<POPULATION_SIZE; i++) {
+	for(var i=initnum; i < POPULATION_SIZE; i++) {
 		parents.push(population[wheelOut(Math.random())]);
 	}
 	population = parents;

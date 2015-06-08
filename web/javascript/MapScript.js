@@ -37,6 +37,8 @@ $(function() {
 
 	var twigElements = false;
 
+	var circleRadius = 0.0000008;
+
 	$("#search").click(function() {
 		var query = $("#search_query").val();
 		if(query != "") {
@@ -170,7 +172,7 @@ $(function() {
 		});
 
 		interestPointEntities.forEach(function(e) {
-			addCircle(0.000001, e.location, e.action);
+			addCircle(e.location, e.action);
 			path[path.length] = e;
 		});
 
@@ -267,22 +269,22 @@ $(function() {
 			path[path.length] = {
 				location: loc,
 				action: $("#actionTaken").text(),
-				shape: addCircle(0.000001, loc, $("#actionTaken").text()),
+				shape: addCircle(loc, $("#actionTaken").text()),
 				id: 0
 			};
 		}
 	}
 
-	function addCircle(radius, location, action) {
+	function addCircle(location, action) {
 		// var backgroundColor = new Microsoft.Maps.Color(10, 100, 0, 0);
 		// var borderColor     = new Microsoft.Maps.Color(150, 200, 0, 0);
 		// var R               = 6371; // Rayon de la terre en kilomètres
 		var lat             = (location.latitude  * Math.PI) / 180;
 		var lon             = (location.longitude * Math.PI) / 180;
-		var d               = parseFloat(radius);// / R;
+		var d               = parseFloat(circleRadius);// / R;
 		var circlePoints    = [];
 
-		for (var x = 0; x <= 360; x += 5) {
+		for (var x = 0; x <= 360; x += 2) {
 			var position = new Microsoft.Maps.Location(0, 0);
 			var xRadian  = x * Math.PI / 180;
 			position.latitude = Math.asin(Math.sin(lat)
@@ -291,11 +293,11 @@ $(function() {
 							  * Math.sin(d)
 							  * Math.cos(xRadian));
 
-			position.longitude = ((lon + Math.atan2(Math.sin(xRadian)
-								 * Math.sin(d)
-								 * Math.cos(lat),Math.cos(d)
-								 - Math.sin(lat)
-								 * Math.sin(position.latitude))) * 180) / Math.PI;
+			position.longitude = (lon + Math.atan2(Math.sin(xRadian)
+							   * Math.sin(d)
+							   * Math.cos(lat),Math.cos(d)
+							   - Math.sin(lat)
+							   * Math.sin(position.latitude))) * 180 / Math.PI;
 			position.latitude  = (position.latitude * 180) / Math.PI;
 			circlePoints.push(position);
 		}

@@ -19,6 +19,10 @@ drone_edit:
     path:     /{id}/edit
     defaults: { _controller: "DroneMapBundle:Drone:edit" }
 
+drone_manage:
+    path:     /{id}/manage
+    defaults: { _controller: "DroneMapBundle:Drone:manage" }
+
 drone_update:
     path:     /{id}/update
     defaults: { _controller: "DroneMapBundle:Drone:update" }

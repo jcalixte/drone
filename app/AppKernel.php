@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Endroid\Bundle\QrCodeBundle\EndroidQrCodeBundle(),
             // SonataAdminBundle
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),

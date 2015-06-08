@@ -27,7 +27,8 @@
         "jms/serializer-bundle": "0.13.*",
         "nelmio/api-doc-bundle": "~2.7",
         "sonata-project/admin-bundle": "^2.3",
-        "sonata-project/doctrine-orm-admin-bundle": "^2.3"
+        "sonata-project/doctrine-orm-admin-bundle": "^2.3",
+        "endroid/qrcode-bundle": "^1.5"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

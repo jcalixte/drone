@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}
+    Page {{ entity }}
+{% endblock %}
+
+{% block body -%}
+	<h1>Drone {{ entity }}</h1>
+
+	{% if is_granted('ROLE_USER') and entity in app.user.drones %}
+		<h2>QR Code</h2>
+		<p>
+			Imprimez ce code et déposez le sur votre drone pour accéder à ses informations rapidement. <br>
+			<img src="{{ qrcode_data_uri(url('drone_manage', {id: entity.id}), extension='png') }}" />
+		</p>
+
+		{{ form(edit_form) }}
+
+		<ul class="record_actions">
+			<li>
+				<a href="{{ path('drone') }}" class="btn btn-info">
+					Retour à vos drones
+				</a>
+			</li>
+			<li>{{ form(delete_form) }}</li>
+		</ul>
+	{% else %}
+		Ce drone appartient à {{ entity.user.firstname }} {{ entity.user.lastname }}. Si vous êtes en possession de ce drone, merci de le retourner à son possesseur. <br>
+		Son adresse : {{ entity.user.address }} {{ entity.user.city }} {{ entity.user.zipcode }} {{ entity.user.country }}. Nous vous en sommes très reconnaissant.
+		<hr>
+		Procédure à suivre : 
+		<ul>
+			<li>Vous avez pris ce drone en flagrant délit d'espionnage ?</li>
+			<li>Vous avez trouvé ce drone dans un espace public ?</li>
+			<li>Vous avez trouvé ce drone dans votre propriété ?</li>
+			<li>Vous avez trouvé ce drone dans une propriété privée ?</li>
+		</ul>
+	{% endif %}
+{% endblock %}

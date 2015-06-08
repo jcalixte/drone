@@ -134,6 +134,30 @@ class DroneController extends Controller
     }
 
     /**
+     * Displays a form to manage an existing Drone entity.
+     *
+     */
+    public function manageAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('DroneMapBundle:Drone')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Drone entity.');
+        }
+
+        $editForm = $this->createEditForm($entity);
+        $deleteForm = $this->createDeleteForm($id);
+
+        return $this->render('DroneMapBundle:Drone:manage.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
     * Creates a form to edit a Drone entity.
     *
     * @param Drone $entity The entity

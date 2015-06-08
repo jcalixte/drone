@@ -56,7 +56,7 @@ $(function() {
 		if(points.length >= 3) {
 			GAInitialize();
 			running = true;
-			TSP_Path = draw();
+			TSP_Path = optimize();
 			return TSP_Path;
 		}else {
 			//alert("add some more points to the map!");
@@ -86,7 +86,7 @@ $(function() {
 		current_i = 0;
 	};
 	
-	draw = function () {
+	optimize = function () {
 		while(running && current_i <= ITERATION) {
 			current_i++;
 			GANextGeneration();
