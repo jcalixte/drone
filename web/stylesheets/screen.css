@@ -68,11 +68,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 @font-face {
   font-family: "Quicksand";
-  src: url('/fonts/../../drone/web/stylesheets/fonts/Quicksand.otf?1425643771') format('opentype');
+  src: url('/fonts/../../drone/web/stylesheets/fonts/Quicksand.otf?1434011309') format('opentype');
 }
 @font-face {
   font-family: "Brush";
-  src: url('/fonts/../../drone/web/stylesheets/fonts/Brush.ttf?1425814159') format('truetype');
+  src: url('/fonts/../../drone/web/stylesheets/fonts/Brush.ttf?1434011309') format('truetype');
 }
 /* D├®finition des constantes */
 /* Couleurs de la charte graphique */
@@ -224,7 +224,7 @@ footer {
 /* line 160, ../sass/screen.scss */
 label {
   display: block;
-  width: 150px;
+  width: 160px;
   float: left;
 }
 

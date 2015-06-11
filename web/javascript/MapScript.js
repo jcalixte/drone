@@ -564,7 +564,7 @@ $(function() {
 		});
 		$.ajax({
 			type: 'POST',
-			url: Routing.generate('drone_ajax_delete_fields'),
+			url: Routing.generate('drone_ajax_delete_fields', {_locale: "fr"}),
 			data: {
 				points: pointsInFields
 			},
@@ -600,7 +600,7 @@ $(function() {
 		toastr.info('Enregistrement réussi');
 		$.ajax({
 			type: 'POST',
-			url: Routing.generate('drone_ajax_delete_interest_points'),
+			url: Routing.generate('drone_ajax_delete_interest_points', {_locale: "fr"}),
 			//data: datas,
 			success: function(data) {
 				console.log("succes !");
@@ -626,7 +626,7 @@ $(function() {
 		dronePinList.forEach(function(dronePin) {
 			$.ajax({
 				type: 'POST',
-				url: Routing.generate('drone_ajax_delete_drones'),
+				url: Routing.generate('drone_ajax_delete_drones', {_locale: "fr"}),
 				//data: datas,
 				success: function(data) {
 					console.log("succes !");
@@ -692,7 +692,7 @@ $(function() {
 			datas = {};
 		}
 		if (call == 'droneLocation') {
-			route = Routing.generate('drone_ajax_save_drone_location');
+			route = Routing.generate('drone_ajax_save_drone_location', {_locale: "fr"});
 			go = false;
 			droneList.forEach(function(dronePin) {
 				var datas = {
@@ -712,9 +712,9 @@ $(function() {
 				});
 			})
 		}else if(call == 'interestPointLocation') {
-			route = Routing.generate('drone_ajax_save_point_location');
+			route = Routing.generate('drone_ajax_save_point_location', {_locale: "fr"});
 		}else if(call == "fieldLocation") {
-			route = Routing.generate('drone_ajax_save_field_location');
+			route = Routing.generate('drone_ajax_save_field_location', {_locale: "fr"});
 			datas = {
 				fieldCorners: fields
 			};
