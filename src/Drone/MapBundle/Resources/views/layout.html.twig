@@ -19,6 +19,12 @@
 {% block body %}
     {% block body_map %}{% endblock %}
 {% endblock %}
+{% block footer %}
+    {{ parent() }}
+    {% block footer_map %}
+        Météo proposé par <a href="http://openweathermap.org/">OpenWeatherMap</a>
+    {% endblock %}
+{% endblock %}
 
 {% block javascripts %}
 	{{ parent() }}

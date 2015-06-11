@@ -1,6 +1,6 @@
-{% extends '::base.html.twig' %}
+{% extends 'DroneMapBundle::layout_drone.html.twig' %}
 
-{% block body -%}
+{% block body_drone -%}
     <h1>Drone list</h1>
 
     <table class="records_list">
@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
+        {% for entity in app.user.drones %}
             <tr>
                 <td><a href="{{ path('drone_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.product }}</td>
@@ -42,4 +42,4 @@
             </a>
         </li>
     </ul>
-    {% endblock %}
+{% endblock %}

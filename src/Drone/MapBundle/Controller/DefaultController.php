@@ -23,7 +23,7 @@ class DefaultController extends Controller
 	{
 		$data = json_decode($request->getContent());
 		var_dump($data); exit();
-		$response = new JsonResponse();
+        $response = new JsonResponse();
 		$response->setData(array(
 			'data' => 123
 			));

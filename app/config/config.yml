@@ -2,6 +2,8 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: @DroneMapBundle/Resources/config/admin.yml }
+    - { resource: @DroneUserBundle/Resources/config/admin.yml }
 
 framework:
     #esi:             ~
@@ -142,3 +144,24 @@ fos_rest:
         default_format: json
 
 nelmio_api_doc: ~
+
+sonata_admin:
+    title: BeeEye
+    templates:
+        show: DroneAdminBundle:Admin:display.html.twig
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # Enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+
+endroid_qr_code:
+    size: 150
+    padding: 5
+    extension: png
+    error_correction_level: high
+    foreground_color: { r: 0, g: 0, b: 0, a: 0 }
+    background_color: { r: 255, g: 255, b: 255, a: 127 }
+    #label: "Drone QR Code"

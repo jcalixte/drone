@@ -9,19 +9,26 @@
 
 /* Définition des constantes */
 
-$purple: #663399;
+$purple:        #663399;
 $lightWisteria: #be90d4;
-$wistful: #aea8d3;
-$tahitiGold: #e87e04;
-$ming: #336e7b;
-$dodgerBlue: #19b5fe;
+$wistful:       #aea8d3;
+$tahitiGold:    #e87e04;
+$ming:          #336e7b;
+$dodgerBlue:    #19b5fe;
 
 /* Couleurs de la charte graphique */
 
-$yellow: #f9bd3b;
+$yellow:    #f9bd3b;
 $beeYellow: #f5ab35;
-$beeBlack: #141414;
+$beeBlack:  #141414;
 $royalBlue: #4183d7;
+
+/* Couleur des points d'intérêt */
+
+$pointPhoto:   #4647cb;
+$pointVideo:   #f5ab35;
+$pointSound:   #f54735;
+$pointDefault: #ffffff;
 
 /*----- Fin des constantes  ------*/
 
@@ -30,9 +37,11 @@ body {
 	font-size: 16pt;
 	background-color: $beeYellow;
 	color: $beeBlack;
+	position: absolute;
+	top: 0px; bottom: 0px; left: 0px; right: 0px;
 }
 
-span.bee{
+span.bee {
 	font-family: 'Brush', Arial, sans-serif;
 }
 
@@ -44,6 +53,7 @@ span.bee{
 	line-height: 50px;
 	border-radius: 0px;
 	color: white;
+	font-size: 12pt;
 
 	a {
 		color: white;
@@ -61,9 +71,9 @@ span.bee{
 }
 
 #content {
-	width: 90%;
+	display: absolute;
+	top: 0px; right: 0px; left: 0px;
 	margin: 0px auto 10px;
-	padding: 0px 10px;
 }
 
 h1 {
@@ -75,6 +85,12 @@ h1.bee {
 	font-size: 72pt;
 	text-align: center;
 	color: $royalBlue;
+}
+
+h3 {
+	text-align: center;
+	font-size: 28pt;
+	margin-bottom: 15px;
 }
 
 .clear {
@@ -127,6 +143,10 @@ h1.bee {
 	border-radius: 0px;
 }
 
+div.row {
+	margin: 0px;
+}
+
 footer {
 	font-size: 10pt;
 	color: white;
@@ -135,6 +155,26 @@ footer {
 	// bottom: 0;
 	margin: 0;
 	padding: 5px;
+}
+
+label {
+	display: block;
+	width: 150px;
+	float: left;
+}
+
+.form-login {
+	label {
+		display: inline;
+		width: auto;
+		float: none;
+	}
+}
+
+.fos_user_registration_register {
+	label {
+		width: 250px;
+	}
 }
 
 /*===============================
@@ -176,6 +216,32 @@ section.home-container {
 	padding: 15px;
 	background-color: $yellow;
 	border-radius: 0px;
+	text-align: justify;
+	max-width: 700px;
+	margin: auto;
+
+	div {
+		padding: 5px;
+	}
+
+	img {
+		width: 400px;
+		height: auto;
+	}
+
+	img.right {
+		float: right;
+		margin-left: 15px;
+	}
+
+	img.left {
+		float: left;
+		margin-right: 15px;
+	}
+
+	.btn {
+		width: 100%;
+	}
 }
 
 /*-----  Fin de Home index  ------*/
@@ -185,44 +251,36 @@ section.home-container {
 =================================*/
 
 .map {
-	width: 100%;
+	width: 99%;
 	height: 100%;
 	margin: auto;
 	background-color: $yellow;
-	padding: 15px;
+	//padding: 15px;
 
 	h1 {
 		text-align: center;
 	}
 
 	.map-container {
-		float: left;
-		width: 50%;
-		background-color: $yellow;
-
 		#map {
-			position: relative;
 			min-height: 400px;
+			height: 500px;
 			width: 100%;
 		}
 	}
 
 	.map-command {
-		float: right;
-		padding: 15px;
-		display: inline-block;
-		width: 50%;
+		padding: 0px;
 
-		div {
+		div.command-content {
 			margin-bottom: 15px;
 		}
 
-		.inAction {
+		.inAction-container {
 			text-align: center;
-			max-width: 300px;
-			margin: 15px auto;
+			margin: 0px auto 15px;
 			background-color: $beeBlack;
-			padding: 15px;
+			padding: 5px;
 			color: $yellow;
 
 			h2 {
@@ -230,7 +288,7 @@ section.home-container {
 				margin-bottom: 10px;
 			}
 
-			#inAction {
+			.inAction {
 				font-style: italic;
 			}
 		}
@@ -239,8 +297,56 @@ section.home-container {
 			min-width: 150px;
 		}
 
+		.legend-content {
+			margin-bottom: 0px;
+
+			.legend {
+				width: 110px;
+				height: 30px;
+				line-height: 30px;
+				float: left;
+				margin-bottom: 0px;
+				font-weight: bold;
+				font-style: italic;
+
+				div.legend-action {
+					float: left;
+					width: 30px;
+					height: 30px;
+					border: solid 2px black;
+					border-radius: 15px;
+				}
+			}
+
+			.point-photo {
+				background-color: $pointPhoto;
+			}
+
+			.point-video {
+				background-color: $pointVideo;
+			}
+
+			.point-sound {
+				background-color: $pointSound;
+			}
+
+			.point-default {
+				background-color: $pointDefault;
+			}
+		}
+
 		#actionTaken {
 			display: none;
+		}
+	}
+
+	.submit-field-row {
+		div {
+			padding: 0px;
+
+			.btn {
+				border: solid $beeYellow 1px;
+			}
 		}
 	}
 }
@@ -263,12 +369,12 @@ section.home-container {
 
 		text-align: center;
 		height: 100px;
-		line-height: 70px;
+		line-height: 100px;
 		font-size: 70px;
 		font-weight: bold;
 		padding: 0px 15px;
 		color: white;
-		// background-color: lighten($beeYellow, 5%);
+		background-color: rgba(black, 0.5);
 		// border-radius: 0 15px 15px 0;
 	}
 
@@ -287,27 +393,25 @@ section.home-container {
 
 	div.profile-access {
 		float: right;
+		padding: 0px;
 	}
 
 	div.profile-about {
-		margin: auto;
-		width: 400px;
 		background-color: $beeYellow;
 		padding: 15px;
-
-		h3 {
-			text-align: center;
-			font-size: 28pt;
-			margin-bottom: 15px;
-		}
 	}
 	
 	p.profile-drone {
 		text-align: center;
+
 		span.profile-drone {
 			font-style: italic;
 			color: $beeBlack;
 			font-size: 28pt;
+		}
+
+		table {
+			border: 0px;
 		}
 	}
 }
@@ -319,3 +423,42 @@ section.home-container {
 }
 
 /*-----  Fin du Profil  ------*/
+
+
+/*====================================
+=            Espace Drone            =
+====================================*/
+
+div.drone-content {
+	padding: 15px;
+
+	h1 {
+		font-size: 46pt;
+		text-align: center;
+	}
+
+	h2 {
+		font-family: "Segoe UI Light", Arial;
+		margin: 15px 0px;
+	}
+
+	.row {
+		margin: 0px;
+	}
+
+	.retour {
+		text-align: center;
+		margin-top: 15px;
+	}
+}
+
+/*-----  Fin de Espace Drone  ------*/
+
+
+
+/*=============================
+=            Admin            =
+=============================*/
+
+
+/*-----  Fin de l'admin  ------*/

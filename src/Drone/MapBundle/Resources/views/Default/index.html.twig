@@ -5,120 +5,135 @@
 {% endblock %}
 
 {% block stylesheets %}
-    <link href="{{ asset('stylesheets/weather/css/weather-icons.min.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('stylesheets/toastr.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('stylesheets/weather/css/weather-icons.min.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('stylesheets/toastr.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block body_map %}
 	<div class="map">
-		<div class="map-container">
-			<div id='map'></div>
-		</div>
-		<div class="map-command">
-			<div class="inAction">
-				<h2>Action en cours</h2>
-				<span id="inAction">
-					{% if user.drones|length > 0 %}
-						In the recharging base.
-					{% else %}
-					    Vous n'avez actuellement aucun drone enregistré.
+		<div class="row">
+			<div class="map-container col-md-8">
+				<div id='map'></div>
+			</div>
+			<div class="map-command col-md-4">
+				<div class="inAction-container command-content row">
+					{% if user.drones|length <= 12 %}
+						{% for drone in user.drones %}
+							<div class="col-md-{{ 12 / user.drones|length }}">
+								<h2>{{ drone.product }}</h2>
+								<div id="inAct-{{ drone.id }}" class="inAction">
+									In the recharging base.
+								</div>
+							</div>
+						{% endfor %}
 					{% endif %}
-				</span>
-			</div>
-			<div class="btn-group btn-group-justified" role="group">
-  				<div class="btn-group" role="group">
-					<button id="rectangleChoice" title="Détourer vos terrains" class="btn btn-info">Détourer vos terrains</button>
 				</div>
-  				<div class="btn-group" role="group">
-					<button id="droneCentered" title="Centrer sur votre drone" class="btn btn-info">Centrer sur votre drone</button>
+				<div class="btn-group btn-group-justified command-content" role="group">
+					<div class="btn-group" role="group">
+						<button id="rectangleChoice" title="Détourer vos terrains" class="btn btn-info">
+							Détourer vos terrains
+						</button>
+					</div>
+					<div class="btn-group" role="group">
+						<button id="droneCentered" title="Centrer sur votre drone" class="btn btn-info">
+							Centrer sur vos drone
+						</button>
+					</div>
+					{% if user.drones|length > 0 %}
+		  				<div class="btn-group" role="group">
+						<button id="putDrone" title="Placer votre drone" class="btn btn-info">Placer votre drone</button>
+					</div>
+					{% endif %}
 				</div>
-				{% if user.drones|length == 0 %}
-  				<div class="btn-group" role="group">
-					<button id="putDrone" title="Placer votre drone" class="btn btn-info">Placer votre drone</button>
+				<div class="btn-group dropdown command-content">
+					<button id="interestPoint" title="Point de passage" class="btn btn-info">Point de passage</button>
+					<button type="button" class="btn btn-info dropdown-toggle" id="drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="caret"></span>
+						<span class="sr-only">Toggle Dropdown</span>
+						<span id="actionTaken">nothing</span>
+					</button>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="drop">
+						<li><a href="#" class="selectAction" id="photo">Prise de photo</a></li>
+						<li><a href="#" class="selectAction" id="video">Prise d'une vidéo</a></li>
+						<li><a href="#" class="selectAction" id="sound">Prise de son</a></li>
+						<li class="divider"></li>
+						<li><a href="#" class="selectAction" id="nothing">Simple passage</a></li>
+					</ul>
 				</div>
-				{% endif %}
-			</div>
-			<div class="btn-group dropdown">
-				<button id="interestPoint" title="Point de passage" class="btn btn-info">Point de passage</button>
-				<button type="button" class="btn btn-info dropdown-toggle" id="drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<span class="caret"></span>
-					<span class="sr-only">Toggle Dropdown</span>
-					<span id="actionTaken">nothing</span>
-				</button>
-				<ul class="dropdown-menu" role="menu" aria-labelledby="drop">
-					<li><a href="#" class="selectAction" id="photo">Prise de photo</a></li>
-					<li><a href="#" class="selectAction" id="video">Prise d'une vidéo</a></li>
-					<li><a href="#" class="selectAction" id="sound">Prise de son</a></li>
-					<li class="divider"></li>
-					<li><a href="#" class="selectAction" id="nothing">Simple passage</a></li>
-				</ul>
-			</div>
-			<hr>
-			<div>
-				Vos drones :
-				<ul class="list-group">
-					{% for drone in user.drones %}
-						<li class="list-group-item">{{ drone.product }} - {{ drone.serialNumber }}</li>
-					{% endfor %}
-				</ul>
-				{# <div class="table-responsive">
-					<table class="table table-striped table-hover table-condensed">
-						<thead>
-							<tr>
-								<th>Numéro de série</th>
-								<th>Latitude</th>
-								<th>Longitude</th>
-							</tr>
-						</thead>
-						<tbody>
-							{% for drone in user.drones %}
-							<tr class="warning">
-								<td>{{ drone.serialNumber }}</td>
-								<td>{{ drone.latitude }}</td>
-								<td>{{ drone.longitude }}</td>
-							</tr>
-							{% endfor %}
-						</tbody>
-					</table>
-				</div> #}
+				<div class="legend-content">
+					<div class="legend">
+						<div class="legend-action point-photo"></div>
+						Photo
+					</div>
+					<div class="legend">
+						<div class="legend-action point-video"></div>
+						Vidéo
+					</div>
+					<div class="legend">
+						<div class="legend-action point-sound"></div>
+						Son
+					</div>
+					<div class="legend">
+						<div class="legend-action point-default"></div>
+						Défaut
+					</div>
+					<div class="clear"></div>
+				</div>
+				<hr>
+				<div>
+					Vos drones :
+					<ul class="list-group">
+						{% for drone in user.drones %}
+							<li class="list-group-item">{{ drone.product }} - {{ drone.serialNumber }}</li>
+						{% endfor %}
+					</ul>
+				</div>
 			</div>
 		</div>
 		<div class="submit-field clear">
 			<br>
 			<button id="start" title="Démarrer l'observation" class="btn btn-block btn-info">Démarrer l'observation</button>
 			<br>
-			<div class="btn-group btn-group-justified" role="group">
-  				<div class="btn-group" role="group">
-					<button href="#" id='submitField' class='btn btn-info' type="submit" title="Enregistrer vos champs">Enregistrer vos champs</button>
+			<div class="row submit-field-row">
+				<div class="btn-group btn-group-justified col-md-6" role="group">
+					<div class="btn-group" role="group">
+						<button id='submitField' class='btn btn-info' type="submit" title="Enregistrer vos champs">Enregistrer vos champs</button>
+					</div>
+					<div class="btn-group" role="group">
+						<button id='submitInterestPoint' class='btn btn-info' type="submit" title="Enregistrer vos points d'intérêt">Enregistrer vos points de passage</button>
+					</div>
+					{% if user.drones|length > 0 %}
+						<div class="btn-group" role="group">
+						<button id='submitDroneLocation' class='btn btn-info' type="submit" title="Enregistrer vos drones">Enregistrer vos drones</button>
+					</div>
+					{% endif %}
 				</div>
-  				<div class="btn-group" role="group">
-					<button id='submitInterestPoint' class='btn btn-info' type="submit" title="Enregistrer vos points d'intérêt">Enregistrer vos points de passage</button>
+				<div class="btn-group btn-group-justified col-md-6" role="group">
+					<div class="btn-group" role="group">
+						<button id='deleteFields' type="submit" class='btn btn-danger' title="Supprimer vos champs">Supprimer vos champs</button>
+					</div>
+					<div class="btn-group" role="group">
+						<button id='deleteInterestPoints' type="submit" class='btn btn-danger' title="Supprimer vos points d'intérêt">Supprimer vos points d'intérêt</button>
+					</div>
+					{% if user.drones|length > 0 %}
+					<div class="btn-group" role="group">
+						<button id='deleteDrones' type="submit" class='btn btn-danger' title="Supprimer vos drones">Supprimer vos drones</button>
+					</div>
+					{% endif %}
 				</div>
-				{% if user.drones|length == 0 %}
-  				<div class="btn-group" role="group">
-					<button id='submitDroneLocation' class='btn btn-info' type="submit" title="Enregistrer la localisation de votre drone">Enregistrer la localisation de votre drone</button>
-				</div>
-				{% endif %}
-  				<div class="btn-group" role="group">
-					<button id='deleteFields' type="submit" class='btn btn-danger' title="Supprimer vos champs">Supprimer vos champs</button>
-				</div>
-  				<div class="btn-group" role="group">
-					<button id='deleteInterestPoints' type="submit" class='btn btn-danger' title="Supprimer vos points d'intérêt">Supprimer vos points d'intérêt</button>
-				</div>
-				{% if user.drones|length > 0 %}
-  				<div class="btn-group" role="group">
-					<button id='deleteDrones' type="submit" class='btn btn-danger' title="Supprimer vos drones">Supprimer vos drones</button>
-				</div>
-				{% endif %}
 			</div>
 		</div>
 	</div>
 {% endblock %}
 
 {% block javascripts_map %}
-<script src="{{ asset('javascript/MapScript.js') }}" type="text/javascript" charset="utf-8"></script>
-<script src="{{ asset('javascript/jBootstrap.js') }}" type="text/javascript" charset="utf-8"></script>
-<script src="{{ asset('javascript/toastr.js') }}" type="text/javascript" charset="utf-8"></script>
+<script src="{{ asset('javascript/tsp/main.js') }}"      type="text/javascript" charset="utf-8"></script>
+<script src="{{ asset('javascript/tsp/algorithm.js') }}" type="text/javascript" charset="utf-8"></script>
+<script src="{{ asset('javascript/tsp/utils.js') }}"     type="text/javascript" charset="utf-8"></script>
+<script src="{{ asset('javascript/drone.js') }}"         type="text/javascript" charset="utf-8"></script>
+<script src="{{ asset('javascript/MapScript.js') }}"     type="text/javascript" charset="utf-8"></script>
+<script src="{{ asset('javascript/jBootstrap.js') }}"    type="text/javascript" charset="utf-8"></script>
+<script src="{{ asset('javascript/toastr.js') }}"        type="text/javascript" charset="utf-8"></script>
 <script>
 	$(function(){
 		var twigElements           = [];
@@ -133,15 +148,16 @@
 		{% for drone in user.drones %}
 			droneEntities.push(
 				{
+					id: {{ drone.id }},
 					latitude: {{ drone.latitude }},
 					longitude: {{ drone.longitude }},
-					id: {{ drone.id }}
+					altitude: {{ drone.altitude }}
 				}
 			);
 		{% endfor %}
 
 		{% for field in user.fields %}
-		    fieldEntities.push(
+			fieldEntities.push(
 				[
 					{% for point in field.points %}
 						{
@@ -156,11 +172,11 @@
 
 		{% for point in user.points %}
 			interestPointEntities.push(
-				{	
+				{   
 					location:
 					{
 						latitude: {{ point.latitude }},
-						longitude: {{ point.longitude }},
+						longitude: {{ point.longitude }}
 					},
 					action: '{{ point.action }}',
 					id: {{ point.id }}
@@ -185,5 +201,31 @@
 		<span class="sr-only"></span>
 	</div>
 </div>
+
+// Tableau des drones
+<div class="table-responsive">
+	<table class="table table-striped table-hover table-condensed">
+		<thead>
+			<tr>
+				<th>Numéro de série</th>
+				<th>Latitude</th>
+				<th>Longitude</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for drone in user.drones %}
+			<tr class="warning">
+				<td>{{ drone.serialNumber }}</td>
+				<td>{{ drone.latitude }}</td>
+				<td>{{ drone.longitude }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+{# Status du problème TSP
+<hr>
+<span id="status"></span>
 #}
 {% endblock %}

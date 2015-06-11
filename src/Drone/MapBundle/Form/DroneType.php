@@ -12,20 +12,16 @@ class DroneType extends AbstractType
      * @param FormBuilderInterface $builder
      * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('product')
-            ->add('latitude')
-            ->add('longitude')
+            ->add('product', 'text', array('label' => "Nom du produit"))
         ;
     }
     
     /**
      * @param OptionsResolverInterface $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
+    public function setDefaultOptions(OptionsResolverInterface $resolver) {
         $resolver->setDefaults(array(
             'data_class' => 'Drone\MapBundle\Entity\Drone'
         ));
@@ -34,8 +30,7 @@ class DroneType extends AbstractType
     /**
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return 'drone_mapbundle_drone';
     }
 }

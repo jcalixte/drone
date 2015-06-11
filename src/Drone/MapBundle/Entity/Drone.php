@@ -59,6 +59,13 @@ class Drone
 	private $longitude;
 
 	/**
+	 * @var float
+	 *
+	 * @ORM\Column(name="altitude", type="float")
+	 */
+	private $altitude;
+
+	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="current_action", type="string", length=20, nullable=true)
@@ -72,12 +79,26 @@ class Drone
 	private $user;
 
 	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="activated", type="boolean", nullable=false)
+	 */
+	private $activated;
+
+	public function __toString() {
+		return $this->product;
+	}
+
+	public function __construct() {
+		$this->activated = false;
+	}
+
+	/**
 	 * Get id
 	 *
 	 * @return integer 
 	 */
-	public function getId()
-	{
+	public function getId() {
 		return $this->id;
 	}
 
@@ -87,8 +108,7 @@ class Drone
 	 * @param string $product
 	 * @return Drone
 	 */
-	public function setProduct($product)
-	{
+	public function setProduct($product) {
 		$this->product = $product;
 
 		return $this;
@@ -99,8 +119,7 @@ class Drone
 	 *
 	 * @return string 
 	 */
-	public function getProduct()
-	{
+	public function getProduct() {
 		return $this->product;
 	}
 
@@ -110,8 +129,7 @@ class Drone
 	 * @param string $serialNumber
 	 * @return Drone
 	 */
-	public function setSerialNumber($serialNumber)
-	{
+	public function setSerialNumber($serialNumber) {
 		$this->serialNumber = $serialNumber;
 
 		return $this;
@@ -122,8 +140,7 @@ class Drone
 	 *
 	 * @return string 
 	 */
-	public function getSerialNumber()
-	{
+	public function getSerialNumber() {
 		return $this->serialNumber;
 	}
 
@@ -133,8 +150,7 @@ class Drone
 	 * @param float $latitude
 	 * @return Drone
 	 */
-	public function setLatitude($latitude)
-	{
+	public function setLatitude($latitude) {
 		$this->latitude = $latitude;
 
 		return $this;
@@ -145,8 +161,7 @@ class Drone
 	 *
 	 * @return float 
 	 */
-	public function getLatitude()
-	{
+	public function getLatitude() {
 		return $this->latitude;
 	}
 
@@ -156,8 +171,7 @@ class Drone
 	 * @param float $longitude
 	 * @return Drone
 	 */
-	public function setLongitude($longitude)
-	{
+	public function setLongitude($longitude) {
 		$this->longitude = $longitude;
 
 		return $this;
@@ -168,9 +182,29 @@ class Drone
 	 *
 	 * @return float 
 	 */
-	public function getLongitude()
-	{
+	public function getLongitude() {
 		return $this->longitude;
+	}
+
+	/**
+	 * Set altitude
+	 *
+	 * @param float $altitude
+	 * @return Drone
+	 */
+	public function setAltitude($altitude) {
+		$this->altitude = $altitude;
+
+		return $this;
+	}
+
+	/**
+	 * Get altitude
+	 *
+	 * @return float 
+	 */
+	public function getAltitude() {
+		return $this->altitude;
 	}
 
 	/**
@@ -189,8 +223,7 @@ class Drone
 	 * @param string $currentAction
 	 * @return Point
 	 */
-	public function setCurrentAction($currentAction)
-	{
+	public function setCurrentAction($currentAction) {
 		$this->currentAction = $currentAction;
 
 		return $this;
@@ -201,8 +234,7 @@ class Drone
 	 *
 	 * @return string 
 	 */
-	public function getCurrentAction()
-	{
+	public function getCurrentAction() {
 		return $this->currentAction;
 	}
 
@@ -212,8 +244,7 @@ class Drone
 	 * @param \Drone\UserBundle\Entity\User $user
 	 * @return Drone
 	 */
-	public function setUser(\Drone\UserBundle\Entity\User $user = null)
-	{
+	public function setUser(\Drone\UserBundle\Entity\User $user = null) {
 		$this->user = $user;
 		
 		return $this;
@@ -224,8 +255,30 @@ class Drone
 	 *
 	 * @return \Drone\UserBundle\Entity\User 
 	 */
-	public function getUser()
-	{
+	public function getUser() {
 		return $this->user;
 	}
+
+    /**
+     * Set activated
+     *
+     * @param boolean $activated
+     * @return Drone
+     */
+    public function setActivated($activated)
+    {
+        $this->activated = $activated;
+
+        return $this;
+    }
+
+    /**
+     * Get activated
+     *
+     * @return boolean 
+     */
+    public function getActivated()
+    {
+        return $this->activated;
+    }
 }

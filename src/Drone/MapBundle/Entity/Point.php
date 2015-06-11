@@ -61,7 +61,7 @@ class Point
 	 **/
 	private $field;
 
-	public function __construct(){
+	public function __construct() {
 		$this->user  = null;
 		$this->field = null;
 	}
@@ -71,8 +71,7 @@ class Point
 	 *
 	 * @return integer 
 	 */
-	public function getId()
-	{
+	public function getId() {
 		return $this->id;
 	}
 
@@ -82,8 +81,7 @@ class Point
 	 * @param float $latitude
 	 * @return Drone
 	 */
-	public function setLatitude($latitude)
-	{
+	public function setLatitude($latitude) {
 		$this->latitude = $latitude;
 
 		return $this;
@@ -94,8 +92,7 @@ class Point
 	 *
 	 * @return float 
 	 */
-	public function getLatitude()
-	{
+	public function getLatitude() {
 		return $this->latitude;
 	}
 
@@ -105,8 +102,7 @@ class Point
 	 * @param float $longitude
 	 * @return Drone
 	 */
-	public function setLongitude($longitude)
-	{
+	public function setLongitude($longitude) {
 		$this->longitude = $longitude;
 
 		return $this;
@@ -117,19 +113,8 @@ class Point
 	 *
 	 * @return float 
 	 */
-	public function getLongitude()
-	{
+	public function getLongitude() {
 		return $this->longitude;
-	}
-
-	/**
-	 * Get the localisation
-	 * 
-	 * @return String
-	 * @VirtualProperty 
-	 */
-	public function getLocation(){
-		return array("lon" => $this->getLongitude(), "lat" => $this->getLatitude());
 	}
 
 	/**
@@ -138,8 +123,7 @@ class Point
 	 * @param string $action
 	 * @return Point
 	 */
-	public function setAction($action)
-	{
+	public function setAction($action) {
 		$this->action = $action;
 
 		return $this;
@@ -150,8 +134,7 @@ class Point
 	 *
 	 * @return string 
 	 */
-	public function getAction()
-	{
+	public function getAction() {
 		return $this->action;
 	}
 
@@ -161,8 +144,7 @@ class Point
 	 * @param \Drone\UserBundle\Entity\User $user
 	 * @return Drone
 	 */
-	public function setUser(\Drone\UserBundle\Entity\User $user = null)
-	{
+	public function setUser(\Drone\UserBundle\Entity\User $user = null) {
 		$this->user = $user;
 		
 		return $this;
@@ -173,8 +155,7 @@ class Point
 	 *
 	 * @return \Drone\UserBundle\Entity\User 
 	 */
-	public function getUser()
-	{
+	public function getUser() {
 		return $this->user;
 	}
 
@@ -192,8 +173,7 @@ class Point
 	 * @param \Drone\MapBundle\Entity\Field $field
 	 * @return Drone
 	 */
-	public function setField(\Drone\MapBundle\Entity\Field $field = null)
-	{
+	public function setField(\Drone\MapBundle\Entity\Field $field = null) {
 		$this->field = $field;
 		
 		return $this;
@@ -204,8 +184,7 @@ class Point
 	 *
 	 * @return \Drone\MapBundle\Entity\Field 
 	 */
-	public function getField()
-	{
+	public function getField() {
 		return $this->field;
 	}
 
@@ -216,4 +195,15 @@ class Point
 			return false;
 		}
 	}
+
+	/**
+	 * Get the localisation
+	 * 
+	 * @return String
+	 * @VirtualProperty 
+	 */
+	public function getLocation(){
+		return array("lon" => $this->getLongitude(), "lat" => $this->getLatitude());
+	}
+
 }

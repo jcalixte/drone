@@ -1,16 +1,26 @@
-{% extends '::base.html.twig' %}
+{% extends 'DroneMapBundle::layout_drone.html.twig' %}
 
-{% block body -%}
-    <h1>Drone edit</h1>
+{% block title_drone %}
+    Modifier le drone {{ entity }}
+{% endblock %}
 
-    {{ form(edit_form) }}
+{% block body_drone %}
+	<h1>Drone {{ entity }}</h1>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('drone') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+	<h2>QR Code</h2>
+	<p>
+		Imprimez ce code et déposez le sur votre drone pour accéder à ces informations rapidement. <br>
+		<img src="{{ qrcode_data_uri(url('drone_edit', {id: entity.id}), extension='png') }}" />
+	</p>
+
+	{{ form(edit_form) }}
+
+	<ul class="record_actions">
+		<li>
+			<a href="{{ path('drone') }}" class="btn btn-info">
+				Retour à vos drones
+			</a>
+		</li>
+		<li>{{ form(delete_form) }}</li>
+	</ul>
 {% endblock %}

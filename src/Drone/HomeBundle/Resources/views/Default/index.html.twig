@@ -2,18 +2,18 @@
 {% block body %}
  	<section class="home-container">
 		<h1 class="bee"><span class="bee">Bee</span> Eye</h1>
-		La plateforme pour observer vos champs de culture depuis votre salon !
-		<p>
-			Ce que propose <span class="bee">Bee</span> Eye :
-			<ul>
-				<li>Détourer vos terrains</li>
-				<li>Créer des points d'intérêt</li>
-				<li>Positionner votre drone</li>
-				<li>Effectuer en un seul clique une ronde auprès de tous vos points d'intérêt</li>
-			</ul>
-			Le drone est capable de prendre des photos, des vidéos, entendre, traiter des images, etc...
-			<br>
-			<a class="btn btn-default" href="{{ path('drone_map_homepage') }}" title="Accéder à la page de cartographie">Accéder à la page de cartographie</a>
-		</p>
+		<div>
+			<h3>Un drone autonome pour l'agriculture</h3>
+			<img class="right img-rounded" src="{{ asset('image/home/banner_agriculture.png') }}" alt="Agriculture">
+			<span class="bee">Bee</span> Eye est votre plateforme qui s'adapte à vos besoins. Être agriculteur, c'est prendre en compte une multitude de paramètres et devoir faire attention à la moindre information. <span class="bee">Bee</span> Eye vous propose de vous simplifier vos contrôles sur vos champs. En rendant autonome des tâches qui nécessitent du temps précieux.
+		</div>
+		<div>
+			<h3>La surveillance par les airs</h3>
+			<img class="left img-rounded" src="{{ asset('image/home/apples.jpg') }}" alt="Pommier">
+			La plateforme <span class="bee">Bee</span> Eye vous permet de créer des points d'intérêts où que vous voulez sur vos champs. Synchronisez avec vos drones d'observation puis, en quelques clics, enregistrer des sons, des vidéos, des photos accessibles directement depuis votre ordinateur ou smartphone. Ainsi, vous économisez du temps et pourrez pleinement étudier vos champs tranquillement dans votre salon.
+			<hr>
+			<a class="btn btn-primary" href="{{ path('drone_map_homepage') }}" title="Accéder à la page de cartographie">Accéder à la page de cartographie</a>
+		</div>
+		<div class="clear"></div>
  	</section>
 {% endblock %}
