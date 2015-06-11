@@ -37,7 +37,7 @@ $(function() {
 
 	var twigElements = false;
 
-    var circleRadius = 0.0000008, mapAction;
+    var circleRadius = 0.0000008;
 
 	$("#search").click(function() {
 		var query = $("#search_query").val();
