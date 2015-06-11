@@ -37,7 +37,7 @@ $(function() {
 
 	var twigElements = false;
 
-	var circleRadius = 0.0000008;
+    var circleRadius = 0.0000008, mapAction;
 
 	$("#search").click(function() {
 		var query = $("#search_query").val();
@@ -107,9 +107,10 @@ $(function() {
 				color = "#ffffff";
 				break;
 		}
-		$("#interestPoint").css("border", "solid black 1pt");
-		$("#interestPoint").css("color", "black");
-		$("#interestPoint").css("background-color", color);
+		$("#interestPoint")
+            .css("border", "solid black 1pt")
+            .css("color", "black")
+            .css("background-color", color);
 	});
 
 	/*==========  Évènements  ==========*/
@@ -482,9 +483,8 @@ $(function() {
 		var bestPath = [];
 		for (var i = 0; i < relativeBestPath.length; i++) {
 			bestPath[bestPath.length] = p[relativeBestPath[i]];
-		};
-
-		var dronePosition = getDronePosition(bestPath, drone.getLocation());
+        }
+        var dronePosition = getDronePosition(bestPath, drone.getLocation());
 		bestPath = shift(bestPath, dronePosition);
 
 		return bestPath;
@@ -887,8 +887,7 @@ $(function() {
 		}else if(d >= 326.25 && d < 348.75) {
 			direction = 'Nord-Nord-Ouest';
 		}
-		$("#weather-wind-direction").removeClass();
-		$("#weather-wind-direction").addClass("wi wi-up");
+        $("#weather-wind-direction").removeClass().addClass("wi wi-up");
 		rotate(d);
 		return direction;
 	}
@@ -903,9 +902,9 @@ $(function() {
 			}
 		);
 		return $(this);
-	};
+    }
 
-	function changeColorPin(action) {
+    function changeColorPin(action) {
 		var options;
 		switch(action) {
 			case 'photo':
@@ -956,6 +955,4 @@ $(function() {
 		}
 		return options;
 	}
-
-
 });

@@ -68,11 +68,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 @font-face {
   font-family: "Quicksand";
-  src: url('/fonts/../../drone/web/stylesheets/fonts/Quicksand.otf') format('opentype');
+  src: url('/fonts/../../drone/web/stylesheets/fonts/Quicksand.otf?1425643771') format('opentype');
 }
 @font-face {
   font-family: "Brush";
-  src: url('/fonts/../../drone/web/stylesheets/fonts/Brush.ttf') format('truetype');
+  src: url('/fonts/../../drone/web/stylesheets/fonts/Brush.ttf?1425814159') format('truetype');
 }
 /* D├®finition des constantes */
 /* Couleurs de la charte graphique */
@@ -209,6 +209,11 @@ h3 {
 }
 
 /* line 146, ../sass/screen.scss */
+div.row {
+  margin: 0px;
+}
+
+/* line 150, ../sass/screen.scss */
 footer {
   font-size: 10pt;
   color: white;
@@ -216,33 +221,52 @@ footer {
   padding: 5px;
 }
 
+/* line 160, ../sass/screen.scss */
+label {
+  display: block;
+  width: 150px;
+  float: left;
+}
+
+/* line 167, ../sass/screen.scss */
+.form-login label {
+  display: inline;
+  width: auto;
+  float: none;
+}
+
+/* line 175, ../sass/screen.scss */
+.fos_user_registration_register label {
+  width: 250px;
+}
+
 /*===============================
 =            Bouton            =
 ===============================*/
-/* line 160, ../sass/screen.scss */
+/* line 184, ../sass/screen.scss */
 .btn {
   border-radius: 0px;
   border: 0px;
 }
 
-/* line 165, ../sass/screen.scss */
+/* line 189, ../sass/screen.scss */
 .btn.active, .btn-info.active {
   background-color: #aea8d3;
   color: black;
 }
 
-/* line 170, ../sass/screen.scss */
+/* line 194, ../sass/screen.scss */
 .btn-default {
   background-color: #fff;
 }
 
-/* line 174, ../sass/screen.scss */
+/* line 198, ../sass/screen.scss */
 .btn-warning {
   color: black;
   background-color: #f5ab35;
 }
 
-/* line 179, ../sass/screen.scss */
+/* line 203, ../sass/screen.scss */
 .dropdown-menu {
   border-radius: 0px;
   background-color: #95bae9;
@@ -253,7 +277,7 @@ footer {
 /*==================================
 =            Home index            =
 ==================================*/
-/* line 191, ../sass/screen.scss */
+/* line 215, ../sass/screen.scss */
 section.home-container {
   padding: 15px;
   background-color: #f9bd3b;
@@ -262,26 +286,26 @@ section.home-container {
   max-width: 700px;
   margin: auto;
 }
-/* line 199, ../sass/screen.scss */
+/* line 223, ../sass/screen.scss */
 section.home-container div {
   padding: 5px;
 }
-/* line 203, ../sass/screen.scss */
+/* line 227, ../sass/screen.scss */
 section.home-container img {
   width: 400px;
   height: auto;
 }
-/* line 208, ../sass/screen.scss */
+/* line 232, ../sass/screen.scss */
 section.home-container img.right {
   float: right;
   margin-left: 15px;
 }
-/* line 213, ../sass/screen.scss */
+/* line 237, ../sass/screen.scss */
 section.home-container img.left {
   float: left;
   margin-right: 15px;
 }
-/* line 218, ../sass/screen.scss */
+/* line 242, ../sass/screen.scss */
 section.home-container .btn {
   width: 100%;
 }
@@ -290,36 +314,32 @@ section.home-container .btn {
 /*=================================
 =            MapBundle            =
 =================================*/
-/* line 229, ../sass/screen.scss */
+/* line 253, ../sass/screen.scss */
 .map {
   width: 99%;
   height: 100%;
   margin: auto;
   background-color: #f9bd3b;
 }
-/* line 236, ../sass/screen.scss */
-.map div.row {
-  margin: 0px;
-}
-/* line 240, ../sass/screen.scss */
+/* line 260, ../sass/screen.scss */
 .map h1 {
   text-align: center;
 }
-/* line 245, ../sass/screen.scss */
+/* line 265, ../sass/screen.scss */
 .map .map-container #map {
   min-height: 400px;
   height: 500px;
   width: 100%;
 }
-/* line 252, ../sass/screen.scss */
+/* line 272, ../sass/screen.scss */
 .map .map-command {
   padding: 0px;
 }
-/* line 255, ../sass/screen.scss */
+/* line 275, ../sass/screen.scss */
 .map .map-command div.command-content {
   margin-bottom: 15px;
 }
-/* line 259, ../sass/screen.scss */
+/* line 279, ../sass/screen.scss */
 .map .map-command .inAction-container {
   text-align: center;
   margin: 0px auto 15px;
@@ -327,24 +347,24 @@ section.home-container .btn {
   padding: 5px;
   color: #f9bd3b;
 }
-/* line 266, ../sass/screen.scss */
+/* line 286, ../sass/screen.scss */
 .map .map-command .inAction-container h2 {
   font-size: 18pt;
   margin-bottom: 10px;
 }
-/* line 271, ../sass/screen.scss */
+/* line 291, ../sass/screen.scss */
 .map .map-command .inAction-container .inAction {
   font-style: italic;
 }
-/* line 276, ../sass/screen.scss */
+/* line 296, ../sass/screen.scss */
 .map .map-command #interestPoint {
   min-width: 150px;
 }
-/* line 280, ../sass/screen.scss */
+/* line 300, ../sass/screen.scss */
 .map .map-command .legend-content {
   margin-bottom: 0px;
 }
-/* line 283, ../sass/screen.scss */
+/* line 303, ../sass/screen.scss */
 .map .map-command .legend-content .legend {
   width: 110px;
   height: 30px;
@@ -354,7 +374,7 @@ section.home-container .btn {
   font-weight: bold;
   font-style: italic;
 }
-/* line 292, ../sass/screen.scss */
+/* line 312, ../sass/screen.scss */
 .map .map-command .legend-content .legend div.legend-action {
   float: left;
   width: 30px;
@@ -362,31 +382,31 @@ section.home-container .btn {
   border: solid 2px black;
   border-radius: 15px;
 }
-/* line 301, ../sass/screen.scss */
+/* line 321, ../sass/screen.scss */
 .map .map-command .legend-content .point-photo {
   background-color: #4647cb;
 }
-/* line 305, ../sass/screen.scss */
+/* line 325, ../sass/screen.scss */
 .map .map-command .legend-content .point-video {
   background-color: #f5ab35;
 }
-/* line 309, ../sass/screen.scss */
+/* line 329, ../sass/screen.scss */
 .map .map-command .legend-content .point-sound {
   background-color: #f54735;
 }
-/* line 313, ../sass/screen.scss */
+/* line 333, ../sass/screen.scss */
 .map .map-command .legend-content .point-default {
   background-color: #ffffff;
 }
-/* line 318, ../sass/screen.scss */
+/* line 338, ../sass/screen.scss */
 .map .map-command #actionTaken {
   display: none;
 }
-/* line 324, ../sass/screen.scss */
+/* line 344, ../sass/screen.scss */
 .map .submit-field-row div {
   padding: 0px;
 }
-/* line 327, ../sass/screen.scss */
+/* line 347, ../sass/screen.scss */
 .map .submit-field-row div .btn {
   border: solid #f5ab35 1px;
 }
@@ -395,12 +415,12 @@ section.home-container .btn {
 /*==============================
 =            Profil            =
 ==============================*/
-/* line 340, ../sass/screen.scss */
+/* line 360, ../sass/screen.scss */
 .user_show {
   background-color: #f9bd3b;
   font-size: 20pt;
 }
-/* line 344, ../sass/screen.scss */
+/* line 364, ../sass/screen.scss */
 .user_show h1 {
   position: relative;
   display: inline;
@@ -408,48 +428,52 @@ section.home-container .btn {
   width: 100%;
   text-align: center;
   height: 100px;
-  line-height: 70px;
+  line-height: 100px;
   font-size: 70px;
   font-weight: bold;
   padding: 0px 15px;
   color: white;
+  background-color: rgba(0, 0, 0, 0.5);
 }
-/* line 361, ../sass/screen.scss */
+/* line 381, ../sass/screen.scss */
 .user_show .profile-picture {
   width: 100%;
   height: auto;
   max-height: 350px;
   overflow: hidden;
 }
-/* line 367, ../sass/screen.scss */
+/* line 387, ../sass/screen.scss */
 .user_show .profile-picture img {
   width: 100%;
   height: auto;
   vertical-align: middle;
 }
-/* line 374, ../sass/screen.scss */
+/* line 394, ../sass/screen.scss */
 .user_show div.profile-access {
   float: right;
+  padding: 0px;
 }
-/* line 378, ../sass/screen.scss */
+/* line 399, ../sass/screen.scss */
 .user_show div.profile-about {
-  margin: auto;
-  width: 400px;
   background-color: #f5ab35;
   padding: 15px;
 }
-/* line 385, ../sass/screen.scss */
+/* line 404, ../sass/screen.scss */
 .user_show p.profile-drone {
   text-align: center;
 }
-/* line 387, ../sass/screen.scss */
+/* line 407, ../sass/screen.scss */
 .user_show p.profile-drone span.profile-drone {
   font-style: italic;
   color: #141414;
   font-size: 28pt;
 }
+/* line 413, ../sass/screen.scss */
+.user_show p.profile-drone table {
+  border: 0px;
+}
 
-/* line 395, ../sass/screen.scss */
+/* line 419, ../sass/screen.scss */
 .form-login {
   padding: 15px;
   margin: 15px auto;
@@ -457,6 +481,34 @@ section.home-container .btn {
 }
 
 /*-----  Fin du Profil  ------*/
+/*====================================
+=            Espace Drone            =
+====================================*/
+/* line 432, ../sass/screen.scss */
+div.drone-content {
+  padding: 15px;
+}
+/* line 435, ../sass/screen.scss */
+div.drone-content h1 {
+  font-size: 46pt;
+  text-align: center;
+}
+/* line 440, ../sass/screen.scss */
+div.drone-content h2 {
+  font-family: "Segoe UI Light", Arial;
+  margin: 15px 0px;
+}
+/* line 445, ../sass/screen.scss */
+div.drone-content .row {
+  margin: 0px;
+}
+/* line 449, ../sass/screen.scss */
+div.drone-content .retour {
+  text-align: center;
+  margin-top: 15px;
+}
+
+/*-----  Fin de Espace Drone  ------*/
 /*=============================
 =            Admin            =
 =============================*/

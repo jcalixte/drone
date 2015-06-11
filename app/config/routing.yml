@@ -8,7 +8,7 @@ drone_home:
 
 drone_map:
     resource: "@DroneMapBundle/Resources/config/routing.yml"
-    prefix:   /map
+    prefix:   /{_locale}/map
 
 drone_user:
     resource: "@DroneUserBundle/Resources/config/routing.yml"

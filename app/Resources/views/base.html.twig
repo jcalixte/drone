@@ -50,14 +50,15 @@
 			</div>
 		</nav>
 		
-		<div id="content">
+		<div id="content containeur-fluid">
 			{% block body %}{% endblock %}
 		</div>
 		<footer>
-			Météo proposé par <a href="http://openweathermap.org/">OpenWeatherMap</a>
+            {% block footer %}{% endblock %}
 		</footer>
 		{% block javascripts %}
 			<script src="{{ asset('javascript/jquery.min.js') }}" type="text/javascript" charset="utf-8"></script>
+            <script src="{{ asset('javascript/jquery-ui/jquery-ui.min.js') }}" type="text/javascript" charset="utf-8"></script>
 			<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 			<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 			<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}" type="text/javascript" charset="utf-8"></script>

@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Drone\MapBundle\Entity\Drone;
 use Drone\MapBundle\Form\DroneType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Drone controller.
@@ -15,234 +16,278 @@ use Drone\MapBundle\Form\DroneType;
 class DroneController extends Controller
 {
 
-    /**
-     * Lists all Drone entities.
-     *
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
+	/**
+	 * Lists all Drone entities.
+	 *
+	 */
+	public function indexAction() {
+		$em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('DroneMapBundle:Drone')->findAll();
+		$entities = $em->getRepository('DroneMapBundle:Drone')->findAll();
 
-        return $this->render('DroneMapBundle:Drone:index.html.twig', array(
-            'entities' => $entities,
-        ));
-    }
+		return $this->render('DroneMapBundle:Drone:index.html.twig', array(
+			'entities' => $entities,
+		));
+	}
+
     /**
      * Creates a new Drone entity.
-     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function createAction(Request $request)
-    {
-        $entity = new Drone();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
+	public function createAction(Request $request) {
+		$user = $this->getUser();
+		if(!$user){
+			throw $this->createNotFoundException('Utilisateur non connecté');
+		}
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
+		$entity = new Drone();
+		$form = $this->createCreateForm($entity);
+		$form->handleRequest($request);
 
-            return $this->redirect($this->generateUrl('drone_show', array('id' => $entity->getId())));
-        }
+		if ($form->isValid()) {
+			$user->addDrone($entity);
 
-        return $this->render('DroneMapBundle:Drone:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($entity);
+			$em->flush();
 
-    /**
-     * Creates a form to create a Drone entity.
-     *
-     * @param Drone $entity The entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createCreateForm(Drone $entity)
-    {
-        $form = $this->createForm(new DroneType(), $entity, array(
-            'action' => $this->generateUrl('drone_create'),
-            'method' => 'POST',
-        ));
+			return $this->redirect($this->generateUrl('drone_show', array('id' => $entity->getId())));
+		}
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+		return $this->render('DroneMapBundle:Drone:new.html.twig', array(
+			'entity' => $entity,
+			'form'   => $form->createView(),
+		));
+	}
 
-        return $form;
-    }
+	/**
+	 * Creates a form to create a Drone entity.
+	 *
+	 * @param Drone $entity The entity
+	 *
+	 * @return \Symfony\Component\Form\Form The form
+	 */
+	private function createCreateForm(Drone $entity) {
+		$form = $this->createForm(new DroneType(), $entity, array(
+			'action' => $this->generateUrl('drone_create'),
+			'method' => 'POST',
+		));
 
-    /**
-     * Displays a form to create a new Drone entity.
-     *
-     */
-    public function newAction()
-    {
-        $entity = new Drone();
-        $form   = $this->createCreateForm($entity);
+		$form->add('submit', 'submit', array(
+			'label' => 'Créer',
+			'attr'  => array(
+					'class' => 'btn btn-primary'
+				)
+			));
 
-        return $this->render('DroneMapBundle:Drone:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
+		return $form;
+	}
+
+	/**
+	 * Displays a form to create a new Drone entity.
+	 *
+	 */
+	public function newAction() {
+		$user = $this->getUser();
+		if(!$user){
+			throw $this->createNotFoundException('Utilisateur non connecté');
+		}
+
+		$entity = new Drone();
+		$form   = $this->createCreateForm($entity);
+
+		return $this->render('DroneMapBundle:Drone:new.html.twig', array(
+			'entity' => $entity,
+			'form'   => $form->createView(),
+		));
+	}
 
     /**
      * Finds and displays a Drone entity.
-     *
+     * @param $id
+     * @return Response
      */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
+	public function showAction($id) {
+		$user = $this->getUser();
+		if(!$user){
+			throw $this->createNotFoundException('Utilisateur non connecté');
+		}
 
-        $entity = $em->getRepository('DroneMapBundle:Drone')->find($id);
+		$em = $this->getDoctrine()->getManager();
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Drone entity.');
-        }
+		$entity = $em->getRepository('DroneMapBundle:Drone')->find($id);
 
-        $deleteForm = $this->createDeleteForm($id);
+		if (!$entity) {
+			throw $this->createNotFoundException('Unable to find Drone entity.');
+		}
 
-        return $this->render('DroneMapBundle:Drone:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+		$deleteForm = $this->createDeleteForm($id);
+
+		return $this->render('DroneMapBundle:Drone:show.html.twig', array(
+			'entity'      => $entity,
+			'delete_form' => $deleteForm->createView(),
+		));
+	}
 
     /**
      * Displays a form to edit an existing Drone entity.
-     *
+     * @param $id
+     * @return Response
      */
-    public function editAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
+	public function editAction($id) {
+		$user = $this->getUser();
+		if(!$user){
+			throw $this->createNotFoundException('Utilisateur non connecté');
+		}
 
-        $entity = $em->getRepository('DroneMapBundle:Drone')->find($id);
+		$em = $this->getDoctrine()->getManager();
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Drone entity.');
-        }
+		$entity = $em->getRepository('DroneMapBundle:Drone')->find($id);
 
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
+		if (!$entity) {
+			throw $this->createNotFoundException('Unable to find Drone entity.');
+		}
 
-        return $this->render('DroneMapBundle:Drone:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+		$editForm   = $this->createEditForm($entity);
+		$deleteForm = $this->createDeleteForm($id);
+
+		return $this->render('DroneMapBundle:Drone:edit.html.twig', array(
+			'entity'      => $entity,
+			'edit_form'   => $editForm->createView(),
+			'delete_form' => $deleteForm->createView(),
+		));
+	}
 
     /**
      * Displays a form to manage an existing Drone entity.
-     *
+     * @param $id
+     * @return Response
      */
-    public function manageAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
+	public function manageAction($id) {
+		$em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('DroneMapBundle:Drone')->find($id);
+		$entity = $em->getRepository('DroneMapBundle:Drone')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Drone entity.');
-        }
+		if (!$entity) {
+			throw $this->createNotFoundException('Unable to find Drone entity.');
+		}
 
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
+		// Activation du drone
+		if(!$entity->getActivated()) {
+			$entity->setActivated(true);
+		}
 
-        return $this->render('DroneMapBundle:Drone:manage.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+		$em->flush();
 
-    /**
-    * Creates a form to edit a Drone entity.
-    *
-    * @param Drone $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Drone $entity)
-    {
-        $form = $this->createForm(new DroneType(), $entity, array(
-            'action' => $this->generateUrl('drone_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
+		$editForm   = $this->createEditForm($entity);
+		$deleteForm = $this->createDeleteForm($id);
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+		return $this->render('DroneMapBundle:Drone:manage.html.twig', array(
+			'entity'      => $entity,
+			'edit_form'   => $editForm->createView(),
+			'delete_form' => $deleteForm->createView(),
+		));
+	}
 
-        return $form;
-    }
+	/**
+	* Creates a form to edit a Drone entity.
+	*
+	* @param Drone $entity The entity
+	*
+	* @return \Symfony\Component\Form\Form The form
+	*/
+	private function createEditForm(Drone $entity) {
+		$form = $this->createForm(new DroneType(), $entity, array(
+			'action' => $this->generateUrl('drone_update', array('id' => $entity->getId())),
+			'method' => 'PUT',
+		));
+
+		$form->add('submit', 'submit', array(
+				'label' => 'Mettre à jour',
+				'attr'  => array(
+						'class' => 'btn btn-info'
+					)
+				));
+
+		return $form;
+	}
+
     /**
      * Edits an existing Drone entity.
-     *
+     * @param Request $request
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function updateAction(Request $request, $id)
-    {
-        $em = $this->getDoctrine()->getManager();
+	public function updateAction(Request $request, $id) {
+		$em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('DroneMapBundle:Drone')->find($id);
+		$entity = $em->getRepository('DroneMapBundle:Drone')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Drone entity.');
-        }
+		if (!$entity) {
+			throw $this->createNotFoundException('Unable to find Drone entity.');
+		}
 
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
-        $editForm->handleRequest($request);
+		$deleteForm = $this->createDeleteForm($id);
+		$editForm = $this->createEditForm($entity);
+		$editForm->handleRequest($request);
 
-        if ($editForm->isValid()) {
-            $em->flush();
+		if ($editForm->isValid()) {
+			$em->flush();
 
-            return $this->redirect($this->generateUrl('drone_edit', array('id' => $id)));
-        }
+			return $this->redirect($this->generateUrl('drone_edit', array('id' => $id)));
+		}
 
-        return $this->render('DroneMapBundle:Drone:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
+		return $this->render('DroneMapBundle:Drone:edit.html.twig', array(
+			'entity'      => $entity,
+			'edit_form'   => $editForm->createView(),
+			'delete_form' => $deleteForm->createView(),
+		));
+	}
+
     /**
      * Deletes a Drone entity.
-     *
+     * @param Request $request
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function deleteAction(Request $request, $id)
-    {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+	public function deleteAction(Request $request, $id) {
+		$form = $this->createDeleteForm($id);
+		$form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('DroneMapBundle:Drone')->find($id);
+		if ($form->isValid()) {
+			$em = $this->getDoctrine()->getManager();
+			$entity = $em->getRepository('DroneMapBundle:Drone')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Drone entity.');
-            }
+			if (!$entity) {
+				throw $this->createNotFoundException('Unable to find Drone entity.');
+			}
 
-            $em->remove($entity);
-            $em->flush();
-        }
+			$em->remove($entity);
+			$em->flush();
+		}
 
-        return $this->redirect($this->generateUrl('drone'));
-    }
+		return $this->redirect($this->generateUrl('drone'));
+	}
 
-    /**
-     * Creates a form to delete a Drone entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('drone_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
-    }
+	/**
+	 * Creates a form to delete a Drone entity by id.
+	 *
+	 * @param mixed $id The entity id
+	 *
+	 * @return \Symfony\Component\Form\Form The form
+	 */
+	private function createDeleteForm($id) {
+		return $this->createFormBuilder()
+			->setAction($this->generateUrl('drone_delete', array('id' => $id)))
+			->setMethod('DELETE')
+			->add('submit', 'submit', array(
+				'label' => 'Delete',
+				'attr'  => array(
+						'class' => 'btn btn-danger'
+					)
+				))
+			->getForm()
+		;
+	}
 }

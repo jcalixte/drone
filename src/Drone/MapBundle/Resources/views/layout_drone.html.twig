@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+    {% block stylesheets_drone %}{% endblock %}
+{% endblock %}
+
+{% block title %}
+    {% block title_drone %}{% endblock %}
+{% endblock %}
+
+{% block body %}
+    <div class="drone-content">
+        {% block body_drone %}{% endblock %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+    {% block javascripts_drone %}{% endblock %}
+{% endblock %}

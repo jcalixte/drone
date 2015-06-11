@@ -8,16 +8,19 @@
 		</div>
 		<h1>{{ user.firstname|capitalize }} {{ user.lastname|capitalize }}</h1>
 
-		<div class="profile-access">
+		<div class="profile-access col-md-2">
 			<a class="btn btn-warning btn-block" href="{{ path('fos_user_profile_edit') }}" title="Éditer votre profil">
 				Éditer votre profil
 			</a>
 			<a class="btn btn-warning btn-block" href="{{ path('drone_map_homepage') }}" title="Accéder à la page de cartographie">
 				Accéder à la page de cartographie
 			</a>
+			<a class="btn btn-warning btn-block" href="{{ path('drone_new') }}" title="Ajouter un drone">
+				Ajouter un drone
+			</a>
 		</div>
 
-		<div class="profile-about">
+		<div class="profile-about col-md-4 col-md-offset-4">
 			<h3>À propos</h3>
 			<p>
 				<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -32,31 +35,29 @@
 				{{ user.city }}, {{ user.getCountryName }}
 			</p>
 		</div>
-		
+
 		{% if user.drones|length > 0 %}
-		<div class="profile-drone clear">
-			<span class="profile-drone">Vos drones</span>
+		<div class="profile-drone col-md-6 col-md-offset-3 clear">
+			<h2>Drones</h2>
 			<table class="table table-striped table-hover table-condensed">
-				<thead>
-					<tr>
-						<th>Produit</th>
-						<th>Latitude</th>
-						<th>Longitude</th>
-						<th>QR Code</th>
-					</tr>
-				</thead>
 				<tbody>
 					{% for drone in user.drones %}
-					<tr class="warning">
-						<td>{{ drone }}</td>
-						<td>{{ drone.latitude|number_format(2) }}</td>
-						<td>{{ drone.longitude|number_format(2) }}</td>
-						<td><a href="{{ path('drone_manage', {id: drone.id}) }}"><img src="{{ qrcode_data_uri(url('drone_manage', {id: drone.id}), extension='png') }}" /></a></td>
-					</tr>
+						<tr>
+							<td>{{ drone }}</td>
+							<td>{{ drone.latitude|number_format(5) }}</td>
+							<td>{{ drone.longitude|number_format(5) }}</td>
+							<td>
+								<a href="{{ path('drone_manage', {id: drone.id}) }}" class="btn btn-info">
+									Gérer le drone
+								</a>
+							</td>
+						</tr>
 					{% endfor %}
 				</tbody>
 			</table>
 		</div>
 		{% endif %}
+
+		<div class="clear"></div>
 	</div>
 {% endblock body_user %}

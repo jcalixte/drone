@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"font",
+				"font-size"
+			],
+			[
+				"circle",
+				"circleRadius"
+			],
+			[
 				"drone",
 				"droneAttributedId"
 			],
@@ -22,10 +30,6 @@
 			[
 				"getLat",
 				"getAltitude"
-			],
-			[
-				"font",
-				"font-style"
 			],
 			[
 				"point",
@@ -380,10 +384,26 @@
 	"buffers":
 	[
 		{
-			"file": "web/javascript/MapScript.js",
+			"file": "src/Drone/UserBundle/Resources/views/Profile/show.html.twig",
 			"settings":
 			{
-				"buffer_size": 24893,
+				"buffer_size": 1950,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Julien/Downloads/fr_FR.dic/fr_FR.dic",
+			"settings":
+			{
+				"buffer_size": 628492,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Drone/MapBundle/Controller/DroneController.php",
+			"settings":
+			{
+				"buffer_size": 6578,
 				"line_ending": "Windows"
 			}
 		},
@@ -391,7 +411,71 @@
 			"file": "src/Drone/MapBundle/Entity/Drone.php",
 			"settings":
 			{
-				"buffer_size": 3842,
+				"buffer_size": 4393,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/Drone/MapBundle/Resources/views/Drone/new.html.twig",
+			"settings":
+			{
+				"buffer_size": 346,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/config/routing.yml",
+			"settings":
+			{
+				"buffer_size": 1498,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/Drone/UserBundle/Resources/views/Registration/register.html.twig",
+			"settings":
+			{
+				"buffer_size": 444,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/Drone/MapBundle/Resources/translations/messages.fr.yml",
+			"settings":
+			{
+				"buffer_size": 122,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Drone/UserBundle/Resources/views/Security/login.html.twig",
+			"settings":
+			{
+				"buffer_size": 1375,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/Drone/MapBundle/Resources/views/Drone/manage.html.twig",
+			"settings":
+			{
+				"buffer_size": 1423,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "web/sass/screen.scss",
+			"settings":
+			{
+				"buffer_size": 6722,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/Resources/views/base.html.twig",
+			"settings":
+			{
+				"buffer_size": 3096,
 				"line_ending": "Windows"
 			}
 		}
@@ -403,10 +487,18 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 300.0,
-		"last_filter": "html",
+		"height": 400.0,
+		"last_filter": "yml",
 		"selected_items":
 		[
+			[
+				"yml",
+				"Set Syntax: YAML"
+			],
+			[
+				"y",
+				"Set Syntax: YAML"
+			],
 			[
 				"html",
 				"Set Syntax: HTML"
@@ -514,12 +606,57 @@
 	"expanded_folders":
 	[
 		"/C/wamp/www/drone",
+		"/C/wamp/www/drone/app",
+		"/C/wamp/www/drone/app/config",
+		"/C/wamp/www/drone/src",
+		"/C/wamp/www/drone/src/Drone",
+		"/C/wamp/www/drone/src/Drone/MapBundle",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Controller",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Form",
-		"/C/wamp/www/drone/web"
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/config",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/translations",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Default",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Drone",
+		"/C/wamp/www/drone/src/Drone/UserBundle",
+		"/C/wamp/www/drone/web",
+		"/C/wamp/www/drone/web/sass"
 	],
 	"file_history":
 	[
+		"/C/wamp/www/drone/app/config/config.yml",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/layout_drone.html.twig",
+		"/C/wamp/www/drone/web/sass/rename_bootstrap.scss",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/translations/messages.fr.yml",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/translations/user.fr.yml",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/translations/messages.en.yml",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/translations/messages.fr.yml",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/translations/messages.en.yml",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/translations/user.en.yml",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/translations/map.fr.yml",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/translations/map.en.yml",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Security/login.html.twig",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Form/DroneType.php",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Entity/Drone.php",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Drone/index.html.twig",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Drone/edit.html.twig",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Drone/show.html.twig",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Drone/new.html.twig",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Drone/manage.html.twig",
+		"/C/wamp/www/drone/app/Resources/views/base.html.twig",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/config/routing/drone.yml",
+		"/C/wamp/www/drone/app/config/security.yml",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Default/index.html.twig",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Entity/User.php",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Controller/DroneController.php",
+		"/C/wamp/www/drone/web/javascript/tsp/algorithm.js",
+		"/C/wamp/www/drone/web/javascript/tsp/main.js",
+		"/C/wamp/www/drone/web/javascript/MapScript.js",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Entity/Point.php",
+		"/C/wamp/www/drone/app/AppKernel.php",
+		"/C/wamp/www/drone/app/config/routing.yml",
+		"/C/wamp/www/drone/vendor/swiftmailer/swiftmailer/doc/index.rst",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Entity/Field.php",
 		"/C/wamp/www/drone/web/sass/screen.scss",
 		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/config/admin.yml",
@@ -527,33 +664,22 @@
 		"/C/wamp/www/drone/src/Drone/AdminBundle/Resources/views/Admin/edit.html.twig",
 		"/C/wamp/www/drone/src/Drone/AdminBundle/Resources/views/Admin/display.html.twig",
 		"/C/wamp/www/drone/vendor/sonata-project/admin-bundle/Resources/views/standard_layout.html.twig",
-		"/C/wamp/www/drone/app/config/config.yml",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Admin/DroneAdmin.php",
 		"/C/wamp/www/drone/src/Drone/UserBundle/Admin/UserAdmin.php",
-		"/C/wamp/www/drone/src/Drone/UserBundle/Entity/User.php",
 		"/C/wamp/www/drone/src/Drone/UserBundle/Form/Type/RegistrationFormType.php",
-		"/C/wamp/www/drone/src/Drone/MapBundle/Entity/Drone.php",
-		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Default/index.html.twig",
-		"/C/wamp/www/drone/app/Resources/views/base.html.twig",
 		"/C/wamp/www/drone/vendor/sonata-project/admin-bundle/Resources/views/CRUD/base_show.html.twig",
 		"/C/wamp/www/drone/vendor/sonata-project/admin-bundle/Controller/CRUDController.php",
 		"/C/Users/Julien/AppData/Local/Temp/export_post_2015_05_29_10_45_15.json",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/config/services.yml",
 		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/config/services.yml",
 		"/C/wamp/www/drone/src/Drone/MapBundle/DependencyInjection/DroneMapExtension.php",
-		"/C/wamp/www/drone/app/config/security.yml",
-		"/C/wamp/www/drone/app/AppKernel.php",
-		"/C/wamp/www/drone/app/config/routing.yml",
 		"/C/wamp/www/drone/app/config/parameters.yml",
 		"/C/wamp/www/drone/web/javascript/animationPin.js",
-		"/C/wamp/www/drone/web/javascript/MapScript.js",
 		"/C/wamp/www/drone/web/javascript/tsp/utils.js",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Controller/AjaxController.php",
 		"/C/wamp/www/drone/web/javascript/drone.js",
 		"/C/wamp/www/JulienCalixte/web/sass/screen.scss",
 		"/C/Users/Julien/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/C/wamp/www/drone/web/javascript/tsp/algorithm.js",
-		"/C/wamp/www/drone/web/javascript/tsp/main.js",
 		"/C/Users/Julien/SkyDrive/Documents/cmder/config/aliases",
 		"/C/wamp/www/drone/web/stylesheets/screen.css",
 		"/C/wamp/www/drone/web/javascript/tsp/index.html",
@@ -572,7 +698,6 @@
 		"/C/wamp/www/drone/web/stylesheets/animate.css",
 		"/C/wamp/www/drone/web/stylesheets/weather/bower.json",
 		"/C/wamp/www/drone/vendor/friendsofsymfony/user-bundle/Resources/config/routing/registration.xml",
-		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Security/login.html.twig",
 		"/C/Users/Julien/AppData/Roaming/Sublime Text 3/Packages/User/CSS3.sublime-settings",
 		"/C/Users/Julien/AppData/Roaming/Sublime Text 3/Packages/CSS3/CSS3.sublime-settings",
 		"/C/wamp/www/drone/vendor/friendsofsymfony/user-bundle/Resources/config/routing/security.xml",
@@ -595,7 +720,6 @@
 		"/C/wamp/www/drone/vendor/symfony/symfony/src/Symfony/Component/Security/Acl/Model/AclProviderInterface.php",
 		"/C/wamp/www/drone/vendor/vich/uploader-bundle/Injector/FileInjector.php",
 		"/C/wamp/www/drone/bin/security-checker",
-		"/C/wamp/www/drone/vendor/swiftmailer/swiftmailer/doc/index.rst",
 		"/C/wamp/www/drone/vendor/knplabs/gaufrette/spec/Gaufrette/FilesystemMapSpec.php",
 		"/C/wamp/www/drone/vendor/phpcollection/phpcollection/src/PhpCollection/Map.php",
 		"/C/wamp/www/drone/vendor/swiftmailer/swiftmailer/tests/acceptance/Swift/MessageAcceptanceTest.php",
@@ -628,25 +752,7 @@
 		"/C/wamp/www/Protimbre/vendor/knplabs/gaufrette/spec/Gaufrette/Util/PathSpec.php",
 		"/C/wamp/www/Protimbre/vendor/symfony/symfony/src/Symfony/Component/Process/Tests/ProcessInSigchildEnvironment.php",
 		"/C/wamp/www/Protimbre/src/Protimbre/AdminBundle/Resources/config/services.yml",
-		"/C/wamp/www/Protimbre/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Tests/Fixtures/php/services9_compiled.php",
-		"/C/wamp/www/drone/vendor/friendsofsymfony/user-bundle/Form/Type/RegistrationFormType.php",
-		"/C/wamp/www/drone/vendor/friendsofsymfony/user-bundle/Resources/views/Registration/register.html.twig",
-		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Registration/register.html.twig",
-		"/C/wamp/www/drone/vendor/jms/serializer-bundle/JMS/SerializerBundle/DependencyInjection/Compiler/RegisterEventListenersAndSubscribersPass.php",
-		"/C/wamp/www/drone/vendor/friendsofsymfony/user-bundle/Resources/doc/adding_invitation_registration.md",
-		"/C/wamp/www/drone/vendor/symfony/symfony/src/Symfony/Component/EventDispatcher/Tests/DependencyInjection/RegisterListenersPassTest.php",
-		"/C/wamp/www/drone/vendor/symfony/symfony/src/Symfony/Component/EventDispatcher/Tests/EventDispatcherTest.php",
-		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Drone/edit.html.twig",
-		"/C/wamp/www/drone/vendor/jms/serializer/src/JMS/Serializer/EventDispatcher/EventDispatcherInterface.php",
-		"/C/wamp/www/drone/vendor/jms/serializer/src/JMS/Serializer/EventDispatcher/EventDispatcher.php",
-		"/C/wamp/www/drone/vendor/jdorn/sql-formatter/examples/examples.php",
-		"/C/wamp/www/drone/vendor/knplabs/gaufrette/spec/Gaufrette/Adapter/AzureBlobStorage.php",
-		"/C/wamp/www/drone/vendor/symfony/assetic-bundle/AsseticBundle.php",
-		"/C/wamp/www/drone/vendor/friendsofsymfony/user-bundle/Resources/views/Registration/register_content.html.twig",
-		"/C/wamp/www/drone/vendor/kriswallsmith/assetic/Gemfile",
-		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Group/show_content.html.twig",
-		"/C/wamp/www/drone/vendor/incenteev/composer-parameter-handler/Incenteev/ParameterHandler/ScriptHandler.php",
-		"/C/wamp/www/drone/vendor/friendsofsymfony/user-bundle/Resources/views/Profile/edit_content.html.twig"
+		"/C/wamp/www/Protimbre/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Tests/Fixtures/php/services9_compiled.php"
 	],
 	"find":
 	{
@@ -670,6 +776,37 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"optional",
+			"extend",
+			"md",
+			"offset-md",
+			"col",
+			"h2",
+			"user",
+			"Form",
+			"form",
+			"Form",
+			"form",
+			"Form",
+			"form",
+			"Form",
+			"form",
+			"Form",
+			"form",
+			"Form",
+			"newA",
+			"\n    {",
+			")\n	{",
+			".",
+			"body",
+			"drones",
+			"string",
+			"drone",
+			"td",
+			"0",
+			"255",
+			"addCircle",
+			"draw",
 			"	{",
 			"_show",
 			"show",
@@ -766,38 +903,7 @@
 			"tribulate",
 			"GANextGeneration",
 			"preciseMutate",
-			"best",
-			"draw",
-			"status",
-			"draw(",
-			"draw",
-			"drawLines",
-			"return",
-			"setBestValue",
-			"GAInitialize",
-			"start_btn",
-			"consol",
-			"p>",
-			"p",
-			"40px",
-			"thumbnail",
-			"img",
-			"home",
-			"optimal_closed_tour",
-			"nextLocation",
-			"getNextDistance",
-			"Taking",
-			"4",
-			"twigElements",
-			"TwigElements",
-			"twigElements",
-			"TwigElements",
-			"twigElements",
-			"alreadyPoints",
-			"fields[",
-			"fields",
-			"addPointToShape",
-			"path[path.len"
+			"best"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -831,28 +937,28 @@
 			[
 				{
 					"buffer": 0,
-					"file": "web/javascript/MapScript.js",
+					"file": "src/Drone/UserBundle/Resources/views/Profile/show.html.twig",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 24893,
+						"buffer_size": 1950,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7096,
-								7096
+								909,
+								909
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3528.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -860,19 +966,77 @@
 				},
 				{
 					"buffer": 1,
-					"file": "src/Drone/MapBundle/Entity/Drone.php",
+					"file": "/C/Users/Julien/Downloads/fr_FR.dic/fr_FR.dic",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3842,
+						"buffer_size": 628492,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2560,
-								2560
+								361,
+								361
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/Drone/MapBundle/Controller/DroneController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6578,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								596,
+								596
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3010.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/Drone/MapBundle/Entity/Drone.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4393,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
@@ -880,11 +1044,243 @@
 							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 2002.0,
+						"translation.x": -0.0,
+						"translation.y": 541.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/Drone/MapBundle/Resources/views/Drone/new.html.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 346,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								346,
+								346
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/config/routing.yml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1498,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1498,
+								1498
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/YAML/YAML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/Drone/UserBundle/Resources/views/Registration/register.html.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 444,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								298,
+								298
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/Drone/MapBundle/Resources/translations/messages.fr.yml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 122,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								122,
+								122
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/YAML/YAML.tmLanguage"
+						},
+						"translation.x": 12.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "src/Drone/UserBundle/Resources/views/Security/login.html.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1375,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1294,
+								1329
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "src/Drone/MapBundle/Resources/views/Drone/manage.html.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1423,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								161,
+								161
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "web/sass/screen.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6722,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2162,
+								2162
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1641.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "app/Resources/views/base.html.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3096,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								760,
+								760
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -939,40 +1335,108 @@
 		"selected_items":
 		[
 			[
-				"admin.yml",
-				"src\\Drone\\UserBundle\\Resources\\config\\admin.yml"
-			],
-			[
 				"config",
 				"app\\config\\config.yml"
 			],
 			[
-				"standar",
-				"vendor\\sonata-project\\admin-bundle\\Resources\\views\\standard_layout.html.twig"
+				"scre",
+				"web\\sass\\screen.scss"
 			],
 			[
-				"base",
-				"app\\Resources\\views\\base.html.twig"
+				"rena",
+				"web\\sass\\rename_bootstrap.scss"
 			],
 			[
-				"vendorsonataviewscrudbase_show",
-				"vendor\\sonata-project\\admin-bundle\\Resources\\views\\CRUD\\base_show.html.twig"
-			],
-			[
-				"confi",
-				"app\\config\\config.yml"
-			],
-			[
-				"registrationfo",
-				"src\\Drone\\UserBundle\\Form\\Type\\RegistrationFormType.php"
+				"rename",
+				"web\\sass\\rename_bootstrap.scss"
 			],
 			[
 				"drone",
 				"src\\Drone\\MapBundle\\Entity\\Drone.php"
 			],
 			[
+				"login",
+				"src\\Drone\\UserBundle\\Resources\\views\\Security\\login.html.twig"
+			],
+			[
+				"register",
+				"src\\Drone\\UserBundle\\Resources\\views\\Registration\\register.html.twig"
+			],
+			[
+				"base",
+				"app\\Resources\\views\\base.html.twig"
+			],
+			[
+				"screen",
+				"web\\sass\\screen.scss"
+			],
+			[
 				"user",
 				"src\\Drone\\UserBundle\\Entity\\User.php"
+			],
+			[
+				"secur",
+				"app\\config\\security.yml"
+			],
+			[
+				"droneedit",
+				"src\\Drone\\MapBundle\\Resources\\views\\Drone\\edit.html.twig"
+			],
+			[
+				"confi",
+				"app\\config\\config.yml"
+			],
+			[
+				"routing",
+				"app\\config\\routing.yml"
+			],
+			[
+				"appke",
+				"app\\AppKernel.php"
+			],
+			[
+				"algor",
+				"web\\javascript\\tsp\\algorithm.js"
+			],
+			[
+				"main",
+				"web\\javascript\\tsp\\main.js"
+			],
+			[
+				"index.html.twig",
+				"src\\Drone\\MapBundle\\Resources\\views\\Default\\index.html.twig"
+			],
+			[
+				"inde",
+				"vendor\\swiftmailer\\swiftmailer\\doc\\index.rst"
+			],
+			[
+				"algo",
+				"web\\javascript\\tsp\\algorithm.js"
+			],
+			[
+				"maps",
+				"web\\javascript\\MapScript.js"
+			],
+			[
+				"point",
+				"src\\Drone\\MapBundle\\Entity\\Point.php"
+			],
+			[
+				"admin.yml",
+				"src\\Drone\\UserBundle\\Resources\\config\\admin.yml"
+			],
+			[
+				"standar",
+				"vendor\\sonata-project\\admin-bundle\\Resources\\views\\standard_layout.html.twig"
+			],
+			[
+				"vendorsonataviewscrudbase_show",
+				"vendor\\sonata-project\\admin-bundle\\Resources\\views\\CRUD\\base_show.html.twig"
+			],
+			[
+				"registrationfo",
+				"src\\Drone\\UserBundle\\Form\\Type\\RegistrationFormType.php"
 			],
 			[
 				"vendorsonata-projectviewscrudbase_sho",
@@ -981,10 +1445,6 @@
 			[
 				"scree",
 				"web\\sass\\screen.scss"
-			],
-			[
-				"routing",
-				"app\\config\\routing.yml"
 			],
 			[
 				"security",
@@ -1003,20 +1463,12 @@
 				"app\\config\\parameters.yml"
 			],
 			[
-				"maps",
-				"web\\javascript\\MapScript.js"
-			],
-			[
 				"field",
 				"src\\Drone\\MapBundle\\Entity\\Field.php"
 			],
 			[
 				"animationp",
 				"web\\javascript\\animationPin.js"
-			],
-			[
-				"screen",
-				"web\\sass\\screen.scss"
 			],
 			[
 				"utils",
@@ -1029,10 +1481,6 @@
 			[
 				"scr",
 				"web\\sass\\screen.scss"
-			],
-			[
-				"point",
-				"src\\Drone\\MapBundle\\Entity\\Point.php"
 			],
 			[
 				"index.html",
@@ -1199,10 +1647,6 @@
 				"web\\config.rb"
 			],
 			[
-				"register",
-				"vendor\\friendsofsymfony\\user-bundle\\Resources\\views\\Registration\\register_content.html.twig"
-			],
-			[
 				"register_",
 				"vendor\\friendsofsymfony\\user-bundle\\Resources\\views\\Registration\\register_content.html.twig"
 			],
@@ -1293,10 +1737,6 @@
 			[
 				"jqueryt",
 				"src\\Protimbre\\TamponBundle\\Resources\\views\\Tampon\\jqueryTampon.html.twig"
-			],
-			[
-				"scre",
-				"web\\css\\sass\\screen.scss"
 			],
 			[
 				"modele",
@@ -1405,26 +1845,6 @@
 			[
 				"equipeshow",
 				"src\\Tournoi\\NoelBundle\\Resources\\views\\Equipe\\show.html.twig"
-			],
-			[
-				"joueurnew",
-				"src\\Tournoi\\NoelBundle\\Resources\\views\\Joueur\\new.html.twig"
-			],
-			[
-				"equipenew",
-				"src\\Tournoi\\NoelBundle\\Resources\\views\\Equipe\\new.html.twig"
-			],
-			[
-				"noelbundleindex",
-				"src\\Tournoi\\NoelBundle\\Resources\\doc\\index.rst"
-			],
-			[
-				"index",
-				"vendor\\swiftmailer\\swiftmailer\\doc\\index.rst"
-			],
-			[
-				"noelbundleconfigroutingjoue",
-				"src\\Tournoi\\NoelBundle\\Resources\\config\\routing\\joueur.yml"
 			]
 		],
 		"width": 0.0
@@ -1454,12 +1874,21 @@
 	"selected_group": 0,
 	"settings":
 	{
+		"last_automatic_layout":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		]
 	},
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 217.0,
+	"side_bar_width": 259.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

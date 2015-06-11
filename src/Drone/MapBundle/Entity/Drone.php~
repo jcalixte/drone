@@ -258,27 +258,4 @@ class Drone
 	public function getUser() {
 		return $this->user;
 	}
-
-    /**
-     * Set activated
-     *
-     * @param boolean $activated
-     * @return Drone
-     */
-    public function setActivated($activated)
-    {
-        $this->activated = $activated;
-
-        return $this;
-    }
-
-    /**
-     * Get activated
-     *
-     * @return boolean 
-     */
-    public function getActivated()
-    {
-        return $this->activated;
-    }
 }
