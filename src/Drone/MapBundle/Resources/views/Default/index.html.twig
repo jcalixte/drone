@@ -36,7 +36,7 @@
 					</div>
 					<div class="btn-group" role="group">
 						<button id="droneCentered" title="Centrer sur votre drone" class="btn btn-info">
-							Centrer sur vos drone
+							<span class="glyphicon glyphicon-screenshot"></span>
 						</button>
 					</div>
 					{% if user.drones|length > 0 %}
@@ -97,27 +97,27 @@
 			<div class="row submit-field-row">
 				<div class="btn-group btn-group-justified col-md-6" role="group">
 					<div class="btn-group" role="group">
-						<button id='submitField' class='btn btn-info' type="submit" title="Enregistrer vos champs">Enregistrer vos champs</button>
+						<button id='submitField' class='btn btn-info' type="submit" title="Enregistrer vos champs"><span class="glyphicon glyphicon-cloud-upload"></span> champs</button>
 					</div>
 					<div class="btn-group" role="group">
-						<button id='submitInterestPoint' class='btn btn-info' type="submit" title="Enregistrer vos points d'intérêt">Enregistrer vos points de passage</button>
+						<button id='submitInterestPoint' class='btn btn-info' type="submit" title="Enregistrer vos points d'intérêt"><span class="glyphicon glyphicon-cloud-upload"></span> <span class="glyphicon glyphicon-map-marker"></span></button>
 					</div>
 					{% if user.drones|length > 0 %}
 						<div class="btn-group" role="group">
-						<button id='submitDroneLocation' class='btn btn-info' type="submit" title="Enregistrer vos drones">Enregistrer vos drones</button>
+						<button id='submitDroneLocation' class='btn btn-info' type="submit" title="Enregistrer vos drones"><span class="glyphicon glyphicon-cloud-upload"></span> <span class="glyphicon glyphicon-plane"></span></button>
 					</div>
 					{% endif %}
 				</div>
 				<div class="btn-group btn-group-justified col-md-6" role="group">
 					<div class="btn-group" role="group">
-						<button id='deleteFields' type="submit" class='btn btn-danger' title="Supprimer vos champs">Supprimer vos champs</button>
+						<button id='deleteFields' type="submit" class='btn btn-danger' title="Supprimer vos champs"><span class="glyphicon glyphicon-trash"></span> champs</button>
 					</div>
 					<div class="btn-group" role="group">
-						<button id='deleteInterestPoints' type="submit" class='btn btn-danger' title="Supprimer vos points d'intérêt">Supprimer vos points d'intérêt</button>
+						<button id='deleteInterestPoints' type="submit" class='btn btn-danger' title="Supprimer vos points d'intérêt"><span class="glyphicon glyphicon-trash"></span> <span class="glyphicon glyphicon-map-marker"></span></button>
 					</div>
 					{% if user.drones|length > 0 %}
 					<div class="btn-group" role="group">
-						<button id='deleteDrones' type="submit" class='btn btn-danger' title="Supprimer vos drones">Supprimer vos drones</button>
+						<button id='deleteDrones' type="submit" class='btn btn-danger' title="Supprimer vos drones"><span class="glyphicon glyphicon-trash"></span> <span class="glyphicon glyphicon-plane"></span></button>
 					</div>
 					{% endif %}
 				</div>

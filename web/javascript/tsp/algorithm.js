@@ -5,6 +5,7 @@ function GAInitialize() {
 	}
 	setBestValue();
 }
+
 function GANextGeneration() {
 	currentGeneration++;
 	selection();
@@ -12,12 +13,14 @@ function GANextGeneration() {
 	mutation();
 	setBestValue();
 }
+
 function tribulate() {
 	//for(var i=0; i<POPULATION_SIZE; i++) {
 	for(var i=population.length>>1; i<POPULATION_SIZE; i++) {
 		population[i] = randomIndivial(points.length);
 	}
 }
+
 function selection() {
 	var parents = new Array();
 	var initnum = 4;
@@ -32,6 +35,7 @@ function selection() {
 	}
 	population = parents;
 }
+
 function crossover() {
 	var queue = new Array();
 	for(var i=0; i<POPULATION_SIZE; i++) {
@@ -46,6 +50,7 @@ function crossover() {
 	}
 }
 
+
 function doCrossover(x, y) {
 	// console.log("x : " + x, "y : " + y);
 	child1 = getChild('next', x, y);
@@ -53,6 +58,7 @@ function doCrossover(x, y) {
 	population[x] = child1;
 	population[y] = child2;
 }
+
 
 function getChild(fun, x, y) {
 	solution = new Array();
@@ -72,6 +78,7 @@ function getChild(fun, x, y) {
 	return solution;
 }
 
+
 function mutation() {
 	for(var i=0; i<POPULATION_SIZE; i++) {
 		if(Math.random() < MUTATION_PROBABILITY) {
@@ -84,6 +91,7 @@ function mutation() {
 		}
 	}
 }
+
 function preciseMutate(orseq) {  
 	var seq = orseq.clone();
 	if(Math.random() > 0.5){
@@ -100,6 +108,7 @@ function preciseMutate(orseq) {
 	//alert(bestv);
 	return seq;
 }
+
 function preciseMutate1(orseq) {  
 	var seq = orseq.clone();
 	var bestv = evaluate(seq);
@@ -113,6 +122,7 @@ function preciseMutate1(orseq) {
 	//alert(bestv);
 	return seq;
 }
+
 function swap_seq(seq, p0, p1, q0, q1) {
 	var seq1 = seq.slice(0, p0);
 	var seq2 = seq.slice(p1+1, q1);
@@ -121,6 +131,7 @@ function swap_seq(seq, p0, p1, q0, q1) {
 	var seq3 = seq.slice(q1, seq.length);
 	return seq1.concat(seq2).concat(seq3);
 }
+
 function doMutate(seq) {
 	mutationTimes++;
 	// m and n refers to the actual index in the array
@@ -135,6 +146,7 @@ function doMutate(seq) {
 		}
 		return seq;
 }
+
 function pushMutate(seq) {
 	mutationTimes++;
 	var m,n;
@@ -148,6 +160,7 @@ function pushMutate(seq) {
 	var s3 = seq.slice(n,seq.length);
 	return s2.concat(s1).concat(s3).clone();
 }
+
 function setBestValue() {
 	for(var i=0; i<population.length; i++) {
 		values[i] = evaluate(population[i]);
@@ -161,6 +174,7 @@ function setBestValue() {
 		UNCHANGED_GENS++;
 	}
 }
+
 function getCurrentBest() {
 	var bestP = 0,
 	currentBestValue = values[0];
@@ -176,6 +190,7 @@ function getCurrentBest() {
 		, bestValue    : currentBestValue
 	}
 }
+
 function setRoulette() {
 	//calculate all the fitness
 	for(var i=0; i<values.length; i++) { fitnessValues[i] = values[i] != 0 ? 1.0/values[i] : 1.0; }
@@ -185,6 +200,7 @@ function setRoulette() {
 	for(var i=0; i<roulette.length; i++) { roulette[i] = fitnessValues[i]/sum; }
 	for(var i=1; i<roulette.length; i++) { roulette[i] += roulette[i-1]; }
 }
+
 function wheelOut(rand) {
 	var i;
 	for(i=0; i<roulette.length; i++) {
@@ -193,6 +209,7 @@ function wheelOut(rand) {
 		}
 	}
 }
+
 function randomIndivial(n) {
 	var a = [];
 	for(var i=0; i<n; i++) {
@@ -200,6 +217,7 @@ function randomIndivial(n) {
 	}
 	return a.shuffle();
 }
+
 function evaluate(indivial) {
 	var sum = dis[indivial[0]][indivial[indivial.length - 1]];
 	for(var i=1; i<indivial.length; i++) {
@@ -207,6 +225,7 @@ function evaluate(indivial) {
 	}
 	return sum;
 }
+
 function countDistances() {
 	var length = points.length;
 	dis = new Array(length);
