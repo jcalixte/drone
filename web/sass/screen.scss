@@ -46,14 +46,14 @@ span.bee {
 }
 
 .navbar {
-	background-color: $royalBlue;
+	background-color: $beeBlack;
 	margin: 0px;
 	border: 0px;
-	height: 50px;
-	line-height: 50px;
+	line-height: 80px;
 	border-radius: 0px;
 	color: white;
 	font-size: 12pt;
+    border-bottom: 8px solid $beeYellow;
 
 	a {
 		color: white;
@@ -71,7 +71,7 @@ span.bee {
 }
 
 #content {
-	display: absolute;
+	position: absolute;
 	top: 0px; right: 0px; left: 0px;
 	margin: 0px auto 10px;
 }
@@ -177,6 +177,11 @@ label {
 	}
 }
 
+.panel {
+    border: 0px;
+    border-radius: 0px;
+}
+
 /*===============================
 =            Bouton            =
 ===============================*/
@@ -213,21 +218,11 @@ label {
 ==================================*/
 
 section.home-container {
-	padding: 15px;
 	background-color: $yellow;
 	border-radius: 0px;
 	text-align: justify;
-	max-width: 700px;
+	max-width: 100%;
 	margin: auto;
-
-	div {
-		padding: 5px;
-	}
-
-	img {
-		width: 400px;
-		height: auto;
-	}
 
 	img.right {
 		float: right;
@@ -242,6 +237,65 @@ section.home-container {
 	.btn {
 		width: 100%;
 	}
+
+    h1 {
+        position: absolute;
+        z-index: 5;
+        text-align: center;
+        width: 100%;
+        text-shadow: white  1px  1px,
+                     white -1px  1px,
+                     white -1px -1px,
+                     white  1px -1px;
+    }
+
+    .carousel {
+        padding: 0px;
+
+        .carousel-inner {
+            padding: 0px;
+
+            .item {
+                padding: 0px;
+
+                img {
+                    width: 100%;
+                    height: 300px;
+                }
+            }
+        }
+
+        .carousel-control {
+            background-image: none;
+        }
+    }
+
+    .panel-row {
+        margin: -60px auto 0px;
+        width: 80%;
+
+        .panel {
+            padding: 0px 15px;
+            background-color: transparent;
+            font-size: 14pt;
+            box-shadow: none;
+
+            .panel-heading {
+                border-radius: 0px;
+                background-color: $beeYellow;
+            }
+            
+            .panel-body {
+                background-color: $beeYellow;
+                padding: 5px;
+            }
+
+            .panel-title {
+                font-size: 26pt;
+                text-align: center;
+            }
+        }
+    }
 }
 
 /*-----  Fin de Home index  ------*/

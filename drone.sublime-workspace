@@ -4,78 +4,462 @@
 		"selected_items":
 		[
 			[
-				"min_",
-				"min_lon"
+				"font",
+				"font-size"
 			],
 			[
-				"relatvie",
-				"relativeBestPath"
+				"circle",
+				"circleRadius"
+			],
+			[
+				"drone",
+				"droneAttributedId"
 			],
 			[
 				"for",
-				"for	for (…) {…}"
+				"foreach	foreach …"
 			],
 			[
-				"pop",
-				"population"
+				"droneP",
+				"dronePinList"
 			],
 			[
-				"popl",
-				"POPULATION_SIZE"
+				"lon",
+				"longitude"
 			],
 			[
-				"relat",
-				"relativeBestPath"
+				"getLat",
+				"getAltitude"
 			],
 			[
-				"tra",
-				"transformPathForTSP"
+				"point",
+				"point-photo"
 			],
 			[
-				"TSP",
-				"TSP_Path"
+				"legend",
+				"legend	Tag"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"max-",
+				"max-width"
+			],
+			[
+				"img",
+				"img	img"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"comm",
+				"comm-subsection	Comment - Subsection comment"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"type",
+				"typeof〔keyword〕"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"path",
+				"pathSliced"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"var",
+				"var_dump('corner"
+			],
+			[
+				"poly",
+				"polyFields"
+			],
+			[
+				"dr",
+				"dronePin"
+			],
+			[
+				"near",
+				"nearestKey"
+			],
+			[
+				"droneS",
+				"droneSpeedKmH"
+			],
+			[
+				"order",
+				"border-radius"
+			],
+			[
+				"label",
+				"label	<label>"
+			],
+			[
+				"inte",
+				"interestPointEntities"
+			],
+			[
+				"interestP",
+				"interestPointEntities〔variable〕"
+			],
+			[
+				"if",
+				"if	Twig : If"
+			],
+			[
+				"Enreg",
+				"Enregistrer"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"dron",
+				"dronePin"
+			],
+			[
+				"unde",
+				"undefined〔keyword〕"
+			],
+			[
+				"typ",
+				"typeof〔keyword〕"
+			],
+			[
+				"change",
+				"changeCursor〔function〕"
+			],
+			[
+				"anima",
+				"animation_loaded"
+			],
+			[
+				"ext",
+				"extends	Twig : Extends"
+			],
+			[
+				"style",
+				"stylesheets"
+			],
+			[
+				"max",
+				"max-height"
+			],
+			[
+				"inputs",
+				"inputs	input - submit"
+			],
+			[
+				"rec",
+				"rectangleEnd"
+			],
+			[
+				"a",
+				"a	<a>"
+			],
+			[
+				"M",
+				"Maps"
+			],
+			[
+				"tog",
+				"toggleClass	.toggleClass()"
+			],
+			[
+				"min",
+				"min-height"
+			],
+			[
+				"delet",
+				"delete_on_remove"
+			],
+			[
+				"delete",
+				"delete_on_update"
+			],
+			[
+				"geo",
+				"geocodeResult〔variable〕"
+			],
+			[
+				"search_",
+				"search_engine_loaded〔variable〕"
+			],
+			[
+				"block",
+				"block	Twig : Block"
+			],
+			[
+				"bloc",
+				"blockb	Twig : Block (block)"
+			],
+			[
+				"padding",
+				"padding-top: 〔property〕"
+			],
+			[
+				"5px",
+				"5px"
+			],
+			[
+				"javasc",
+				"javascripts"
+			],
+			[
+				"ea",
+				"easeInQuad"
+			],
+			[
+				"over",
+				"overflow"
+			],
+			[
+				"suj",
+				"sujetPath"
+			],
+			[
+				"com",
+				"comm-section	Comment - Full section comment"
+			],
+			[
+				"no",
+				"no-repeat  (value)"
+			],
+			[
+				"bac",
+				"background"
+			],
+			[
+				"trans",
+				"translateX"
+			],
+			[
+				"head",
+				"header"
+			],
+			[
+				"ha",
+				"h-a	height: auto;"
+			],
+			[
+				"import",
+				"@import	@import url(${0});"
+			],
+			[
+				"comme",
+				"comm-section	Comment - Full section comment"
+			],
+			[
+				"paddi",
+				"padding-top"
+			],
+			[
+				"blan",
+				"blanc_casse"
+			],
+			[
+				"lin",
+				"line-height"
+			],
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"anime",
+				"animComplete"
+			],
+			[
+				"desi",
+				"destinations"
+			],
+			[
+				"des",
+				"destinations"
+			],
+			[
+				"destination",
+				"destinations"
+			],
+			[
+				"R",
+				"round  (function)"
+			],
+			[
+				"canvas",
+				"canvas_bataille"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"an",
+				"animate	animate"
+			],
+			[
+				"wi",
+				"width_max"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"fons",
+				"font-style"
+			],
+			[
+				"pos",
+				"pos-f	position: fixed;"
+			],
+			[
+				"attr",
+				"attr	.attr() - single"
+			],
+			[
+				"each",
+				"each	.each()"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"cre",
+				"create"
+			],
+			[
+				"chek",
+				"checkDimension"
+			],
+			[
+				"chec",
+				"checkDimension"
+			],
+			[
+				"border",
+				"border-radius"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"eni",
+				"entities"
+			],
+			[
+				"else",
+				"else	Twig : Else"
+			],
+			[
+				"joueur",
+				"Joueur"
+			],
+			[
+				"loisir",
+				"loisirsM"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "src/Drone/MapBundle/Resources/views/Default/index.html.twig",
+			"file": "src/Drone/UserBundle/Resources/views/Profile/show.html.twig",
 			"settings":
 			{
-				"buffer_size": 8896,
+				"buffer_size": 1929,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "web/javascript/MapScript.js",
+			"file": "src/Drone/MapBundle/Controller/DroneController.php",
 			"settings":
 			{
-				"buffer_size": 24666,
+				"buffer_size": 7129,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "web/javascript/animationPin.js",
+			"file": "src/Drone/MapBundle/Entity/Drone.php",
 			"settings":
 			{
-				"buffer_size": 4562,
+				"buffer_size": 4393,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "web/javascript/tsp/main.js",
+			"file": "src/Drone/MapBundle/Resources/views/Drone/new.html.twig",
 			"settings":
 			{
-				"buffer_size": 4185,
+				"buffer_size": 346,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "web/javascript/tsp/algorithm.js",
+			"file": "app/config/routing.yml",
 			"settings":
 			{
-				"buffer_size": 5217,
+				"buffer_size": 1498,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/Drone/MapBundle/Resources/translations/messages.fr.yml",
+			"settings":
+			{
+				"buffer_size": 122,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Drone/UserBundle/Resources/views/Security/login.html.twig",
+			"settings":
+			{
+				"buffer_size": 1375,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/Drone/MapBundle/Resources/views/Drone/manage.html.twig",
+			"settings":
+			{
+				"buffer_size": 1423,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "web/sass/screen.scss",
+			"settings":
+			{
+				"buffer_size": 7757,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/Resources/views/base.html.twig",
+			"settings":
+			{
+				"buffer_size": 3634,
 				"line_ending": "Windows"
 			}
 		}
@@ -87,55 +471,111 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 600.0,
-		"last_filter": "mat",
+		"height": 400.0,
+		"last_filter": "yml",
 		"selected_items":
 		[
 			[
-				"mat",
-				"Set Syntax: MATLAB"
+				"yml",
+				"Set Syntax: YAML"
 			],
 			[
-				"inst",
-				"Package Control: Install Package"
+				"y",
+				"Set Syntax: YAML"
 			],
 			[
 				"html",
 				"Set Syntax: HTML"
 			],
 			[
-				"scss",
-				"Set Syntax: SCSS"
+				"inst",
+				"Package Control: Install Package"
 			],
 			[
-				"jac",
-				"Set Syntax: JavaScript"
+				"json",
+				"JSON Reindent: reindent file or selection"
 			],
 			[
-				"php",
-				"Set Syntax: PHP"
+				"syn rub",
+				"Set Syntax: Ruby"
 			],
 			[
-				"package syn",
-				"Package Syncing: Pull Settings"
+				"remove pack",
+				"Package Control: Remove Package"
 			],
 			[
-				"defin",
-				"Package Syncing: Define Sync Folder"
+				"insta",
+				"Package Control: Install Package"
 			],
 			[
 				"instal",
 				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"rei",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"renam",
+				"File: Rename"
+			],
+			[
+				"Side bar",
+				"Side Bar: Refresh"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"todo",
+				"TodoReview: Project Files"
+			],
+			[
+				"comment",
+				"Snippet: Comment - To-do list"
+			],
+			[
+				"package sy",
+				"Package Syncing: Define Sync Folder"
+			],
+			[
+				"isntal",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Discover Packages"
+			],
+			[
+				"ints",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"nstal",
+				"Package Control: Install Package"
+			],
+			[
+				"int",
+				"Indentation: Convert to Spaces"
 			]
 		],
-		"width": 804.0
+		"width": 536.0
 	},
 	"console":
 	{
-		"height": 186.0,
+		"height": 126.0,
 		"history":
 		[
-			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read()) "
 		]
 	},
 	"distraction_free":
@@ -150,61 +590,176 @@
 	"expanded_folders":
 	[
 		"/C/wamp/www/drone",
-		"/C/wamp/www/drone/projet/mmTSP",
-		"/C/wamp/www/drone/projet/mmTSP/boost",
-		"/C/wamp/www/drone/projet/mmTSP/boost/random",
-		"/C/wamp/www/drone/projet/mmTSP/matlab",
-		"/C/wamp/www/drone/projet/mmTSP/matlab/Cuidades 2",
+		"/C/wamp/www/drone/app",
+		"/C/wamp/www/drone/app/config",
+		"/C/wamp/www/drone/app/Resources",
 		"/C/wamp/www/drone/src",
 		"/C/wamp/www/drone/src/Drone",
+		"/C/wamp/www/drone/src/Drone/HomeBundle",
+		"/C/wamp/www/drone/src/Drone/HomeBundle/Resources",
+		"/C/wamp/www/drone/src/Drone/HomeBundle/Resources/views",
+		"/C/wamp/www/drone/src/Drone/HomeBundle/Resources/views/Default",
 		"/C/wamp/www/drone/src/Drone/MapBundle",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Controller",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Form",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Resources",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/config",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/translations",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Default",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Drone",
 		"/C/wamp/www/drone/src/Drone/UserBundle",
 		"/C/wamp/www/drone/src/Drone/UserBundle/Resources",
-		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views",
-		"/C/wamp/www/drone/vendor",
-		"/C/wamp/www/drone/web"
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/config",
+		"/C/wamp/www/drone/web",
+		"/C/wamp/www/drone/web/sass"
 	],
 	"file_history":
 	[
-		"/C/wamp/www/drone/web/javascript/drone.js",
-		"/C/wamp/www/drone/web/javascript/animationPin.js",
-		"/C/wamp/www/drone/web/javascript/MapScript.js",
-		"/C/wamp/www/drone/projet/mmTSP/generation.cpp",
-		"/C/wamp/www/drone/projet/mmTSP/main.cpp",
-		"/C/wamp/www/drone/projet/mmTSP/matlab/Cuidades 2/cruce.m",
-		"/C/wamp/www/drone/projet/mmTSP/matlab/Cuidades 2/elementos_aleatorios.m",
-		"/C/wamp/www/drone/projet/mmTSP/matlab/Cuidades 2/evaluacion_gen.m",
-		"/C/wamp/www/drone/projet/mmTSP/matlab/Cuidades 2/mutacion.asv",
-		"/C/wamp/www/drone/projet/mmTSP/matlab/Cuidades 2/poblacion_incial.asv",
-		"/C/wamp/www/drone/projet/mmTSP/matlab/Cuidades 2/posicion_inicial.m",
-		"/C/wamp/www/drone/projet/mmTSP/matlab/Cuidades 2/poblacion_incial.m",
-		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Profile/show.html.twig",
-		"/C/wamp/www/drone/web/javascript/tsp/main.js",
-		"/C/wamp/www/drone/web/javascript/tsp/algorithm.js",
-		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/config/routing.yml",
-		"/C/wamp/www/drone/web/sass/screen.scss",
-		"/C/wamp/www/drone/src/Drone/MapBundle/Controller/DroneController.php",
-		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Default/index.html.twig",
-		"/C/wamp/www/drone/UPGRADE.md",
+		"/C/wamp/www/drone/app/config/config.yml",
+		"/C/wamp/www/drone/app/config/security.yml",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Registration/register.html.twig",
+		"/C/wamp/www/drone/app/config/routing.yml",
+		"/C/Users/Julien/Downloads/fr_FR.dic/fr_FR.dic",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/layout_drone.html.twig",
+		"/C/wamp/www/drone/web/sass/rename_bootstrap.scss",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/translations/messages.fr.yml",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/translations/user.fr.yml",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/translations/messages.en.yml",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/translations/messages.fr.yml",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/translations/messages.en.yml",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/translations/user.en.yml",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/translations/map.fr.yml",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/translations/map.en.yml",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Security/login.html.twig",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Form/DroneType.php",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Entity/Drone.php",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Drone/index.html.twig",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Drone/edit.html.twig",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Drone/show.html.twig",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Drone/new.html.twig",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Drone/manage.html.twig",
 		"/C/wamp/www/drone/app/Resources/views/base.html.twig",
-		"/C/wamp/www/juliencalixte/index.html",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/config/routing/drone.yml",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Default/index.html.twig",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Entity/User.php",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Controller/DroneController.php",
+		"/C/wamp/www/drone/web/javascript/tsp/algorithm.js",
+		"/C/wamp/www/drone/web/javascript/tsp/main.js",
+		"/C/wamp/www/drone/web/javascript/MapScript.js",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Entity/Point.php",
+		"/C/wamp/www/drone/app/AppKernel.php",
+		"/C/wamp/www/drone/vendor/swiftmailer/swiftmailer/doc/index.rst",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Entity/Field.php",
+		"/C/wamp/www/drone/web/sass/screen.scss",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/config/admin.yml",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/config/admin.yml",
+		"/C/wamp/www/drone/src/Drone/AdminBundle/Resources/views/Admin/edit.html.twig",
+		"/C/wamp/www/drone/src/Drone/AdminBundle/Resources/views/Admin/display.html.twig",
+		"/C/wamp/www/drone/vendor/sonata-project/admin-bundle/Resources/views/standard_layout.html.twig",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Admin/DroneAdmin.php",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Admin/UserAdmin.php",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Form/Type/RegistrationFormType.php",
+		"/C/wamp/www/drone/vendor/sonata-project/admin-bundle/Resources/views/CRUD/base_show.html.twig",
+		"/C/wamp/www/drone/vendor/sonata-project/admin-bundle/Controller/CRUDController.php",
+		"/C/Users/Julien/AppData/Local/Temp/export_post_2015_05_29_10_45_15.json",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/config/services.yml",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/config/services.yml",
+		"/C/wamp/www/drone/src/Drone/MapBundle/DependencyInjection/DroneMapExtension.php",
+		"/C/wamp/www/drone/app/config/parameters.yml",
+		"/C/wamp/www/drone/web/javascript/animationPin.js",
+		"/C/wamp/www/drone/web/javascript/tsp/utils.js",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Controller/AjaxController.php",
-		"/C/wamp/www/drone/web/javascript/tsp/data.js",
-		"/C/wamp/www/drone/web/stylesheets/screen.css",
+		"/C/wamp/www/drone/web/javascript/drone.js",
+		"/C/wamp/www/JulienCalixte/web/sass/screen.scss",
 		"/C/Users/Julien/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/C/Users/Julien/SkyDrive/Documents/cmder/config/aliases"
+		"/C/Users/Julien/SkyDrive/Documents/cmder/config/aliases",
+		"/C/wamp/www/drone/web/stylesheets/screen.css",
+		"/C/wamp/www/drone/web/javascript/tsp/index.html",
+		"/C/wamp/www/drone/web/javascript/tsp/data.js",
+		"/C/wamp/www/drone/src/Drone/HomeBundle/Resources/views/Default/index.html.twig",
+		"/C/Users/Julien/Documents/Reset.cmd",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Profile/show.html.twig",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Profile/edit.html.twig",
+		"/C/Users/Julien/Downloads/Algorithm-TravelingSalesman-BitonicTour-0.05/lib/Algorithm/TravelingSalesman/BitonicTour.pm",
+		"/C/Users/Julien/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/C/Users/Julien/Documents/App/drone/Vagrantfile",
+		"/C/wamp/www/drone/web/notification/css/ns-style-other.css",
+		"/C/wamp/www/drone/web/javascript/toastr.js",
+		"/C/wamp/www/drone/web/stylesheets/toastr.css",
+		"/C/wamp/www/drone/web/NotificationStyles/other-loadingcircle.html",
+		"/C/wamp/www/drone/web/stylesheets/animate.css",
+		"/C/wamp/www/drone/web/stylesheets/weather/bower.json",
+		"/C/wamp/www/drone/vendor/friendsofsymfony/user-bundle/Resources/config/routing/registration.xml",
+		"/C/Users/Julien/AppData/Roaming/Sublime Text 3/Packages/User/CSS3.sublime-settings",
+		"/C/Users/Julien/AppData/Roaming/Sublime Text 3/Packages/CSS3/CSS3.sublime-settings",
+		"/C/wamp/www/drone/vendor/friendsofsymfony/user-bundle/Resources/config/routing/security.xml",
+		"/C/wamp/www/drone/vendor/friendsofsymfony/user-bundle/Resources/config/security.xml",
+		"/C/wamp/www/drone/vendor/friendsofsymfony/user-bundle/Resources/config/registration.xml",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Controller/BeeyeController.php",
+		"/C/wamp/www/drone/src/Drone/HomeBundle/Resources/views/Default/envoi_mail.html.twig",
+		"/C/wamp/www/drone/src/Drone/HomeBundle/Controller/DefaultController.php",
+		"/C/wamp/www/drone/src/Drone/HomeBundle/Resources/config/routing.yml",
+		"/C/wamp/www/drone/README.md",
+		"/C/wamp/www/drone/vendor/symfony/symfony/src/Symfony/Component/Console/Tests/Fixtures/application_renderexception_doublewidth1.txt",
+		"/C/wamp/www/drone/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php",
+		"/C/wamp/www/drone/vendor/doctrine/doctrine-bundle/ConnectionFactory.php",
+		"/C/wamp/www/drone/vendor/jms/serializer/src/JMS/Serializer/Naming/CacheNamingStrategy.php",
+		"/C/wamp/www/drone/vendor/symfony/symfony/src/Symfony/Component/Translation/Dumper/FileDumper.php",
+		"/C/wamp/www/drone/app/config/routing_rest.yml",
+		"/C/wamp/www/drone/vendor/friendsofsymfony/rest-bundle/FOS/RestBundle/Routing/RestRouteCollection.php",
+		"/C/wamp/www/drone/vendor/friendsofsymfony/user-bundle/Controller/ResettingController.php",
+		"/C/wamp/www/drone/vendor/composer/autoload_psr4.php",
+		"/C/wamp/www/drone/vendor/symfony/symfony/src/Symfony/Component/Security/Acl/Model/AclProviderInterface.php",
+		"/C/wamp/www/drone/vendor/vich/uploader-bundle/Injector/FileInjector.php",
+		"/C/wamp/www/drone/bin/security-checker",
+		"/C/wamp/www/drone/vendor/knplabs/gaufrette/spec/Gaufrette/FilesystemMapSpec.php",
+		"/C/wamp/www/drone/vendor/phpcollection/phpcollection/src/PhpCollection/Map.php",
+		"/C/wamp/www/drone/vendor/swiftmailer/swiftmailer/tests/acceptance/Swift/MessageAcceptanceTest.php",
+		"/C/wamp/www/drone/vendor/phpcollection/phpcollection/doc/index.rst",
+		"/C/wamp/www/drone/vendor/jms/serializer/doc/index.rst",
+		"/C/wamp/www/drone/vendor/jms/parser-lib/doc/index.rst",
+		"/C/wamp/www/drone/vendor/twig/extensions/doc/index.rst",
+		"/C/Users/Julien/AppData/Roaming/Sublime Text 3/Packages/Origami/Default (Windows).sublime-keymap",
+		"/C/Users/Julien/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Julien/AppData/Roaming/Sublime Text 3/Packages/Origami/Origami.sublime-settings",
+		"/C/Users/Julien/AppData/Roaming/Sublime Text 3/Packages/User/Origami.sublime-settings",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Profile/show_content.html.twig",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Profile/edit_content.html.twig",
+		"/C/wamp/www/drone/app/cache/dev/profiler/index.csv",
+		"/C/wamp/www/drone/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Profiler/ProfilerStorageInterface.php",
+		"/C/wamp/www/drone/vendor/friendsofsymfony/user-bundle/Controller/ProfileController.php",
+		"/C/wamp/www/drone/vendor/doctrine/doctrine-bundle/Controller/ProfilerController.php",
+		"/C/wamp/www/drone/drone.sublime-project",
+		"/C/wamp/www/drone/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/PreRemove.php",
+		"/C/wamp/www/Protimbre/vendor/jms/metadata/src/Metadata/Cache/CacheInterface.php",
+		"/C/wamp/www/Protimbre/vendor/doctrine/annotations/tests/Doctrine/Tests/Common/Annotations/Fixtures/MultipleClassesInFile.php",
+		"/C/wamp/www/Protimbre/vendor/symfony/symfony/src/Symfony/Component/Intl/NumberFormatter/NumberFormatter.php",
+		"/C/wamp/www/Protimbre/app/config/config.yml",
+		"/C/wamp/www/Protimbre/src/Protimbre/AdminBundle/Resources/views/Tampon/sort.html.twig",
+		"/C/wamp/www/Protimbre/src/Protimbre/TamponBundle/Resources/views/Tampon/perso_old.html.twig",
+		"/C/wamp/www/Protimbre/src/Protimbre/TamponBundle/Form/PersoType.php",
+		"/C/wamp/www/Protimbre/vendor/jdorn/sql-formatter/tests/performance.php",
+		"/C/wamp/www/Protimbre/web/js/jquery-ui-1.10.3.custom(1)/jquery-ui-1.10.3.custom/development-bundle/docs/puff-effect.html",
+		"/C/wamp/www/Protimbre/app/config/parameters.yml",
+		"/C/wamp/www/Protimbre/vendor/knplabs/gaufrette/spec/Gaufrette/Util/PathSpec.php",
+		"/C/wamp/www/Protimbre/vendor/symfony/symfony/src/Symfony/Component/Process/Tests/ProcessInSigchildEnvironment.php"
 	],
 	"find":
 	{
-		"height": 53.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 90.0,
 		"where_history":
 		[
+			"<open folders>",
+			"C:\\wamp\\www\\drone\\web\\javascript\\tsp",
+			"C:\\wamp\\www\\drone",
+			"C:\\Users\\Julien\\SkyDrive\\Documents\\Projet_Django\\anime",
+			"C:\\wamp\\www\\Protimbre\\src",
+			"C:\\wamp\\www\\tournoiIssy\\src"
 		]
 	},
 	"find_state":
@@ -212,130 +767,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"msToKmh",
-			"getNextDistance",
-			"function",
-			"getGen",
-			"=",
-			"glyphicon-save",
-			"> drones",
-			"vos",
-			"span> vos",
-			"vos",
-			"Enregistrer",
-			">Enregistrer",
-			"Enregistrer",
-			"function",
-			"Routing.generate",
-			"generate",
-			"droneLocation",
+			"optional",
+			"extend",
+			"md",
+			"offset-md",
+			"col",
+			"h2",
+			"user",
+			"Form",
+			"form",
+			"Form",
+			"form",
+			"Form",
+			"form",
+			"Form",
+			"form",
+			"Form",
+			"form",
+			"Form",
+			"newA",
+			"\n    {",
+			")\n	{",
+			".",
+			"body",
+			"drones",
+			"string",
+			"drone",
+			"td",
+			"0",
+			"255",
+			"addCircle",
+			"draw",
+			"	{",
+			"_show",
+			"show",
+			"base_template",
+			"MapBundle",
+			"submit",
+			"image",
+			"btn-group",
+			"span",
+			"latitude",
 			"getDronePosition",
-			"path",
+			"dronePosition1",
 			"getDronePosition",
-			"{\n",
-			"10000000",
-			"console",
-			"WHEELOUT",
-			"wheelOut",
-			"selection",
-			"crossover",
-			"Crossover",
-			"CROSSOVER",
-			"crossover",
-			"doCrossover",
-			"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@@",
-			"@@@@@@@@@@@@",
-			"@@@@@@@@@@@",
-			"@@@@@@@@@@",
-			"@@@@@@@@@",
-			"@@@@@@@@",
-			"@@@@@@@",
-			"@@@@@@",
-			"child1",
-			"getCHild",
-			"randomIndivial",
-			"population",
-			"POPULATION",
-			"population",
-			"();\n",
-			"population",
-			"evaluate",
-			"population",
-			"getWeatherDrone",
-			"POPULATION",
-			"population",
-			"console.log",
-			"randomIndivial",
-			"population",
-			"POPULATION",
-			"population",
-			"POPULATION",
-			"population",
-			"POPULATION",
-			"population",
-			"getChild",
-			"console.log",
-			"population",
-			"x",
-			"best",
-			"position",
-			"fillColor",
-			"addPointToShape",
-			"relativePositions",
-			"Positions",
-			"positions",
-			"position",
-			"Position",
-			"position",
-			"Position",
-			"position",
-			"Position",
-			"position",
-			"Position",
-			"position",
-			"Position",
-			"position",
-			"Position",
-			"position",
-			"positions",
-			"Positions",
-			"positions",
-			"fieldChoice",
-			"#",
-			"4647cb",
-			"{",
+			"inAct-",
+			"inAct",
+			"goNext",
+			"#inAction",
+			"inAction",
+			"doActionAndGo",
+			"goNext",
+			"TSP",
+			"TSP(",
+			"center",
+			"lon",
+			"drones",
+			"droneList",
+			"console.log(droneList",
+			"dronePinList",
+			"moveDrones",
+			"nextLocation",
+			"path.forEach",
+			"$(\"#weather-main\")",
+			"dronePinList",
+			"dronePinList.getFirstElement",
+			"_location",
+			"_location()",
+			"dronePinList.getFirstElement",
+			"deleteFields",
+			"deleteDrones",
+			"deleteInterestPoints",
+			"moveLocation",
+			"TSP",
+			"dronePinList[0]",
+			"dronePinList",
+			"dronePinList.push",
 			"options",
-			"path",
-			"ajaxCall",
-			"pathSliced",
-			"getWeatherDrone"
+			"maxId + 1",
+			"maxId",
+			"addDrone",
+			"dronePin",
+			"dronePin == false",
+			"dronePin",
+			"DronePin",
+			"dronePin",
+			"dronePin[",
+			"dronePin.",
+			"dronePin",
+			"DronePin",
+			"dronePin",
+			"DronePin",
+			"dronePin",
+			"dronePin != false",
+			"putDrone",
+			"numberOfDrones",
+			"putDrone",
+			"longitude",
+			"ta",
+			"Longitude",
+			"longitude",
+			"Longitude",
+			"longitude",
+			"ta",
+			"Longitude",
+			"longitude",
+			"Longitude",
+			"longitude",
+			"best",
+			"Best",
+			"best",
+			"w",
+			"point",
+			"class",
+			"40px",
+			"sound",
+			"photo",
+			":",
+			"running",
+			"switch",
+			"addCircle",
+			"beginPath",
+			"draw",
+			"GANextGeneration",
+			"selection",
+			"tribulate",
+			"GANextGeneration",
+			"preciseMutate",
+			"best"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -343,6 +902,17 @@
 		"regex": false,
 		"replace_history":
 		[
+			"}\n",
+			"});\n",
+			"<table class=\"record_properties table table-bordered table-striped table-hover\">",
+			"Modifier</a>",
+			"Ajouter une nouvelle entrée",
+			"voir</a>",
+			"<table class=\"records_list table table-bordered table-striped table-hover\">",
+			"Retour à la liste",
+			"Éditer ",
+			"Éditer",
+			"Retour à la liste"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -358,19 +928,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "src/Drone/MapBundle/Resources/views/Default/index.html.twig",
+					"file": "src/Drone/UserBundle/Resources/views/Profile/show.html.twig",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8896,
+						"buffer_size": 1929,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4782,
-								4782
+								147,
+								147
 							]
 						],
 						"settings":
@@ -379,7 +949,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2089.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -387,56 +957,86 @@
 				},
 				{
 					"buffer": 1,
-					"file": "web/javascript/MapScript.js",
+					"file": "src/Drone/MapBundle/Controller/DroneController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 24666,
+						"buffer_size": 7129,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								19473,
-								19473
+								4790,
+								4790
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 14983.0,
+						"translation.y": 2254.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "web/javascript/animationPin.js",
+					"file": "src/Drone/MapBundle/Entity/Drone.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4562,
+						"buffer_size": 4393,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1478,
-								1478
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": -0.0,
+						"translation.x": 0.0,
+						"translation.y": 541.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/Drone/MapBundle/Resources/views/Drone/new.html.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 346,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								346,
+								346
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
@@ -444,61 +1044,177 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "web/javascript/tsp/main.js",
+					"buffer": 4,
+					"file": "app/config/routing.yml",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4185,
+						"buffer_size": 1498,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1214,
-								1214
+								7,
+								7
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/YAML/YAML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
-						"translation.x": -0.0,
-						"translation.y": 819.0,
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "web/javascript/tsp/algorithm.js",
+					"buffer": 5,
+					"file": "src/Drone/MapBundle/Resources/translations/messages.fr.yml",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5217,
+						"buffer_size": 122,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								286,
-								286
+								122,
+								122
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/YAML/YAML.tmLanguage"
+						},
+						"translation.x": 12.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/Drone/UserBundle/Resources/views/Security/login.html.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1375,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1294,
+								1329
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": -0.0,
-						"translation.y": 1197.0,
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/Drone/MapBundle/Resources/views/Drone/manage.html.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1423,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								161,
+								161
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "web/sass/screen.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7757,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1641.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "app/Resources/views/base.html.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3634,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -506,11 +1222,11 @@
 	],
 	"incremental_find":
 	{
-		"height": 31.0
+		"height": 22.0
 	},
 	"input":
 	{
-		"height": 43.0
+		"height": 31.0
 	},
 	"layout":
 	{
@@ -543,7 +1259,7 @@
 	"project": "drone.sublime-project",
 	"replace":
 	{
-		"height": 58.0
+		"height": 40.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -553,96 +1269,532 @@
 		"selected_items":
 		[
 			[
-				"animationpin",
-				"web\\javascript\\animationPin.js"
+				"config",
+				"app\\config\\config.yml"
 			],
 			[
-				"algor",
-				"web\\javascript\\tsp\\algorithm.js"
+				"security",
+				"app\\config\\security.yml"
 			],
 			[
-				"main.js",
-				"web\\javascript\\tsp\\main.js"
-			],
-			[
-				"map",
-				"web\\javascript\\MapScript.js"
-			],
-			[
-				"index",
-				"src\\Drone\\MapBundle\\Resources\\views\\Default\\index.html.twig"
-			],
-			[
-				"animation",
-				"web\\javascript\\animationPin.js"
-			],
-			[
-				"drone.j",
-				"web\\javascript\\drone.js"
-			],
-			[
-				"scree",
-				"web\\sass\\screen.scss"
+				"routing",
+				"app\\config\\routing.yml"
 			],
 			[
 				"dronec",
 				"src\\Drone\\MapBundle\\Controller\\DroneController.php"
 			],
 			[
-				"routing",
-				"src\\Drone\\MapBundle\\Resources\\config\\routing.yml"
+				"scre",
+				"web\\sass\\screen.scss"
 			],
 			[
-				"userprofileshow",
-				"src\\Drone\\UserBundle\\Resources\\views\\Profile\\show.html.twig"
+				"rena",
+				"web\\sass\\rename_bootstrap.scss"
 			],
 			[
-				"animationp",
-				"web\\javascript\\animationPin.js"
+				"rename",
+				"web\\sass\\rename_bootstrap.scss"
 			],
 			[
-				"index.html.twig",
-				"src\\Drone\\MapBundle\\Resources\\views\\Default\\index.html.twig"
+				"drone",
+				"src\\Drone\\MapBundle\\Entity\\Drone.php"
 			],
 			[
-				"algo",
-				"web\\javascript\\tsp\\algorithm.js"
+				"login",
+				"src\\Drone\\UserBundle\\Resources\\views\\Security\\login.html.twig"
 			],
 			[
-				"mapsc",
-				"web\\javascript\\MapScript.js"
+				"register",
+				"src\\Drone\\UserBundle\\Resources\\views\\Registration\\register.html.twig"
 			],
 			[
 				"base",
 				"app\\Resources\\views\\base.html.twig"
 			],
 			[
-				"data",
-				"web\\javascript\\tsp\\data.js"
-			],
-			[
 				"screen",
-				"web\\stylesheets\\screen.css"
+				"web\\sass\\screen.scss"
 			],
 			[
-				"mapbundleajax",
-				"src\\Drone\\MapBundle\\Controller\\AjaxController.php"
+				"user",
+				"src\\Drone\\UserBundle\\Entity\\User.php"
+			],
+			[
+				"secur",
+				"app\\config\\security.yml"
+			],
+			[
+				"droneedit",
+				"src\\Drone\\MapBundle\\Resources\\views\\Drone\\edit.html.twig"
+			],
+			[
+				"confi",
+				"app\\config\\config.yml"
+			],
+			[
+				"appke",
+				"app\\AppKernel.php"
+			],
+			[
+				"algor",
+				"web\\javascript\\tsp\\algorithm.js"
 			],
 			[
 				"main",
 				"web\\javascript\\tsp\\main.js"
+			],
+			[
+				"index.html.twig",
+				"src\\Drone\\MapBundle\\Resources\\views\\Default\\index.html.twig"
+			],
+			[
+				"inde",
+				"vendor\\swiftmailer\\swiftmailer\\doc\\index.rst"
+			],
+			[
+				"algo",
+				"web\\javascript\\tsp\\algorithm.js"
+			],
+			[
+				"maps",
+				"web\\javascript\\MapScript.js"
+			],
+			[
+				"point",
+				"src\\Drone\\MapBundle\\Entity\\Point.php"
+			],
+			[
+				"admin.yml",
+				"src\\Drone\\UserBundle\\Resources\\config\\admin.yml"
+			],
+			[
+				"standar",
+				"vendor\\sonata-project\\admin-bundle\\Resources\\views\\standard_layout.html.twig"
+			],
+			[
+				"vendorsonataviewscrudbase_show",
+				"vendor\\sonata-project\\admin-bundle\\Resources\\views\\CRUD\\base_show.html.twig"
+			],
+			[
+				"registrationfo",
+				"src\\Drone\\UserBundle\\Form\\Type\\RegistrationFormType.php"
+			],
+			[
+				"vendorsonata-projectviewscrudbase_sho",
+				"vendor\\sonata-project\\admin-bundle\\Resources\\views\\CRUD\\base_show.html.twig"
+			],
+			[
+				"scree",
+				"web\\sass\\screen.scss"
+			],
+			[
+				"configrou",
+				"app\\config\\routing.yml"
+			],
+			[
+				"appk",
+				"app\\AppKernel.php"
+			],
+			[
+				"param",
+				"app\\config\\parameters.yml"
+			],
+			[
+				"field",
+				"src\\Drone\\MapBundle\\Entity\\Field.php"
+			],
+			[
+				"animationp",
+				"web\\javascript\\animationPin.js"
+			],
+			[
+				"utils",
+				"web\\javascript\\tsp\\utils.js"
+			],
+			[
+				"utils.",
+				"web\\javascript\\tsp\\utils.js"
+			],
+			[
+				"scr",
+				"web\\sass\\screen.scss"
+			],
+			[
+				"index.html",
+				"src\\Drone\\MapBundle\\Resources\\views\\Default\\index.html.twig"
+			],
+			[
+				"mapsc",
+				"web\\javascript\\MapScript.js"
+			],
+			[
+				"animp",
+				"web\\javascript\\animationPin.js"
+			],
+			[
+				"ajax",
+				"src\\Drone\\MapBundle\\Controller\\AjaxController.php"
+			],
+			[
+				"anim",
+				"web\\javascript\\animationPin.js"
+			],
+			[
+				"aja",
+				"src\\Drone\\MapBundle\\Controller\\AjaxController.php"
+			],
+			[
+				"ns",
+				"web\\notification\\css\\ns-style-other.css"
+			],
+			[
+				"anima",
+				"web\\javascript\\animationPin.js"
+			],
+			[
+				"profileedit.",
+				"src\\Drone\\UserBundle\\Resources\\views\\Profile\\edit.html.twig"
+			],
+			[
+				"registrationform",
+				"src\\Drone\\UserBundle\\Form\\Type\\RegistrationFormType.php"
+			],
+			[
+				"animation",
+				"web\\javascript\\animationPin.js"
+			],
+			[
+				"routingregit",
+				"vendor\\friendsofsymfony\\user-bundle\\Resources\\config\\routing\\registration.xml"
+			],
+			[
+				"routingsecurity.xml",
+				"vendor\\friendsofsymfony\\user-bundle\\Resources\\config\\routing\\security.xml"
+			],
+			[
+				"security.xml",
+				"vendor\\friendsofsymfony\\user-bundle\\Resources\\config\\security.xml"
+			],
+			[
+				"registration.xml",
+				"vendor\\friendsofsymfony\\user-bundle\\Resources\\config\\registration.xml"
+			],
+			[
+				"conf",
+				"app\\config\\config.yml"
+			],
+			[
+				"para",
+				"app\\config\\parameters.yml"
+			],
+			[
+				"base.",
+				"app\\Resources\\views\\base.html.twig"
+			],
+			[
+				"mapscr",
+				"web\\javascript\\MapScript.js"
+			],
+			[
+				"tampontype",
+				"src\\Protimbre\\TamponBundle\\Form\\TamponType.php"
+			],
+			[
+				"persohtml",
+				"src\\Protimbre\\AdminBundle\\Resources\\views\\Tampon\\show.html.twig"
+			],
+			[
+				"tampon",
+				"src\\Protimbre\\TamponBundle\\Entity\\Tampon.php"
+			],
+			[
+				"regist",
+				"src\\Drone\\UserBundle\\Form\\Type\\RegistrationFormType.php"
+			],
+			[
+				"showcontent",
+				"src\\Drone\\UserBundle\\Resources\\views\\Group\\show_content.html.twig"
+			],
+			[
+				"profilehtml",
+				"src\\Drone\\UserBundle\\Resources\\views\\Profile\\show.html.twig"
+			],
+			[
+				"homeindex.h",
+				"src\\Drone\\HomeBundle\\Resources\\views\\Default\\index.html.twig"
+			],
+			[
+				"homeindex",
+				"src\\Drone\\HomeBundle\\Resources\\doc\\index.rst"
+			],
+			[
+				"animat",
+				"web\\javascript\\animationPin.js"
+			],
+			[
+				"mapbundlemap",
+				"src\\Drone\\MapBundle\\DroneMapBundle.php"
+			],
+			[
+				"map",
+				"vendor\\phpcollection\\phpcollection\\src\\PhpCollection\\Map.php"
+			],
+			[
+				"routing/profile",
+				"vendor\\friendsofsymfony\\user-bundle\\Resources\\config\\routing\\profile.xml"
+			],
+			[
+				"configrouting",
+				"app\\config\\routing.yml"
+			],
+			[
+				"appker",
+				"app\\AppKernel.php"
+			],
+			[
+				"userform",
+				"vendor\\friendsofsymfony\\user-bundle\\Form\\Type\\RegistrationFormType.php"
+			],
+			[
+				"securi",
+				"app\\config\\security.yml"
+			],
+			[
+				"secu",
+				"app\\config\\security.yml"
+			],
+			[
+				"mapcontr",
+				"src\\Drone\\MapBundle\\Controller\\DefaultController.php"
+			],
+			[
+				"approuting",
+				"app\\config\\routing.yml"
+			],
+			[
+				"mapdefaultc",
+				"src\\Drone\\MapBundle\\Controller\\DefaultController.php"
+			],
+			[
+				".htacce",
+				"web\\.htaccess"
+			],
+			[
+				"config.rb",
+				"web\\config.rb"
+			],
+			[
+				"register_",
+				"vendor\\friendsofsymfony\\user-bundle\\Resources\\views\\Registration\\register_content.html.twig"
+			],
+			[
+				"register_conte",
+				"vendor\\friendsofsymfony\\user-bundle\\Resources\\views\\Registration\\register_content.html.twig"
+			],
+			[
+				"registration.html",
+				"vendor\\friendsofsymfony\\user-bundle\\Resources\\views\\Registration\\register.html.twig"
+			],
+			[
+				"configconf",
+				"app\\config\\config.yml"
+			],
+			[
+				"userformtype",
+				"vendor\\friendsofsymfony\\user-bundle\\Form\\Type\\RegistrationFormType.php"
+			],
+			[
+				"mapdefautlindex",
+				"src\\Drone\\MapBundle\\Resources\\views\\Default\\index.html.twig"
+			],
+			[
+				"layout",
+				"src\\Drone\\MapBundle\\Resources\\views\\layout.html.twig"
+			],
+			[
+				"composer.",
+				"composer.json"
+			],
+			[
+				"configconfig",
+				"app\\config\\config.yml"
+			],
+			[
+				"_re",
+				"static\\css\\sass\\_responsive.scss"
+			],
+			[
+				"_res",
+				"static\\css\\sass\\_responsive.scss"
+			],
+			[
+				"anime.js",
+				"static\\js\\anime.js"
+			],
+			[
+				"anime",
+				"animeProject.sublime-project"
+			],
+			[
+				"desig",
+				"static\\css\\design.css"
+			],
+			[
+				"desi",
+				"static\\css\\design\\sass\\screen.scss"
+			],
+			[
+				"design",
+				"static\\css\\design\\sass\\screen.scss"
+			],
+			[
+				"jcomm",
+				"website\\web\\js\\jCommand.js"
+			],
+			[
+				"jgro",
+				"website\\web\\js\\jGros.js"
+			],
+			[
+				"appconfig",
+				"website\\app\\config\\config.yml"
+			],
+			[
+				"tampon.html",
+				"src\\Protimbre\\TamponBundle\\Resources\\views\\Tampon\\tampon.html.twig"
+			],
+			[
+				"lignes",
+				"src\\Protimbre\\TamponBundle\\Resources\\views\\Tampon\\lignes.html.twig"
+			],
+			[
+				"jpro",
+				"web\\js\\jProtimbre.js"
+			],
+			[
+				"jqueryt",
+				"src\\Protimbre\\TamponBundle\\Resources\\views\\Tampon\\jqueryTampon.html.twig"
+			],
+			[
+				"modele",
+				"src\\Protimbre\\TamponBundle\\Resources\\views\\Tampon\\modele.html.twig"
+			],
+			[
+				"perso",
+				"src\\Protimbre\\TamponBundle\\Resources\\views\\Tampon\\perso.html.twig"
+			],
+			[
+				"simplepiedemo",
+				"website\\vendor\\simplepie\\simplepie\\demo\\index.php"
+			],
+			[
+				"composer",
+				"website\\composer.json"
+			],
+			[
+				"simplepieindex",
+				"website\\src\\Twins\\AdminBundle\\simplepie\\demo\\index.php"
+			],
+			[
+				"jeven",
+				"web\\js\\jeventmove.js"
+			],
+			[
+				"jcomma",
+				"web\\js\\jCommand.js"
+			],
+			[
+				"jgr",
+				"web\\js\\jGros.js"
+			],
+			[
+				"screen.cs",
+				"web\\stylesheets\\screen.css"
+			],
+			[
+				"boots",
+				"web\\bootstrap\\css\\bootstrap.min.css"
+			],
+			[
+				"unite",
+				"src\\Anime\\BatailleBundle\\Entity\\Unite.php"
+			],
+			[
+				"nation",
+				"src\\Anime\\BatailleBundle\\Entity\\Nation.php"
+			],
+			[
+				"ja",
+				"web\\js\\jAnime.js"
+			],
+			[
+				"tamponc",
+				"src\\Protimbre\\TamponBundle\\Controller\\TamponController.php"
+			],
+			[
+				"jquery",
+				"web\\js\\jQuery.js"
+			],
+			[
+				"jqueryta",
+				"src\\Protimbre\\TamponBundle\\Resources\\views\\Tampon\\jqueryTampon.html.twig"
+			],
+			[
+				"tampon.h",
+				"src\\Protimbre\\TamponBundle\\Resources\\views\\Tampon\\tampon.html.twig"
+			],
+			[
+				"jp",
+				"web\\js\\jProtimbre.js"
+			],
+			[
+				"joueurindex",
+				"src\\Tournoi\\NoelBundle\\Resources\\views\\Joueur\\index.html.twig"
+			],
+			[
+				"equipeindex",
+				"src\\Tournoi\\NoelBundle\\Resources\\views\\Equipe\\index.html.twig"
+			],
+			[
+				"equipe",
+				"src\\Tournoi\\NoelBundle\\Entity\\Equipe.php"
+			],
+			[
+				"joueurshow",
+				"src\\Tournoi\\NoelBundle\\Resources\\views\\Joueur\\show.html.twig"
+			],
+			[
+				"joueurc",
+				"src\\Tournoi\\NoelBundle\\Controller\\JoueurController.php"
+			],
+			[
+				"joueur",
+				"src\\Tournoi\\NoelBundle\\Entity\\Joueur.php"
+			],
+			[
+				"equipec",
+				"src\\Tournoi\\NoelBundle\\Controller\\EquipeController.php"
+			],
+			[
+				"defaultindex",
+				"src\\Tournoi\\NoelBundle\\Resources\\views\\Default\\index.html.twig"
 			]
 		],
 		"width": 0.0
 	},
 	"select_project":
 	{
-		"height": 0.0,
+		"height": 500.0,
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"",
+				"C:\\wamp\\www\\Protimbre\\Protimbre-Project.sublime-project"
+			]
 		],
-		"width": 0.0
+		"width": 380.0
 	},
 	"select_symbol":
 	{
@@ -656,12 +1808,21 @@
 	"selected_group": 0,
 	"settings":
 	{
+		"last_automatic_layout":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		]
 	},
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 484.0,
+	"side_bar_width": 259.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
