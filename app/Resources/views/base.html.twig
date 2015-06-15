@@ -17,9 +17,8 @@
 					{# {{ 'layout.logged_in_as'|trans({ '%username%': app.user.username|capitalize }, 'FOSUserBundle') }} | #}
 					<a href="{{ path('drone_home_homepage') }}" title="Accueil">Accueil</a>
 					<a href="{{ path('fos_user_profile_show') }}">{{ app.user.username|capitalize }}</a>
-					<a href="{{ path('fos_user_security_logout') }}">
-						{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-					</a>
+                    <a href="{{ path('drone_map_homepage') }}">Cartographie</a>
+                    <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
 				{% else %}
 					<a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a> |
 					<a href="{{ path('fos_user_registration_register') }}">S'inscrire</a>

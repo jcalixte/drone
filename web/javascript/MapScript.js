@@ -49,32 +49,17 @@ $(function() {
 	$("#rectangleChoice").click(function(e) {
 		e.preventDefault();
 		$(this).toggleClass('active').trigger('fieldChoice');
-		if($(this).hasClass('active')) {
-			$(this).text("Finir votre contour");
-		}else{
-			$(this).text("Détourer votre terrain");
-		}
 		return false;
 	});
 
 	$("#interestPoint").click(function(e) {
 		e.preventDefault();
 		$(this).toggleClass('active');
-		if($(this).hasClass('active')) {
-			$(this).text("Finir");
-		}else{
-			$(this).text("Point de passage");
-		}
 	});
 
 	$("#putDrone").click(function (e) {
 		e.preventDefault();
 		$(this).toggleClass('active');
-		if($(this).hasClass('active')) {
-			$(this).text("Finir");
-		}else {
-			$(this).text("Placer votre drone");
-		}
 	});
 
 	$("#start").click(function() {
@@ -92,25 +77,22 @@ $(function() {
 
 	$(".selectAction").click(function() {
 		$("#actionTaken").text($(this).attr('id'));
-		var color = "";
+		var icon = "glyphicon ";
 		switch($(this).attr('id')) {
 			case 'photo':
-				color = "#4647cb";
+				icon += "glyphicon-picture";
 				break;
 			case 'sound':
-				color = "#f54735";
+				icon += "glyphicon-volume-up";
 				break;
 			case 'video':
-				color = "#f5ab35";
+				icon += "glyphicon-facetime-video";
 				break;
 			case 'nothing':
-				color = "#ffffff";
+				icon += "glyphicon-unchecked";
 				break;
 		}
-		$("#interestPoint")
-            .css("border", "solid black 1pt")
-            .css("color", "black")
-            .css("background-color", color);
+		$("#interestPoint-icon").removeClass().addClass(icon);
 	});
 
 	/*==========  Évènements  ==========*/
@@ -138,64 +120,59 @@ $(function() {
 
 
 	/*==========  FONCTION D'INITIALISATION  ==========*/
-	
-	mapAction = function(pTwigElements, droneEntities, fieldEntities, interestPointEntities, queryAddress) {
 
+	mapAction = function (pTwigElements, droneEntities, fieldEntities, interestPointEntities, queryAddress) {
 		iDrone = droneEntities.length;
-		if(!twigElements) {
+		if (!twigElements) {
 			twigElements = pTwigElements;
 		}
-
 		var loc;
 		var dronePinOptions = {
-			icon: twigElements['quadcopter'], 
-			width: 50, 
-			height: 50, 
-			anchor: new Microsoft.Maps.Point(25,25)
+			icon: twigElements['quadcopter'],
+			width: 50,
+			height: 50,
+			anchor: new Microsoft.Maps.Point(25, 25),
+			text: "test"
 		};
-
-		droneEntities.forEach(function(e) {
+		droneEntities.forEach(function (e) {
 			loc = new Microsoft.Maps.Location(
-				e.latitude, 
+				e.latitude,
 				e.longitude
 			);
+			dronePinOptions.text = e.product;
 			droneList[e.id] = new Drone(e.id, e.latitude, e.longitude, e.altitude);
-
 			dronePinList[e.id] = new Microsoft.Maps.Pushpin(loc, dronePinOptions);
 			map.entities.push(dronePinList[dronePinList.length - 1]);
 		});
-
-		fieldEntities.forEach(function(e) {
-			e.forEach(function(e) {
+		fieldEntities.forEach(function (e) {
+			e.forEach(function (e) {
 				addPointToShape(e.latitude, e.longitude, true);
 			});
 			addShape();
 		});
-
-		interestPointEntities.forEach(function(e) {
+		interestPointEntities.forEach(function (e) {
 			addCircle(e.location, e.action);
 			path[path.length] = e;
 		});
-
 		//Ajout de modules utilisés
-		Microsoft.Maps.loadModule('Microsoft.Maps.Search', { callback: function() {
+		Microsoft.Maps.loadModule('Microsoft.Maps.Search', {
+			callback: function () {
 				search_engine_loaded = true;
 				var query = queryAddress;
-				if(query != "") {
+				if (query != "") {
 					searchModule(query);
 				}
 			}
 		});
-		Microsoft.Maps.loadModule('Microsoft.Maps.AdvancedShapes', { callback: function() {
+		Microsoft.Maps.loadModule('Microsoft.Maps.AdvancedShapes', {
+			callback: function () {
 				advanced_shapes_loaded = true;
 			}
 		});
-
-		if(dronePinList.length > 0) {
+		if (dronePinList.length > 0) {
 			getWeatherDrone(dronePinList.getAverageLocation().latitude, dronePinList.getAverageLocation().longitude);
 		}
 	};
-
 	/*==========  Fonctions  ==========*/
 
 	function searchModule(q) {
@@ -351,7 +328,7 @@ $(function() {
 						$("#putDrone").hasClass('active');
 		if(crosshair) {
 			map.getRootElement().style.cursor = 'crosshair';
-		}else{
+		}else {
 			map.getRootElement().style.cursor = 'grab';
 		}
 	}
@@ -910,8 +887,8 @@ $(function() {
 			case 'photo':
 				options = {
 					// #4647cb
-					fillColor: {a: 150, r: 70, g: 71, b: 203 },
-					strokeColor: {a: 200, r: 20, g: 20, b: 20 },
+					fillColor: { a: 150, r: 70, g: 71, b: 203 },
+					strokeColor: { a: 200, r: 20, g: 20, b: 20 },
 					infobox: "point",
 					visible: true
 				};
@@ -919,8 +896,8 @@ $(function() {
 			case 'sound':
 				options = {
 					// #f54735
-					fillColor: {a: 150, r: 245, g: 71, b: 53 },
-					strokeColor: {a: 200, r: 20, g: 20, b: 20 },
+					fillColor: { a: 150, r: 245, g: 71, b: 53 },
+					strokeColor: { a: 200, r: 20, g: 20, b: 20 },
 					infobox: "point",
 					visible: true
 				};
@@ -928,9 +905,8 @@ $(function() {
 			case 'video':
 				options = {
 					// #f5ab35
-					fillColor: {a: 150, r: 245, g: 171, b: 53 },
-					strokeColor: {
-						a: 200, r: 20, g: 20, b: 20 },
+					fillColor: { a: 150, r: 245, g: 171, b: 53 },
+					strokeColor: { a: 200, r: 20, g: 20, b: 20 },
 					infobox: "point",
 					visible: true
 				};
@@ -938,16 +914,16 @@ $(function() {
 			case 'nothing':
 				options = {
 					// #ffffff;
-					fillColor: {a: 150, r: 255, g: 255, b: 255 },
-					strokeColor: {a: 200, r: 20, g: 20, b: 20 },
+					fillColor: { a: 150, r: 255, g: 255, b: 255 },
+					strokeColor: { a: 200, r: 20, g: 20, b: 20 },
 					infobox: "point",
 					visible: true
 				};
 				break;
 			default:
 				options = {
-					fillColor: {a: 150, r: 255, g: 255, b: 255 },
-					strokeColor: {a: 200, r: 20, g: 20, b: 20 },
+					fillColor: { a: 150, r: 255, g: 255, b: 255 },
+					strokeColor: { a: 200, r: 20, g: 20, b: 20 },
 					infobox: "point",
 					visible: true
 				};

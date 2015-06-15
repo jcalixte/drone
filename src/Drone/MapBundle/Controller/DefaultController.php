@@ -11,7 +11,7 @@ class DefaultController extends Controller
 	{
 		$user = $this->getUser();
 		if(!$user){
-			throw $this->createNotFoundException('Utilisateur non connecté');
+            return $this->redirect($this->generateUrl("fos_user_security_login"));
 		}
 
 		return $this->render('DroneMapBundle:Default:index.html.twig', array(
