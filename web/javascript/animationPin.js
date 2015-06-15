@@ -13,7 +13,7 @@
 				// var locations    = proto.nearestLocation(that, initLoc, locs);
 				var locations    = locs;
 				var endLoc       = locations[0]['location'];
-				var nextDistance = proto.getNextDistance(that, endLoc);
+				var nextDistance = proto.getDistance(that, endLoc);
 
 				var startTime    = new Date();
 				var finalTime    = Math.round(nextDistance / speed) * 1000; // t = d/v en millisecondes
@@ -49,7 +49,7 @@
 				for(var i = 0; i < locations.length; i++) {
 					if(locations[i]['location'].latitude  != initLoc.latitude &&
 					   locations[i]['location'].longitude != initLoc.longitude) {
-						var currentDistance = proto.getNextDistance(that, locations[i]['location']);
+						var currentDistance = proto.getDistance(that, locations[i]['location']);
 						if(currentDistance < distance) {
 							nearestKey = i;
 							nearest    = locations[i];
@@ -66,8 +66,8 @@
 				return locations;
 			};
 		}
-		if(!proto.getNextDistance) {
-			proto.getNextDistance = function(that, nextLocation) {
+		if(!proto.getDistance) {
+			proto.getDistance = function(that, nextLocation) {
 				var originLocation = that.getLocation();
 
 				var R           = 6371000; // metres

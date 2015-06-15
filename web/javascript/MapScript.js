@@ -409,7 +409,7 @@ $(function() {
 	function moveDrones() {
 		if(droneList.length > 0) {
 			distributePath(path); // On affilie à chaque drone son propre chemin.
-
+			
 			// On ajoute la localisation du drone dans le chemin pour le TSP on optimise les chemins
 			droneList.forEach(function(drone) {
 				drone.addPointToPath({
@@ -417,7 +417,6 @@ $(function() {
 					action: 'nothing'
 				});
 				drone.path = getTSPPath(drone);
-
 			});
 
 			droneList.forEach(function(drone) {
