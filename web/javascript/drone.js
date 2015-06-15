@@ -4,6 +4,7 @@ var Drone = function(id, latitude, longitude, altitude) {
 	this.longitude = typeof longitude !== undefined ? longitude : null;
 	this.altitude  = typeof altitude  !== undefined ? altitude  : null;
 	this.speed     = 0;
+	this.timeLeft  = 30; // Temps restant
 	this.path      = [];
 	this.getLocation = function() {
 		var retour = {
