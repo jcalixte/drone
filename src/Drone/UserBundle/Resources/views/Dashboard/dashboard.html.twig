@@ -1,0 +1,369 @@
+{% extends 'DroneUserBundle::layout.html.twig' %}
+
+{% block body_user %}
+	<div class="user_dashboard">
+		<h1>{{ 'user.dashboard.dashboard'|trans }} - {{ user.firstname|capitalize }} {{ user.lastname|capitalize }}</h1>
+		<hr />
+		<div class="row panel-row">
+			<div class="panel-container col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix">
+						<h3 class="panel-title pull-left">Drones</h3>
+						<button id="deleteDrones" class="btn btn-danger pull-right">
+							<span class="glyphicon glyphicon-remove"></span>
+							{{ 'user.dashboard.delete.drones'|trans }}
+						</button>
+					</div>
+					<div class="panel-body">
+						<a class="bootcards-summary-item" href="#">
+							<span class="glyphicon glyphicon-plane"></span>
+							<h4>drones <span class="label label-primary">{{ user.drones|length }}</span></h4>
+						</a>
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<thead>
+								<tr>
+									<th>Produit</th>
+									<th>Latitude</th>
+									<th>Longitude</th>
+									<th>Action</th>
+								</tr>
+								</thead>
+								<tbody>
+								{% for drone in user.drones %}
+									<tr>
+										<td><span class="glyphicon glyphicon-plane"></span> {{ drone }}</td>
+										<td>{{ drone.latitude|number_format(5) }}</td>
+										<td>{{ drone.longitude|number_format(5) }}</td>
+										<td>
+											<a href="{{ path('drone_manage', {id: drone.id}) }}" class="btn btn-info">
+												{{ 'user.dashboard.drone.manage'|trans }}
+											</a>
+											{{ form(delete_forms[drone.id]) }}
+										</td>
+									</tr>
+								{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel-container col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix">
+						<h3 class="panel-title pull-left">Champs</h3>
+						<button id="deleteFields" class="btn btn-danger pull-right">
+							<span class="glyphicon glyphicon-remove"></span>
+							{{ 'user.dashboard.delete.fields'|trans }}
+						</button>
+					</div>
+					<div class="panel-body">
+						<a class="bootcards-summary-item" href="#">
+							<span class="flaticon-map-pointer2"></span>
+							<h4>Champs <span class="label label-primary">{{ user.fields|length }}</span></h4>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="panel-container col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix">
+						<h3 class="panel-title pull-left">Points d'intérêt</h3>
+						<button id="deletePoints" class="btn btn-danger pull-right">
+							<span class="glyphicon glyphicon-remove"></span>
+							{{ 'user.dashboard.delete.points'|trans }}
+						</button>
+					</div>
+					<div class="panel-body">
+						<a class="bootcards-summary-item" href="#">
+							<span class="flaticon-pointer17"></span>
+							<h4>Points d'intérêt <span class="label label-primary">{{ user.points|length }}</span></h4>
+						</a>
+					</div>
+					{#
+					<div class="panel-footer">
+						<small></small>
+					</div>
+					#}
+				</div>
+			</div>
+		</div>
+		<div class="row panel-row">
+			<div class="panel-container col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix">
+						<h3 class="panel-title pull-left">Photo</h3>
+						<button id="deleteDrones" class="btn btn-danger pull-right">
+							<span class="glyphicon glyphicon-remove"></span>
+							{{ 'user.dashboard.delete.photos'|trans }}
+						</button>
+					</div>
+					<div class="panel-body">
+						<a class="bootcards-summary-item" href="#">
+							<span class="glyphicon glyphicon-picture"></span>
+							<h4>Photos <span class="label label-primary">{{ user.drones|length }}</span></h4>
+						</a>
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<thead>
+								<tr>
+									<th>Image</th>
+									<th>Drone</th>
+									<th>Date</th>
+								</tr>
+								</thead>
+								<tbody>
+								{% for drone in user.drones %}
+									<tr>
+										<td></span> {{ drone }}</td>
+										<td>{{ drone.latitude|number_format(5) }}</td>
+										<td>{{ drone.longitude|number_format(5) }}</td>
+									</tr>
+								{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel-container col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix">
+						<h3 class="panel-title pull-left">Vidéo</h3>
+						<button id="deleteDrones" class="btn btn-danger pull-right">
+							<span class="glyphicon glyphicon-remove"></span>
+							{{ 'user.dashboard.delete.videos'|trans }}
+						</button>
+					</div>
+					<div class="panel-body">
+						<a class="bootcards-summary-item" href="#">
+							<span class="glyphicon glyphicon-camera"></span>
+							<h4>Vidéos <span class="label label-primary">{{ user.drones|length }}</span></h4>
+						</a>
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<thead>
+								<tr>
+									<th>Vidéo</th>
+									<th>Drone</th>
+									<th>Date</th>
+								</tr>
+								</thead>
+								<tbody>
+								{% for drone in user.drones %}
+									<tr>
+										<td>{{ drone }}</td>
+										<td>{{ drone.latitude|number_format(5) }}</td>
+										<td>{{ drone.longitude|number_format(5) }}</td>
+									</tr>
+								{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel-container col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix">
+						<h3 class="panel-title pull-left">Photo</h3>
+						<button id="deleteDrones" class="btn btn-danger pull-right">
+							<span class="glyphicon glyphicon-remove"></span>
+							{{ 'user.dashboard.delete.sounds'|trans }}
+						</button>
+					</div>
+					<div class="panel-body">
+						<a class="bootcards-summary-item" href="#">
+							<span class="glyphicon glyphicon-volume-up"></span>
+							<h4>Enregistrements vocaux <span class="label label-primary">{{ user.drones|length }}</span></h4>
+						</a>
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<thead>
+								<tr>
+									<th>Son</th>
+									<th>Drone</th>
+									<th>Date</th>
+								</tr>
+								</thead>
+								<tbody>
+								{% for drone in user.drones %}
+									<tr>
+										<td><span class="glyphicon glyphicon-plane"></span> {{ drone }}</td>
+										<td>{{ drone.latitude|number_format(5) }}</td>
+										<td>{{ drone.longitude|number_format(5) }}</td>
+									</tr>
+								{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row panel-row">
+			<div class="panel-container col-md-12">
+				<div class="panel panel-default panel-chart">
+					<div class="panel-heading clearfix">
+						<h3 class="panel-title pull-left">Graphe <span class="glyphicon glyphicon-stats"></span></h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-4">
+								<h4>Distance parcourue</h4>
+								<canvas id="dashboard_chart_distance"></canvas>
+							</div>
+							<div class="col-md-4">
+								<h4>Météo</h4>
+								<canvas id="dashboard_chart_weather"></canvas>
+							</div>
+							<div class="col-md-4">
+								<h4>Données enregistrées</h4>
+								<canvas id="dashboard_chart_data_point"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock body_user %}
+
+{% block javascripts_user %}
+	<script src="{{ asset('javascript/chart/Chart.min.js') }}" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+		$(function() {
+			Chart.defaults.global.responsive = true;
+			Chart.defaults.global.maintainAspectRatio = false;
+
+			var ctx = $("#dashboard_chart_distance").get(0).getContext("2d");
+			// This will get the first returned node in the jQuery collection.
+			var distanceData = {
+				labels: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet"],
+				datasets: [
+					{
+						label: "My First dataset",
+						fillColor: "rgba(220,220,220,0.5)",
+						strokeColor: "rgba(220,220,220,0.8)",
+						highlightFill: "rgba(220,220,220,0.75)",
+						highlightStroke: "rgba(220,220,220,1)",
+						data: [65, 59, 80, 81, 56, 55, 40]
+					},
+					{
+						label: "My Second dataset",
+						fillColor: "rgba(151,187,205,0.5)",
+						strokeColor: "rgba(151,187,205,0.8)",
+						highlightFill: "rgba(151,187,205,0.75)",
+						highlightStroke: "rgba(151,187,205,1)",
+						data: [28, 48, 40, 19, 86, 27, 90]
+					}
+				]
+			};
+			var distanceChart = new Chart(ctx).Bar(distanceData, options);
+
+			var success = false;
+			$.ajax({
+				type: 'get',
+				url: "http://api.openweathermap.org/data/2.5/forecast/daily",
+				data: {
+					lat: {{ user.getAverageLatitude() }},
+					lon: {{ user.getAverageLongitude() }},
+					lang: "fr",
+					units: "metric",
+					cnt: 16,
+					APPID: "c52c41cda0ea81049a945cbc5e878200"
+				},
+				success: function(data) {
+					console.log(data);
+					success = true;
+					var labelsData = [];
+					var tempData = [];
+					var windData = [];
+
+					data.list.forEach(function(e){
+						labelsData.push(dateToDay(new Date(e.dt*1000)));
+						tempData.push(Math.round(e.temp.day));
+						windData.push(Math.round(e.speed));
+					});
+
+					var weatherData = {
+						labels: labelsData,
+						datasets: [
+							{
+								label: "Temperature dataset",
+								fillColor: "rgba(220,220,220,0.5)",
+								strokeColor: "rgba(220,220,220,0.8)",
+								highlightFill: "rgba(220,220,220,0.75)",
+								highlightStroke: "rgba(220,220,220,1)",
+								data: tempData
+							},
+							{
+								label: "Wind dataset",
+								fillColor: "rgba(151,187,205,0.5)",
+								strokeColor: "rgba(151,187,205,0.8)",
+								highlightFill: "rgba(151,187,205,0.75)",
+								highlightStroke: "rgba(151,187,205,1)",
+								data: windData
+							}
+						]
+					};
+					var weatherChart = new Chart($("#dashboard_chart_weather").get(0).getContext("2d")).Line(weatherData, options);
+				}
+			});
+
+			var dataPie = [
+				{
+					value: 10,
+					color:"#F7464A",
+					highlight: "#FF5A5E",
+					label: "Photo"
+				},
+				{
+					value: 7,
+					color: "#46BFBD",
+					highlight: "#5AD3D1",
+					label: "Vidéo"
+				},
+				{
+					value: 3,
+					color: "#FDB45C",
+					highlight: "#FFC870",
+					label: "Son"
+				}
+			];
+
+			var pointChart = new Chart($("#dashboard_chart_data_point").get(0).getContext("2d")).Pie(dataPie,options);
+
+			function dateToDay(date) {
+				var number = date.getDay();
+				switch (number) {
+					case 0:
+						return "dimanche " + date.getDate();
+					break;
+					case 1:
+						return "lundi " + date.getDate();
+					break;
+					case 2:
+						return "mardi " + date.getDate();
+					break;
+					case 3:
+						return "mercredi " + date.getDate();
+					break;
+					case 4:
+						return "jeudi " + date.getDate();
+					break;
+					case 5:
+						return "vendredi " + date.getDate();
+					break;
+					case 6:
+						return "samedi " + date.getDate();
+					break;
+					default:
+						return date.getDate();
+					break;
+				}
+			}
+		});
+	</script>
+{% endblock %}

@@ -282,7 +282,7 @@ class DroneController extends Controller
 			->setAction($this->generateUrl('drone_delete', array('id' => $id)))
 			->setMethod('DELETE')
 			->add('submit', 'submit', array(
-				'label' => 'Delete',
+				'label' => 'Supprimer',
 				'attr'  => array(
 						'class' => 'btn btn-danger'
 					)

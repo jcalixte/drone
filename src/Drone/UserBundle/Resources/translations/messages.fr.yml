@@ -1,2 +1,12 @@
 user:
     register: S'inscrire
+    dashboard:
+        dashboard: Tableau de bord
+        drone.manage: gérer
+        delete:
+            fields: supprimer vos champs
+            points: supprimer vos points d'intérêt
+            drones: supprimer vos drones
+            photos: supprimer vos photos
+            videos: supprimer vos vidéos
+            sounds: supprimer vos enregistrements vocaux

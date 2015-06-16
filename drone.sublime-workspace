@@ -451,7 +451,7 @@
 			"file": "web/sass/screen.scss",
 			"settings":
 			{
-				"buffer_size": 7757,
+				"buffer_size": 7934,
 				"line_ending": "Windows"
 			}
 		},
@@ -1165,7 +1165,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7757,
+						"buffer_size": 7934,
 						"regions":
 						{
 						},

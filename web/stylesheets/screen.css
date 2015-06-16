@@ -82,8 +82,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 body {
   font-family: 'Quicksand', "Segoe UI", Arial, sans-serif;
   font-size: 16pt;
-  background-color: #f5ab35;
-  color: #141414;
+  background-color: #141414;
+  color: white;
   position: absolute;
   top: 0px;
   bottom: 0px;
@@ -229,50 +229,60 @@ label {
 }
 
 /* line 167, ../sass/screen.scss */
-.form-login label {
-  display: inline;
-  width: auto;
-  float: none;
-}
-
-/* line 175, ../sass/screen.scss */
 .fos_user_registration_register label {
   width: 250px;
 }
 
-/* line 180, ../sass/screen.scss */
+/* line 172, ../sass/screen.scss */
 .panel {
   border: 0px;
+  border-radius: 0px;
+  background-color: transparent;
+  box-shadow: none;
+}
+/* line 178, ../sass/screen.scss */
+.panel .panel-heading {
+  border-radius: 0px;
+  background-color: #f5ab35;
+}
+/* line 183, ../sass/screen.scss */
+.panel .panel-footer {
+  background-color: #f5ab35;
+  border-radius: 0px;
+}
+
+/* line 189, ../sass/screen.scss */
+.label {
   border-radius: 0px;
 }
 
 /*===============================
 =            Bouton            =
 ===============================*/
-/* line 189, ../sass/screen.scss */
+/* line 197, ../sass/screen.scss */
 .btn {
   border-radius: 0px;
   border: 0px;
 }
 
-/* line 194, ../sass/screen.scss */
+/* line 202, ../sass/screen.scss */
 .btn.active, .btn-info.active {
   background-color: #aea8d3;
   color: black;
 }
 
-/* line 199, ../sass/screen.scss */
+/* line 207, ../sass/screen.scss */
 .btn-default {
   background-color: #fff;
 }
 
-/* line 203, ../sass/screen.scss */
+/* line 211, ../sass/screen.scss */
 .btn-warning {
   color: black;
   background-color: #f5ab35;
 }
 
-/* line 208, ../sass/screen.scss */
+/* line 216, ../sass/screen.scss */
 .dropdown-menu {
   border-radius: 0px;
   background-color: #95bae9;
@@ -283,29 +293,28 @@ label {
 /*==================================
 =            Home index            =
 ==================================*/
-/* line 220, ../sass/screen.scss */
+/* line 228, ../sass/screen.scss */
 section.home-container {
-  background-color: #f9bd3b;
   border-radius: 0px;
   text-align: justify;
   max-width: 100%;
   margin: auto;
 }
-/* line 227, ../sass/screen.scss */
+/* line 235, ../sass/screen.scss */
 section.home-container img.right {
   float: right;
   margin-left: 15px;
 }
-/* line 232, ../sass/screen.scss */
+/* line 240, ../sass/screen.scss */
 section.home-container img.left {
   float: left;
   margin-right: 15px;
 }
-/* line 237, ../sass/screen.scss */
+/* line 245, ../sass/screen.scss */
 section.home-container .btn {
   width: 100%;
 }
-/* line 241, ../sass/screen.scss */
+/* line 249, ../sass/screen.scss */
 section.home-container h1 {
   position: absolute;
   z-index: 5;
@@ -313,50 +322,43 @@ section.home-container h1 {
   width: 100%;
   text-shadow: white  1px  1px, white -1px  1px, white -1px -1px, white  1px -1px;
 }
-/* line 252, ../sass/screen.scss */
+/* line 260, ../sass/screen.scss */
 section.home-container .carousel {
   padding: 0px;
 }
-/* line 255, ../sass/screen.scss */
+/* line 263, ../sass/screen.scss */
 section.home-container .carousel .carousel-inner {
   padding: 0px;
 }
-/* line 258, ../sass/screen.scss */
+/* line 266, ../sass/screen.scss */
 section.home-container .carousel .carousel-inner .item {
   padding: 0px;
 }
-/* line 261, ../sass/screen.scss */
+/* line 269, ../sass/screen.scss */
 section.home-container .carousel .carousel-inner .item img {
   width: 100%;
   height: 300px;
 }
-/* line 268, ../sass/screen.scss */
+/* line 276, ../sass/screen.scss */
 section.home-container .carousel .carousel-control {
   background-image: none;
 }
-/* line 273, ../sass/screen.scss */
+/* line 281, ../sass/screen.scss */
 section.home-container .panel-row {
   margin: -60px auto 0px;
   width: 80%;
 }
-/* line 277, ../sass/screen.scss */
+/* line 285, ../sass/screen.scss */
 section.home-container .panel-row .panel {
   padding: 0px 15px;
-  background-color: transparent;
   font-size: 14pt;
-  box-shadow: none;
 }
-/* line 283, ../sass/screen.scss */
-section.home-container .panel-row .panel .panel-heading {
-  border-radius: 0px;
-  background-color: #f5ab35;
-}
-/* line 288, ../sass/screen.scss */
+/* line 289, ../sass/screen.scss */
 section.home-container .panel-row .panel .panel-body {
   background-color: #f5ab35;
-  padding: 5px;
+  padding: 5px 0px 20px;
 }
-/* line 293, ../sass/screen.scss */
+/* line 294, ../sass/screen.scss */
 section.home-container .panel-row .panel .panel-title {
   font-size: 26pt;
   text-align: center;
@@ -366,32 +368,32 @@ section.home-container .panel-row .panel .panel-title {
 /*=================================
 =            MapBundle            =
 =================================*/
-/* line 307, ../sass/screen.scss */
+/* line 308, ../sass/screen.scss */
 .map {
   width: 99%;
   height: 100%;
   margin: auto;
   background-color: #f9bd3b;
 }
-/* line 314, ../sass/screen.scss */
+/* line 315, ../sass/screen.scss */
 .map h1 {
   text-align: center;
 }
-/* line 319, ../sass/screen.scss */
+/* line 320, ../sass/screen.scss */
 .map .map-container #map {
   min-height: 400px;
   height: 500px;
   width: 100%;
 }
-/* line 326, ../sass/screen.scss */
+/* line 327, ../sass/screen.scss */
 .map .map-command {
   padding: 0px;
 }
-/* line 329, ../sass/screen.scss */
+/* line 330, ../sass/screen.scss */
 .map .map-command div.command-content {
   margin-bottom: 15px;
 }
-/* line 333, ../sass/screen.scss */
+/* line 334, ../sass/screen.scss */
 .map .map-command .inAction-container {
   text-align: center;
   margin: 0px auto 15px;
@@ -399,24 +401,24 @@ section.home-container .panel-row .panel .panel-title {
   padding: 5px;
   color: #f9bd3b;
 }
-/* line 340, ../sass/screen.scss */
+/* line 341, ../sass/screen.scss */
 .map .map-command .inAction-container h2 {
   font-size: 18pt;
   margin-bottom: 10px;
 }
-/* line 345, ../sass/screen.scss */
+/* line 346, ../sass/screen.scss */
 .map .map-command .inAction-container .inAction {
   font-style: italic;
 }
-/* line 350, ../sass/screen.scss */
+/* line 351, ../sass/screen.scss */
 .map .map-command #interestPoint {
   min-width: 150px;
 }
-/* line 354, ../sass/screen.scss */
+/* line 355, ../sass/screen.scss */
 .map .map-command .legend-content {
   margin-bottom: 0px;
 }
-/* line 357, ../sass/screen.scss */
+/* line 358, ../sass/screen.scss */
 .map .map-command .legend-content .legend {
   width: 110px;
   height: 30px;
@@ -426,7 +428,7 @@ section.home-container .panel-row .panel .panel-title {
   font-weight: bold;
   font-style: italic;
 }
-/* line 366, ../sass/screen.scss */
+/* line 367, ../sass/screen.scss */
 .map .map-command .legend-content .legend div.legend-action {
   float: left;
   width: 30px;
@@ -434,31 +436,31 @@ section.home-container .panel-row .panel .panel-title {
   border: solid 2px black;
   border-radius: 15px;
 }
-/* line 375, ../sass/screen.scss */
+/* line 376, ../sass/screen.scss */
 .map .map-command .legend-content .point-photo {
   background-color: #4647cb;
 }
-/* line 379, ../sass/screen.scss */
+/* line 380, ../sass/screen.scss */
 .map .map-command .legend-content .point-video {
   background-color: #f5ab35;
 }
-/* line 383, ../sass/screen.scss */
+/* line 384, ../sass/screen.scss */
 .map .map-command .legend-content .point-sound {
   background-color: #f54735;
 }
-/* line 387, ../sass/screen.scss */
+/* line 388, ../sass/screen.scss */
 .map .map-command .legend-content .point-default {
   background-color: #ffffff;
 }
-/* line 392, ../sass/screen.scss */
+/* line 393, ../sass/screen.scss */
 .map .map-command #actionTaken {
   display: none;
 }
-/* line 398, ../sass/screen.scss */
+/* line 399, ../sass/screen.scss */
 .map .submit-field-row div {
   padding: 0px;
 }
-/* line 401, ../sass/screen.scss */
+/* line 402, ../sass/screen.scss */
 .map .submit-field-row div .btn {
   border: solid #f5ab35 1px;
 }
@@ -467,12 +469,12 @@ section.home-container .panel-row .panel .panel-title {
 /*==============================
 =            Profil            =
 ==============================*/
-/* line 414, ../sass/screen.scss */
+/* line 415, ../sass/screen.scss */
 .user_show {
   background-color: #f9bd3b;
   font-size: 20pt;
 }
-/* line 418, ../sass/screen.scss */
+/* line 419, ../sass/screen.scss */
 .user_show h1 {
   position: relative;
   display: inline;
@@ -484,77 +486,155 @@ section.home-container .panel-row .panel .panel-title {
   font-size: 70px;
   font-weight: bold;
   padding: 0px 15px;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.5);
+  color: #4183d7;
+  text-shadow: white  1px  1px, white -1px  1px, white -1px -1px, white  1px -1px;
 }
-/* line 435, ../sass/screen.scss */
+/* line 440, ../sass/screen.scss */
 .user_show .profile-picture {
   width: 100%;
   height: auto;
   max-height: 350px;
   overflow: hidden;
 }
-/* line 441, ../sass/screen.scss */
+/* line 446, ../sass/screen.scss */
 .user_show .profile-picture img {
   width: 100%;
   height: auto;
   vertical-align: middle;
 }
-/* line 448, ../sass/screen.scss */
+/* line 453, ../sass/screen.scss */
 .user_show div.profile-access {
   float: right;
   padding: 0px;
 }
-/* line 453, ../sass/screen.scss */
+/* line 458, ../sass/screen.scss */
 .user_show div.profile-about {
   background-color: #f5ab35;
   padding: 15px;
 }
-/* line 458, ../sass/screen.scss */
+/* line 464, ../sass/screen.scss */
+.user_show .panel-row .panel {
+  padding: 0px 15px;
+}
+/* line 467, ../sass/screen.scss */
+.user_show .panel-row .panel .panel-body {
+  background-color: #f5ab35;
+}
+/* line 471, ../sass/screen.scss */
+.user_show .panel-row .panel .panel-title {
+  font-size: 26pt;
+  text-align: center;
+  color: white;
+}
+/* line 479, ../sass/screen.scss */
 .user_show p.profile-drone {
   text-align: center;
 }
-/* line 461, ../sass/screen.scss */
+/* line 482, ../sass/screen.scss */
 .user_show p.profile-drone span.profile-drone {
   font-style: italic;
   color: #141414;
   font-size: 28pt;
 }
-/* line 467, ../sass/screen.scss */
+/* line 488, ../sass/screen.scss */
 .user_show p.profile-drone table {
   border: 0px;
 }
 
-/* line 473, ../sass/screen.scss */
+/* line 494, ../sass/screen.scss */
+.user_dashboard {
+  padding: 15px;
+  background-color: #474747;
+}
+/* line 498, ../sass/screen.scss */
+.user_dashboard .glyphicon {
+  position: relative;
+}
+/* line 503, ../sass/screen.scss */
+.user_dashboard .panel-row .panel-container {
+  padding: 0px 15px;
+}
+/* line 506, ../sass/screen.scss */
+.user_dashboard .panel-row .panel {
+  padding: 0px 15px;
+}
+/* line 509, ../sass/screen.scss */
+.user_dashboard .panel-row .panel .panel-heading {
+  margin: 7px 0px 0px;
+}
+/* line 513, ../sass/screen.scss */
+.user_dashboard .panel-row .panel .panel-body {
+  background-color: #f5ab35;
+  height: 400px;
+  overflow: auto;
+}
+/* line 518, ../sass/screen.scss */
+.user_dashboard .panel-row .panel .panel-body a.bootcards-summary-item {
+  background-color: transparent;
+}
+/* line 523, ../sass/screen.scss */
+.user_dashboard .panel-row .panel .panel-title {
+  font-size: 26pt;
+  color: white;
+  margin: 0px;
+}
+/* line 531, ../sass/screen.scss */
+.user_dashboard .panel-row .panel-chart .panel-body {
+  height: auto;
+}
+/* line 535, ../sass/screen.scss */
+.user_dashboard .panel-row .panel-chart canvas {
+  width: 100%;
+  height: auto;
+}
+
+/* line 544, ../sass/screen.scss */
+.form-container {
+  background-color: #474747;
+  padding: 15px;
+}
+
+/* line 549, ../sass/screen.scss */
 .form-login {
   padding: 15px;
-  margin: 15px auto;
+  margin: auto;
   background-color: #f9bd3b;
+  height: 300px;
+}
+
+/* line 556, ../sass/screen.scss */
+#remember_me-label {
+  width: auto;
+}
+
+/* line 560, ../sass/screen.scss */
+.glyphicon {
+  position: static;
 }
 
 /*-----  Fin du Profil  ------*/
 /*====================================
 =            Espace Drone            =
 ====================================*/
-/* line 486, ../sass/screen.scss */
+/* line 571, ../sass/screen.scss */
 div.drone-content {
   padding: 15px;
 }
-/* line 489, ../sass/screen.scss */
+/* line 574, ../sass/screen.scss */
 div.drone-content h1 {
   font-size: 46pt;
   text-align: center;
 }
-/* line 494, ../sass/screen.scss */
+/* line 579, ../sass/screen.scss */
 div.drone-content h2 {
   font-family: "Segoe UI Light", Arial;
   margin: 15px 0px;
 }
-/* line 499, ../sass/screen.scss */
+/* line 584, ../sass/screen.scss */
 div.drone-content .row {
   margin: 0px;
 }
-/* line 503, ../sass/screen.scss */
+/* line 588, ../sass/screen.scss */
 div.drone-content .retour {
   text-align: center;
   margin-top: 15px;

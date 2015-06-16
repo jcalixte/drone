@@ -428,4 +428,26 @@ class User extends BaseUser
     public function getCountryName() {
         return Intl::getRegionBundle()->getCountryName($this->getCountry());
     }
+
+	public function getAverageLatitude() {
+		$latitude = 0;
+		foreach($this->getDrones() as $drone) {
+			$latitude += $drone->getLatitude();
+		}
+
+		$latitude /= $this->getDrones()->count();
+
+		return $latitude;
+	}
+
+	public function getAverageLongitude() {
+		$longitude = 0;
+		foreach($this->getDrones() as $drone) {
+			$longitude += $drone->getLongitude();
+		}
+
+		$longitude /= $this->getDrones()->count();
+
+		return $longitude;
+	}
 }
