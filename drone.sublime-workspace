@@ -384,82 +384,10 @@
 	"buffers":
 	[
 		{
-			"file": "src/Drone/UserBundle/Resources/views/Profile/show.html.twig",
+			"contents": "{\n    \"cod\": \"200\",\n    \"message\": 0.8691,\n    \"city\": {\n        \"id\": 6058560,\n        \"name\": \"London\",\n        \"coord\": {\n            \"lon\": -81.23304,\n            \"lat\": 42.983391\n        },\n        \"country\": \"CA\",\n        \"population\": 0,\n        \"sys\": {\n            \"population\": 0\n        }\n    },\n    \"cnt\": 7,\n    \"list\": [\n        {\n            \"dt\": 1434474000,\n            \"temp\": {\n                \"day\": 24.84,\n                \"min\": 11.86,\n                \"max\": 24.84,\n                \"night\": 11.86,\n                \"eve\": 20.25,\n                \"morn\": 21.36\n            },\n            \"pressure\": 994.03,\n            \"humidity\": 85,\n            \"weather\": [\n                {\n                    \"id\": 500,\n                    \"main\": \"Rain\",\n                    \"description\": \"light rain\",\n                    \"icon\": \"10d\"\n                }\n            ],\n            \"speed\": 6.11,\n            \"deg\": 324,\n            \"clouds\": 0,\n            \"rain\": 0.25\n        },\n        {\n            \"dt\": 1434560400,\n            \"temp\": {\n                \"day\": 21.16,\n                \"min\": 14.6,\n                \"max\": 21.16,\n                \"night\": 15.17,\n                \"eve\": 19.84,\n                \"morn\": 14.6\n            },\n            \"pressure\": 996.93,\n            \"humidity\": 87,\n            \"weather\": [\n                {\n                    \"id\": 501,\n                    \"main\": \"Rain\",\n                    \"description\": \"moderate rain\",\n                    \"icon\": \"10d\"\n                }\n            ],\n            \"speed\": 4.31,\n            \"deg\": 146,\n            \"clouds\": 80,\n            \"rain\": 3.63\n        },\n        {\n            \"dt\": 1434646800,\n            \"temp\": {\n                \"day\": 19.95,\n                \"min\": 8.52,\n                \"max\": 20.24,\n                \"night\": 8.52,\n                \"eve\": 15.3,\n                \"morn\": 20.24\n            },\n            \"pressure\": 993.73,\n            \"humidity\": 0,\n            \"weather\": [\n                {\n                    \"id\": 501,\n                    \"main\": \"Rain\",\n                    \"description\": \"moderate rain\",\n                    \"icon\": \"10d\"\n                }\n            ],\n            \"speed\": 8.57,\n            \"deg\": 324,\n            \"clouds\": 3,\n            \"rain\": 7.37\n        },\n        {\n            \"dt\": 1434733200,\n            \"temp\": {\n                \"day\": 17.53,\n                \"min\": 9.88,\n                \"max\": 17.53,\n                \"night\": 11.45,\n                \"eve\": 17.35,\n                \"morn\": 9.88\n            },\n            \"pressure\": 1005.27,\n            \"humidity\": 0,\n            \"weather\": [\n                {\n                    \"id\": 800,\n                    \"main\": \"Clear\",\n                    \"description\": \"sky is clear\",\n                    \"icon\": \"01d\"\n                }\n            ],\n            \"speed\": 2.24,\n            \"deg\": 106,\n            \"clouds\": 0\n        },\n        {\n            \"dt\": 1434819600,\n            \"temp\": {\n                \"day\": 19.41,\n                \"min\": 14.55,\n                \"max\": 20.31,\n                \"night\": 15.48,\n                \"eve\": 20.31,\n                \"morn\": 14.55\n            },\n            \"pressure\": 998.68,\n            \"humidity\": 0,\n            \"weather\": [\n                {\n                    \"id\": 502,\n                    \"main\": \"Rain\",\n                    \"description\": \"heavy intensity rain\",\n                    \"icon\": \"10d\"\n                }\n            ],\n            \"speed\": 1.24,\n            \"deg\": 200,\n            \"clouds\": 56,\n            \"rain\": 12.71\n        },\n        {\n            \"dt\": 1434906000,\n            \"temp\": {\n                \"day\": 25.01,\n                \"min\": 18.32,\n                \"max\": 25.01,\n                \"night\": 20.54,\n                \"eve\": 23.2,\n                \"morn\": 18.32\n            },\n            \"pressure\": 993.48,\n            \"humidity\": 0,\n            \"weather\": [\n                {\n                    \"id\": 502,\n                    \"main\": \"Rain\",\n                    \"description\": \"heavy intensity rain\",\n                    \"icon\": \"10d\"\n                }\n            ],\n            \"speed\": 4.79,\n            \"deg\": 205,\n            \"clouds\": 8,\n            \"rain\": 15.05\n        },\n        {\n            \"dt\": 1434992400,\n            \"temp\": {\n                \"day\": 23.72,\n                \"min\": 18.93,\n                \"max\": 24.11,\n                \"night\": 18.93,\n                \"eve\": 24.11,\n                \"morn\": 20.52\n            },\n            \"pressure\": 988.77,\n            \"humidity\": 0,\n            \"weather\": [\n                {\n                    \"id\": 501,\n                    \"main\": \"Rain\",\n                    \"description\": \"moderate rain\",\n                    \"icon\": \"10d\"\n                }\n            ],\n            \"speed\": 5.22,\n            \"deg\": 260,\n            \"clouds\": 42,\n            \"rain\": 8.89\n        }\n    ]\n}",
 			"settings":
 			{
-				"buffer_size": 1929,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/Drone/MapBundle/Controller/DroneController.php",
-			"settings":
-			{
-				"buffer_size": 7129,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/Drone/MapBundle/Entity/Drone.php",
-			"settings":
-			{
-				"buffer_size": 4393,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/Drone/MapBundle/Resources/views/Drone/new.html.twig",
-			"settings":
-			{
-				"buffer_size": 346,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/config/routing.yml",
-			"settings":
-			{
-				"buffer_size": 1498,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/Drone/MapBundle/Resources/translations/messages.fr.yml",
-			"settings":
-			{
-				"buffer_size": 122,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/Drone/UserBundle/Resources/views/Security/login.html.twig",
-			"settings":
-			{
-				"buffer_size": 1375,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/Drone/MapBundle/Resources/views/Drone/manage.html.twig",
-			"settings":
-			{
-				"buffer_size": 1423,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "web/sass/screen.scss",
-			"settings":
-			{
-				"buffer_size": 7934,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/Resources/views/base.html.twig",
-			"settings":
-			{
-				"buffer_size": 3634,
+				"buffer_size": 4939,
 				"line_ending": "Windows"
 			}
 		}
@@ -471,10 +399,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 400.0,
-		"last_filter": "yml",
+		"height": 242.0,
+		"last_filter": "json",
 		"selected_items":
 		[
+			[
+				"json",
+				"JSON Reindent: reindent file or selection"
+			],
 			[
 				"yml",
 				"Set Syntax: YAML"
@@ -490,10 +422,6 @@
 			[
 				"inst",
 				"Package Control: Install Package"
-			],
-			[
-				"json",
-				"JSON Reindent: reindent file or selection"
 			],
 			[
 				"syn rub",
@@ -616,34 +544,36 @@
 	],
 	"file_history":
 	[
+		"/C/wamp/www/drone/app/Resources/views/base.html.twig",
+		"/C/wamp/www/drone/web/sass/screen.scss",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Drone/manage.html.twig",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Security/login.html.twig",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/translations/messages.fr.yml",
+		"/C/wamp/www/drone/app/config/routing.yml",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Drone/new.html.twig",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Entity/Drone.php",
+		"/C/wamp/www/drone/src/Drone/MapBundle/Controller/DroneController.php",
+		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Profile/show.html.twig",
 		"/C/wamp/www/drone/app/config/config.yml",
 		"/C/wamp/www/drone/app/config/security.yml",
 		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Registration/register.html.twig",
-		"/C/wamp/www/drone/app/config/routing.yml",
 		"/C/Users/Julien/Downloads/fr_FR.dic/fr_FR.dic",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/layout_drone.html.twig",
 		"/C/wamp/www/drone/web/sass/rename_bootstrap.scss",
 		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/translations/messages.fr.yml",
 		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/translations/user.fr.yml",
 		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/translations/messages.en.yml",
-		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/translations/messages.fr.yml",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/translations/messages.en.yml",
 		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/translations/user.en.yml",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/translations/map.fr.yml",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/translations/map.en.yml",
-		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Security/login.html.twig",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Form/DroneType.php",
-		"/C/wamp/www/drone/src/Drone/MapBundle/Entity/Drone.php",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Drone/index.html.twig",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Drone/edit.html.twig",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Drone/show.html.twig",
-		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Drone/new.html.twig",
-		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Drone/manage.html.twig",
-		"/C/wamp/www/drone/app/Resources/views/base.html.twig",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/config/routing/drone.yml",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/views/Default/index.html.twig",
 		"/C/wamp/www/drone/src/Drone/UserBundle/Entity/User.php",
-		"/C/wamp/www/drone/src/Drone/MapBundle/Controller/DroneController.php",
 		"/C/wamp/www/drone/web/javascript/tsp/algorithm.js",
 		"/C/wamp/www/drone/web/javascript/tsp/main.js",
 		"/C/wamp/www/drone/web/javascript/MapScript.js",
@@ -651,7 +581,6 @@
 		"/C/wamp/www/drone/app/AppKernel.php",
 		"/C/wamp/www/drone/vendor/swiftmailer/swiftmailer/doc/index.rst",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Entity/Field.php",
-		"/C/wamp/www/drone/web/sass/screen.scss",
 		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/config/admin.yml",
 		"/C/wamp/www/drone/src/Drone/MapBundle/Resources/config/admin.yml",
 		"/C/wamp/www/drone/src/Drone/AdminBundle/Resources/views/Admin/edit.html.twig",
@@ -679,7 +608,6 @@
 		"/C/wamp/www/drone/web/javascript/tsp/data.js",
 		"/C/wamp/www/drone/src/Drone/HomeBundle/Resources/views/Default/index.html.twig",
 		"/C/Users/Julien/Documents/Reset.cmd",
-		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Profile/show.html.twig",
 		"/C/wamp/www/drone/src/Drone/UserBundle/Resources/views/Profile/edit.html.twig",
 		"/C/Users/Julien/Downloads/Algorithm-TravelingSalesman-BitonicTour-0.05/lib/Algorithm/TravelingSalesman/BitonicTour.pm",
 		"/C/Users/Julien/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
@@ -928,293 +856,30 @@
 			[
 				{
 					"buffer": 0,
-					"file": "src/Drone/UserBundle/Resources/views/Profile/show.html.twig",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1929,
+						"buffer_size": 4939,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								147,
-								147
+								363,
+								373
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
-							"translate_tabs_to_spaces": false
+							"default_dir": "C:\\wamp\\www\\drone",
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 126.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/Drone/MapBundle/Controller/DroneController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7129,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4790,
-								4790
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2254.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "src/Drone/MapBundle/Entity/Drone.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4393,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 541.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/Drone/MapBundle/Resources/views/Drone/new.html.twig",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 346,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								346,
-								346
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/config/routing.yml",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1498,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								7,
-								7
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/YAML/YAML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "src/Drone/MapBundle/Resources/translations/messages.fr.yml",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 122,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								122,
-								122
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/YAML/YAML.tmLanguage"
-						},
-						"translation.x": 12.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "src/Drone/UserBundle/Resources/views/Security/login.html.twig",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1375,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1294,
-								1329
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "src/Drone/MapBundle/Resources/views/Drone/manage.html.twig",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1423,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								161,
-								161
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "web/sass/screen.scss",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7934,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/SCSS/SCSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1641.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "app/Resources/views/base.html.twig",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3634,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
 					"type": "text"
 				}
 			]

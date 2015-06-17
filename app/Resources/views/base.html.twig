@@ -58,12 +58,12 @@
             {% block footer %}{% endblock %}
 		</footer>
 		{% block javascripts %}
-			<script src="{{ asset('javascript/jquery.min.js') }}" type="text/javascript" charset="utf-8"></script>
-            <script src="{{ asset('javascript/jquery-ui/jquery-ui.min.js') }}" type="text/javascript" charset="utf-8"></script>
-			<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-			<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
-			<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}" type="text/javascript" charset="utf-8"></script>
-			<script src="{{ asset('bootcards/src/js/bootcards.js') }}" type="text/javascript" charset="utf-8"></script>
+			<script type="text/javascript" charset="utf-8" src="{{ asset('javascript/jquery.min.js') }}"></script>
+            <script type="text/javascript" charset="utf-8" src="{{ asset('javascript/jquery-ui/jquery-ui.min.js') }}"></script>
+			<script type="text/javascript" charset="utf-8" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+			<script type="text/javascript" charset="utf-8" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+			<script type="text/javascript" charset="utf-8" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+			<script type="text/javascript" charset="utf-8" src="{{ asset('bootcards/src/js/bootcards.js') }}"></script>
 		{% endblock %}
 	</body>
 </html>

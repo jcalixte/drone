@@ -571,30 +571,32 @@ section.home-container .panel-row .panel .panel-title {
 /* line 518, ../sass/screen.scss */
 .user_dashboard .panel-row .panel .panel-body a.bootcards-summary-item {
   background-color: transparent;
+  width: 150px;
+  margin: auto;
 }
-/* line 523, ../sass/screen.scss */
+/* line 525, ../sass/screen.scss */
 .user_dashboard .panel-row .panel .panel-title {
   font-size: 26pt;
   color: white;
   margin: 0px;
 }
-/* line 531, ../sass/screen.scss */
+/* line 533, ../sass/screen.scss */
 .user_dashboard .panel-row .panel-chart .panel-body {
   height: auto;
 }
-/* line 535, ../sass/screen.scss */
+/* line 537, ../sass/screen.scss */
 .user_dashboard .panel-row .panel-chart canvas {
   width: 100%;
   height: auto;
 }
 
-/* line 544, ../sass/screen.scss */
+/* line 546, ../sass/screen.scss */
 .form-container {
   background-color: #474747;
   padding: 15px;
 }
 
-/* line 549, ../sass/screen.scss */
+/* line 551, ../sass/screen.scss */
 .form-login {
   padding: 15px;
   margin: auto;
@@ -602,12 +604,12 @@ section.home-container .panel-row .panel .panel-title {
   height: 300px;
 }
 
-/* line 556, ../sass/screen.scss */
+/* line 558, ../sass/screen.scss */
 #remember_me-label {
   width: auto;
 }
 
-/* line 560, ../sass/screen.scss */
+/* line 562, ../sass/screen.scss */
 .glyphicon {
   position: static;
 }
@@ -616,25 +618,25 @@ section.home-container .panel-row .panel .panel-title {
 /*====================================
 =            Espace Drone            =
 ====================================*/
-/* line 571, ../sass/screen.scss */
+/* line 573, ../sass/screen.scss */
 div.drone-content {
   padding: 15px;
 }
-/* line 574, ../sass/screen.scss */
+/* line 576, ../sass/screen.scss */
 div.drone-content h1 {
   font-size: 46pt;
   text-align: center;
 }
-/* line 579, ../sass/screen.scss */
+/* line 581, ../sass/screen.scss */
 div.drone-content h2 {
   font-family: "Segoe UI Light", Arial;
   margin: 15px 0px;
 }
-/* line 584, ../sass/screen.scss */
+/* line 586, ../sass/screen.scss */
 div.drone-content .row {
   margin: 0px;
 }
-/* line 588, ../sass/screen.scss */
+/* line 590, ../sass/screen.scss */
 div.drone-content .retour {
   text-align: center;
   margin-top: 15px;
