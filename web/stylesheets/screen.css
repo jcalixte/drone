@@ -68,11 +68,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 @font-face {
   font-family: "Quicksand";
-  src: url('/fonts/../../drone/web/stylesheets/fonts/Quicksand.otf?1425643771') format('opentype');
+  src: url('/fonts/../../drone/web/stylesheets/fonts/Quicksand.otf?1434011309') format('opentype');
 }
 @font-face {
   font-family: "Brush";
-  src: url('/fonts/../../drone/web/stylesheets/fonts/Brush.ttf?1425814159') format('truetype');
+  src: url('/fonts/../../drone/web/stylesheets/fonts/Brush.ttf?1434011309') format('truetype');
 }
 /* D├®finition des constantes */
 /* Couleurs de la charte graphique */
@@ -584,19 +584,23 @@ section.home-container .panel-row .panel .panel-title {
 .user_dashboard .panel-row .panel-chart .panel-body {
   height: auto;
 }
-/* line 537, ../sass/screen.scss */
+/* line 536, ../sass/screen.scss */
+.user_dashboard .panel-row .panel-chart .panel-body h4 {
+  margin-bottom: 15px;
+}
+/* line 541, ../sass/screen.scss */
 .user_dashboard .panel-row .panel-chart canvas {
   width: 100%;
   height: auto;
 }
 
-/* line 546, ../sass/screen.scss */
+/* line 550, ../sass/screen.scss */
 .form-container {
   background-color: #474747;
   padding: 15px;
 }
 
-/* line 551, ../sass/screen.scss */
+/* line 555, ../sass/screen.scss */
 .form-login {
   padding: 15px;
   margin: auto;
@@ -604,12 +608,12 @@ section.home-container .panel-row .panel .panel-title {
   height: 300px;
 }
 
-/* line 558, ../sass/screen.scss */
+/* line 562, ../sass/screen.scss */
 #remember_me-label {
   width: auto;
 }
 
-/* line 562, ../sass/screen.scss */
+/* line 566, ../sass/screen.scss */
 .glyphicon {
   position: static;
 }
@@ -618,25 +622,25 @@ section.home-container .panel-row .panel .panel-title {
 /*====================================
 =            Espace Drone            =
 ====================================*/
-/* line 573, ../sass/screen.scss */
+/* line 577, ../sass/screen.scss */
 div.drone-content {
   padding: 15px;
 }
-/* line 576, ../sass/screen.scss */
+/* line 580, ../sass/screen.scss */
 div.drone-content h1 {
   font-size: 46pt;
   text-align: center;
 }
-/* line 581, ../sass/screen.scss */
+/* line 585, ../sass/screen.scss */
 div.drone-content h2 {
   font-family: "Segoe UI Light", Arial;
   margin: 15px 0px;
 }
-/* line 586, ../sass/screen.scss */
+/* line 590, ../sass/screen.scss */
 div.drone-content .row {
   margin: 0px;
 }
-/* line 590, ../sass/screen.scss */
+/* line 594, ../sass/screen.scss */
 div.drone-content .retour {
   text-align: center;
   margin-top: 15px;
