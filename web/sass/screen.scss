@@ -38,7 +38,7 @@ body {
 	background-color: $beeBlack;
 	color: white;
 	position: absolute;
-	top: 0px; bottom: 0px; left: 0px; right: 0px;
+	top: 0; bottom: 0; left: 0; right: 0;
 }
 
 span.bee {
@@ -47,37 +47,85 @@ span.bee {
 
 .navbar {
 	background-color: $beeBlack;
-	margin: 0px;
-	border: 0px;
+	margin: 0;
+	border: 0;
 	line-height: 80px;
-	border-radius: 0px;
+	border-radius: 0;
 	color: white;
 	font-size: 12pt;
     border-bottom: 8px solid $beeYellow;
 
-	a {
-		color: white;
-	}
+    .navbar-brand {
+        color: white;
+    }
+
+    .navbar-brand:hover {
+        color: $wistful;
+    }
+
+    .navbar-nav {
+        li {
+            a {
+                color: white;
+            }
+
+            a:link, a:hover, a:focus, a:active {
+                color: $wistful;
+            }
+        }
+    }
+
+    .navbar-default .navbar-toggle {
+
+    }
 
 	div.message-flash {
 		float: right;
 	}
 
-	span.weather-content {
-		float: right;
-		display: none;
-		overflow: hidden;
-	}
+    .navbar-toggle {
+        border: none;
+        border-radius: 0;
+        background-color: transparent;
+        .icon-bar {
+            background-color: white;
+        }
+    }
+
+    .navbar-toggle:hover {
+        background-color: $royalBlue;
+    }
+
+    #weather {
+        display: none;
+    }
+
+    .dropdown-menu {
+        color: white;
+        background-color: $beeBlack;
+        padding: 0 15px;
+    }
+}
+
+.open {
+    .dropdown-toggle {
+        background-color: $beeYellow;
+    }
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+    color: white;
+    background-color: $beeYellow;
 }
 
 #content {
 	position: absolute;
-	top: 0px; right: 0px; left: 0px;
-	margin: 0px auto 10px;
+	top: 0; right: 0; left: 0;
+	margin: 0 auto 10px;
 }
 
 h1 {
-	font-family: "Segoe UI Light", Arial;
+	font-family: "Segoe UI Light", Arial, sans-serif;
 	font-size: 18pt;
 }
 
@@ -98,7 +146,7 @@ h3 {
 }
 
 .progress {
-	border-radius: 0px;
+	border-radius: 0;
 }
 
 .progress-bar {
@@ -116,7 +164,7 @@ h3 {
 }
 
 .list-group {
-	border-radius: 0px;
+	border-radius: 0;
 }
 
 .list-group-item {
@@ -126,7 +174,7 @@ h3 {
 
 .table {
 	background-color: inherit;
-	border: solid $beeYellow 0px;
+	border: solid $beeYellow 0;
 
 	th {
 		text-align: center;
@@ -140,11 +188,11 @@ h3 {
 }
 
 .form-control, .input-group-addon {
-	border-radius: 0px;
+	border-radius: 0;
 }
 
 div.row {
-	margin: 0px;
+	margin: 0;
 }
 
 footer {
@@ -170,24 +218,30 @@ label {
 }
 
 .panel {
-    border: 0px;
-    border-radius: 0px;
+    border: 0;
+    border-radius: 0;
     background-color: transparent;
     box-shadow: none;
 
     .panel-heading {
-        border-radius: 0px;
+        border-radius: 0;
         background-color: $beeYellow;
+    }
+
+    .panel-body {
+        p {
+            padding: 15px 15px 0;
+        }
     }
 
     .panel-footer {
         background-color: $beeYellow;
-        border-radius: 0px;
+        border-radius: 0;
     }
 }
 
 .label {
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 /*===============================
@@ -195,8 +249,8 @@ label {
 ===============================*/
 
 .btn {
-	border-radius: 0px;
-	border: 0px;
+	border-radius: 0;
+	border: 0;
 }
 
 .btn.active, .btn-info.active {
@@ -214,7 +268,7 @@ label {
 }
 
 .dropdown-menu {
-	border-radius: 0px;
+	border-radius: 0;
 	background-color: lighten($royalBlue, 20%);
 	color: white;
 }
@@ -227,7 +281,7 @@ label {
 
 section.home-container {
 	// background-color: $yellow;
-	border-radius: 0px;
+	border-radius: 0;
 	text-align: justify;
 	max-width: 100%;
 	margin: auto;
@@ -258,13 +312,13 @@ section.home-container {
     }
 
     .carousel {
-        padding: 0px;
+        padding: 0;
 
         .carousel-inner {
-            padding: 0px;
+            padding: 0;
 
             .item {
-                padding: 0px;
+                padding: 0;
 
                 img {
                     width: 100%;
@@ -279,16 +333,16 @@ section.home-container {
     }
 
     .panel-row {
-        margin: -60px auto 0px;
+        margin: -60px auto 0;
         width: 80%;
 
         .panel {
-            padding: 0px 15px;
+            padding: 0 15px;
             font-size: 14pt;
             
             .panel-body {
                 background-color: $beeYellow;
-                padding: 5px 0px 20px;
+                padding: 5px 0 20px;
             }
 
             .panel-title {
@@ -306,7 +360,6 @@ section.home-container {
 =================================*/
 
 .map {
-	width: 99%;
 	height: 100%;
 	margin: auto;
 	background-color: $yellow;
@@ -325,7 +378,7 @@ section.home-container {
 	}
 
 	.map-command {
-		padding: 0px;
+		padding: 0;
 
 		div.command-content {
 			margin-bottom: 15px;
@@ -333,7 +386,7 @@ section.home-container {
 
 		.inAction-container {
 			text-align: center;
-			margin: 0px auto 15px;
+			margin: 0 auto 15px;
 			background-color: $beeBlack;
 			padding: 5px;
 			color: $yellow;
@@ -353,14 +406,14 @@ section.home-container {
 		}
 
 		.legend-content {
-			margin-bottom: 0px;
+			margin-bottom: 0;
 
 			.legend {
 				width: 110px;
 				height: 30px;
 				line-height: 30px;
 				float: left;
-				margin-bottom: 0px;
+				margin-bottom: 0;
 				font-weight: bold;
 				font-style: italic;
 
@@ -397,7 +450,7 @@ section.home-container {
 
 	.submit-field-row {
 		div {
-			padding: 0px;
+			padding: 0;
 
 			.btn {
 				border: solid $beeYellow 1px;
@@ -427,7 +480,7 @@ section.home-container {
 		line-height: 100px;
 		font-size: 70px;
 		font-weight: bold;
-		padding: 0px 15px;
+		padding: 0 15px;
 		color: $royalBlue;
         text-shadow: white  1px  1px,
         white -1px  1px,
@@ -452,7 +505,7 @@ section.home-container {
 
 	div.profile-access {
 		float: right;
-		padding: 0px;
+		padding: 0;
 	}
 
 	div.profile-about {
@@ -462,7 +515,7 @@ section.home-container {
 
     .panel-row {
         .panel {
-            padding: 0px 15px;
+            padding: 0 15px;
 
             .panel-body {
                 background-color: $beeYellow;
@@ -486,7 +539,7 @@ section.home-container {
 		}
 
 		table {
-			border: 0px;
+			border: 0;
 		}
 	}
 }
@@ -501,13 +554,13 @@ section.home-container {
     
     .panel-row {
         .panel-container {
-            padding: 0px 15px;
+            padding: 0 15px;
         }
         .panel {
-            padding: 0px 15px;
+            padding: 0 15px;
 
             .panel-heading {
-                margin: 7px 0px 0px;
+                margin: 7px 0 0;
             }
 
             .panel-body {
@@ -525,7 +578,7 @@ section.home-container {
             .panel-title {
                 font-size: 26pt;
                 color: white;
-                margin: 0px;
+                margin: 0;
             }
         }
 
@@ -580,11 +633,11 @@ div.drone-content {
 
 	h2 {
 		font-family: "Segoe UI Light", Arial;
-		margin: 15px 0px;
+		margin: 15px 0;
 	}
 
 	.row {
-		margin: 0px;
+		margin: 0;
 	}
 
 	.retour {

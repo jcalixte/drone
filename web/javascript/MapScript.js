@@ -741,7 +741,7 @@ $(function() {
 						$(".weather-sunrise").text(sunrise);
 						$(".weather-sunset").text(sunset);
 						setWeatherGlyph(data.weather[0].main, data.weather[0].icon);
-						$(".weather-content").show("slow");
+						$("#weather").show("slow");
 						return true;
 					}
 				}
