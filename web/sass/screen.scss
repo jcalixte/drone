@@ -519,7 +519,7 @@ section.home-container {
 
             .panel-body {
                 background-color: $beeYellow;
-            }
+            } 
 
             .panel-title {
                 font-size: 26pt;
@@ -585,6 +585,10 @@ section.home-container {
         .panel-chart {
             .panel-body {
                 height: auto;
+
+                h4 {
+                	margin-bottom: 15px;
+                }
             }
 
             canvas {
