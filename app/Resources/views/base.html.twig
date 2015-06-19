@@ -3,81 +3,82 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>{% block title %}Bee Eye{% endblock %}</title>
-		<link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('bootcards/src/css/bootcards-desktop.scss') }}" media="screen, projection" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('stylesheets/screen.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('flaticon/flaticon.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		{% block stylesheets %}{% endblock %}
+		{% block stylesheets %}
+			<link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
+			<link href="{{ asset('bootcards/src/css/bootcards-desktop.scss') }}" media="screen, projection" rel="stylesheet" type="text/css" />
+			<link href="{{ asset('stylesheets/screen.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
+			<link href="{{ asset('flaticon/flaticon.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
+		{% endblock %}
 		<link rel="icon" type="image/x-icon" href="{{ asset('beeEye.png') }}" />
 		{% block javascripts_before %}{% endblock %}
 	</head>
 	<body>
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Bee Eye</a>
-			</div>
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="{{ path('drone_home_homepage') }}">Bee Eye</a>
+				</div>
 
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-						{# {{ 'layout.logged_in_as'|trans({ '%username%': app.user.username|capitalize }, 'FOSUserBundle') }} #}
-						<li><a href="{{ path('drone_home_homepage') }}" title="Accueil">Accueil</a></li>
-						<li><a href="{{ path('fos_user_profile_show') }}">{{ app.user.username|capitalize }}</a></li>
-						<li><a href="{{ path('drone_map_homepage') }}">Cartographie</a></li>
-					{% else %}
-						<li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
-						<li><a href="{{ path('fos_user_registration_register') }}">S'inscrire</a></li>
-					{% endif %}
-					{% if app.session.flashbag.all()|length > 0 %}
-						{% for type, messages in app.session.flashbag.all() %}
-							{% for message in messages %}
-								<li class="message-flash flash-{{ type }}">
-									{{ message }}
-								</li>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+							{# {{ 'layout.logged_in_as'|trans({ '%username%': app.user.username|capitalize }, 'FOSUserBundle') }} #}
+							<li><a href="{{ path('fos_user_profile_show') }}">{{ app.user.username|capitalize }}</a></li>
+							<li><a href="{{ path('drone_map_homepage') }}">Cartographie</a></li>
+							<li><a href="{{ path('drone_user_dashboard') }}">{{ 'user.dashboard.dashboard'|trans }}</a></li>
+						{% else %}
+							<li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+							<li><a href="{{ path('fos_user_registration_register') }}">S'inscrire</a></li>
+						{% endif %}
+						{% if app.session.flashbag.all()|length > 0 %}
+							{% for type, messages in app.session.flashbag.all() %}
+								{% for message in messages %}
+									<li class="message-flash flash-{{ type }}">
+										{{ message }}
+									</li>
+								{% endfor %}
 							{% endfor %}
-						{% endfor %}
-					{% endif %}
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li id="weather"  class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Météo <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><i id="weather-main"></i> <span class="weather-main"></span></li>
-							<li><i id="weather-temp"></i> <span class="weather-temp"></span><i class="wi wi-celsius"></i></li>
-							<li><i id="weather-hum"></i> <span class="weather-hum"></span>% d'humidité</li>
-							<li><i class="wi wi-strong-wind"></i><i id="weather-wind"></i> <span class="weather-wind"></span>km/h</li>
-							<li><i id="weather-wind-direction"></i> <span class="weather-wind-dir"></span></li>
-							<li><i class="wi wi-sunrise"></i> <span class="weather-sunrise"></span></li>
-							<li><i class="wi wi-sunset"></i> <span class="weather-sunset"></span></li>
-						</ul>
-					</li>
-					{# <li><span class="weather"></span></li> #}
-					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-						<li>
-							<a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+						{% endif %}
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li id="weather"  class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="weather-war"></span> Météo <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><i id="weather-main"></i> <span class="weather-main"></span></li>
+								<li><i id="weather-temp"></i> <span class="weather-temp"></span><i class="wi wi-celsius"></i></li>
+								<li><i id="weather-hum"></i> <span class="weather-hum"></span>% d'humidité</li>
+								<li><i class="wi wi-strong-wind"></i><i id="weather-wind"></i> <span class="weather-wind"></span> km/h</li>
+								<li><i id="weather-wind-direction"></i> <span class="weather-wind-dir"></span></li>
+								<li><i class="wi wi-sunrise"></i> <span class="weather-sunrise"></span></li>
+								<li><i class="wi wi-sunset"></i> <span class="weather-sunset"></span></li>
+							</ul>
 						</li>
-					{% endif %}
-				</ul>
-			</div><!-- /.navbar-collapse -->
-		</div><!-- /.container-fluid -->
-	</nav>
+						{# <li><span class="weather"></span></li> #}
+						{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+							<li>
+								<a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+							</li>
+						{% endif %}
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+		</nav>
 		
-		<div id="content containeur-fluid">
+		<div id="content" class="containeur-fluid">
 			{% block body %}{% endblock %}
+			<footer>
+				{% block footer %}{% endblock %}
+			</footer>
 		</div>
-		<footer>
-            {% block footer %}{% endblock %}
-		</footer>
 		{% block javascripts %}
 			<script type="text/javascript" charset="utf-8" src="{{ asset('javascript/jquery.min.js') }}"></script>
             <script type="text/javascript" charset="utf-8" src="{{ asset('javascript/jquery-ui/jquery-ui.min.js') }}"></script>

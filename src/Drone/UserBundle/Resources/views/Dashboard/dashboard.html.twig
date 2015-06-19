@@ -1,5 +1,9 @@
 {% extends 'DroneUserBundle::layout.html.twig' %}
 
+{% block title_user %}
+	- {{ 'user.dashboard.dashboard'|trans }}
+{% endblock %}
+
 {% block body_user %}
 	<div class="user_dashboard">
 		<h1>{{ 'user.dashboard.dashboard'|trans }} - {{ user.firstname|capitalize }} {{ user.lastname|capitalize }}</h1>
@@ -24,8 +28,6 @@
 								<thead>
 								<tr>
 									<th>Produit</th>
-									<th>Latitude</th>
-									<th>Longitude</th>
 									<th>Action</th>
 								</tr>
 								</thead>
@@ -33,8 +35,6 @@
 								{% for drone in user.drones %}
 									<tr>
 										<td><span class="glyphicon glyphicon-plane"></span> {{ drone }}</td>
-										<td>{{ drone.latitude|number_format(5) }}</td>
-										<td>{{ drone.longitude|number_format(5) }}</td>
 										<td>
 											<a href="{{ path('drone_manage', {id: drone.id}) }}" class="btn btn-info">
 												{{ 'user.dashboard.drone.manage'|trans }}
@@ -93,7 +93,7 @@
 			<div class="panel-container col-md-4">
 				<div class="panel panel-default">
 					<div class="panel-heading clearfix">
-						<h3 class="panel-title pull-left">Photo</h3>
+						<h3 class="panel-title pull-left">Photos</h3>
 						<button id="deleteDrones" class="btn btn-danger pull-right">
 							<span class="glyphicon glyphicon-remove"></span>
 							{{ 'user.dashboard.delete.photos'|trans }}
@@ -102,7 +102,7 @@
 					<div class="panel-body">
 						<a class="bootcards-summary-item" href="#">
 							<span class="glyphicon glyphicon-picture"></span>
-							<h4>Photos <span class="label label-primary">{{ user.drones|length }}</span></h4>
+							<h4>Photos <span class="label label-primary">3</span></h4>
 						</a>
 						<div class="table-responsive">
 							<table class="table table-hover">
@@ -114,13 +114,11 @@
 								</tr>
 								</thead>
 								<tbody>
-								{% for drone in user.drones %}
 									<tr>
-										<td></span> {{ drone }}</td>
-										<td>{{ drone.latitude|number_format(5) }}</td>
-										<td>{{ drone.longitude|number_format(5) }}</td>
+										<td>Image</td>
+										<td>Drone</td>
+										<td>25/07/2014</td>
 									</tr>
-								{% endfor %}
 								</tbody>
 							</table>
 						</div>
@@ -130,7 +128,7 @@
 			<div class="panel-container col-md-4">
 				<div class="panel panel-default">
 					<div class="panel-heading clearfix">
-						<h3 class="panel-title pull-left">Vidéo</h3>
+						<h3 class="panel-title pull-left">Vidéos</h3>
 						<button id="deleteDrones" class="btn btn-danger pull-right">
 							<span class="glyphicon glyphicon-remove"></span>
 							{{ 'user.dashboard.delete.videos'|trans }}
@@ -139,7 +137,7 @@
 					<div class="panel-body">
 						<a class="bootcards-summary-item" href="#">
 							<span class="glyphicon glyphicon-camera"></span>
-							<h4>Vidéos <span class="label label-primary">{{ user.drones|length }}</span></h4>
+							<h4>Vidéos <span class="label label-primary">4</span></h4>
 						</a>
 						<div class="table-responsive">
 							<table class="table table-hover">
@@ -151,13 +149,11 @@
 								</tr>
 								</thead>
 								<tbody>
-								{% for drone in user.drones %}
 									<tr>
-										<td>{{ drone }}</td>
-										<td>{{ drone.latitude|number_format(5) }}</td>
-										<td>{{ drone.longitude|number_format(5) }}</td>
+										<td>Vidéo</td>
+										<td>Drone</td>
+										<td>25/07/2014</td>
 									</tr>
-								{% endfor %}
 								</tbody>
 							</table>
 						</div>
@@ -167,7 +163,7 @@
 			<div class="panel-container col-md-4">
 				<div class="panel panel-default">
 					<div class="panel-heading clearfix">
-						<h3 class="panel-title pull-left">Photo</h3>
+						<h3 class="panel-title pull-left">Sons</h3>
 						<button id="deleteDrones" class="btn btn-danger pull-right">
 							<span class="glyphicon glyphicon-remove"></span>
 							{{ 'user.dashboard.delete.sounds'|trans }}
@@ -176,7 +172,7 @@
 					<div class="panel-body">
 						<a class="bootcards-summary-item" href="#">
 							<span class="glyphicon glyphicon-volume-up"></span>
-							<h4>Enregistrements vocaux <span class="label label-primary">{{ user.drones|length }}</span></h4>
+							<h4>Enregistrements vocaux <span class="label label-primary">1</span></h4>
 						</a>
 						<div class="table-responsive">
 							<table class="table table-hover">
@@ -188,13 +184,11 @@
 								</tr>
 								</thead>
 								<tbody>
-								{% for drone in user.drones %}
 									<tr>
-										<td><span class="glyphicon glyphicon-plane"></span> {{ drone }}</td>
-										<td>{{ drone.latitude|number_format(5) }}</td>
-										<td>{{ drone.longitude|number_format(5) }}</td>
+										<td>Son</td>
+										<td>Drone</td>
+										<td>25/07/2014</td>
 									</tr>
-								{% endfor %}
 								</tbody>
 							</table>
 						</div>

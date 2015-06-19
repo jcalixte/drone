@@ -3,7 +3,6 @@
 /* global mapAction */
 /* global Routing */
 /* global TSP */
-/* global toastr */
 $(function() {
 	var credentialsKey = "AkTr7IeJt5O4ZpWh9reo8wMmlcWN8purxjzGkLalDqeMICooYnrBJepl9dD7cmMt";
 	var mapOptions = {
@@ -38,6 +37,11 @@ $(function() {
 	var twigElements = false;
 
     var circleRadius = 0.0000008;
+
+	// Changement des options par défaut des notifications
+	toastr.options.positionClass = "toast-bottom-right";
+	toastr.options.closeButton = true;
+	toastr.options.progressBar = true;
 
 	$("#search").click(function() {
 		var query = $("#search_query").val();
@@ -725,7 +729,7 @@ $(function() {
 					APPID: "c52c41cda0ea81049a945cbc5e878200"
 				},
 				success: function(data) {
-					// console.log(data.weather[0].main, data.weather[0].icon);
+					console.log(data);
 					if(data.weather === undefined) {
 						return false;
 					}else{
@@ -741,6 +745,11 @@ $(function() {
 						$(".weather-sunrise").text(sunrise);
 						$(".weather-sunset").text(sunset);
 						setWeatherGlyph(data.weather[0].main, data.weather[0].icon);
+						// Si le temps n'est pas propice à un vol on informe l'utilisateur
+						if(!canFly(data.wind.speed, data.weather[0].main)) {
+							$("#weather-war").addClass("glyphicon glyphicon-alert");
+							toastr.warning('Le temps n\'est pas idéal pour un vol', 'Attention à la météo');
+						}
 						$("#weather").show("slow");
 						return true;
 					}
@@ -807,6 +816,20 @@ $(function() {
 
 			}
 		}
+	}
+
+	function canFly(speedWind, main) {
+		if(speedWind > 30) {
+			return false;
+		}
+
+		// Weather condition
+		var wc = main.toLowerCase();
+		if(wc.indexOf('rain') > -1 || wc.indexOf('snow') > -1) {
+			return false;
+		}
+
+		return true;
 	}
 
 	function kelvinToCelsius(t) {

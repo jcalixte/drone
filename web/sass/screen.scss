@@ -33,7 +33,7 @@ $pointDefault: #ffffff;
 /*----- Fin des constantes  ------*/
 
 body {
-	font-family: 'Quicksand', "Segoe UI", Arial, sans-serif;
+	font-family: 'Quicksand', "Segoe UI", Tahoma, Arial, sans-serif;
 	font-size: 16pt;
 	background-color: $beeBlack;
 	color: white;
@@ -121,11 +121,11 @@ span.bee {
 #content {
 	position: absolute;
 	top: 0; right: 0; left: 0;
-	margin: 0 auto 10px;
+	margin: 58px auto 10px;
 }
 
 h1 {
-	font-family: "Segoe UI Light", Arial, sans-serif;
+	font-family: "Segoe UI Light", Helvetica, Tahoma, Arial, sans-serif;
 	font-size: 18pt;
 }
 
@@ -139,6 +139,10 @@ h3 {
 	text-align: center;
 	font-size: 28pt;
 	margin-bottom: 15px;
+}
+
+input {
+    color: $beeBlack;
 }
 
 .clear {
@@ -169,7 +173,7 @@ h3 {
 
 .list-group-item {
 	background-color: inherit;
-	border-color: $beeBlack;
+    border: none;
 }
 
 .table {
@@ -242,6 +246,10 @@ label {
 
 .label {
     border-radius: 0;
+}
+
+span {
+    line-height: normal;
 }
 
 /*===============================
@@ -472,7 +480,7 @@ section.home-container {
 	h1 {
 		position: relative;
 		display: inline;
-		top: -47px;
+		top: -58px;
 		width: 100%; 
 
 		text-align: center;
@@ -594,6 +602,7 @@ section.home-container {
             canvas {
                 width: 100%;
                 height: auto;
+                margin-top: 15px;
             }
         }
     }
@@ -636,7 +645,7 @@ div.drone-content {
 	}
 
 	h2 {
-		font-family: "Segoe UI Light", Arial;
+		font-family: "Segoe UI Light", Helvetica, Tahoma, Arial;
 		margin: 15px 0;
 	}
 

@@ -7,6 +7,7 @@
 {% block stylesheets %}
 	<link href="{{ asset('stylesheets/weather/css/weather-icons.min.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('stylesheets/toastr.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
+	{{ parent() }}
 {% endblock %}
 
 {% block body_map %}
@@ -84,10 +85,11 @@
 					Vos drones :
 					<ul class="list-group">
 						{% for drone in user.drones %}
-							<li class="list-group-item">{{ drone.product }} - {{ drone.serialNumber }}
-                                <a href="{{ path('drone_manage', {id: drone.id}) }}" class="btn btn-info">
+							<li class="list-group-item">{{ drone.product }}
+                                <a href="{{ path('drone_manage', {id: drone.id}) }}" class="btn btn-info pull-right">
                                     Gérer le drone
                                 </a>
+								<div class="clearfix"></div>
                             </li>
 						{% endfor %}
 					</ul>
