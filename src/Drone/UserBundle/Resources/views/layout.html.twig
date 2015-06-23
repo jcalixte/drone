@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	 {{ parent() }} {% block title_user %}{% endblock %}
+	 {% block title_user %}{{ parent() }}{% endblock %}
 {% endblock %}
 
 {% block stylesheets %}

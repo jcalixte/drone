@@ -44,7 +44,6 @@ drone_ajax_delete_interest_points:
     options:
         expose: true
 
-
 drone_ajax_delete_drones:
     path:     /delete_drones
     defaults: { _controller: DroneMapBundle:Ajax:deleteDrones }

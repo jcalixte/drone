@@ -52,6 +52,7 @@
 						<th>Produit</th>
 						<th>Latitude</th>
 						<th>Longitude</th>
+						<th>Activé</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -61,6 +62,13 @@
 							<td><span class="glyphicon glyphicon-plane"></span> {{ drone }}</td>
 							<td>{{ drone.latitude|number_format(5) }}</td>
 							<td>{{ drone.longitude|number_format(5) }}</td>
+							<td>
+								{% if drone.activated %}
+									<span class="glyphicon glyphicon-ok"></span>
+								{% else %}
+									<span class="glyphicon glyphicon-ban-circle"></span>
+								{% endif %}
+							</td>
 							<td>
 								<a href="{{ path('drone_manage', {id: drone.id}) }}" class="btn btn-info">
 									Gérer le drone

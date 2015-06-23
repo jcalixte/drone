@@ -38,10 +38,7 @@ $(function() {
 
     var circleRadius = 0.0000008;
 
-	// Changement des options par défaut des notifications
-	toastr.options.positionClass = "toast-bottom-right";
-	toastr.options.closeButton = true;
-	toastr.options.progressBar = true;
+	var loadingAnim = $("#container-loading");
 
 	$("#search").click(function() {
 		var query = $("#search_query").val();
@@ -412,6 +409,7 @@ $(function() {
 
 	function moveDrones() {
 		if(droneList.length > 0) {
+			loadingAnim.show("fast");
 			distributePath(path); // On affilie à chaque drone son propre chemin.
 			
 			// On ajoute la localisation du drone dans le chemin pour le TSP on optimise les chemins
@@ -449,7 +447,7 @@ $(function() {
 
 		// On ramène les coordonnées à des coordonnées relatives pour ne pas avoir de coordonnées négatives
 		var relativePath = [];
-		// On multiplie par un coefficient pour avec une différence significative entre chaque chemin possible
+		// On multiplie par un coefficient pour une différence significative entre chaque chemin possible
 		var coeff = 10000000;
 		p.forEach(function(e) {
 			relativePath.push({
@@ -542,6 +540,7 @@ $(function() {
 				}
 			});
 		});
+		loadingAnim.show("fast");
 		$.ajax({
 			type: 'POST',
 			url: Routing.generate('drone_ajax_delete_fields', {_locale: "fr"}),
@@ -574,17 +573,18 @@ $(function() {
 				polyFields.length = 0;
 			}
 		});
+		loadingAnim.hide("slow");
 	});
 
 	$('#deleteInterestPoints').click(function() {
-		toastr.info('Enregistrement réussi');
+		loadingAnim.show("fast");
 		$.ajax({
 			type: 'POST',
 			url: Routing.generate('drone_ajax_delete_interest_points', {_locale: "fr"}),
 			//data: datas,
 			success: function(data) {
 				console.log("succes !");
-				toastr.success('Enregistrement réussi');
+				toastr.success('Suppression réussie');
 				path.forEach(function(e) {
 					var equal = false;
 					dronePinList.forEach(function(dronePin) {
@@ -600,9 +600,11 @@ $(function() {
 				path.length = 0;
 			}
 		});
+		loadingAnim.hide("slow");
 	});
 
 	$('#deleteDrones').click(function() {
+		loadingAnim.show("fast");
 		dronePinList.forEach(function(dronePin) {
 			$.ajax({
 				type: 'POST',
@@ -616,6 +618,7 @@ $(function() {
 				}
 			});
 		});
+		loadingAnim.hide("slow");
 	});
 
 	/*==========  Fonctions AJAX  ==========*/
@@ -674,6 +677,7 @@ $(function() {
 		if (call == 'droneLocation') {
 			route = Routing.generate('drone_ajax_save_drone_location', {_locale: "fr"});
 			go = false;
+			loadingAnim.show("fast");
 			droneList.forEach(function(dronePin) {
 				var datas = {
 					lat: dronePin.getLocation().latitude,
@@ -690,17 +694,21 @@ $(function() {
 						toastr.success('Enregistrement réussi');
 					}
 				});
-			})
+			});
+			loadingAnim.hide("slow");
 		}else if(call == 'interestPointLocation') {
 			route = Routing.generate('drone_ajax_save_point_location', {_locale: "fr"});
 		}else if(call == "fieldLocation") {
+			console.log("Field Location");
 			route = Routing.generate('drone_ajax_save_field_location', {_locale: "fr"});
 			datas = {
 				fieldCorners: fields
 			};
+			console.log(datas);
 		}
 		
 		if (route != false && go) {
+			loadingAnim.show("fast");
 			$.ajax({
 				type: 'POST',
 				url: route.toString(),
@@ -710,6 +718,7 @@ $(function() {
 					toastr.success('Enregistrement réussi');
 				}
 			});
+			loadingAnim.hide("slow");
 		}
 	}
 
@@ -719,6 +728,7 @@ $(function() {
 		if(typeof la === undefined || typeof lo === undefined) {
 			return false;
 		} else {
+			loadingAnim.show("fast");
 			$.ajax({
 				type: 'get',
 				url: "http://api.openweathermap.org/data/2.5/weather",
@@ -751,6 +761,7 @@ $(function() {
 							toastr.warning('Le temps n\'est pas idéal pour un vol', 'Attention à la météo');
 						}
 						$("#weather").show("slow");
+						loadingAnim.hide("slow");
 						return true;
 					}
 				}
