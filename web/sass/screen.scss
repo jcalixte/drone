@@ -105,6 +105,12 @@ span.bee {
         background-color: $beeBlack;
         padding: 0 15px;
     }
+
+    #container-loading {
+        left: auto;
+        margin-right: 10px;
+        height: 50px;
+    }
 }
 
 .open {
@@ -637,11 +643,16 @@ section.home-container {
 ====================================*/
 
 div.drone-content {
-	padding: 15px;
+	padding: 15px 0 15px;
+    background-color: $beeYellow;
 
 	h1 {
 		font-size: 46pt;
 		text-align: center;
+        
+        span {
+            font-size: 20pt;
+        }
 	}
 
 	h2 {
@@ -657,6 +668,10 @@ div.drone-content {
 		text-align: center;
 		margin-top: 15px;
 	}
+
+    p.qrcode {
+        text-align: center;
+    }
 }
 
 /*-----  Fin de Espace Drone  ------*/

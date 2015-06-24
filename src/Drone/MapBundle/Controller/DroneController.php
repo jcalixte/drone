@@ -176,6 +176,11 @@ class DroneController extends Controller
 		// Activation du drone
 		if(!$entity->getActivated()) {
 			$entity->setActivated(true);
+
+			$this->get('session')->getFlashBag()->add(
+				'info',
+				'Votre drone est désormais activé'
+			);
 		}
 
 		$em->flush();

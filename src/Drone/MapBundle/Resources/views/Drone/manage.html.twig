@@ -1,11 +1,17 @@
 {% extends 'DroneMapBundle::layout_drone.html.twig' %}
 
 {% block title_drone %}
-    Page {{ entity }}
+    {{ parent() }} Drone {{ entity }}
 {% endblock %}
 
 {% block body_drone %}
-	<h1>Drone {{ entity }}</h1>
+	<h1>Drone {{ entity }}
+		{% if entity.activated %}
+			<span class="glyphicon glyphicon-ok"></span>
+		{% else %}
+			<span class="glyphicon glyphicon-ban-circle"></span>
+		{% endif %}
+	</h1>
 
 	<div class="row">
 		{% if is_granted('ROLE_USER') and entity in app.user.drones %}
@@ -13,7 +19,9 @@
 				<h2>QR Code</h2>
 				<p>
 					{{ 'map.drone.qrcode'|trans }} <br>
-					<img src="{{ qrcode_data_uri(url('drone_manage', {id: entity.id}), extension='png') }}" />
+					<p class="qrcode">
+						<img class="qrcode" src="{{ qrcode_data_uri(url('drone_manage', {id: entity.id}), extension='png') }}" />
+					</p>
 				</p>
 			</div>
 			<div class="col-md-4">

@@ -74,7 +74,7 @@ class AjaxController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$userFields = $user->getFields();
 
-		$this->deleteFields();
+		$this->deleteInternFields();
 
 		foreach ($fields as $corners) {
 			$fieldEntity = new Field();
@@ -182,7 +182,7 @@ class AjaxController extends Controller
 		foreach ($user->getPoints() as $point) {
 			foreach($interestPoints as $iPoint){
 				if($point->getLatitude() == $iPoint['latitude'] &&
-				   $points->getLongitude() == $iPoint['longitude']){
+				   $point->getLongitude() == $iPoint['longitude']){
 					$user->removePoint($point);
 					$em->remove($point);
 				}
@@ -258,11 +258,30 @@ class AjaxController extends Controller
 		foreach ($user->getPoints() as $point) {
 			foreach($interestPoints as $iPoint){
 				if($point->getLatitude() == $iPoint['latitude'] &&
-				   $points->getLongitude() == $iPoint['longitude']){
+				   $point->getLongitude() == $iPoint['longitude']){
 					$user->removePoint($point);
 					$em->remove($point);
 				}
 			}
+		}
+		$userManager->updateUser($user);
+		$em->flush();
+
+		return true;
+	}
+
+	protected function deleteInternFields() {
+		$user = $this->getUser();
+		if(!$user){
+			throw $this->createNotFoundException('Utilisateur non connecté');
+		}
+
+		$userManager = $this->container->get('fos_user.user_manager');
+		$em = $this->getDoctrine()->getManager();
+
+		foreach($user->getFields() as $field) {
+			$user->removeField($field);
+			$em->remove($field);
 		}
 		$userManager->updateUser($user);
 		$em->flush();

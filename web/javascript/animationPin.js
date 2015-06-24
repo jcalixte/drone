@@ -27,6 +27,7 @@
 							proto.doActionAndGo(id, initLoc, locations, speed, that, endLoc);
 						}else {
 							$("#inAct-" + id).text('In the recharging base.');
+							$("#container-loading").hide("slow");
 						}
 					}
 					

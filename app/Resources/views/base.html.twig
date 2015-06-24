@@ -7,8 +7,9 @@
 		{% block stylesheets %}
 			<link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
 			<link href="{{ asset('bootcards/src/css/bootcards-desktop.scss') }}" media="screen, projection" rel="stylesheet" type="text/css" />
-			<link href="{{ asset('stylesheets/screen.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
+			<link href="{{ asset('stylesheets/toastr.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
 			<link href="{{ asset('flaticon/flaticon.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
+			<link href="{{ asset('stylesheets/screen.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
 		{% endblock %}
 		<link rel="icon" type="image/x-icon" href="{{ asset('beeEye.png') }}" />
 		{% block javascripts_before %}{% endblock %}
@@ -39,17 +40,18 @@
 							<li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
 							<li><a href="{{ path('fos_user_registration_register') }}">S'inscrire</a></li>
 						{% endif %}
-						{% if app.session.flashbag.all()|length > 0 %}
-							{% for type, messages in app.session.flashbag.all() %}
-								{% for message in messages %}
-									<li class="message-flash flash-{{ type }}">
-										{{ message }}
-									</li>
-								{% endfor %}
-							{% endfor %}
-						{% endif %}
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
+						<li id="container-loading">
+							<svg width="75px" height="50px" viewBox="0 0 187.3 93.7" preserveAspectRatio="xMidYMid meet">
+								<path style="-webkit-filter:url(#f2)" stroke="#ededed" id="outline" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M93.9,46.4c9.3,9.5,13.8,17.9,23.5,17.9s17.5-7.8,17.5-17.5s-7.8-17.6-17.5-17.5c-9.7,0.1-13.3,7.2-22.1,17.1
+				c-8.9,8.8-15.7,17.9-25.4,17.9s-17.5-7.8-17.5-17.5s7.8-17.5,17.5-17.5S86.2,38.6,93.9,46.4z" />
+								<path id="outline-bg" opacity="0.05" fill="none" stroke="#ededed" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M93.9,46.4c9.3,9.5,13.8,17.9,23.5,17.9s17.5-7.8,17.5-17.5s-7.8-17.6-17.5-17.5c-9.7,0.1-13.3,7.2-22.1,17.1
+				c-8.9,8.8-15.7,17.9-25.4,17.9s-17.5-7.8-17.5-17.5s7.8-17.5,17.5-17.5S86.2,38.6,93.9,46.4z" />
+							</svg>
+						</li>
 						<li id="weather"  class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="weather-war"></span> Météo <span class="caret"></span></a>
 							<ul class="dropdown-menu">
@@ -86,6 +88,21 @@
 			<script type="text/javascript" charset="utf-8" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 			<script type="text/javascript" charset="utf-8" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
 			<script type="text/javascript" charset="utf-8" src="{{ asset('bootcards/src/js/bootcards.js') }}"></script>
+			<script type="text/javascript" charset="utf-8" src="{{ asset('javascript/toastr.js') }}"></script>
+			<script type="text/javascript" charset="utf-8" src="{{ asset('javascript/greensock/minified/TweenMax.min.js') }}"></script>
+			<script type="text/javascript" charset="utf-8" src="{{ asset('javascript/greensock/minified/plugins/DrawSVGPlugin.min.js') }}"></script>
+			<script type="text/javascript" charset="utf-8" src="{{ asset('javascript/jGeneral.js') }}"></script>
+
+			<script type="text/javascript" charset="utf-8">
+				$(function() {
+					{% for flashMessage in app.session.flashbag.get('info') %}
+						toastr.info("{{ flashMessage }}");
+					{% endfor %}
+					{% for flashMessage in app.session.flashbag.get('success') %}
+						toastr.success("{{ flashMessage }}");
+					{% endfor %}
+				});
+			</script>
 		{% endblock %}
 	</body>
 </html>

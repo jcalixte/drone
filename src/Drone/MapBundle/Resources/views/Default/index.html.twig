@@ -5,9 +5,8 @@
 {% endblock %}
 
 {% block stylesheets %}
-	<link href="{{ asset('stylesheets/weather/css/weather-icons.min.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
-	<link href="{{ asset('stylesheets/toastr.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
 	{{ parent() }}
+	<link href="{{ asset('stylesheets/weather/css/weather-icons.min.css') }}" media="screen, projection" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% block body_map %}
@@ -86,9 +85,14 @@
 					<ul class="list-group">
 						{% for drone in user.drones %}
 							<li class="list-group-item">{{ drone.product }}
-                                <a href="{{ path('drone_manage', {id: drone.id}) }}" class="btn btn-info pull-right">
-                                    Gérer le drone
-                                </a>
+								<a href="{{ path('drone_manage', {id: drone.id}) }}" class="btn btn-info pull-right">
+									Gérer le drone
+								</a>
+								{% if drone.activated %}
+									<span class="pull-right glyphicon glyphicon-ok" style="margin-right: 10px"></span>
+								{% else %}
+									<span class="pull-right glyphicon glyphicon-ban-circle" style="margin-right: 10px"></span>
+								{% endif %}
 								<div class="clearfix"></div>
                             </li>
 						{% endfor %}
@@ -133,13 +137,12 @@
 {% endblock %}
 
 {% block javascripts_map %}
-<script src="{{ asset('javascript/tsp/main.js') }}"      type="text/javascript" charset="utf-8"></script>
-<script src="{{ asset('javascript/tsp/algorithm.js') }}" type="text/javascript" charset="utf-8"></script>
-<script src="{{ asset('javascript/tsp/utils.js') }}"     type="text/javascript" charset="utf-8"></script>
-<script src="{{ asset('javascript/drone.js') }}"         type="text/javascript" charset="utf-8"></script>
-<script src="{{ asset('javascript/MapScript.js') }}"     type="text/javascript" charset="utf-8"></script>
-<script src="{{ asset('javascript/jBootstrap.js') }}"    type="text/javascript" charset="utf-8"></script>
-<script src="{{ asset('javascript/toastr.js') }}"        type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8" src="{{ asset('javascript/tsp/main.js') }}"></script>
+<script type="text/javascript" charset="utf-8" src="{{ asset('javascript/tsp/algorithm.js') }}"></script>
+<script type="text/javascript" charset="utf-8" src="{{ asset('javascript/tsp/utils.js') }}"></script>
+<script type="text/javascript" charset="utf-8" src="{{ asset('javascript/drone.js') }}"></script>
+<script type="text/javascript" charset="utf-8" src="{{ asset('javascript/MapScript.js') }}"></script>
+<script type="text/javascript" charset="utf-8" src="{{ asset('javascript/jBootstrap.js') }}"></script>
 <script>
 	$(function(){
 		var twigElements           = [];
