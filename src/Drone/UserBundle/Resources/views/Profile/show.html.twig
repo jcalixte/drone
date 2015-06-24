@@ -1,6 +1,10 @@
 {% extends 'DroneUserBundle::layout.html.twig' %}
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% block title_user %}
+	Profil {{ user.username|capitalize }}
+{% endblock %}
+
 {% block body_user %}
 	<div class="user_show">
 		<div class="profile-picture">
