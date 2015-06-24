@@ -428,6 +428,8 @@ $(function() {
 			droneList.forEach(function(drone) {
 				drone.path = [];
 			});
+		}else{
+			loadingAnim.hide("slow");
 		}
 	}
 

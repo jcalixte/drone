@@ -91,6 +91,10 @@ class Drone
 
 	public function __construct() {
 		$this->activated = false;
+		$this->setSerialNumber($this->generateSerialNumber(20))
+			 ->setLatitude(0)
+			 ->setLongitude(0)
+			 ->setAltitude(0);
 	}
 
 	/**
@@ -281,4 +285,19 @@ class Drone
     {
         return $this->activated;
     }
+
+	/**
+	 * @param int $length
+	 *
+	 * @return string
+	 */
+	protected function generateSerialNumber($length = 10) {
+		$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$charactersLength = strlen($characters);
+		$randomString = '';
+		for ($i = 0; $i < $length; $i++) {
+			$randomString .= $characters[rand(0, $charactersLength - 1)];
+		}
+		return $randomString;
+	}
 }

@@ -10,3 +10,12 @@ user:
             photos: supprimer vos photos
             videos: supprimer vos vidéos
             sounds: supprimer vos sons
+
+form:
+    firstname: Prénom :
+    lastname: Nom :
+    address: Adresse :
+    city: Ville :
+    zipcode: Code postal :
+    country: Pays :
+    image: Photo de profil :

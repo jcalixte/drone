@@ -10,15 +10,15 @@ class RegistrationFormType extends AbstractType
 	public function buildForm(FormBuilderInterface $builder, array $options) {
 		$builder->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
 			->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
-			->add('firstname')
-			->add('lastname')
-			->add('address')
-			->add('city')
-			->add('zipcode')
-			->add('city')
-			->add('country', 'country')
+			->add('firstname', null, array('label' => 'form.firstname'))
+			->add('lastname', null, array('label' => 'form.lastname'))
+			->add('address', null, array('label' => 'form.address'))
+			->add('city', null, array('label' => 'form.city'))
+			->add('zipcode', null, array('label' => 'form.zipcode'))
+			->add('country', 'country', array('label' => 'form.country'))
 			->add('imageFile', 'file', array(
 				'required' => false,
+				'label'    => 'form.image'
 				))
 			/*->add('imageFile', 'vich_image', array(
 					'required'      => false,

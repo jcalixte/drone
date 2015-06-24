@@ -38,8 +38,7 @@ class AjaxController extends Controller
 			$drone->setLatitude($lat)
 				  ->setLongitude($lon)
 				  ->setAltitude($alt)
-				  ->setProduct('Parrot')
-				  ->setSerialNumber($this->generateSerialNumber(20));
+				  ->setProduct('Parrot');
 
 			$userManager = $this->container->get('fos_user.user_manager');
 			$em = $this->getDoctrine()->getManager();
