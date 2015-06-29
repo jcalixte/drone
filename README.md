@@ -1,7 +1,7 @@
 Bee Eye
 ========================
 
-Bienvenue sur la plateforme _Bee_ _Eye_, un site internet construit avec le Framework [Symfony2][0]
+Bienvenue sur la plateforme _Bee Eye_, un site internet construit avec le Framework [Symfony2][0]
 
 Qu'y a-t-il dedans ?
 --------------
@@ -93,6 +93,15 @@ parameters:
     locale: fr
     secret: ThisTokenIsNotSoSecretChangeIt
 ```
+
+Créez votre base de données et mettez à jour son organisation _(veillez à avoir votre serveur allumé)_ :
+
+```git
+php app/console doctrine:database:create
+php app/console doctrine:schema:update --force
+```
+
+Vous pouvez désormais consulter la plateforme à l'adresse suivante : **localhost/votre_projet/web/app_dev.php/**
 
 [0]:  https://symfony.com/
 [1]:  http://symfony.com/doc/2.6/book/installation.html
