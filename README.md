@@ -10,7 +10,7 @@ Qu'y a-t-il dedans ?
 
 L'édition standard de Symfony2 est configuré avec :
 
-  * Twig comme langage template;
+  * Twig comme langage pour template;
   * Doctrine ORM/DBAL;
   * Swiftmailer pour l'envoi de mail;
   * Annotations activées pour tout.
@@ -41,8 +41,8 @@ La touche Bee Eye
 --------------
 
 La plateforme utilise pour sa part les bundles suivants :
-* [FosUserBundle][14] - The FOSUserBundle adds support for a database-backed user system in Symfony2. It provides a flexible framework for user management that aims to handle common tasks such as user registration and password retrieval.
-* [FosRESTBundle][15] - This bundle provides various tools to rapidly develop RESTful API's & applications with Symfony2. 
+* [FOSUserBundle][14] - The FOSUserBundle adds support for a database-backed user system in Symfony2. It provides a flexible framework for user management that aims to handle common tasks such as user registration and password retrieval.
+* [FOSRESTBundle][15] - This bundle provides various tools to rapidly develop RESTful API's & applications with Symfony2. 
 * [FOSJsRoutingBundle][16] - This bundle allows you to expose your routing in your JavaScript code. That means you'll be able to generate URL with given parameters like you can do with the Router component provided in the Symfony2 core.
 * [NelmioApiDocBundle][17] - The NelmioApiDocBundle bundle allows you to generate a decent documentation for your APIs.
 * [VichUploaderBundle][18] - The VichUploaderBundle is a Symfony2 bundle that attempts to ease file uploads that are attached to ORM entities, MongoDB ODM documents, PHPCR ODM documents or Propel models.
@@ -62,6 +62,39 @@ Et enfin, Bee Eye comporte ses propres bundles spécifiques :
 * DroneHomeBundle - comprend toutes les pages statiques du site
 
 Au plaisir de monter à bord !
+
+Installation
+============
+
+Pour installer Bee Eye sur votre ordinateur, exécutez les commandes suivantes :
+
+```git
+git clone https://github.com/jcalixte/drone.git
+cd votre_projet/
+php composer.phar self-update
+php composer.phar install
+php app/console assets:install
+php app/console cache:clear
+```
+
+Ajoutez un fichier paramètre s'il n'existe pas et modifiez-le selon vos besoins :
+
+```yml
+# votre_projet/app/config/parameters.yml
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: drone
+    database_user: root
+    database_password: null
+    mailer_transport: smtp
+    mailer_host: localhost
+    mailer_user: null
+    mailer_password: null
+    locale: fr
+    secret: ThisTokenIsNotSoSecretChangeIt
+```
 
 [1]:  http://symfony.com/doc/2.6/book/installation.html
 [6]:  http://symfony.com/doc/2.6/bundles/SensioFrameworkExtraBundle/index.html
