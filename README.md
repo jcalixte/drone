@@ -103,6 +103,8 @@ php app/console doctrine:schema:update --force
 
 Vous pouvez désormais consulter la plateforme à l'adresse suivante : **localhost/votre_projet/web/app_dev.php/**
 
+[Consulter la logique de la plateforme pour les drones][28].
+
 [0]:  https://symfony.com/
 [1]:  http://symfony.com/doc/2.6/book/installation.html
 [6]:  http://symfony.com/doc/2.6/bundles/SensioFrameworkExtraBundle/index.html
@@ -127,3 +129,4 @@ Vous pouvez désormais consulter la plateforme à l'adresse suivante : **localho
 [25]: https://github.com/sonata-project/SonataDoctrineORMAdminBundle
 [26]: https://github.com/sonata-project/SonataAdminBundle
 [27]: https://github.com/KnpLabs/Gaufrette
+[28]: /web/javascript/README.md
