@@ -1,9 +1,7 @@
 Bee Eye
 ========================
 
-Bienvenue sur la plateforme _Bee_ _Eye_, un site internet construit 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony2
-application that you can use as the skeleton for your new applications.
+Bienvenue sur la plateforme _Bee_ _Eye_, un site internet construit avec le Framework [Symfony2][0]
 
 Qu'y a-t-il dedans ?
 --------------
@@ -96,6 +94,7 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
 ```
 
+[0]:  https://symfony.com/
 [1]:  http://symfony.com/doc/2.6/book/installation.html
 [6]:  http://symfony.com/doc/2.6/bundles/SensioFrameworkExtraBundle/index.html
 [7]:  http://symfony.com/doc/2.6/book/doctrine.html
