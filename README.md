@@ -129,4 +129,4 @@ Vous pouvez désormais consulter la plateforme à l'adresse suivante : **localho
 [25]: https://github.com/sonata-project/SonataDoctrineORMAdminBundle
 [26]: https://github.com/sonata-project/SonataAdminBundle
 [27]: https://github.com/KnpLabs/Gaufrette
-[28]: /web/javascript/README.md
+[28]: /web/javascript/
